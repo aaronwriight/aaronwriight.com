@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Placards — Aaron Wright’s design reference</title>
+<style>
+  :root { color-scheme: light; --paper: #fff; --ink: #1c1917; --muted: #78716c; --rule: #d6d3d1; --olive: #6f8200; }
+  :root[data-theme="dark"] { color-scheme: dark; --paper: #0c0a09; --ink: #f5f5f4; --muted: #a8a29e; --rule: #44403c; --olive: #b0bf59; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 Perpetua, Georgia, serif; }
+  main { max-width: 64rem; margin: 4rem auto; padding: 0 1.5rem; }
+  .page-header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: 1.25rem; }
+  h1 { font-size: 1.1rem; letter-spacing: .12em; font-weight: 400; margin: 0; }
+  h2 { font-size: 1rem; font-weight: 400; letter-spacing: .08em; }
+  p { margin: 0 0 1rem; }
+  section { margin-top: 3rem; }
+  .intro { margin-top: 2rem; max-width: 44rem; }
+  .muted { color: var(--muted); }
+  button { font: inherit; color: var(--olive); border: 1px solid var(--rule); background: none; padding: .25rem .75rem; cursor: pointer; }
+  a { color: var(--olive); text-underline-offset: .2em; }
+  /* Portable motif: the frame is neutral; only linked placards react as a whole. */
+  .placard { display: grid; gap: 1.5rem; border: 1px solid var(--rule); padding: 1.25rem; color: var(--ink); text-decoration: none; }
+  .placard + .placard { margin-top: 1.5rem; }
+  .placard__art { min-width: 0; height: 14rem; display: flex; align-items: center; justify-content: center; }
+  .placard__art img, .placard__art svg { width: 100%; height: 100%; object-fit: contain; }
+  .placard__art:empty { display: none; }
+  .placard__body { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .placard__category { color: var(--muted); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; margin: 0; }
+  .placard__title { margin: .5rem 0 .75rem; font-size: 1.4rem; line-height: 1.2; font-weight: 400; letter-spacing: normal; }
+  .placard__subtitle { font-size: .875rem; font-style: italic; margin: 0; }
+  .placard__description { font-size: .875rem; color: var(--muted); margin: .75rem 0 0; }
+  .placard__action { font-size: .75rem; color: var(--olive); margin-top: 1.25rem; }
+  a.placard:is(:hover, :focus-visible) { border-color: var(--olive); color: var(--ink); text-decoration: none; }
+  a.placard:is(:hover, :focus-visible) :is(.placard__title, .placard__subtitle, .placard__action) { color: var(--olive); text-decoration: underline; text-underline-offset: .2em; }
+  a.placard:focus-visible, button:focus-visible { outline: 2px solid var(--olive); outline-offset: 4px; }
+  .contacts { display: grid; gap: 1.5rem; }
+  .contacts .placard { display: block; margin: 0; }
+  .contacts a { display: inline-block; margin-top: 1rem; overflow-wrap: anywhere; }
+  pre { padding: 1rem; border: 1px solid var(--rule); font: .8rem/1.6 ui-monospace, monospace; overflow: auto; }
+  code { font-size: .85em; }
+  li { margin-block: .5rem; }
+  @media (min-width: 64rem) {
+    .placard { grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); gap: 2rem; padding: 1.5rem; }
+    .placard__art:empty { display: block; }
+    .contacts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: no-preference) { .placard, .placard__title, .placard__subtitle, .placard__action { transition: color 150ms, border-color 150ms; } }
+  @media print { button { display: none; } main { margin-block: 1rem; } .placard { break-inside: avoid; } }
+</style>
+<main>
+  <header class="page-header"><h1>placards</h1><button type="button" id="theme" aria-pressed="false">dark preview</button></header>
+  <div class="intro">
+    <p>A reusable pattern from Aaron Wright’s personal site: a crisp outline, a project image, and a restrained text hierarchy. Prepared for the aesthetic portfolio and Cortex.</p>
+    <p class="muted">Standalone HTML and CSS. No framework, fonts, images, or network requests required. Save or copy this file; the examples below are live specimens.</p>
+  </div>
+
+  <section aria-labelledby="linked-heading">
+    <h2 id="linked-heading">01 · linked project</h2>
+    <a class="placard" href="#implementation">
+      <div class="placard__art">
+        <svg viewBox="0 0 360 224" role="img" aria-labelledby="figure-title"><title id="figure-title">Example scientific figure: points connected across four stages</title>
+          <path d="M35 174H325M35 45V174" fill="none" stroke="currentColor" opacity=".25"/>
+          <path d="M65 143L140 122L215 80L290 57" fill="none" stroke="#6f8200" stroke-width="2"/>
+          <g fill="#6f8200"><circle cx="65" cy="143" r="5"/><circle cx="140" cy="122" r="5"/><circle cx="215" cy="80" r="5"/><circle cx="290" cy="57" r="5"/></g>
+        </svg>
+      </div>
+      <div class="placard__body">
+        <p class="placard__category">research</p>
+        <h3 class="placard__title">project title</h3>
+        <p class="placard__subtitle">one line about the question or purpose</p>
+        <p class="placard__description">A brief description. This text and the image keep their original appearance on hover.</p>
+        <span class="placard__action">explore project <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+  </section>
+
+  <section aria-labelledby="static-heading">
+    <h2 id="static-heading">02 · coming soon</h2>
+    <article class="placard">
+      <div class="placard__art" aria-hidden="true"></div>
+      <div class="placard__body"><p class="placard__category">music</p><h3 class="placard__title">project in progress</h3><p class="placard__subtitle">coming soon</p></div>
+    </article>
+  </section>
+
+  <section aria-labelledby="contact-heading">
+    <h2 id="contact-heading">03 · contact pair</h2>
+    <div class="contacts">
+      <article class="placard"><h3 class="placard__title">science</h3><p class="placard__description">Role, affiliation, and reasons to get in touch. Keep all existing contact information.</p><a href="mailto:science@example.com">science@example.com</a></article>
+      <article class="placard"><h3 class="placard__title">creative</h3><p class="placard__description">A second contact context. Only the individual links are interactive.</p><a href="mailto:creative@example.com">creative@example.com</a></article>
+    </div>
+  </section>
+
+  <section id="implementation" aria-labelledby="implementation-heading">
+    <h2 id="implementation-heading">implementation notes</h2>
+    <ul>
+      <li><strong>Frame:</strong> a 1px neutral border, square corners, no shadow; 20px padding on small screens and 24px on desktop. Use 24px between cards and 48px between groups.</li>
+      <li><strong>Hierarchy:</strong> small uppercase category, 1.4rem regular serif title, .875rem italic subtitle, muted description, .75rem action. Group headings belong above the cards, with one brief introduction.</li>
+      <li><strong>Image:</strong> contain the full figure in a 224px-high area. Leave unchosen artwork blank on desktop and collapse that empty area on mobile. Avoid captions below preview images.</li>
+      <li><strong>Interaction:</strong> only the linked frame, title, subtitle, and action highlight. Descriptions, category labels, and images remain unchanged. Mirror hover with keyboard focus; respect reduced motion.</li>
+      <li><strong>Semantics:</strong> one anchor per linked card; never nest links within it. Use an article or section for static and contact cards. Give real images descriptive alt text. Coming-soon cards have no fake link or tab stop.</li>
+      <li><strong>Responsive:</strong> image left/text right at desktop widths; stack image above text below 1024px. Contact cards sit in two columns at desktop widths and stack on smaller screens.</li>
+      <li><strong>Color:</strong> olive #6f8200 on white; #b0bf59 on the dark #0c0a09 surface. Keep secondary text and borders neutral.</li>
+    </ul>
+    <pre>&lt;a class="placard" href="/project"&gt;
+  &lt;div class="placard__art"&gt;&lt;img src="figure.png" alt="Describe the figure"&gt;&lt;/div&gt;
+  &lt;div class="placard__body"&gt;
+    &lt;p class="placard__category"&gt;research&lt;/p&gt;
+    &lt;h3 class="placard__title"&gt;project title&lt;/h3&gt;
+    &lt;p class="placard__subtitle"&gt;project subtitle&lt;/p&gt;
+    &lt;p class="placard__description"&gt;brief description&lt;/p&gt;
+    &lt;span class="placard__action"&gt;explore project →&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</pre>
+    <p class="muted">The stylesheet in this file is the portable implementation. In Frame It Wright, see <code>src/components/site/project-placard.tsx</code>, <code>src/components/globals.css</code>, and the contact page. In Cortex, this file is a design reference, independent of the live documentation theme.</p>
+  </section>
+</main>
+<script>
+  document.getElementById('theme').addEventListener('click', function () {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    this.setAttribute('aria-pressed', String(dark));
+    this.textContent = dark ? 'light preview' : 'dark preview';
+  });
+</script>
+</html>

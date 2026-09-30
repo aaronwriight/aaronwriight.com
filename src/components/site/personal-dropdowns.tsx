@@ -1,39 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { DisclosureSection } from "@/components/site/disclosure-section";
 import { AlbumCarousel } from "@/components/site/album-carousel";
 
-type Section = "art" | "communities" | "creative";
-
-const sectionLabels: Array<[Section, string]> = [
-  ["art", "art & media"],
-  ["communities", "communities"],
-  ["creative", "creative initiatives & inspirations"],
-];
-
 export function PersonalDropdowns() {
-  const [openSection, setOpenSection] = useState<Section | null>(null);
-
   return (
-    <div>
-      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-        {sectionLabels.map(([section, label], index) => (
-          <span key={section} className="contents">
-            {index > 0 && <span className="text-stone-400">|</span>}
-            <button
-              type="button"
-              aria-expanded={openSection === section}
-              onClick={() => setOpenSection((current) => (current === section ? null : section))}
-              className="cursor-pointer bg-transparent p-0 font-serif text-sm text-[#6f8200] hover:underline"
-            >
-              {label}
-            </button>
-          </span>
-        ))}
-      </div>
-
-      {openSection === "art" && (
+    <div className="personal-sections divide-y divide-stone-300 border-y border-stone-300 dark:divide-stone-700 dark:border-stone-700">
+      <DisclosureSection id="art" title="Art & media">
         <div className="mt-5 space-y-5">
           <AlbumCarousel />
 
@@ -65,16 +39,16 @@ export function PersonalDropdowns() {
             </ul>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
-      {openSection === "communities" && (
+      <DisclosureSection id="communities" title="Communities">
         <ul className="mt-5">
           <li>My home away from science: <Link href="https://lavidacenter.org">La Vida At Gordon College</Link></li>
           <li>Nurturing inclusivity, presence, and creativity: <Link href="https://compasspath.org">Compass</Link></li>
         </ul>
-      )}
+      </DisclosureSection>
 
-      {openSection === "creative" && (
+      <DisclosureSection id="inspirations" title="Creative initiatives & inspirations">
         <div className="mt-5 space-y-5">
           <div>
             <p><strong>traditional &amp; digital media</strong></p>
@@ -118,7 +92,7 @@ export function PersonalDropdowns() {
             </ul>
           </div>
         </div>
-      )}
+      </DisclosureSection>
     </div>
   );
 }

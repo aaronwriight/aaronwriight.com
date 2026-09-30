@@ -49,13 +49,9 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
   const pendingOrEmpty = park.visited ? "pending" : "—";
 
   return (
-    <VentureShell title={displayName} showTitle={false}>
+    <VentureShell title={displayName} showTitle={false} backLink={["national parks", "/venture/parks"]}>
       <article className="not-prose w-full max-w-none">
-        <Link href="/venture/parks" className="text-xs lowercase tracking-widest text-stone-500">
-          ← national parks
-        </Link>
-
-        <header className="mt-10 border-b border-stone-300 pb-7 dark:border-stone-700">
+        <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
           <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">
             {displayName}
           </h1>

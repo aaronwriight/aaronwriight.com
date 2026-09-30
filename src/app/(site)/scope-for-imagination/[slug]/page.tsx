@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PortableText } from "@portabletext/react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { myPortableTextComponents } from "@/components/portable-components";
 import { JournalShell } from "@/components/site/site-content";
@@ -41,10 +40,9 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
   const years = getSfiYears(allPosts);
 
   if (years.includes(Number(slug))) {
-    const year = Number(slug);
     const posts = allPosts.filter((post) => post.date.startsWith(slug));
     return (
-      <JournalShell title={slug} years={years}>
+      <JournalShell title={slug} years={years} backLink={["index", "/scope-for-imagination/index"]}>
         <div className="not-prose mt-10">
           <SfiPostList posts={posts} groupByYear={false} />
         </div>
@@ -58,14 +56,10 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
   const postYear = post.date.slice(0, 4);
 
   return (
-    <JournalShell title={post.title} showTitle={false} years={years}>
+    <JournalShell title={post.title} showTitle={false} years={years} backLink={[postYear, `/scope-for-imagination/${postYear}`]}>
       <div className="w-full">
         <div className="not-prose">
-          <Link href={`/scope-for-imagination/${postYear}`} className="text-xs lowercase tracking-widest text-stone-500">
-            ← {postYear}
-          </Link>
-
-          <SfiPostHeader post={post} large className="mt-10 border-b border-stone-300 pb-7 dark:border-stone-700" />
+          <SfiPostHeader post={post} large className="border-b border-stone-300 pb-7 dark:border-stone-700" />
         </div>
 
         <div className="prose prose-stone mt-10 w-full max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-[#6f8200] prose-img:my-10 prose-img:w-full">

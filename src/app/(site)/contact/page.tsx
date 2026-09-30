@@ -47,9 +47,9 @@ export default function ContactPage() {
         my research, creative efforts, or just to have a chat! Looking forward to connecting! :)
       </p>
 
-      <div className="not-prose grid border-t border-stone-300 dark:border-stone-700 sm:grid-cols-2">
-        <section className="py-7 sm:pr-8">
-          <h2 className="font-serif text-sm font-normal lowercase tracking-widest text-stone-900 dark:text-stone-100">science</h2>
+      <div className="not-prose grid gap-6 lg:grid-cols-2">
+        <section aria-labelledby="science-contact" className="contact-placard min-w-0 border border-stone-300 p-5 sm:p-6 dark:border-stone-700">
+          <h2 id="science-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">science</h2>
 
           <div className="mt-5 space-y-2">
             <p className="font-serif text-sm text-stone-900 dark:text-stone-100">
@@ -59,10 +59,9 @@ export default function ContactPage() {
 
           <p className="mt-5 text-xs leading-6 text-stone-500">Research questions, collaborations, mentorship, talks, and academic life.</p>
           <p className="mt-5 font-serif text-sm">
-            <Link href="mailto:aawva@mit.edu" className="text-[#6f8200]">aawva@mit.edu</Link>
+            <Link href="mailto:aaron_wright@brown.edu" className="text-[#6f8200]">aaron_wright@brown.edu</Link>
           </p>
-          <nav className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs tracking-wider">
-            <Link href="https://www.evlab.mit.edu" className="text-[#6f8200]">evlab</Link>
+          <nav aria-label="Science contact links" className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs tracking-wider">
             <Link href="https://fpetzschner.com/lab/" className="text-[#6f8200]">PEAC lab</Link>
             <Link href="https://github.com/aaronwriight" className="text-[#6f8200]">github</Link>
             <Link href="https://scholar.google.com/citations?user=2b1N4FcAAAAJ&hl=en" className="text-[#6f8200]">google scholar</Link>
@@ -72,14 +71,15 @@ export default function ContactPage() {
           </nav>
         </section>
 
-        <section className="border-t border-stone-300 py-7 dark:border-stone-700 sm:border-l sm:border-t-0 sm:pl-8">
-          <h2 className="font-serif text-sm font-normal lowercase tracking-widest text-stone-900 dark:text-stone-100">photography &amp; creative</h2>
+        <section aria-labelledby="creative-contact" className="contact-placard min-w-0 border border-stone-300 p-5 sm:p-6 dark:border-stone-700">
+          <h2 id="creative-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">photography &amp; creative</h2>
           <p className="mt-5 font-serif text-sm text-stone-900 dark:text-stone-100">frame it wright photography, scope for imagination</p>
           <p className="mt-5 text-xs leading-6 text-stone-500">Photography, bookings, creative collaborations, and other musings.</p>
-          <p className="mt-5 font-serif text-sm">
-            <Link href="mailto:frameitwright@gmail.com" className="text-[#6f8200]">frameitwright@gmail.com</Link>
-          </p>
-          <nav className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs lowercase tracking-wider">
+          <div className="mt-5 space-y-1 font-serif text-sm">
+            <p><Link href="mailto:aaron.anthonyva@gmail.com" className="text-[#6f8200]">aaron.anthonyva@gmail.com</Link></p>
+            <p><Link href="mailto:frameitwright@gmail.com" className="text-[#6f8200]">frameitwright@gmail.com</Link></p>
+          </div>
+          <nav aria-label="Creative contact links" className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs lowercase tracking-wider">
             <Link href="https://www.instagram.com/frameitwrightphotography/" className="text-[#6f8200]">instagram</Link>
             <Link href="https://www.buymeacoffee.com/aaronwriight" className="text-[#6f8200]">buy me a coffee ;)</Link>
             <Link href="/frame-it-wright-photography/mailing-list" className="text-[#6f8200]">mailing list</Link>

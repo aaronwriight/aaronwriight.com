@@ -49,13 +49,9 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
   const firstAscent = peak.ascents.find((ascent) => ascent.ordinal === 1);
 
   return (
-    <VentureShell title={peak.name} showTitle={false}>
+    <VentureShell title={peak.name} showTitle={false} backLink={["northeast 115", "/venture/trails"]}>
       <article className="not-prose w-full max-w-none">
-        <Link href="/venture/trails" className="text-xs lowercase tracking-widest text-stone-500">
-          ← northeast 115
-        </Link>
-
-        <header className="mt-10 border-b border-stone-300 pb-7 dark:border-stone-700">
+        <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
           <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">
             {peak.name}
           </h1>

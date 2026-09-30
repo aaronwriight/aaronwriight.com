@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LiteraturePage() {
   return (
-    <LiteratureShell title="literature" subtitle="coming soon">
+    <LiteratureShell title="about" subtitle="coming soon">
       {null}
     </LiteratureShell>
   );

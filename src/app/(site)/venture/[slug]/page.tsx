@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MusicTagline } from "@/components/site/music-tagline";
 import { VentureShell } from "@/components/site/site-content";
@@ -38,14 +37,10 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
   if (!entry) notFound();
 
   return (
-    <VentureShell title={entry.subtitle} showTitle={false}>
+    <VentureShell title={entry.subtitle} showTitle={false} backLink={["index", "/venture/index"]}>
       <div className="w-full max-w-3xl">
         <div className="not-prose">
-          <Link href="/venture/index" className="text-xs lowercase tracking-widest text-stone-500">
-            ← index
-          </Link>
-
-          <header className="mt-10 border-b border-stone-300 pb-7 dark:border-stone-700">
+          <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
             <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">{entry.title}</h1>
             <p className="mt-3 font-serif text-base italic leading-6 text-stone-500 first-letter:lowercase sm:text-lg">{entry.subtitle}</p>
             <p className="mt-3 text-xs leading-6 text-stone-450">

@@ -56,13 +56,9 @@ export default async function VentureTravelDestinationPage({ params }: { params:
   );
 
   return (
-    <VentureShell title={destination.name} showTitle={false}>
+    <VentureShell title={destination.name} showTitle={false} backLink={["travels", "/venture/travels"]}>
       <article className="not-prose w-full max-w-none">
-        <Link href="/venture/travels" className="text-xs lowercase tracking-widest text-stone-500">
-          ← travels
-        </Link>
-
-        <header className="mt-10 border-b border-stone-300 pb-7 dark:border-stone-700">
+        <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
           <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">
             {destination.name}
           </h1>

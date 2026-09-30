@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const albums = [
+  { title: "Fighter Dog", artist: "Nikki Falk", href: "https://open.spotify.com/album/57pXQxr9mmsmf6sohGsyp0", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02f448599a110b0928cf32efec" },
+  { title: "Never Land II", artist: "Andy Mineo", href: "https://open.spotify.com/album/3YB6qDZLtFID4wyBXvVSbL", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e029b053382ae45874afb7fff16" },
   { title: "Liquorice", artist: "Hatchie", href: "https://open.spotify.com/album/0dtHFmAZG3WuxrpxxGoXlV", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02ba8cfa0912d3ce0b674c8f5f" },
   { title: "Marginalia (Deluxe)", artist: "ella jane", href: "https://open.spotify.com/album/0gRouCGuPLYRmHcf7dkTWd", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d4d31dc4fb24f8b2498bb19e" },
   { title: "The Definition", artist: "Jon Bellion", href: "https://open.spotify.com/album/7EOvtHDxbltA0GNC4mvLAC", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0212388a3d3a11600641476f89" },

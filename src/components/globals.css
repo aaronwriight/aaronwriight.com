@@ -125,6 +125,83 @@ a:hover {
   text-decoration-line: underline;
 }
 
+.section-title,
+.personal-sections strong {
+  color: #6f8200;
+}
+
+html.dark .section-title,
+html.dark .personal-sections strong {
+  color: #b0bf59;
+}
+
+.site-navigation a[aria-current="page"] {
+  color: #6f8200;
+}
+
+html.dark .site-navigation a[aria-current="page"] {
+  color: #b0bf59;
+}
+
+.navigation-submenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--submenu-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navigation-submenu[data-expanded="true"] {
+  grid-template-rows: 1fr;
+}
+
+.navigation-submenu > .navigation-submenu-clip > ul > .navigation-branch > .navigation-row {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 240ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.navigation-submenu[data-expanded="true"] > .navigation-submenu-clip > ul > .navigation-branch > .navigation-row {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--navigation-order) * 25ms);
+}
+
+@starting-style {
+  .navigation-submenu[data-expanded="true"] > .navigation-submenu-clip > ul > .navigation-branch > .navigation-row {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-submenu,
+  .navigation-submenu > .navigation-submenu-clip > ul > .navigation-branch > .navigation-row {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Keep card descriptions and images outside the site's general link hover. */
+.project-placard {
+  --project-highlight: #6f8200;
+  color: var(--site-text-primary);
+}
+
+html.dark .project-placard {
+  --project-highlight: #b0bf59;
+}
+
+a.project-placard:is(:hover, :focus-visible) {
+  color: var(--site-text-primary);
+  border-color: var(--project-highlight);
+  text-decoration: none;
+}
+
+a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
+  color: var(--project-highlight);
+  text-decoration-line: underline;
+  text-underline-offset: 0.2em;
+}
+
 .prose :where(a):not(:where(.not-prose, .not-prose *)) {
   text-decoration-line: none;
 }

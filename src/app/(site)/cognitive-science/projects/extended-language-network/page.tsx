@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { ProjectShell } from "@/components/science/science-content";
 import { PublicationLinks } from "@/components/science/publication-links";
+import { ProjectFigure } from "@/components/science/project-figure";
 
 export const metadata: Metadata = {
-  title: "extended language network",
+  title: "the extended language network",
   description: "Extended language network project",
 };
 
 export default function ExtendedLanguageNetworkProjectPage() {
   return (
     <ProjectShell
-      title="extended language network"
+      title="the extended language network"
       subtitle="language-selective brain areas whose contributions to language remain to be discovered."
     >
       <p>
@@ -18,6 +19,13 @@ export default function ExtendedLanguageNetworkProjectPage() {
         have been implicated in linguistic processing. This project asks which of those areas respond reliably and selectively to language, and what
         their contributions may be.
       </p>
+      <ProjectFigure
+        src="/images/projects/extended-language-network.png"
+        alt="A cortical surface illustration with language-responsive regions shaded in warm tones."
+        caption="A view of the broader cortical landscape motivating the extended language network project."
+        width={900}
+        height={700}
+      />
       <PublicationLinks
         links={[
           { label: "DOI", href: "https://doi.org/10.1523/JNEUROSCI.0638-25.2026" },

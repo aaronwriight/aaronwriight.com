@@ -13,8 +13,8 @@ export default async function ScopeForImaginationAboutPage() {
 
   return (
     <JournalShell
-      title="scope for imagination"
-      subtitle="a digital journal for photographs, musings, life updates, and the occasional rant."
+      title="about"
+      subtitle="a digital journal for photographs, musings, life updates, and the occasional rant"
       years={years.length > 0 ? years : [new Date().getFullYear()]}
     >
       {null}

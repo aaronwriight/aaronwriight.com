@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function FrameItWrightPhotographyPage() {
   return (
-    <PhotographyShell title="frame it wright photography" subtitle="coming soon">
-      {null}
+    <PhotographyShell title="about" subtitle="mind behind the lens">
+      <p>More about Frame It Wright Photography is coming soon.</p>
     </PhotographyShell>
   );
 }
