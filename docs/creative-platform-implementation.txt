@@ -1,0 +1,98 @@
+CREATIVE PLATFORM IMPLEMENTATION — OCTOBER 2026
+
+Historical iteration 1 record. The later Creative move, Pic-Time entry, booking
+changes, and current verification are in photography-creative-iteration-2.txt.
+
+Implemented locally; not committed, pushed, or deployed.
+
+PAGES
+- /frame-it-wright-photography/portfolio: responsive collage of labeled empty
+  frames, with a public-catalog adapter for photographs selected later.
+- /frame-it-wright-photography/gallery: reusable project placards, three explicitly
+  fictional layout studies with individual routes, and Pic-Time invitation help.
+  No client index, password collection, or claim of on-site authentication.
+- /frame-it-wright-photography/booking: adapted photography interests and context,
+  booking expectations, direct email, and a visitor-reviewed email draft composer.
+  Preparing a draft does not send it or reserve a session.
+- /creative/mailing-list: dedicated Creative newsletter consent and Resend segment,
+  accessible success/error states. Old photography mailing page redirects to
+  booking; retired photography signup API returns 410.
+- /personal: About / coming soon with the exact requested favorite-things teaser.
+- /personal/inspirations: previous personal content retained, navigation updated,
+  old known personal fragment bookmarks redirected in the browser.
+- /about/platforms: public wiki overview; docs/connected-platforms.md records code
+  entry points, confirmed versus user-mentioned integrations, and manual setup.
+- /cognitive-science/projects/tidy-tuesday: clarified independent-source relationship,
+  reviewed-plot catalog support, original undergraduate figure preserved.
+- New page canonical URLs use the stable site URL, not a deployment-preview host.
+
+AUTHOR WORKFLOWS
+- Writing: local ignored configuration selects the external personal writing
+  folder. No symlink or production dependency on that folder. Source documents
+  remain read-only; private derived caches are checked against source hashes.
+  Existing numbers and public content stay intact. Select a manuscript explicitly
+  with `pnpm writing adopt ENTRY --source BLOG/FILE` to link an old entry, or use
+  `draft --blog BLOG --source BLOG/FILE` for a new one. No actual manuscripts were
+  imported during implementation. Guide: writing/README.md.
+- Photography: draft -> check -> private HTML review -> explicit dry-run/publish.
+  Only deliberately supplied web derivatives and approved public metadata can be
+  staged. Validates bytes, decoding, metadata, paths, consent and review freshness;
+  preserves original files. No photo selected. Guide: docs/photography-publishing.md.
+- TidyTuesday: validate -> private review -> explicit dry-run/publish, with source
+  commit/file hashes and one portable PNG derivative. Separate repo retained;
+  no real plot chosen or published. Guide: docs/tidytuesday-publishing.txt.
+- Draft/review folders and machine configuration are ignored by Git and are never
+  read by the deployed app. Both new public catalogs remain empty.
+
+LEGACY WEBSITE
+Frameitwright is authoritative. All legacy information is assumed outdated;
+only potentially novel, currently absent material belongs in the inventory.
+Different wording, dates, affiliations, or file bytes do not make old content a
+replacement candidate. The inventory contains references and a future plan,
+not copied legacy content or an executed migration:
+  docs/legacy-website-inventory-and-retirement-plan.txt
+No legacy repository files or hosting settings were changed.
+The novel-only review identifies absent reading/resource destinations and one
+creative reference as unverified candidates, with duplicates excluded. Existing
+Frameitwright poster links still depend on the legacy host; that is a retirement
+dependency to resolve later, not new information to import automatically.
+
+MANUAL SETUP / DECISIONS
+- Choose photographs, public galleries, and plots; author alt text/captions and
+  consent/provenance metadata; inspect local reviews before publication.
+- Select the authoritative external manuscript for each existing journal entry.
+- Create a dedicated Resend Creative segment, configure RESEND_CREATIVE_SEGMENT_ID,
+  and create its creative_interest contact property as documented in
+  docs/newsletter-setup.md. Do not reuse SFI's segment. Without configuration,
+  the new endpoint returns an honest 503 instead of subscription success.
+  Creative broadcast delivery is manual; SFI newsletter commands remain separate.
+- Review actual Pic-Time gallery permissions and public visibility in the account.
+  Private clients use their existing invitation. A general portal button, embeds,
+  automated gallery uploads and on-site client authentication are deferred until
+  their settings and desired disclosure are reviewed.
+- Review Git changes and use the existing release process when ready. No external
+  content publication, client message, email broadcast, migration or retirement
+  occurred here. Existing user workspace/file changes were preserved.
+
+VERIFICATION
+- Production `npm run build`: passed, all 235 pages generated, including TypeScript.
+  Used installed Node 24; package.json still declares Node 22. Initial sandbox
+  attempt could not resolve the existing Sanity host; approved network retry passed.
+- Python unittest discovery: 68 tests passed, including synthetic photo/plot,
+  schema-reference, and read-only external DOCX workflow coverage.
+- `node --test scripts/test_newsletter.mjs`: 10 passed, all remote writes mocked.
+- `scripts/test_creative_pages.mjs`: desktop/mobile, light/dark, route responses,
+  no-photo placeholders, canonical URLs, exact teaser, legacy redirects, booking
+  drafts, and mocked subscription failure/success states passed. Screenshots were
+  inspected at desktop and phone sizes; no horizontal overflow or runtime errors.
+  Placeholder label contrast is 6.99:1 in light mode and 6.93:1 in dark mode.
+- `scripts/test_navigation_hover.mjs`: normal and reduced-motion cases passed.
+- Narrow ESLint: all 27 changed TypeScript files and both new JavaScript checks
+  passed with a temporary copy of existing rules excluding unavailable Prettier
+  config. Normal repository lint remains blocked by pre-existing tooling issues:
+  package script uses removed `next lint`; eslint.config.mjs imports absent
+  eslint-config-prettier, and .eslintignore is deprecated. No dependencies or
+  permanent lint configuration were changed.
+- `git diff --check`: passed. Generated next-env.d.ts was restored after the build.
+- Browser plugin bootstrap failed due to a missing cached module; the repository's
+  established standalone Playwright setup verified the local production preview.

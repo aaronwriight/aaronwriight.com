@@ -2,23 +2,80 @@
 
 This is the canonical guide for writing both **Scope for Imagination (SFI)** and **Venture** posts. Run commands from the repository root.
 
-The everyday workflow is:
+## External manuscripts: the current workflow
+
+Your personal writing folder is the ground truth for both journals. The pipeline **only reads it**: it never creates, replaces, renames, or deletes an external manuscript. Author metadata and disposable conversion files stay in the ignored `.writing-workspace/` directory; generated website records stay in `content/`.
+
+Set the source folder once on each authoring machine:
 
 ```sh
-pnpm writing draft
+pnpm writing source "/absolute/path/to/personal/writing"
+pnpm writing source
+```
+
+The folder must contain `sfi/` and `venture/`. Configuration goes into ignored `.writing-source.local.json`; `WRITING_SOURCE_ROOT` overrides it when needed. Do not commit this machine-specific file. No source symlink is needed, and publishing rejects symlinked destinations that could modify external files.
+
+Create or edit a manuscript in that personal folder using your usual editor. Then register **one explicitly chosen manuscript**:
+
+```sh
+pnpm writing draft --blog sfi --source sfi/my-manuscript.docx
+# Or a Venture story (complete trip, location, coordinates, and tags in the prompts):
+pnpm writing draft --blog venture --source venture/my-manuscript.docx
+```
+
+`--source` accepts a path relative to the configured source folder or an absolute path inside the selected blog's folder. DOCX, HTML, Markdown, and text are supported. The script reads the manuscript, converts a local review cache, and creates `post.json` metadata. It does not copy the original DOCX into the website repository. Word images are extracted only from that selected manuscript; native HTML/Markdown images are copied only when explicitly referenced as `images/...`. No folder of photos is scanned or imported.
+
+The command prints the new global entry number. Using that number:
+
+```sh
 pnpm writing review 0001
 pnpm writing render 0001
 pnpm writing publish 0001 --dry-run
 pnpm writing publish 0001
 ```
 
-The `writing/` folder is the author workspace and source of truth. Files under `content/` are generated website records; do not draft by editing those generated files.
+Edit metadata in the printed `.writing-workspace/<blog>/<slug>/post.json` path. Edit prose and images only in the external source. After saving an external change:
+
+```sh
+pnpm writing refresh 0001
+pnpm writing review 0001
+pnpm writing render 0001
+pnpm writing publish 0001 --dry-run --replace
+```
+
+Omit `--replace` for first publication. Review, render, and publish check fingerprints for both the external manuscript and its generated cache. A changed manuscript, changed referenced image, edited cache, or missing external source blocks those commands until an explicit refresh. Refresh changes only the ignored cache; it preserves metadata, status, entry number, and public outputs. `resource` and `re-source` are aliases for this refresh behavior in external mode, and `--source BLOG/FILE` explicitly changes the linked manuscript. Review the refreshed preview before publishing.
+
+Native sources use `entry.md`, `entry.html`, or `entry.txt` in the cache; DOCX conversion uses `<slug>.html`. These are derived files, **not another source of truth**. `.external-source.json` records source-relative paths and content fingerprints. It is private local bookkeeping, never a public post field. Back up the local metadata separately: ignoring a workspace in Git is not a backup.
+
+### Existing entries and preserved legacy material
+
+Existing in-repository manuscripts are left untouched. Their entry numbers remain reserved, along with every generated/public entry. Once an external source is configured, the pipeline does not fall back to those old bodies. Link an existing entry explicitly when its external manuscript is ready:
+
+```sh
+pnpm writing adopt 0001 --source sfi/my-current-manuscript.docx
+pnpm writing review 0001
+pnpm writing render 0001
+pnpm writing publish 0001 --dry-run --replace
+```
+
+`adopt` copies only the existing `post.json` metadata into the ignored workspace and derives the body from the selected external document. It preserves the old folder, publication state, and generated website files. It neither compares nor merges two manuscripts; selecting the correct external document is the author's decision. No real entries were adopted automatically as part of establishing this workflow.
+
+`unpublish` removes generated website outputs and updates local metadata. `erase` removes generated outputs and the disposable local entry cache/metadata. **Neither touches the external manuscript.** Legacy files retained in `writing/` still reserve their number and remain independently preserved.
+
+### Portable publication and privacy
+
+Publication remains an explicit local action. It generates `content/scope-for-imagination/posts/`, the associated newsletter record, `content/venture/entries/` for Venture posts, and referenced image derivatives under `public/images/posts/`. Inspect and commit only those deliberately published outputs. Deployment then uses the existing Git/Vercel build, which reads committed content and never requires the external folder, local configuration, or source symlink.
+
+`render` writes an ignored standalone preview under `.writing-preview/`. Drafting, adoption, refresh, review, render, and `publish --dry-run` do not publish or send email. Newsletter delivery remains a separate, explicit command. This setup does not automatically commit, push, deploy, or send anything.
 
 > **Privacy note:** this GitHub repository is public. `"status": "draft"` or `"status": "unpublished"` keeps a post out of locally generated site records, but it does not make a committed source file private on GitHub. Keep unpublished writing uncommitted until its text and images are safe to share publicly.
 
 ## Command reference
 
 ```text
+pnpm writing source [PATH]
+pnpm writing adopt ENTRY --source BLOG/FILE
+pnpm writing refresh TARGET [--source BLOG/FILE] [--dry-run]
 pnpm writing draft [OPTIONS]
 pnpm writing review [TARGET]
 pnpm writing resource TARGET [--source PATH] [--dry-run] [--yes]
@@ -34,6 +91,10 @@ pnpm writing erase ENTRY [--dry-run] [--yes]
 `TARGET` may be an entry number, slug, post folder, active source path, or `post.json` path. When your terminal is already inside a post folder, `review`, `render`, `view`, and `publish` can infer the nearest `post.json`, so their target may be omitted. `unpublish` and `erase` are intentionally stricter: they require an explicit numeric `ENTRY` and never infer a destructive target from the current directory.
 
 There is no separate `post` command. `review` is the read-only way to inspect a post and its publication readiness.
+
+## Legacy mode reference and shared metadata rules
+
+The detailed reference below preserves the original in-repository authoring workflow for checkouts without an external source configuration. In external mode, use the workflow above: paths become `.writing-workspace/`, prose is edited externally, DOCX/HTML imports are disposable caches, and `resource` refreshes the cache. The metadata, numbering, review, generated outputs, and newsletter rules below still apply.
 
 ### Draft options
 
@@ -533,7 +594,7 @@ pnpm writing draft \
   --title "scope for imagination" \
   --subtitle "a note from cambridge" \
   --location "Cambridge, MA" \
-  --tags "musings"
+  --tags "reflections"
 ```
 
 If created on August 25, the draft metadata will look like this; its slug date is provisional:
@@ -553,7 +614,7 @@ If created on August 25, the draft metadata will look like this; its slug date i
   "thread": null,
   "slug": "0001-scope-for-imagination-a-note-from-cambridge-20260825",
   "music": null,
-  "tags": ["musings"],
+  "tags": ["reflections"],
   "blog": "sfi",
   "collections": [],
   "latitude": null,

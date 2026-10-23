@@ -182,7 +182,7 @@ def main() -> int:
     api_key = os.environ.get("RESEND_API_KEY")
     segment_id = os.environ.get("RESEND_SFI_SEGMENT_ID")
     sender = os.environ.get("SFI_NEWSLETTER_FROM")
-    site_url = (os.environ.get("NEXT_PUBLIC_SITE_URL") or "https://aaronwriight.vercel.app").rstrip("/")
+    site_url = (os.environ.get("NEXT_PUBLIC_SITE_URL") or "https://aaronwriight.com").rstrip("/")
     if not api_key or not segment_id or not sender:
         print("error: set RESEND_API_KEY, RESEND_SFI_SEGMENT_ID, and SFI_NEWSLETTER_FROM", file=sys.stderr)
         return 1
@@ -211,6 +211,10 @@ def main() -> int:
         "text": template["text"].replace("[[ENTRY_URL]]", entry_url),
         "send": arguments.send,
     }
+    # The sending subdomain has no mailbox, so replies only arrive if a reply-to address is configured.
+    reply_to = os.environ.get("SFI_NEWSLETTER_REPLY_TO", "").strip()
+    if reply_to:
+        payload["reply_to"] = reply_to
     request = Request(
         "https://api.resend.com/broadcasts",
         data=json.dumps(payload).encode("utf-8"),

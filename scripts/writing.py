@@ -3,13 +3,16 @@
 
 Scope for Imagination is the complete, globally numbered journal. Venture posts
 are published into that journal as well as into Venture's place-based index.
-Author-owned metadata and source documents live under ``writing/``; generated
-site data continues to live under ``content/``.
+External manuscripts remain read-only; private local metadata and derived
+review files live in ``.writing-workspace/`` when a source is configured.
+Unconfigured legacy checkouts retain ``writing/`` authoring. Generated site
+data continues to live under ``content/``.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -37,6 +40,8 @@ CANONICAL_ENTRY_SOURCE_NAMES = {"entry.html", "entry.txt", "entry.md"}
 BLOGS = ("sfi", "venture")
 STATUSES = ("draft", "unpublished", "published")
 RESERVED_VENTURE_SLUGS = {"about", "index", "parks", "trails", "travels"}
+SOURCE_CONFIG = ".writing-source.local.json"
+SOURCE_MANIFEST = ".external-source.json"
 
 REQUIRED_AUTHOR_KEYS = {
     "$schema",
@@ -514,8 +519,211 @@ def load_json_object(path: Path) -> dict[str, Any]:
     return value
 
 
+def external_source_root(root: Path) -> Path | None:
+    """Resolve machine-local configuration; never make CI depend on it."""
+    configured = os.environ.get("WRITING_SOURCE_ROOT")
+    if not configured and (root / SOURCE_CONFIG).is_file():
+        configured = load_json_object(root / SOURCE_CONFIG).get("sourceRoot")
+    if configured is None or configured == "":
+        return None
+    if not isinstance(configured, str):
+        raise WritingError("writing sourceRoot must be a path string")
+    source = Path(configured).expanduser().resolve()
+    if source == root or source.is_relative_to(root) or root.is_relative_to(source):
+        raise WritingError("the read-only writing source must be separate from the website repository")
+    return source
+
+
+def author_root(root: Path) -> Path:
+    return root / (".writing-workspace" if external_source_root(root) else "writing")
+
+
+def author_schema(root: Path) -> str:
+    # Both author locations reference the one committed editor schema.
+    return "../../../writing/post.schema.json" if external_source_root(root) else AUTHOR_SCHEMA
+
+
+def assert_local_destination(path: Path, root: Path) -> None:
+    """Reject source-folder symlinks before any mutating workflow can follow them."""
+    if not path.resolve().is_relative_to(root.resolve()):
+        raise WritingError(f"refusing a destination outside the website repository: {path}")
+    current = path
+    while current != root and current != current.parent:
+        if current.is_symlink():
+            raise WritingError(f"refusing a symlinked writing destination: {current}")
+        current = current.parent
+
+
+def external_document(source: Path, blog: str, root: Path) -> Path:
+    source_root = external_source_root(root)
+    if source_root is None:
+        raise WritingError("configure the external folder with `pnpm writing source PATH` first")
+    candidate = source.expanduser()
+    if not candidate.is_absolute():
+        candidate = source_root / candidate
+    candidate = candidate.resolve()
+    if not candidate.is_relative_to(source_root / blog):
+        raise WritingError(f"source must be inside the configured writing/{blog}/ folder")
+    if not candidate.is_file() or candidate.suffix.lower() not in SUPPORTED_SOURCE_SUFFIXES:
+        raise WritingError("source must be an existing .docx, .html, .htm, .txt, or .md document")
+    if candidate.name.startswith("~$"):
+        raise WritingError("Word lock files are not manuscripts")
+    return candidate
+
+
+def file_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def external_assets(source: Path) -> list[Path]:
+    """Read only explicitly referenced local assets; never scan an image collection."""
+    if source.suffix.lower() == ".docx":
+        return []
+    text = re.sub(r"<!--.*?-->", "", source.read_text(encoding="utf-8"), flags=re.DOTALL)
+    assets: set[Path] = set()
+    for reference in authored_image_references(text):
+        parsed = urlparse(reference)
+        if parsed.scheme or parsed.netloc or reference.startswith("/"):
+            continue
+        relative = PurePosixPath(parsed.path)
+        if not relative.parts or relative.parts[0] != "images" or ".." in relative.parts:
+            raise WritingError("external manuscript images must use images/... relative paths")
+        asset = source.parent / relative
+        if not asset.resolve().is_relative_to(source.parent.resolve()) or not asset.is_file():
+            raise WritingError(f"external manuscript image is missing or escapes its folder: {reference}")
+        assets.add(asset)
+    return sorted(assets)
+
+
+def source_fingerprints(source: Path) -> dict[str, str]:
+    return {
+        "document": file_hash(source),
+        **{str(asset.relative_to(source.parent)): file_hash(asset) for asset in external_assets(source)},
+    }
+
+
+def cache_fingerprints(post: AuthorPost) -> dict[str, str]:
+    if post.source_path is None or not post.source_path.is_file():
+        raise WritingError("derived source is missing; run `pnpm writing refresh ENTRY`")
+    return {
+        "document": file_hash(post.source_path),
+        **{
+            str(path.relative_to(post.directory)): file_hash(path)
+            for path in sorted((post.directory / "images").rglob("*"))
+            if path.is_file()
+        },
+    }
+
+
+def write_source_manifest(post: AuthorPost, source: Path, root: Path) -> None:
+    source_root = external_source_root(root)
+    assert source_root is not None
+    write_json(post.directory / SOURCE_MANIFEST, {
+        "source": str(source.relative_to(source_root)),
+        "sourceHashes": source_fingerprints(source),
+        "cacheHashes": cache_fingerprints(post),
+    })
+
+
+def assert_current_external_source(post: AuthorPost, root: Path) -> None:
+    if external_source_root(root) is None:
+        return
+    assert_managed_author_post(post, root)
+    manifest_path = post.directory / SOURCE_MANIFEST
+    if not manifest_path.is_file():
+        raise WritingError("external source link is missing; adopt this entry or refresh with --source")
+    manifest = load_json_object(manifest_path)
+    source = external_document(Path(str(manifest.get("source", ""))), post.blog, root)
+    if manifest.get("sourceHashes") != source_fingerprints(source):
+        raise WritingError(f"external source changed; run `pnpm writing refresh {post.entry}` before review or publication")
+    if manifest.get("cacheHashes") != cache_fingerprints(post):
+        raise WritingError(f"derived cache was edited; edit the external manuscript, then run `pnpm writing refresh {post.entry}`")
+
+
+def stage_external_post(post: AuthorPost, source: Path, destination: Path, root: Path) -> None:
+    before = source_fingerprints(source)
+    destination.mkdir(parents=True)
+    images = destination / "images"
+    images.mkdir()
+    (images / ".gitkeep").touch()
+    metadata = dict(post.metadata)
+    metadata["$schema"] = author_schema(root)
+    metadata["source"] = author_source_name(source, post.slug)
+    active = destination / metadata["source"]
+    if source.suffix.lower() == ".docx":
+        convert_docx_to_author_html(source, active, images / "docx",
+                                    title=metadata["title"], subtitle=metadata["subtitle"])
+    else:
+        shutil.copy2(source, active)
+        for asset in external_assets(source):
+            target = destination / asset.relative_to(source.parent)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(asset, target)
+    write_json(destination / "post.json", metadata)
+    write_source_manifest(AuthorPost(destination / "post.json", metadata), source, root)
+    if before != source_fingerprints(source):
+        raise WritingError("the external manuscript changed during import; retry when it is saved")
+
+
+def command_source(arguments: argparse.Namespace, root: Path) -> int:
+    if arguments.path is not None:
+        candidate = arguments.path.expanduser().resolve()
+        if not candidate.is_dir() or not all((candidate / blog).is_dir() for blog in BLOGS):
+            raise WritingError("source folder must contain sfi/ and venture/ directories")
+        if candidate == root or candidate.is_relative_to(root) or root.is_relative_to(candidate):
+            raise WritingError("source folder must be separate from the website repository")
+        assert_local_destination(root / SOURCE_CONFIG, root)
+        write_json(root / SOURCE_CONFIG, {"sourceRoot": str(candidate)})
+    configured = external_source_root(root)
+    print(f"external source (read only): {configured or 'not configured'}")
+    print(f"author metadata and derived cache: {author_root(root)}")
+    print("Vercel reads committed content/ and public/ outputs; it does not read this local source.")
+    return 0
+
+
+def command_refresh(arguments: argparse.Namespace, root: Path) -> int:
+    post = assert_managed_author_post(locate_post(arguments.target, root), root)
+    source_arg = arguments.source
+    if source_arg is None:
+        manifest = load_json_object(post.directory / SOURCE_MANIFEST)
+        source_arg = Path(str(manifest.get("source", "")))
+    source = external_document(source_arg, post.blog, root)
+    if arguments.dry_run:
+        print(f"refresh entry {post.entry} from {source}; external document and public outputs stay unchanged")
+        return 0
+    with staged_action_directory(root, ".writing-refresh-") as staging:
+        staged = staging / "post"
+        stage_external_post(post, source, staged, root)
+        commit_replacements([(staged, post.directory)], staging / "backups", operation="refresh")
+    print(f"refreshed derived cache for {post.entry}; review, render, then publish explicitly")
+    return 0
+
+
+def command_adopt(arguments: argparse.Namespace, root: Path) -> int:
+    """Carry only an existing legacy record's metadata into external-source mode."""
+    if external_source_root(root) is None:
+        raise WritingError("configure an external writing source before adopting an entry")
+    matches = list((root / "writing").glob(f"*/{arguments.entry}-*/post.json"))
+    if len(matches) != 1:
+        raise WritingError("adopt requires exactly one existing in-repository author record for this entry")
+    post = AuthorPost(matches[0], load_json_object(matches[0]))
+    if post.entry != arguments.entry or post.blog not in BLOGS or not valid_post_slug(post.slug):
+        raise WritingError("legacy metadata has an invalid entry, blog, or slug")
+    source = external_document(arguments.source, post.blog, root)
+    destination = author_root(root) / post.blog / post.slug
+    assert_local_destination(destination, root)
+    if destination.exists() or any(candidate.entry == post.entry for candidate in all_author_posts(root)):
+        raise WritingError("this entry is already staged; use refresh instead")
+    with staged_action_directory(root, ".writing-adopt-") as staging:
+        staged = staging / "post"
+        stage_external_post(post, source, staged, root)
+        commit_replacements([(staged, destination)], staging / "backups", operation="adopt")
+    print(f"adopted metadata for {post.entry}; legacy files, external manuscript, and public outputs unchanged")
+    return 0
+
+
 def author_paths(root: Path) -> list[Path]:
-    writing = root / "writing"
+    writing = author_root(root)
     return sorted(path for blog in BLOGS for path in (writing / blog).glob("*/post.json"))
 
 
@@ -557,6 +765,12 @@ def allocated_entries(root: Path) -> set[int]:
     for post in all_author_posts(root, tolerate_invalid=True):
         if post.entry.isdigit():
             values.add(int(post.entry))
+    if external_source_root(root) is not None:
+        # Legacy metadata still reserves numbers but never supplies a manuscript.
+        for path in (root / "writing").glob("*/*/post.json"):
+            match = re.match(r"^(\d{4})-", path.parent.name)
+            if match:
+                values.add(int(match.group(1)))
     values |= entry_values_from_json(root / "content" / "scope-for-imagination" / "posts")
     values |= entry_values_from_json(root / "content" / "venture" / "entries")
     return values
@@ -611,6 +825,10 @@ def locate_post(target: str | None, root: Path) -> AuthorPost:
         if (normalized_entry and post.entry == normalized_entry) or post.slug == target
     ]
     if not matches:
+        if normalized_entry and external_source_root(root) is not None:
+            legacy = list((root / "writing").glob(f"*/{normalized_entry}-*/post.json"))
+            if legacy:
+                raise WritingError(f"entry {normalized_entry} has legacy metadata; use `pnpm writing adopt {normalized_entry} --source BLOG/FILE` to link its external manuscript")
         raise WritingError(f"post not found: {target}")
     if len(matches) > 1:
         paths = ", ".join(relative_display(post.path, root) for post in matches)
@@ -627,7 +845,8 @@ def assert_managed_author_post(post: AuthorPost, root: Path) -> AuthorPost:
     if not post.slug.startswith(f"{post.entry}-"):
         raise WritingError("post slug must begin with its entry number")
 
-    expected = root / "writing" / post.blog / post.slug / "post.json"
+    expected = author_root(root) / post.blog / post.slug / "post.json"
+    assert_local_destination(expected, root)
     try:
         actual_resolved = post.path.resolve(strict=True)
         expected_resolved = expected.resolve(strict=True)
@@ -636,7 +855,7 @@ def assert_managed_author_post(post: AuthorPost, root: Path) -> AuthorPost:
     if actual_resolved != expected_resolved:
         raise WritingError(
             "refusing to modify an author record outside "
-            f"writing/{post.blog}/{post.slug}/post.json"
+            f"{relative_display(expected, root)}"
         )
     if post.path.is_symlink() or post.directory.is_symlink():
         raise WritingError("refusing to modify a symlinked author record or post folder")
@@ -684,7 +903,14 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
     arguments.tags = arguments.tags or ""
     arguments.collections = arguments.collections or ""
 
-    source_argument = arguments.source.expanduser().resolve() if arguments.source else None
+    external = external_source_root(root) is not None
+    if external and not arguments.source:
+        raise WritingError("create or edit the manuscript in your external writing folder, then use draft --source BLOG/FILE")
+    source_argument = (
+        external_document(arguments.source, arguments.blog, root)
+        if external else arguments.source.expanduser().resolve() if arguments.source else None
+    )
+    source_before = source_fingerprints(source_argument) if external and source_argument else None
     if source_argument:
         if not source_argument.is_file():
             raise WritingError(f"source document does not exist: {source_argument}")
@@ -713,7 +939,8 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
     if arguments.blog == "venture" and slug in RESERVED_VENTURE_SLUGS:
         raise WritingError(f"venture slug is reserved: {slug}")
 
-    post_directory = root / "writing" / arguments.blog / slug
+    post_directory = author_root(root) / arguments.blog / slug
+    assert_local_destination(post_directory, root)
     metadata_path = post_directory / "post.json"
     if source_argument and arguments.replace and post_directory in source_argument.parents:
         raise WritingError(
@@ -761,7 +988,8 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
             source_name = author_source_name(source_argument, slug)
             imported_docx_name = source_argument.name
             try:
-                shutil.copy2(source_argument, draft_directory / imported_docx_name)
+                if not external:
+                    shutil.copy2(source_argument, draft_directory / imported_docx_name)
                 converted_docx_images = convert_docx_to_author_html(
                     source_argument,
                     draft_directory / source_name,
@@ -786,7 +1014,7 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
             )
 
         metadata: dict[str, Any] = {
-            "$schema": AUTHOR_SCHEMA,
+            "$schema": author_schema(root),
             "source": source_name,
             "title": title,
             "subtitle": subtitle,
@@ -807,6 +1035,14 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
             "status": "draft",
         }
         write_json(draft_directory / "post.json", metadata)
+        if external and source_argument:
+            for asset in external_assets(source_argument):
+                destination = draft_directory / asset.relative_to(source_argument.parent)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(asset, destination)
+            write_source_manifest(AuthorPost(draft_directory / "post.json", metadata), source_argument, root)
+            if source_before != source_fingerprints(source_argument):
+                raise WritingError("the external manuscript changed during import; retry when it is saved")
     except WritingError:
         if action_root is not None:
             shutil.rmtree(action_root, ignore_errors=True)
@@ -839,7 +1075,9 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
     print(f'post.json "entry" ({entry_origin}): "{entry}"')
     print(f'post.json "blog": "{arguments.blog}"')
     print(f'post.json "source" (automatic from import/format): "{source_name}"')
-    if imported_docx_name:
+    if external:
+        print("external manuscript: read only; local body/images are derived cache, not an editable source")
+    elif imported_docx_name:
         print(
             f'Word import: kept "{imported_docx_name}" and converted it to '
             f'editable "{source_name}" ({converted_docx_images} embedded images)'
@@ -855,7 +1093,7 @@ def command_draft(arguments: argparse.Namespace, root: Path) -> int:
         print('post.json "date" (stamped on first publish): ""')
     print('post.json "time" (stamped on first publish): ""')
     print('post.json "status": "draft"')
-    print(f"write:  {relative_display(post_directory / source_name, root)}")
+    print(f"write:  {source_argument if external else relative_display(post_directory / source_name, root)}")
     print(f"review: pnpm writing review {entry}")
     return 0
 
@@ -1398,6 +1636,14 @@ def review_post(
     metadata = post.metadata
     blockers: list[str] = []
     notes: list[str] = []
+    if external_source_root(root) is not None:
+        try:
+            # During first publish, source/slug may already describe the final
+            # filename while the transaction has not yet renamed its cache.
+            original = AuthorPost(post.path, load_json_object(post.path))
+            assert_current_external_source(original, root)
+        except WritingError as error:
+            return ReviewResult(post, [str(error)], [])
 
     missing_keys = sorted(REQUIRED_AUTHOR_KEYS - set(metadata))
     unknown_keys = sorted(set(metadata) - REQUIRED_AUTHOR_KEYS)
@@ -1405,8 +1651,9 @@ def review_post(
         blockers.append(f"missing metadata fields: {', '.join(missing_keys)}")
     if unknown_keys:
         blockers.append(f"unsupported metadata fields: {', '.join(unknown_keys)}")
-    if metadata.get("$schema") != AUTHOR_SCHEMA:
-        blockers.append(f"$schema must be {AUTHOR_SCHEMA!r}")
+    expected_schema = author_schema(root)
+    if metadata.get("$schema") != expected_schema:
+        blockers.append(f"$schema must be {expected_schema!r}")
 
     for field in ("title", "subtitle", "entry", "location", "slug", "blog", "status"):
         if not isinstance(metadata.get(field), str) or not str(metadata.get(field)).strip():
@@ -1822,6 +2069,9 @@ def commit_replacements(
     targets = [target for _, target in replacements]
     if len(targets) != len(set(targets)):
         raise WritingError(f"{operation} plan contains a duplicate target")
+    repository = backup_root.parent.parent
+    for target in targets:
+        assert_local_destination(target, repository)
 
     backup_root.mkdir(parents=True, exist_ok=True)
     promoted: list[dict[str, Any]] = []
@@ -1984,6 +2234,9 @@ def commit_publication(
     operation: str = "publish",
 ) -> None:
     """Rename an author folder, promote staged files, and restore on failure."""
+    repository = backup_root.parent.parent
+    for target in (author_directory, final_author_directory, *(target for _, target in replacements)):
+        assert_local_destination(target, repository)
     backup_root.mkdir(parents=True, exist_ok=True)
     promoted: list[dict[str, Any]] = []
     author_renamed = False
@@ -2035,7 +2288,8 @@ def commit_publication(
 
 
 def command_publish(arguments: argparse.Namespace, root: Path) -> int:
-    author_post = locate_post(arguments.target, root)
+    author_post = assert_managed_author_post(locate_post(arguments.target, root), root)
+    assert_current_external_source(author_post, root)
     publish_metadata = dict(author_post.metadata)
     first_publish = publish_metadata.get("status") == "draft"
     automatic_date = first_publish and (
@@ -2169,6 +2423,9 @@ def command_publish(arguments: argparse.Namespace, root: Path) -> int:
                 return 1
             publish_metadata["time"] = confirmed_time
             post = AuthorPost(author_post.path, publish_metadata)
+
+        # A manuscript may have changed while the confirmation prompt was open.
+        assert_current_external_source(author_post, root)
 
         sfi_record = published_record(post.metadata, body_html, "../post.schema.json")
         venture_record = published_record(post.metadata, body_html, "../entry.schema.json")
@@ -2342,6 +2599,8 @@ def source_argument_path(arguments: argparse.Namespace) -> Path:
 
 
 def command_resource(arguments: argparse.Namespace, root: Path) -> int:
+    if external_source_root(root) is not None:
+        return command_refresh(arguments, root)
     post = assert_managed_author_post(locate_post(arguments.target, root), root)
     source = source_argument_path(arguments)
     old_target = post.source_path
@@ -2607,6 +2866,7 @@ def preview_document_html(post: AuthorPost, body_html: str) -> str:
 
 def render_preview(post: AuthorPost, root: Path) -> Path:
     post = assert_managed_author_post(post, root)
+    assert_current_external_source(post, root)
     action_root = Path(tempfile.mkdtemp(prefix=".writing-render-", dir=root))
     staged_preview = action_root / "preview"
     staged_images = staged_preview / "images"
@@ -2775,8 +3035,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     commands = parser.add_subparsers(dest="command", required=True)
 
+    source_config = commands.add_parser("source", help="configure or inspect the read-only external writing folder")
+    source_config.add_argument("path", type=Path, nargs="?", help="folder containing sfi/ and venture/")
+
+    refresh = commands.add_parser("refresh", help="regenerate local cache from the external manuscript")
+    refresh.add_argument("target", help="entry or slug")
+    refresh.add_argument("--source", type=Path, help="optional new source relative to the configured root")
+    refresh.add_argument("--dry-run", action="store_true")
+
+    adopt = commands.add_parser("adopt", help="reuse legacy author metadata with an explicit external manuscript")
+    adopt.add_argument("entry", type=normalize_entry)
+    adopt.add_argument("--source", type=Path, required=True)
+
     draft = commands.add_parser("draft", help="initialize a post, optionally from an existing document")
-    draft.add_argument("--source", type=Path, help="copy an existing .docx, .html, .htm, .txt, or .md document")
+    draft.add_argument("--source", type=Path, help="external manuscript (BLOG/FILE or absolute path); legacy mode copies a document")
     draft.add_argument("--format", dest="source_format", choices=BLANK_SOURCE_FORMATS, help="new entry format; defaults to md")
     draft.add_argument("--blog", choices=BLOGS)
     draft.add_argument("--title", help="defaults to scope for imagination, or venture for Venture posts")
@@ -2851,6 +3123,9 @@ def main(argv: list[str] | None = None) -> int:
     arguments = parser.parse_args(argv)
     root = arguments.root.expanduser().resolve()
     handlers = {
+        "source": command_source,
+        "refresh": command_refresh,
+        "adopt": command_adopt,
         "draft": command_draft,
         "review": command_review,
         "resource": command_resource,
@@ -2863,8 +3138,13 @@ def main(argv: list[str] | None = None) -> int:
         "erase": command_erase,
     }
     try:
+        protected_source = external_source_root(PROJECT_ROOT)
+        if protected_source is not None and root.is_relative_to(protected_source):
+            raise WritingError("the external writing folder cannot be used as a website output root")
+        for destination in (author_root(root), root / "content", root / "public", root / ".writing-preview"):
+            assert_local_destination(destination, root)
         return handlers[arguments.command](arguments, root)
-    except WritingError as error:
+    except (WritingError, OSError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 1
 

@@ -1,0 +1,102 @@
+PHOTOGRAPHY AND CREATIVE — ITERATION 2 — OCTOBER 12, 2026
+
+Implemented in the existing worktree, preserving the earlier work. Nothing
+committed, pushed, deployed, uploaded, or sent to clients. Frameitwright remains
+authoritative; no outdated legacy-site information was imported.
+
+IMPLEMENTED
+- Preserved “Looking for your photographs?” with a clear primary link to
+  https://frameitwrightphotography.pic-time.com/client. The public address
+  returned HTTP 200 without any invitation token. A signed-out browser confirmed
+  its Login option with image/media loads blocked. Sign-in and permissions remain
+  in Pic-Time. Private collections may still need the original email invitation.
+- Recommended division: a small curated FIW portfolio, local gallery snapshots,
+  and explicitly public full-gallery destinations in Pic-Time. The existing
+  photo catalog remains empty; all layout studies are labeled placeholders.
+  No sample client invitation was accessed or used. See photography-publishing.md.
+- Booking uses “Create with me!”, all six supplied paragraphs verbatim with
+  emphasis and the photography About link, and the separate direct-email callout.
+  Required contact fields, six shoot choices (excluding Travel), conditional
+  location/scenery, optional date/season/travel/phone/call, separate personal
+  introduction, and required idea create a visitor-reviewed email draft.
+  Nothing is sent by the form; JavaScript-free visits use the direct email link.
+- Creative now contains the supplied nine-paragraph About text and two finished
+  favorite-things rows. Draft typos/punctuation were preserved. Unfinished tbd
+  entries remain unpublished. The older teaser was removed.
+- Inspirations moved to /creative/inspirations. /personal and
+  /personal/inspirations permanently redirect; existing art/community fragment
+  bookmarks continue to the corresponding Creative inspirations section.
+- Photography has independent navigation and the full Frame It Wright Photography
+  brand; the “mind behind the lens” motif is removed. Tagline is exactly
+  “cognitive scientist, photographer, artist”. Contact has distinct Science,
+  Photography, and Creative cards; Buy Me a Coffee belongs to Creative.
+- Album list includes SYRE by Jaden and Heartbreak Magic by Riah, each once in
+  the source list. Spotify destinations/artwork were verified. The carousel's
+  second visual set remains its existing seamless-loop implementation.
+  Heartbreak Magic: https://open.spotify.com/album/3EHwhZfwyVZqCgtthoYbfE
+
+PRINT ADVICE — IMG_6150.jpg (READ-ONLY INSPECTION)
+- Verified 5252 × 2954 pixels, 15.51 MP, approximately 16:9, with embedded
+  sRGB IEC61966-2.1. No EXIF orientation override. No edit, export, portfolio
+  selection, move, or upload was made.
+- Pixel dimensions support about 17.5 × 9.85 inches at 300 ppi, 21.9 × 12.3 at
+  240 ppi, or 26.3 × 14.8 at 200 ppi. These are arithmetic dimensions, not a
+  guarantee of sharpness or print quality. A reduced preview cannot establish
+  full-resolution focus or noise quality.
+- Start with a modest proof: roughly 12 × 6.75 inches, centered with borders on
+  a larger sheet to retain the full frame. Inspect the original at 100% before
+  ordering. Check separation in the dark foreground/mountain layers and the
+  smooth pale sky under the light where the print will hang.
+- If the proof holds up, 16 × 9 inches is a conservative next step (~328 ppi).
+  Ask the lab for its preferred file format/profile and available paper; a
+  matte/lustre comparison can help decide what suits the photograph. No lab or
+  print product was selected, and this file is not declared print-ready.
+  Adobe printing guidance:
+  https://helpx.adobe.com/photoshop/desktop/print/printing-basics-in-photoshop.html
+  https://helpx.adobe.com/lightroom-classic/desktop/print-photos/print-job-options-settings.html
+  https://helpx.adobe.com/ie/lightroom-classic/kb/color-faq.html
+
+INSTAGRAM BIO PROPOSAL — 123 CHARACTERS INCLUDING TWO NEWLINES
+
+cognitive scientist, photographer, artist
+Greater Boston portraits & celebrations
+Create with me! Booking + galleries below
+
+Keep the photography site URL in the separate profile-link field. Meta's June 8,
+2026 guide confirms a 150-character bio limit. No Instagram profile was changed.
+https://ai.meta.com/learn/ai-career/how-to-create-an-instagram-bio-with-ai/
+
+VERIFICATION
+- Production build, including TypeScript: passed after both album additions;
+  all 236 pages generated. Used installed Node 24; declared Node 22 unchanged.
+- Narrow ESLint: all 37 changed/new TypeScript implementation files plus the two
+  browser check scripts passed. Temporary rules excluded only the unavailable
+  eslint-config-prettier import/entry and were removed afterward. Existing
+  package lint script still calls removed next lint; permanent tooling unchanged.
+- Exact supplied booking and Creative paragraphs were compared with rendered
+  text, including emphasis and deliberate typos.
+- Browser regression checks passed at desktop (1440 px) and phone (390 px):
+  route responses/canonical URLs, light/dark portfolio, empty photo placeholders,
+  Pic-Time handoff, exact caption, Personal redirects and fragment bookmarks,
+  three contact cards, and mocked subscription failure/success states.
+- Booking checks passed for missing/invalid/whitespace fields, both location
+  branches, optional phone/call, separate introduction/idea, draft invalidation,
+  no network submission of inquiry data, and JavaScript-disabled safety. A
+  scenery-field helper was separated from its accessible label during QA.
+- Existing navigation regression passed with normal and reduced motion, including
+  moving menu layouts, stationary cursor, jitter, switching, and click pinning.
+- Desktop/mobile screenshots were visually reviewed; no horizontal overflow or
+  browser runtime errors. Gallery handoff spacing was adjusted after inspection.
+- Final production preview recheck passed for gallery spacing/link destination
+  and exactly one accessible link for each requested album at both viewport sizes.
+- git diff --check passed. Generated next-env.d.ts was restored after builds.
+- Browser checks used the existing standalone Playwright installation and a
+  temporary browser cache. No external subscription writes were made.
+
+REMAINING MANUAL WORK
+- Select and approve photographs and public collection destinations when ready.
+  Review Pic-Time account visibility before adding any actual preview or gallery.
+- Creative newsletter setup from iteration 1 still requires the dedicated Resend
+  segment/property/environment setting documented in newsletter-setup.md.
+- Review the proposed Instagram bio and order a small print proof if desired.
+- Use the existing release process when ready; this work is local only.

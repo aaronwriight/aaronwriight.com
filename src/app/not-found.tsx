@@ -2,14 +2,15 @@ import Link from "next/link";
 
 import type { Metadata } from "next";
 import SiteChrome from "@/components/site-chrome";
+import { siteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Page not found | aaron wright",
   description: "",
-  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "404 | aaron wright",
     description: "",
-    images: ["/images/sand_dollar.png"], 
+    images: ["/sand_dollar.png"],
     authors: ["https://aaronwriight.github.io"],
   },
 };

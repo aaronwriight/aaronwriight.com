@@ -33,7 +33,8 @@ function AnimatedSubmenu({ id, expanded, children }: {
   return (
     <div id={id} className="navigation-submenu" style={{ "--submenu-duration": `${SUBMENU_DURATION}ms` } as CSSProperties} data-expanded={expanded} aria-hidden={!expanded} inert={!expanded}>
       <div className="navigation-submenu-clip min-h-0 overflow-hidden">
-        <ul className="mb-2 ml-3 border-l border-stone-200 pl-3 dark:border-stone-800">
+        {/* pt-1 leaves room inside the clip for the first link's focus ring; mb-1 keeps the total spacing the same. */}
+        <ul className="mb-1 ml-3 border-l border-stone-200 pl-3 pt-1 dark:border-stone-800">
           {(expanded || retained) && children}
         </ul>
       </div>
@@ -153,7 +154,9 @@ function NavigationBranch({ item, pathname, active = true, order = 0 }: {
     >
       <div
         ref={row}
-        className="navigation-row flex items-start gap-2"
+        // Inline flow, so a wrapped label keeps its chevron right after the last word. The label wraps inside a nowrap
+        // row, and a word joiner ties the chevron to the label, so the chevron never starts a line on its own.
+        className="navigation-row whitespace-nowrap py-0.5 leading-5"
       >
         <Link
           href={item.href}
@@ -169,10 +172,12 @@ function NavigationBranch({ item, pathname, active = true, order = 0 }: {
               if (section instanceof HTMLDetailsElement) section.open = true;
             }
           }}
-          className="min-w-0 py-0.5 leading-5"
+          // Vertical padding on the inline link fills the row, so the whole row height can be clicked or tapped.
+          className="whitespace-normal py-[0.4em] leading-5"
         >
           {item.label}
         </Link>
+        {hasChildren && "\u2060"}
         {hasChildren && (
           <button ref={toggle} type="button" aria-label={mode === "hover" ? `Keep ${item.label} submenu open` : `${expanded ? "Collapse" : "Expand"} ${item.label} submenu`} aria-expanded={expanded} aria-controls={submenuId} onClick={() => {
             clearTimeout(openTimer.current);
@@ -183,7 +188,7 @@ function NavigationBranch({ item, pathname, active = true, order = 0 }: {
               pinned.current = true;
               setMode("pinned");
             }
-          }} className="flex min-h-6 min-w-6 shrink-0 cursor-pointer items-center justify-center text-base hover:text-[#6f8200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6f8200]">
+          }} className="my-[calc((1.25rem-24px)/2)] ml-2 inline-flex min-h-[24px] min-w-[24px] cursor-pointer items-center justify-center align-top text-base leading-5 hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal">
             <span aria-hidden="true" className={`transition-transform duration-400 ease-in-out motion-reduce:transition-none ${expanded ? "rotate-90" : ""}`}>›</span>
           </button>
         )}

@@ -1,5 +1,7 @@
 # Venture author folders
 
+This is the legacy author location. With an external source configured, Venture prose comes from the personal writing folder and local metadata/cache lives in ignored `.writing-workspace/venture/`. Use `pnpm writing adopt ENTRY --source venture/FILE` when linking existing metadata to its external manuscript. Old files and entry allocations remain preserved. The reference below describes legacy mode.
+
 Create and manage posts with the unified commands documented in [`writing/README.md`](../README.md).
 
 Venture is a subset of Scope for Imagination, not a separate numbering system. A post stored here uses `"blog": "venture"`, includes `venture` in `tags`, and receives its next entry number from the shared SFI/Venture sequence. Publishing surfaces that one source in both SFI and Venture.

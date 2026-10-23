@@ -32,7 +32,16 @@ const nextConfig = {
 
     return config
   },
-  // ...other config settings
+  // www and the old vercel.app address both go to the canonical https://aaronwriight.com (exact hosts only, so
+  // preview deployments are untouched).
+  async redirects() {
+    return ['www.aaronwriight.com', 'aaronwriight.vercel.app'].map((host) => ({
+      source: '/:path*',
+      has: [{ type: 'host', value: host }],
+      destination: 'https://aaronwriight.com/:path*',
+      permanent: true,
+    }))
+  },
 }
 
 export default nextConfig

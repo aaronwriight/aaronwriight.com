@@ -7,9 +7,16 @@ node_modules
 
 # testing
 /coverage
+__pycache__/
 
-# private local writing previews
+# private local authoring and previews
 /.writing-preview/
+/.photography-workspace/
+/.tidytuesday-review/
+/.writing-source.local.json
+# elevation tiles downloaded by scripts/topo_background.py
+/.topo-cache/
+/.writing-workspace/
 
 # next.js
 .next/
@@ -49,3 +56,6 @@ public/rss.xml
 
 # private Venture source workbooks
 /content/venture/*.xlsx
+
+# TypeScript incremental build cache
+*.tsbuildinfo

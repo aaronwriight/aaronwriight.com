@@ -20,7 +20,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     h6: ({ children }) => <h6>{children}</h6>,
     normal: ({ children }) => <p>{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-slate-400">{children}</blockquote>
+      <blockquote className="border-l-stone-300 dark:border-l-stone-700">{children}</blockquote>
     ),
   },
   marks: {

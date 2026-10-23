@@ -100,7 +100,7 @@ const scopePost = {
       of: [{ type: "string" }],
       options: {
         list: [
-          { title: "Musings", value: "musings" },
+          { title: "Reflections", value: "reflections" },
           { title: "Life update", value: "life update" },
           { title: "Photography", value: "photography" },
           { title: "Cognitive science", value: "cognitive science" },

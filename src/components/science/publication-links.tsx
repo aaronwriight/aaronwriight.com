@@ -9,7 +9,7 @@ export type PublicationLink = {
 export function PublicationLinks({ links, children }: { links: PublicationLink[]; children: ReactNode }) {
   return (
     <details className="mt-3">
-      <summary className="inline cursor-pointer list-none text-[#6f8200]">
+      <summary className="inline cursor-pointer list-none text-olive">
         <span className="hover:underline">ABS</span>
         {links.map((link) => (
           <Fragment key={link.href}>

@@ -1,0 +1,264 @@
+CODEX PROMPT — FRAME IT WRIGHT PHOTOGRAPHY AND CREATIVE SECTION
+ITERATION 2
+
+PART 1 — USER'S ORIGINAL REQUEST (VERBATIM BACKGROUND CONTEXT)
+
+The Pic-Time client-gallery URL below contained a live invite token. That token
+has been redacted in this saved copy so it is not embedded in a repository
+prompt. The remaining request is reproduced verbatim.
+
+"""
+I would like to do another iteration of my photography portfolio/gallery development. Can you create a codex prompt that tackles the following goals? As always, include in the prompt output both the verbatim copy of my words, and your synopsis.
+
+**Biggest item -- integration with Pic Time**
+- Pic Time (recently acquired Pass Time) is how I send my galleries to clients. I would like to continue using this platform, and I LOVE the "Looking for your photographs?" blip on the FIW website; can we have it link to and/or prompt a Pic Time login? Ideally, clients should be able to start here on my website and find their photos through Pic Time.
+- Additionally Pic Time has a portfolio page. I'm conflicted between using what they provide and my website. The galleries, for example, provide a snapshot (my top ~n) pics from a given gallery, and then link to the full galleries on Pic Time. Portfolio *could* function a similar way. I'm currently selecting candidate images, which I will later specify.
+
+**booking**
+The booking page could be a little warmer. I'll go back and use my own language, but I want to have the booking page say "create with me!" (as the caption), and to prompt people to select what type of shoot they want from the list I provide below (with the exception of travel). They should be able to specify the desired shoot type, preferred date range and location (or "I'm not sure", in which case it'll prompt a box having them describe specifically the type of scenery/vibe they might like in order to help me look into venues. add something about how far they can travel as well")
+-- importantly, I want the intake to have a “Tell me about yourself!" section -- i want to connect with my clients!
+-- separately, the "a little about your idea" (but make it a required field)
+-- add basic fields like first name, last name, email, phone (optional, with some separate encouragement/option to schedule a call to discuss ideas and plans)
+-- other things you thing are worthwhile that I might not be considering.
+-- let's have the exact wording be:
+```
+Celebrating a milestone or special moment? Looking for an excuse to get your friends together? Have a portrait session, family gathering, creative collaboration, or something else in mind? Tell me a little about it!
+
+A location, a rough date or season, and a few words about your idea are a great place to start! We can discuss availability, scope, pricing, and delivery by email or phone before making arrangements –– for now, just dream!
+
+What would your *perfect* shoot look like?
+
+ An inquiry isn't a commitment –– it simply helps me start thinking about how to capture what matters to you!
+
+... and while you're at it, tell me a little about yourself! A great photo is one thing; a great experience is another. The better I get to know who I'm working with, the more natural I'm able to help you feel, and the more we can make your photos *your* photos.
+
+To help bridge the gap, you can read a little [about me](link to about page on photography) here! :)
+```
+-- add "Reach out [frameitwright@gmail.com](mailto:frameitwright@gmail.com) directly, or prepare a draft below!" somewhere else on the page.
+
+**Miscellaneous**
+- get rid of the 'mind behind the lens' motif, in padticular on the about page
+- give me a candidate new instagram bio. I want to update what I have
+- i have never thought carefully about prints, but i do have some printable photos... in particular /Users/aaronwright/Desktop/life/photography/portfolio_travel/IMG_6150.jpg ; what should i do? lol
+- I added some text in my personal about. I want to get rid of it. It's the "while you wait ...... stroopwafels" chunk lol.
+- instances of "frame it wright", e.g., in the menu, should ideally use the full name, "frame it wright photography"
+
+**A separate page repositioning**
+- I want my tagline to be 'cognitive scientist, photographer, artist'
+- I want the info in 'personal' to go into 'creative' -- the section should keep the menu and page name 'creative'
+---- the 'about' page from personal should become the about page used in this updated 'creative' section.
+---- to reflect this change, there should be a third plaquard on my contact page. photography should be dissociated from creative.
+------ the new creative plaquard can have the buy me a coffee blip
+------ this new about page should have the following text for now:
+```
+Hi! :)
+
+I'm Aaron! I work in research full time, but I'm equally driven to create! I have probably *too* many "in-progress" projects... I run a photography business (which you can check out here), "publish" written pieces on travel, science, art, and my random endeavors (here), and love all things outdoors, music, and social life.
+
+Whether you're finding me from within a scientific community or the arts, here's some fun things about me to help spark a conversation!
+
+I'm fascinated with learning languages and exploring cultures –– I've spent some time teaching English overseas (Cambodia) and periodically lead international volunteer service-learning trips (Iceland).
+
+I've grown up and lived in New England and now hang around Boston, which has landed me firmly in both the great outdoors and the academic world. I often tell folks, "If I'm not sciencing, I'm hiking." I lead backpacking trips whenever possible, and *frequently* dream about my next wilderness excursion. For all intents and purposes, I fall in the "granola" camp, although I'm not nearly the coffee occifiando needed to complete the persona... yet.
+
+I believe deeply in living a slow life -- taking time to be present with and for the people I come to meet and know and love; asking thoughtful questions and seeking out stories with the intention of knowing people purely for the sake of knowing them. Everyone has a story, and mine has been quite enriched by those of others around me. I've rarely regretted taking a little extra time to hear what someone has to say, and I like to encourage others to go about their lives the same way.
+
+I draw inspiration from a wide variety of sources, from heartfelt cartoon classics like *Peanuts* and *Calvin & Hobbes* to popular gaming franchises like Pokémon and Zelda, to thought-provoking art and literature, and of course the great outdoors. I love simple joys found in the natural world and celebrated in community –– like caramel stroopwafels and inconvenient excursions for good views. I love the feeling of sharing interests with circumstantial strangers, which, I suppose, is why this page matters to me!
+
+You can find a few of my favorite things (perpetually to recently-ish) listed below, in case you want some specifics. I also share some of my inspirations (link to page) in full for those with a little more time on their hands. 
+
+In either case, I hope to leave you with a little more scope for imagination in your life –– stick aroudn to see where I've found it in my own. :)
+
+>music icon like the one you have in the sfi blog<: [COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)](https://www.youtube.com/watch?v=TiD_dSExqVU)
+
+>book icon<: [Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World](https://www.kristinohlson.com/books/sweet-in-tooth-and-claw); Anne of Green Gables
+
+><: tbd
+
+><: tbd
+```
+
+
+For additional prompt context, please see the following links and resources:
+
+**Pic Time potfolio page:**
+https://frameitwrightphotography.pic-time.com/client
+
+**Daniel and Naomi's engagement gallery as a sample:**
+https://frameitwrightphotography.pic-time.com/client/danielnaomiengagementgasworksseattle/gallery?ptGalleryReady=yes&inviteptoken2=[REDACTED CLIENT GALLERY INVITE TOKEN]
+
+**Content areas:**
+- Events
+- Couples & Engagement
+- Wedding
+- Family, Friends, & Lifestyle
+- Graduation (High School & College)
+- Headshots
+- Travel
+
+**My instagram:**
+https://www.instagram.com/frameitwrightphotography/
+
+**Current IG bio:**
+```
+frameitwrightphotography
+
+Frame it Wright Photography | Aaron Wright
+6 posts
+560 followers
+591 following
+Photographer
+portrait • lifestyle • adventure • local ⛰️
+• booking: Greater Boston area📍
+• blog: scope for imagination
+• main: [@aaron.wriight](https://www.instagram.com/aaron.wriight/)
+[aaronwriight.vercel.app/frame-it-wright-photography](https://l.instagram.com/?u=https%3A%2F%2Faaronwriight.vercel.app%2Fframe-it-wright-photography%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI1NTkAAafHAyp8eHpj0qsjrXdvoncLcTpt329-nQqmNlqNvAuFyCwLLnZYI5pZLTWhxg_aem_1Ed3NRbT7ygfxUblBNlYrQ&e=AUAfkn55FF-2rnt6TFCxJDla5_bprrMXo2khAKgxOVV9QVadpdAbm1sxIbr5nt88uDJwji4WvvFo5VYAMxy6-eZ8aGce7ZAH7GFH7YxfrcCHVVBgimd4TH-68Jn7oMw3MloguorwqHu_)
+"""
+
+
+PART 2 — SYNOPSIS / CODEX EXECUTION PROMPT
+
+You are continuing development of my Frame It Wright Photography website and
+the broader Frameitwright application. Implement this iteration in the
+existing codebase, not as a standalone redesign. First inspect the current
+worktree, routes, navigation, contact placquards, photography portfolio and
+gallery implementation, booking form, personal and creative sections, shared
+components, existing email/form handling, image assets, and project
+documentation. Preserve all pre-existing and in-progress user changes. Do not
+overwrite, revert, stage, or commit unrelated work. Reuse established
+components, visual patterns, validation, and delivery mechanisms.
+
+PIC-TIME CLIENT GALLERY ENTRY
+
+- Keep Pic-Time as the system that hosts and delivers client galleries.
+- Preserve the site's existing “Looking for your photographs?” prompt and
+  make its primary action clearly lead clients to the verified Pic-Time client
+  gallery/login starting point:
+  https://frameitwrightphotography.pic-time.com/client
+- Make the handoff clear and accessible: clients start on the FIW site, then
+  continue to Pic-Time to locate/sign into their gallery. Do not imply that
+  FIW itself authenticates clients unless the codebase has a real, secure
+  integration that verifies this.
+- Inspect the provided Daniel and Naomi URL only as an optional sample if
+  access is available through an authorized browser/session. The saved
+  background URL has its invite token redacted. Never reconstruct, request,
+  log, commit, or expose the token; do not use a client-specific invitation
+  URL as a public link or test fixture. Prefer the public Pic-Time client
+  landing page for site links.
+- Consider Pic-Time's portfolio and the website portfolio as alternative or
+  complementary experiences. Inspect what can be verified, then implement a
+  clear recommendation with a maintainable path: the FIW site can present
+  curated gallery cards with a small snapshot and link to a full public
+  Pic-Time gallery, or direct visitors to Pic-Time's portfolio where that is
+  preferable. Do not pretend an API/embed exists without verifying it.
+- I am selecting candidate photographs separately. Do not choose, crop,
+  transform, upload, or publish candidate photos. Build the structure so
+  approved images can be added later; use explicit placeholders or existing
+  already-approved content only when its status is clear.
+- Keep public preview images separate from client-only images. Do not publish
+  private gallery content, use invite tokens, or weaken Pic-Time privacy.
+
+WARMER BOOKING EXPERIENCE
+
+- Use “Create with me!” as the booking-page caption and adopt a warmer,
+  welcoming presentation consistent with the existing site.
+- Include the exact supplied booking copy from Part 1 without silently
+  rewriting it. Replace the placeholder “link to about page on photography”
+  with the verified route for the Frame It Wright Photography About page.
+  Include the separate callout exactly as requested:
+  “Reach out frameitwright@gmail.com directly, or prepare a draft below!”
+  Make the email address a working mailto link.
+- Create an accessible inquiry form that collects first name, last name, and
+  email; phone is optional. Include the required “A little about your idea”
+  field and a distinct “Tell me about yourself!” section. Preserve the
+  distinction between a creative idea and getting to know the client.
+- Ask for the desired shoot type, preferred date range or season, and
+  location. Use the supplied content areas as the choices, excluding Travel
+  as a shoot-type option. Avoid duplicate/confusing labels for categories
+  (for example, Family, Friends, & Lifestyle and any separate Lifestyle
+  category); inspect existing site categories and make a clear choice without
+  inventing unrequested services. If location is “I'm not sure,” reveal a
+  conditional field asking about scenery/vibe so I can help explore venues.
+- Ask how far the client is willing/able to travel. Make the response easy
+  to understand (for example, local-only, approximate distance, or flexible)
+  and avoid requiring a precise address.
+- Include a low-pressure optional invitation to schedule or request a call
+  about ideas and plans. Do not promise a scheduling integration unless one
+  exists. An optional inspiration-board URL or optional inspiration upload
+  may be considered only if the current stack supports it safely; do not
+  create insecure file storage or make inspiration sharing a requirement.
+- Add only worthwhile, low-friction fields needed to scope an inquiry (such
+  as how the person prefers to be contacted or accessibility/context needs),
+  and avoid collecting sensitive or unnecessary personal data.
+- Retain the non-commitment message. Validate required fields accessibly,
+  provide clear pending/success/error states, protect personal information,
+  and do not report an inquiry as sent unless the existing backend actually
+  accepted it. Inspect the current email/API pattern before implementing
+  delivery; do not expose secrets or client data.
+
+CREATIVE SECTION, NAVIGATION, AND CONTACT PLAQUARDS
+
+- Update the site's tagline to exactly: “cognitive scientist, photographer,
+  artist”.
+- Move the personal-section information into the existing Creative section.
+  Keep the visible section name and menu item “Creative.” The About page
+  currently under Personal should become the About page for Creative, using
+  the exact supplied draft copy in Part 1. Preserve its paragraphs,
+  emphasis, punctuation, and wording; do not silently correct typos or
+  rewrite voice. Replace instructional placeholders such as “link to page”
+  with correct internal routes and render unfinished `tbd` entries as
+  clearly unfinished/non-public placeholders rather than inventing content.
+- Remove the “while you wait ... stroopwafels” teaser from the former
+  Personal About page, as requested. Do not reintroduce it elsewhere.
+- Keep Photography distinct from Creative in the site's navigation,
+  identity, and contact pathways. Update occurrences of the short name
+  “frame it wright” in the relevant menu/branding surfaces to the full
+  “Frame It Wright Photography” name where it refers to the photography
+  business. Do not indiscriminately replace unrelated uses of the words.
+- Add a third, distinct Creative plaquard on the contact page alongside the
+  existing scientific and photography destinations. The Creative plaquard
+  may include the existing Buy Me a Coffee blip/link if its actual destination
+  can be verified. Do not make Photography subordinate to Creative.
+- Update internal navigation, links, metadata, and canonical routes
+  consistently. Preserve reasonable old links with the project's existing
+  redirect/compatibility conventions; do not leave ambiguous or broken
+  Personal About links.
+- Remove the “mind behind the lens” motif, especially from the photography
+  About page. Review related copy and headings, but do not replace it with
+  another cliché or add unrequested biography.
+
+PRINTS QUESTION AND INSTAGRAM BIO
+
+- Inspect `/Users/aaronwright/Desktop/life/photography/portfolio_travel/IMG_6150.jpg`
+  read-only if the file is available. Do not edit, move, upload, publish, or
+  select it for the portfolio. Give me practical advice about whether and
+  how to explore making a print: verify image dimensions/resolution and
+  relevant metadata, explain print-size/proof considerations, and recommend
+  getting a test print before making a commitment. Do not claim it is
+  print-ready or create a print shop/product unless the evidence and my
+  explicit approval support that.
+- Provide one or more concise candidate Instagram bios aligned with the new
+  “cognitive scientist, photographer, artist” positioning and the FIW
+  photography voice. Keep the proposal within Instagram's current bio limit
+  (verify the limit rather than guessing), preserve a clear booking/site
+  path, and do not change the Instagram profile. Report the candidate
+  separately for my review.
+
+IMPLEMENTATION AND VERIFICATION
+
+- Inspect all relevant existing implementation before editing. Treat the
+  current worktree as potentially containing active user work: preserve it,
+  and integrate carefully with files that are already changed or untracked.
+- Preserve user-supplied copy exactly where specified. Distinguish confirmed
+  functionality from a visual link or proposed future integration.
+- Do not add actual photographs, client-gallery tokens, passwords, or
+  personal client information to public pages, tests, logs, or repository
+  history.
+- Update only directly related code, tests, and documentation. Run the
+  narrowest appropriate checks for changed routes, form behavior, navigation,
+  and types/build. Fix issues caused by this work and report pre-existing
+  failures separately.
+- Finish with a concise report listing implemented changes, the proposed
+  Instagram bio, print advice for IMG_6150.jpg, checks run and their results,
+  and any access/integration limitations or decisions still needing my
+  approval. Do not publish or deploy anything unless explicitly authorized.

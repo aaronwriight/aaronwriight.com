@@ -1,11 +1,10 @@
 import { jsonMessage } from "@/lib/api-response";
-import { emailPattern, unsubscribeResendContact } from "@/lib/resend-contacts";
+import { emailPattern, ResendContactError, unsubscribeResendContact } from "@/lib/resend-contacts";
+import { readNewsletterBody } from "@/lib/newsletter-subscription";
 
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = (await request.json()) as Record<string, unknown>;
-  } catch {
+  const body = await readNewsletterBody(request);
+  if (!body) {
     return jsonMessage("Please submit the form again.", 400);
   }
 
@@ -23,7 +22,7 @@ export async function POST(request: Request) {
     await unsubscribeResendContact({ apiKey, email });
     return jsonMessage("You’ve been unsubscribed.");
   } catch (error) {
-    console.error("Newsletter unsubscribe failed", error);
+    console.error("Newsletter unsubscribe failed", error instanceof ResendContactError ? error.status : "network error");
     return jsonMessage("I couldn’t unsubscribe you just now. Please try again shortly.", 502);
   }
 }

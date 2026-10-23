@@ -4,24 +4,11 @@ import { ProjectGroup } from "@/components/site/project-placard";
 
 export const metadata: Metadata = {
   title: "projects | creative",
-  description: "Photography, journals, and literature by Aaron Wright.",
+  description: "Journals, travel, and literature by Aaron Wright.",
+  alternates: { canonical: "/creative/projects" },
 };
 
 const groups = [
-  {
-    id: "photography",
-    title: "photography",
-    description: "Frame It Wright is my photography practice.",
-    projects: [
-      {
-        category: "photography",
-        title: "frame it wright photography",
-        subtitle: "mind behind the lens",
-        description: "My photographs, collected in one place.",
-        href: "/frame-it-wright-photography",
-      },
-    ],
-  },
   {
     id: "notes-and-travel",
     title: "notes & travel",
@@ -30,7 +17,7 @@ const groups = [
       {
         category: "digital journal",
         title: "scope for imagination",
-        subtitle: "photographs, musings, life updates, and the occasional rant",
+        subtitle: "photographs, reflections, life updates, and the occasional rant",
         href: "/scope-for-imagination",
       },
       {

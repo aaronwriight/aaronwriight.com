@@ -1,0 +1,191 @@
+LEGACY WEBSITE: NOVEL-ONLY CANDIDATES AND FUTURE RETIREMENT PLAN
+Read-only comparison: 2026-10-10
+Status: PLAN ONLY; no transfer, publication, retirement, or external source edits.
+
+Authority and scope
+-------------------
+Frameitwright is authoritative. Treat ALL material in aaronwriight.github.io as
+outdated, including text, dates, affiliations, links, files, and build practices.
+A different version, older wording, or additional file format is not novelty.
+The entries below are absent candidate resources or capabilities, not proposed
+replacements for current content. Absence may reflect an intentional editorial
+choice; nothing should be restored without a new decision to include it.
+
+Legacy root: ../aaronwriight.github.io relative to Frameitwright.
+Observed HEAD: e479656de3fb5550abb67dae9f68961d0cda64e3.
+Existing .DS_Store and images/.DS_Store changes were left untouched.
+Source paths and line numbers below refer to that checkout on the comparison
+date. This note stores descriptions and locators only, not content excerpts,
+private drafts, access-bearing URLs, or copied assets. No live links were tested.
+
+Comparison basis
+----------------
+Compared legacy visible resource links and citation identities with current
+src/data/readings-resources.ts, then checked current src/ and content/ for the
+candidate names, destinations, and paper identifiers. Compared the personal
+links with src/components/site/personal-dropdowns.tsx and current personal pages.
+Compared helper-script purposes with the current scripts/ inventory and site
+models. Ignored HTML comments and template examples as candidate authored copy.
+Normalized harmless URL differences; a new URL for an already represented paper
+or an older version of a known publication does not count as new information.
+
+A. ABSENT READING CANDIDATES
+--------------------------
+All eleven entries below are OUTDATED / UNVERIFIED legacy recommendations.
+Potential destination, only if newly selected: the readings array in
+src/data/readings-resources.ts. Neither a matching citation/identifier nor the
+same work under another visible current link was found. Existing entries by
+some of these authors concern different works; authorship overlap alone was
+not treated as duplication.
+
+Source for each: _pages/readings_resources.html. Line locators identify the
+legacy citation/link; they are not instructions to reuse its URL or wording.
+
+1. Lines 123-125: Hoemann and colleagues (2024), freely generated emotion labels
+   rather than rating scales. Novelty: this assessment-method paper is absent;
+   the current Hoemann entry addresses experiential diversity instead.
+2. Lines 132-134: Jonauskaite and colleagues (2020), cross-cultural color/emotion
+   associations. Novelty: this specific study is absent; current color-semantics
+   reading by Schloss is a different work.
+3. Lines 141-143: Matalon and colleagues (2025), vocabulary/semantics/syntax of
+   prosody in conversation. Novelty: no corresponding reading/identifier found.
+4. Lines 147-149: Saxe and Houlihan (2017), Bayesian formalization of emotion
+   concepts. Novelty: distinct from the current Houlihan et al. 2023 reading.
+5. Lines 150-152: Skerry and Saxe (2015), emotion representations and abstract
+   event features. Novelty: no corresponding reading/identifier found.
+6. Lines 153-155: Thompson, Roberts, and Lupyan (2020), cultural influences on
+   word meanings through semantic alignment. Novelty: absent specific study.
+7. Lines 156-158: Tuckute and colleagues (2025), a two-dimensional space of
+   linguistic representations. Novelty: distinct from the current 2024 language
+   in brains/minds/machines review. Legacy publication status is unverified.
+8. Lines 162-164: Van Heijst, Kret, and Ploeger (2025), evolutionary perspectives
+   on basic/constructed emotion. Novelty: absent specific review.
+9. Lines 165-167: Varrier and Finn (2022), neural signatures of perceiving social
+   interactions. Novelty: absent specific study.
+10. Lines 168-170: Wang and Bi (2021), individual differences in abstract word
+    meanings. Novelty: absent specific study.
+11. Lines 174-176: Wolna and colleagues (2024), functional-localizer study of
+    bilingual language control in production. Novelty: distinct from the current
+    Wolna 2024 Scientific Reports paper on domain-general/language-specific
+    contributions to second-language production.
+
+Risks/manual decision for all: the old recommendations, bibliographic details,
+and publication status are not authoritative. Recheck the intended work and a
+fresh canonical public citation before considering inclusion. Some old scholarly
+links include access/query parameters; those must not be copied into new content.
+
+B. ABSENT RESOURCE DESTINATIONS
+------------------------------
+All entries are OUTDATED / UNVERIFIED pointers, not confirmed current services
+or recommendations. Source: _pages/readings_resources.html. Potential use:
+newly selected additions to resourceSections in src/data/readings-resources.ts.
+
+- Line 238, tidypandas: a Python data-manipulation documentation destination;
+  no current resource entry or link found.
+- Line 239, Meaning Extraction Helper: a text-analysis software resource;
+  no current resource entry or link found.
+- Line 240, MKernel (allefeld/mkernel): a scientific-computing repository pointer;
+  no current resource entry or link found. Assess purpose/maintenance before use.
+- Line 241, Positron: an IDE resource pointer absent from current resources.
+  This is not evidence of an installed or connected platform in Frameitwright.
+- Line 250, rOpenSci: a research-software community destination absent from the
+  current resource list. Do not infer an active integration.
+- Line 255, Andy's Brain Blog: a separate blog destination; the current list
+  includes Andy's Brain Book, but not this blog. Confirm the distinction still
+  matters before adding another entry from the same author/ecosystem.
+- Line 256, Nicola Rennie's Data Science Resources: a specific resource index
+  absent from current resources. The current inspirations page already links
+  her homepage, so only this additional resource index is the candidate.
+- Line 257, The Transmitter's article on the theorist/experimentalist divide:
+  this specific article is absent; the current list links another article.
+- Line 259, Christine Liu's article on becoming a scientist while poor:
+  this specific article is absent from the current resources.
+
+Risks/manual decision: links, software compatibility, relevance, and intended
+endorsement have not been verified. The old selection must not be restored by
+bulk import. Current resource descriptions and organization remain authoritative.
+
+C. ONE ABSENT CREATIVE DESTINATION
+----------------------------------
+Source: _pages/personal.md:93, The Postchaise destination.
+Novelty: the destination is absent from current personal-dropdowns.tsx and other
+current site source; it is the only unmatched visible legacy personal link from
+this comparison. Potential use: a deliberately reselected creative reference in
+/personal/inspirations. Status: OUTDATED / UNVERIFIED. Do not reuse old relationship
+claims or commentary; confirm whether the user still wants this pointer at all.
+
+D. ABSENT WORKFLOW REFERENCES (LOWER PRIORITY)
+---------------------------------------------
+These are OUTDATED / UNVERIFIED implementation references, not current personal
+content. No code, environment, data tables, or generated output was copied.
+
+1. Bibliography/table-to-publication generators
+   Sources: markdown_generator/pubsFromBib.py;
+     markdown_generator/publications.py; markdown_generator/talks.py;
+     markdown_generator/readme.md.
+   Novelty: BibTeX/TSV-to-publication/talk generation is absent from current
+   scripts/. Current publications are authored in the Next.js page instead.
+   Potential use: reference for a future explicitly requested bibliography import.
+   Risk: these generate Academic Pages/Jekyll records and use old dependencies;
+   they cannot be adopted as the site's pipeline unchanged. Old table contents
+   and bibliography records are not novel merely because they are structured.
+
+2. Conference-talk map generation
+   Sources: talkmap.py; .github/workflows/scrape_talks.yml.
+   Novelty: a conference-talk location-to-map helper is absent from current
+   scripts/. Frameitwright's existing Venture geography tools serve a different
+   content model and do not make this an active feature.
+   Potential use: reference only if a future talk-location map is wanted.
+   Risk: external geocoding, dated getorg/geopy dependencies, and template talk
+   records require fresh design and data review. Do not execute or reinstate the
+   old scheduled workflow. Generated maps and notebooks are not candidate data.
+
+Excluded the legacy CV generator as well as its output: the current authoritative
+CV already has its own presentation, and a legacy alternate representation is
+not a reason to retain outdated CV information in this note.
+
+E. COMPACT EXCLUSIONS
+--------------------
+No preservation candidates are retained for duplicate research statements,
+mentorship/about text, biographies, existing inspirations, the known publication
+records/abstracts, older preprints, the CV/structured CV, existing poster content,
+or Scope for Imagination planning material. Different wording, dates, file bytes,
+or formats do not count as novelty. Current Frameitwright versions win.
+
+The apparent MTA challenge at tidy_tuesday/challenges/2025/
+2025_29_MTA_Permanent_Art_Catalog/2025_29_MTA_Permanent_Art_Catalogue.html is also
+excluded: its rendered title still contains a template placeholder and author
+metadata names the upstream template author. It is not evidence of novel,
+authored visualization work. No plot from it should be selected on that basis.
+
+Template posts/talks/teaching/portfolio entries, comments, drafts, vendor assets,
+old styling, generic legal copy, and unselected portraits/artwork are excluded.
+No novelty claim is made for image variants or private/hidden material.
+
+F. FUTURE RETIREMENT PLAN — NO ACTION AUTHORIZED HERE
+----------------------------------------------------
+1. Review only the absent candidates above. Retain or reject each intentionally;
+   if approved later, re-verify it and create current descriptions through the
+   site's existing content workflow. Do not restore the old website's content.
+2. Before any retirement, resolve current dependencies on the old host. These
+   are operational dependencies, NOT novel content to store or migrate now:
+   - Frameitwright src/app/(site)/cognitive-science/publications/page.tsx still
+     links two legacy poster PDFs, located at files/posters/
+     Wolna.Agata.Wright.Aaron_v2 copy.pdf and CNS_2025_poster copy.pdf.
+   - src/app/(site)/about/page.tsx has an outbound author link to the old site.
+     src/app/(site)/page.tsx, src/app/(site)/about/page.tsx, and
+     src/app/not-found.tsx also contain old-host author metadata references.
+   - The independent TidyTuesday configuration/README still reference the old
+     host. Their deployment and desired landing destinations need a separate
+     decision; no changes to that repository were made here.
+3. Obtain approval for actual host behavior and a precise redirect/download plan.
+   A redirect added only to Frameitwright cannot redirect requests arriving at
+   github.io. Verify account/Pages/domain settings directly before changes.
+4. Only after explicit approval, preserve a recoverable snapshot of the legacy
+   repository and make the smallest approved hosting/link changes. Verify current
+   pages and existing downloads still work, with rollback instructions. Repository
+   archiving/deletion, disabling Pages, deployment changes, and content transfer
+   remain separate future decisions; none occurred in this work.
+
+No obsolete CV version, research wording, publication status, or biography from
+the legacy repository should displace current Frameitwright content at any stage.

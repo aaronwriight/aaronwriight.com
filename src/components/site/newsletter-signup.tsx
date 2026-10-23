@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -20,7 +20,6 @@ type ExtraField = {
 
 type NewsletterSignupProps = {
   endpoint?: string;
-  successMessage?: string;
   description?: string;
   submitLabel?: string;
   submittingLabel?: string;
@@ -33,7 +32,7 @@ type NewsletterSignupProps = {
 const defaultInterestOptions = [
   { value: "everything", label: "everything" },
   { value: "life updates", label: "life updates" },
-  { value: "musings", label: "musings" },
+  { value: "reflections", label: "reflections" },
   { value: "cognitive science", label: "cognitive science" },
   { value: "photography", label: "photography" },
   { value: "travel and adventure", label: "travel and adventure" },
@@ -46,15 +45,18 @@ async function submitForm(endpoint: string, form: HTMLFormElement) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(Object.fromEntries(new FormData(form))),
   });
-  const result = (await response.json().catch(() => ({}))) as { message?: string };
-  if (!response.ok) throw new Error(result.message || "Something went wrong. Please try again.");
-  return result.message;
+  const result = (await response.json().catch(() => null)) as { message?: unknown } | null;
+  const message = typeof result?.message === "string" ? result.message : "";
+  if (!response.ok) throw new Error(message || "Something went wrong. Please try again.");
+  if (!message.trim()) {
+    throw new Error("I couldn’t confirm your request. Please try again shortly.");
+  }
+  return message;
 }
 
 export function NewsletterSignup({
   endpoint = "/api/newsletter/subscribe",
-  successMessage = "You’re on the list—thank you!",
-  description = "Occasional Scope for Imagination updates. Unsubscribe whenever you like.",
+  description = "By joining, you agree to occasional Scope for Imagination emails. Your email and optional details are stored with Resend to manage these updates. Unsubscribe whenever you like.",
   submitLabel = "join the list",
   submittingLabel = "joining…",
   interestName = "interest",
@@ -62,6 +64,7 @@ export function NewsletterSignup({
   interestOptions = defaultInterestOptions,
   extraFields = [],
 }: NewsletterSignupProps) {
+  const unsubscribeEmailId = useId();
   const [subscribeStatus, setSubscribeStatus] = useState<FormStatus>("idle");
   const [subscribeMessage, setSubscribeMessage] = useState("");
   const [unsubscribeStatus, setUnsubscribeStatus] = useState<FormStatus>("idle");
@@ -73,7 +76,7 @@ export function NewsletterSignup({
     setSubscribeStatus("submitting");
     setSubscribeMessage("");
     try {
-      setSubscribeMessage((await submitForm(endpoint, form)) || successMessage);
+      setSubscribeMessage(await submitForm(endpoint, form));
       setSubscribeStatus("success");
       form.reset();
     } catch (error) {
@@ -88,7 +91,7 @@ export function NewsletterSignup({
     setUnsubscribeStatus("submitting");
     setUnsubscribeMessage("");
     try {
-      setUnsubscribeMessage((await submitForm("/api/newsletter/unsubscribe", form)) || "You’ve been unsubscribed.");
+      setUnsubscribeMessage(await submitForm("/api/newsletter/unsubscribe", form));
       setUnsubscribeStatus("success");
       form.reset();
     } catch (error) {
@@ -98,28 +101,28 @@ export function NewsletterSignup({
   }
 
   const fieldClass =
-    "w-full border border-stone-300 bg-transparent px-3 py-2 font-serif text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:text-stone-100";
+    "w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
 
   return (
     <div>
-      <form onSubmit={handleSubscribe} className="space-y-4">
+      <form onSubmit={handleSubscribe} className="space-y-4" aria-label="Join the mailing list" aria-busy={subscribeStatus === "submitting"}>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="space-y-1.5 text-xs text-stone-400">
-            <span className="block lowercase tracking-wider">first name</span>
+          <label className="space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
+            <span className="block lowercase tracking-wider">first name (optional)</span>
             <input name="firstName" type="text" autoComplete="given-name" maxLength={80} className={fieldClass} />
           </label>
-          <label className="space-y-1.5 text-xs text-stone-400">
-            <span className="block lowercase tracking-wider">last name</span>
+          <label className="space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
+            <span className="block lowercase tracking-wider">last name (optional)</span>
             <input name="lastName" type="text" autoComplete="family-name" maxLength={80} className={fieldClass} />
           </label>
         </div>
 
-        <label className="block space-y-1.5 text-xs text-stone-400">
+        <label className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
           <span className="block lowercase tracking-wider">email</span>
           <input name="email" type="email" autoComplete="email" required maxLength={254} className={fieldClass} />
         </label>
 
-        <label className="block space-y-1.5 text-xs text-stone-400">
+        <label className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
           <span className="block lowercase tracking-wider">{interestLabel}</span>
           <select name={interestName} defaultValue={interestOptions[0]?.value} className={fieldClass}>
             {interestOptions.map((option) => (
@@ -129,7 +132,7 @@ export function NewsletterSignup({
         </label>
 
         {extraFields.map((field) => (
-          <label key={field.name} className="block space-y-1.5 text-xs text-stone-400">
+          <label key={field.name} className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
             <span className="block lowercase tracking-wider">{field.label}</span>
             {field.type === "textarea" ? (
               <textarea
@@ -157,38 +160,40 @@ export function NewsletterSignup({
         </label>
 
         <p className="text-xs leading-5 text-stone-500">{description}</p>
+        <p className="text-xs leading-5 text-stone-600 dark:text-stone-400">If you previously unsubscribed, joining again re-enables emails from lists you have already joined.</p>
 
         <div className="flex flex-wrap items-center gap-4">
           <button
             type="submit"
             disabled={subscribeStatus === "submitting"}
-            className="border border-stone-400 px-4 py-2 font-serif text-xs lowercase tracking-widest text-stone-900 hover:border-stone-700 hover:text-[#6f8200] disabled:cursor-wait disabled:opacity-60 dark:border-stone-600 dark:text-stone-100 dark:hover:border-stone-300 dark:hover:text-[#6f8200]"
+            className="border border-stone-400 px-4 py-2 font-serif text-xs lowercase tracking-widest text-stone-900 hover:border-stone-700 hover:text-olive disabled:cursor-wait disabled:opacity-60 dark:border-stone-600 dark:text-stone-100 dark:hover:border-stone-300"
           >
             {subscribeStatus === "submitting" ? submittingLabel : submitLabel}
           </button>
           {subscribeMessage && (
-            <p role="status" className={`text-xs ${subscribeStatus === "error" ? "text-red-700 dark:text-red-400" : "text-stone-450"}`}>
+            <p role={subscribeStatus === "error" ? "alert" : "status"} className={`text-xs ${subscribeStatus === "error" ? "text-red-700 dark:text-red-400" : "text-stone-600 dark:text-stone-400"}`}>
               {subscribeMessage}
             </p>
           )}
         </div>
       </form>
 
-      <form onSubmit={handleUnsubscribe} className="mt-10 border-t border-stone-300 pt-6 dark:border-stone-700">
+      <form onSubmit={handleUnsubscribe} className="mt-10 border-t border-stone-300 pt-6 dark:border-stone-700" aria-label="Unsubscribe from updates" aria-busy={unsubscribeStatus === "submitting"}>
         <p className="font-serif text-sm lowercase tracking-widest text-stone-900 dark:text-stone-100">unsubscribe</p>
+        <p className="mt-2 text-xs leading-5 text-stone-600 dark:text-stone-400">This stops all newsletter emails from me, including Scope for Imagination and creative updates.</p>
         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-          <label className="sr-only" htmlFor="unsubscribe-email">Email</label>
-          <input id="unsubscribe-email" name="email" type="email" autoComplete="email" required placeholder="email address" className={fieldClass} />
+          <label className="sr-only" htmlFor={unsubscribeEmailId}>Email</label>
+          <input id={unsubscribeEmailId} name="email" type="email" autoComplete="email" required maxLength={254} placeholder="email address" className={fieldClass} />
           <button
             type="submit"
             disabled={unsubscribeStatus === "submitting"}
-            className="whitespace-nowrap border border-stone-300 px-4 py-2 font-serif text-xs lowercase tracking-widest text-stone-900 hover:border-stone-500 hover:text-[#6f8200] disabled:cursor-wait disabled:opacity-60 dark:border-stone-700 dark:text-stone-100 dark:hover:border-stone-500 dark:hover:text-[#6f8200]"
+            className="whitespace-nowrap border border-stone-300 px-4 py-2 font-serif text-xs lowercase tracking-widest text-stone-900 hover:border-stone-500 hover:text-olive disabled:cursor-wait disabled:opacity-60 dark:border-stone-700 dark:text-stone-100 dark:hover:border-stone-500"
           >
             {unsubscribeStatus === "submitting" ? "removing…" : "unsubscribe"}
           </button>
         </div>
         {unsubscribeMessage && (
-          <p role="status" className={`mt-3 text-xs ${unsubscribeStatus === "error" ? "text-red-700 dark:text-red-400" : "text-stone-450"}`}>
+          <p role={unsubscribeStatus === "error" ? "alert" : "status"} className={`mt-3 text-xs ${unsubscribeStatus === "error" ? "text-red-700 dark:text-red-400" : "text-stone-600 dark:text-stone-400"}`}>
             {unsubscribeMessage}
           </p>
         )}

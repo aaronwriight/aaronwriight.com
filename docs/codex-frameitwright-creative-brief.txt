@@ -1,0 +1,111 @@
+CODEX PROMPT FOR FRAMEITWRIGHT PHOTOGRAPHY AND CREATIVE PLATFORM
+
+PART 1 — ORIGINAL REQUEST (VERBATIM BACKGROUND CONTEXT)
+
+"""
+ I would like to create a collage for my photography portfolio, as well as to start structuring sample galleries with the project plaquards we've adopted for the website. Please do not choose any photos to go in this yet (even though I've attached a portfolio folder). I would just like to iterate on these pages so that I can start thinking about what photos I would like to have. Please also consider developing an uploading pipeline, similar to how we do blog posts for SFI and Venture.
+
+Additionally, I use Pic Time (https://frameitwrightphotography.pic-time.com/professional#dash) to host my galleries. Please consider this as you establish my galleries. It would be nice to have gallery snapshots (for public galleries) and an a login mechanism for private galleries that have been sent to clients.
+
+Please also take the content from the "mailing list" page and use it for the booking page. Expound on it as you need. And then, make a separate "mailing list" page for within the creative section --- that will be a proper mailing list for the blogs and such.
+
+As a separate part of this next prompt, I'd like to make a few changes to my 'personal' section. Right now, my about page is really more of an 'inspirations' page. Why don't we call it that instead: 'inspirations' --- instead, I'd like to have the 'about' page be another 'coming soon' page; but it can have a little teaser:
+
+"While you wait, here are a few of my (recent) favorite things that'll hopefully make you smile, too: [COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)](https://www.youtube.com/watch?v=TiD_dSExqVU), [# Sweet in Tooth and ClawStories of Generosity and Cooperation in the Natural World](https://www.kristinohlson.com/books/sweet-in-tooth-and-claw), and Daelmans Caramel Stroopwafels."
+
+Separately, I've added two new folders to the workspace:
+- 'writing' -- my PERSONAL copy with the word .docx and stuff that I use for venture, and all of my other writing projects. YOU MAY NOT DELETE CONTENT FROM HERE. However, I would like to have the venture and sfi blog posts now live here, and the posting mechanism should source this writing folder, not the writing folder within the frameitwright repo. You may, however, create a simlink within the frameitwright repo to this external, ground truth writing repo.
+
+More importantly, I have two large internal development tasks:
+- First, I would like to retire my aaronwriight.github.io repo and the corresponding website. I would like to extract any other useful information from it and save that in a .txt file within the frameitwright repo, should I decide to draw from it later. I have attached the repo folder to the current workspace. For now, just scan it and develop a plan
+- Similarly, I would like to more stably integrate my tidytuesday repo into the aaronwriight.vercel.app/frameitwright repo. It may remain it's own repo, but please think critically about the plot uploading structure and how/where it sits in the tidytuesday project in my cognitive science projects model. Please establish a workflow similarly to how I've set up the posting for SFI and Venture.
+
+Finally, in the wiki section of the website (probably with the 'dev' stuff), it would be worth having a note about all of the connected softwares and platforms. I use a lot of things to keep my create and scientific life up! Resend and Pic Time, need to be added, among others that I'm not remembering
+"""
+
+
+PART 2 — DISTILLED, REFORMULATED CODEX EXECUTION PROMPT
+
+You are working in my Frameitwright website repository and its attached workspace. Help me develop the creative side of the platform, especially Frame It Wright Photography, while also handling the related content-workflow and site-organization tasks below. Treat the original request in Part 1 as the complete source of intent. Inspect the existing application, content, repository structure, and attached workspace before making changes. Follow the project's existing visual language, component patterns, content model, and publishing workflows rather than introducing a parallel system.
+
+CORE CREATIVE GOAL
+
+Develop the photography and creative pages into a thoughtful, visually compelling portfolio experience that helps me plan what to publish. This work is primarily about page structure, presentation, content organization, and sustainable authoring workflows—not selecting or publishing photographs.
+
+NON-NEGOTIABLE CONTENT AND SAFETY BOUNDARIES
+
+1. Do not select, curate, crop, edit, feature, or publish any photographs from the attached portfolio folder or elsewhere. Do not populate portfolio or gallery pages with real photos. Use clearly identified placeholders, empty states, or neutral layout treatments so I can decide later which images belong.
+2. Preserve all material in the external personal `writing` folder. Never delete, move, overwrite, or bulk-transform its contents. Treat it as the ground-truth writing source. The in-repository `writing` folder is not the source of truth for SFI and Venture posts once the external source is available.
+3. For the `aaronwriight.github.io` repository, do read-only discovery only: scan it for potentially useful content and prepare a plan and a `.txt` inventory/transfer note inside this repository. Do not retire, delete, archive, alter, or publish changes to that repository or its corresponding website. Do not migrate material without explicit approval.
+4. Do not expose credentials, private client-gallery data, private source material, or secrets in code, logs, documentation, or public pages. Do not commit credentials or rely on undocumented access to third-party services.
+5. Do not claim that a gallery is private or protected unless the implemented access control actually enforces it. Avoid storing Pic-Time or client credentials in the site.
+
+WORK SEQUENCE
+
+Begin by mapping the current routes and navigation for photography, creative, personal, wiki/development, SFI, Venture, and cognitive-science/TidyTuesday content. Inspect the existing project-plaquard patterns, photo and gallery content, mailing-list and booking pages, shared publishing scripts, deployment configuration, and the attached workspace folders. Check the existing working-tree state and preserve unrelated user changes. Do not assume a tool, integration, API, or folder is available until you have verified it.
+
+Before a broad implementation, summarize the current architecture and identify any consequential decisions or missing access that could make the requested behavior unsafe or misleading. Resolve routine details by following established project conventions. If a decision materially changes the user experience, requires credentials/third-party setup, or cannot be made safely from the repository evidence, explain the blocker and ask before proceeding with that part. Otherwise, complete the work end-to-end, test it, and report exactly what changed and what remains manual.
+
+PHOTOGRAPHY PORTFOLIO AND SAMPLE GALLERIES
+
+- Create or refine the photography portfolio so it can support a collage-like presentation. Make the composition, spacing, responsive behavior, and image-placeholder treatment feel deliberate and consistent with the existing site. Keep it easy to replace placeholders later.
+- Establish sample-gallery page structures using the project's adopted project plaquards and existing design conventions. Make clear which entries are examples, planned galleries, or placeholders; do not imply that sample content is a real client gallery.
+- Treat the project plaquard as the reusable information architecture for a gallery/project: inspect existing examples, then reuse their established fields and visual treatment. Do not invent a conflicting metadata model without a clear need.
+- Investigate how Pic-Time can appropriately connect to this site. For public galleries, provide a considered place and presentation for snapshots/previews, but do not fetch, upload, or choose photographs without approval. Document any manual Pic-Time step or integration limitation.
+- For private, client-delivered Pic-Time galleries, determine whether a safe and supportable linking/access pattern exists. If the site needs its own authentication, use the project's established authentication approach if present; do not create an insecure home-grown password gate. Clearly distinguish an authenticated private area from an outbound link to Pic-Time's own protected gallery. If proper access control is not available or requires an external service decision, document the options and leave the private flow safely unimplemented rather than presenting a false security boundary.
+
+PHOTOGRAPHY UPLOAD AND PUBLISHING WORKFLOW
+
+- Study the established SFI and Venture writing/posting pipeline and reuse its useful conventions for photography rather than creating an unrelated workflow.
+- Design a sustainable way to add, review, organize, preview, and publish photography portfolio items and gallery metadata. Consider where source files, derivatives, captions/alt text, project plaquards, and Pic-Time links belong, based on actual repository and CMS patterns.
+- Keep the workflow reversible and non-destructive. Separate draft/review steps from public publication. Do not upload the attached photo collection or publish a photo merely to demonstrate the pipeline.
+- Implement the workflow only to the extent supported by the existing architecture. Include validation and clear instructions for remaining manual steps. Avoid checking in large binaries, personal documents, or secrets.
+
+BOOKING AND CREATIVE MAILING LIST
+
+- Move/adapt the useful content and intent currently on the photography "mailing list" page into the booking page. Expand the copy as needed so the page clearly explains booking/contact expectations and the next step for prospective clients.
+- Replace the photography mailing-list route/page with a separate mailing-list experience within the Creative section. It should be for updates about blogs and creative work, distinct from booking inquiries.
+- Inspect current Resend and mailing-list patterns before implementation. Reuse existing integrations where they are suitable; never claim a subscription was saved unless the existing backend actually saves it and reports success. Preserve privacy, validation, accessibility, and clear error/success states.
+
+PERSONAL SECTION
+
+- Reframe the current page that functions as an inspirations page under the name and route/navigation label "Inspirations." Inspect all links and route references before renaming so the change is consistent and old URLs are handled according to existing conventions.
+- Make the "About" page a "Coming soon" page with a restrained teaser. Include this copy exactly, retaining its links and wording:
+
+  While you wait, here are a few of my (recent) favorite things that'll hopefully make you smile, too: [COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)](https://www.youtube.com/watch?v=TiD_dSExqVU), [# Sweet in Tooth and ClawStories of Generosity and Cooperation in the Natural World](https://www.kristinohlson.com/books/sweet-in-tooth-and-claw), and Daelmans Caramel Stroopwafels.
+
+- Make links accessible and ensure the teaser fits the existing page presentation. Do not publish or invent other biography/inspiration content.
+
+PERSONAL WRITING SOURCE AND SFI/VENTURE POSTING
+
+- Verify the attached external `writing` folder's actual path and inspect its organization without altering its contents. Establish it as the source for SFI and Venture blog posts and update the posting mechanism accordingly.
+- Determine whether a symlink from the repository's expected writing location to the external source is safe, portable enough for the project's development/deployment workflow, and compatible with Vercel and the current scripts. Do not assume a local symlink will be present in CI or production. If it is not robust across environments, implement a documented, non-destructive alternative that reads the external ground truth locally and stages or builds the required content through the project's supported mechanism.
+- Preserve the current post authoring/review/publish behavior as far as possible. Do not duplicate content in a way that creates two competing sources of truth. Verify representative SFI and Venture workflows without publishing content or modifying external documents.
+
+TIDYTUESDAY AND COGNITIVE-SCIENCE PROJECTS
+
+- Inspect the attached TidyTuesday repository and the existing cognitive-science projects model/pages. Evaluate how plot source files, rendered plot images, captions/metadata, and published project content are currently organized.
+- Propose and implement a stable plot-uploading/publishing workflow aligned with the useful SFI/Venture authoring and review conventions. Make the relationship between TidyTuesday and the cognitive-science projects area clear and consistent.
+- The TidyTuesday repository may remain independent. Do not force a repository merge. Avoid duplicated assets and fragile path assumptions; establish a reproducible, documented handoff or build path, based on the actual deployment setup.
+- Preserve source plots and their provenance. Validate file types, expected destinations, metadata, and any generated outputs. Do not upload or publish plots unless the established workflow explicitly calls for it and it is safe to do so.
+
+LEGACY WEBSITE DISCOVERY PLAN
+
+- Read the attached `aaronwriight.github.io` repository as an archive for discovery only.
+- Create a useful, well-organized `.txt` note in this repository containing the repository areas/pages/assets that may be worth preserving, what each item appears to contain, potential destination or future use within Frameitwright, and unresolved questions/risks. Include paths precise enough to find the source again.
+- Keep the note a plan/inventory, not an executed migration. Do not copy or delete archived content as part of this task.
+
+CONNECTED SOFTWARE AND PLATFORMS WIKI NOTE
+
+- Find the site's wiki/development documentation structure and add a maintained note or page describing the software and platforms connected to the creative and scientific workflows.
+- Verify services from repository evidence and clearly label confirmed integrations versus user-mentioned tools or possible connections. Include Resend and Pic-Time, along with relevant existing systems such as the CMS, hosting, analytics, source repositories, and publishing/build tools where verified. Do not guess that a service is connected merely because it is named.
+- For each verified platform, record its role, the part of the site/workflow it supports, relevant repository entry points (without exposing secrets), and any setup/manual handoffs. Make the document easy to update as the platform list grows.
+
+IMPLEMENTATION AND QUALITY EXPECTATIONS
+
+- Keep the visual work creative and polished: deliberate hierarchy, readable typography, responsive layouts, accessible contrast, keyboard navigation, descriptive labels, and thoughtful empty/loading/error states. Reuse existing components and styling instead of introducing an unrelated design system.
+- Make navigation, metadata, page titles, canonical routes, and internal links consistent with the new page structure.
+- Keep private and public content separate. Ensure placeholders cannot be mistaken for selected or published photography.
+- Add or update directly related tests and documentation. Do not make unrelated fixes.
+- Run the narrowest relevant lint, type-check, build, and tests available for the changed surfaces. Fix regressions caused by this work and report any pre-existing failures separately.
+- Finish with a concise implementation report listing the pages/workflows changed, the tests and checks run, the archive note location, any manual setup still required, and decisions intentionally deferred. Do not state that external configuration, deployment, authentication, or content publication has happened unless verified.

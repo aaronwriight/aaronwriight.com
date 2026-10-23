@@ -23,10 +23,10 @@ export function SfiPostHeader({
     <header className={className}>
       {href ? (
         <Link href={href} className="group block">
-          <h3 className="font-serif text-lg font-normal leading-snug text-stone-900 transition-colors group-hover:text-[#6f8200] group-focus-visible:text-[#6f8200] dark:text-stone-100 dark:group-hover:text-[#6f8200] dark:group-focus-visible:text-[#6f8200]">
+          <h3 className="font-serif text-lg font-normal leading-snug text-stone-900 transition-colors group-hover:text-olive group-focus-visible:text-olive dark:text-stone-100">
             {post.title}
           </h3>
-          <p className="mt-2 font-serif text-sm italic leading-6 text-stone-500 transition-colors first-letter:lowercase group-hover:text-[#6f8200] group-focus-visible:text-[#6f8200]">
+          <p className="mt-2 font-serif text-sm italic leading-6 text-stone-500 transition-colors first-letter:lowercase group-hover:text-olive group-focus-visible:text-olive">
             {post.subtitle}
           </p>
         </Link>

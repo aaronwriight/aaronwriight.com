@@ -6,7 +6,7 @@ import { DisclosureSection } from "@/components/site/disclosure-section";
 import { readings, readingTags, resourceSections } from "@/data/readings-resources";
 
 const sortedReadings = [...readings].sort((a, b) => a.title.localeCompare(b.title));
-const filterClass = "inline-flex min-h-8 shrink-0 cursor-pointer items-center whitespace-nowrap rounded-sm border px-2 py-1 font-serif text-xs leading-none transition-colors hover:border-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current";
+const filterClass = "inline-flex min-h-8 shrink-0 cursor-pointer items-center whitespace-nowrap rounded-sm border px-2 py-1 font-serif text-xs leading-none transition-colors hover:border-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal";
 const filters = [["all", "All", "var(--site-text-primary)"], ["favorites", "★ Favorites", "var(--site-text-primary)"], ...readingTags.map(([tag, color]) => [tag, tag, color])];
 
 export function ReadingsResourceBrowser() {

@@ -601,7 +601,7 @@ export function NationalParksMap({
       .append("line")
       .attr(
         "class",
-        "pointer-events-none stroke-[#859900] opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100",
+        "pointer-events-none stroke-signal opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100",
       )
       .attr("stroke-width", 1)
       .attr("y1", -5)
@@ -732,7 +732,7 @@ export function NationalParksMap({
         >
           <button
             type="button"
-            className="h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800"
+            className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800"
             onClick={() => controlMap("zoom-in")}
             aria-label="Zoom in"
           >
@@ -740,7 +740,7 @@ export function NationalParksMap({
           </button>
           <button
             type="button"
-            className="h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800"
+            className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800"
             onClick={() => controlMap("zoom-out")}
             aria-label="Zoom out"
           >
@@ -748,7 +748,7 @@ export function NationalParksMap({
           </button>
           <button
             type="button"
-            className="h-9 px-3 text-[0.65rem] lowercase tracking-widest no-underline hover:bg-stone-100 dark:hover:bg-stone-800"
+            className="focus-visible:-outline-offset-2 h-9 px-3 text-[0.65rem] lowercase tracking-widest no-underline hover:bg-stone-100 dark:hover:bg-stone-800"
             onClick={() => controlMap("reset")}
           >
             reset
@@ -758,24 +758,24 @@ export function NationalParksMap({
       <figcaption className="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[0.68rem] text-stone-400">
         <span>drag to pan · scroll or double-click to zoom · hover a marker for its name</span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#859900]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-signal" aria-hidden="true" />
           visited
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#859900]/30" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-signal/30" aria-hidden="true" />
           not yet visited
         </span>
-        <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-[#6f8200]">
+        <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-olive">
           terrain relief: Esri World Hillshade ↗
         </a>
-        <a href={boundarySourceUrl} target="_blank" rel="noreferrer" className="text-[#6f8200]">
+        <a href={boundarySourceUrl} target="_blank" rel="noreferrer" className="text-olive">
           park boundaries: NPS ↗
         </a>
         <a
           href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html"
           target="_blank"
           rel="noreferrer"
-          className="text-[#6f8200]"
+          className="text-olive"
         >
           state boundaries: U.S. Census Bureau ↗
         </a>
@@ -835,7 +835,7 @@ export function NationalParksIndex({
   );
 
   const controlClassName =
-    "mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 outline-none transition-colors focus:border-[#859900] dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
+    "mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
   const controlsAreDefault = state === "all" && completion === "all" && sortOrder === "ascending";
 
   const resetControls = () => {
@@ -888,7 +888,7 @@ export function NationalParksIndex({
           type="button"
           onClick={resetControls}
           disabled={controlsAreDefault}
-          className="cursor-pointer font-serif text-xs text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-[#6f8200] disabled:cursor-default disabled:opacity-40 disabled:hover:text-stone-500"
+          className="cursor-pointer font-serif text-xs text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-olive disabled:cursor-default disabled:opacity-40 disabled:hover:text-stone-500"
         >
           reset filters &amp; sort
         </button>
@@ -910,7 +910,7 @@ export function NationalParksIndex({
           >
             <Link
               href={`/venture/parks/${park.slug}`}
-              className="group col-span-2 grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 text-stone-900 no-underline transition-colors hover:text-[#6f8200] dark:text-stone-100"
+              className="group col-span-2 grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 text-stone-900 no-underline transition-colors hover:text-olive dark:text-stone-100"
             >
               <span className="text-xs tabular-nums text-stone-400">
                 {String(alphabeticRanks.get(park.slug) ?? 0).padStart(2, "0")}

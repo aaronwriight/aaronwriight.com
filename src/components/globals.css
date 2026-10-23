@@ -24,6 +24,8 @@ html.dark {
 }
 
 html.dark {
+  --color-olive: #b0bf59;
+  --color-paper-tint: #1c1917;
   --site-text-primary: #f5f5f4;
   --site-text-secondary: #a8a29e;
   --site-text-metadata: #8f8883;
@@ -101,13 +103,36 @@ html.dark .venture-terrain-layer {
 @theme {
   --animation-spin-slow: spin 30s linear infinite;
 
+  /* The stone greys as the hex values the hand-written CSS uses, so utilities and CSS agree exactly (the Tailwind v4
+     defaults are OKLCH approximations of these). */
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
   --color-stone-450: #8f8883;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  --color-stone-950: #0c0a09;
 
-  /* set body and heading font to Perpetua */
-  --font-family-sans: "Perpetua", "Georgia", serif;
+  /* olive: the one accent (links, hover, the current page, highlighted placard parts). It switches to its night
+     value on its own (see html.dark below), so text-olive never needs a dark: partner. */
+  --color-olive: #6f8200;
+  /* signal: focus rings and state marks only (active underlines, map markers, completion dots). Same in both themes. */
+  --color-signal: #859900;
+  /* paper-tint: the only filled surface (photo frames, placeholders, the mat around placard pictures). */
+  --color-paper-tint: #f6f5f1;
 
-  /* optional monospace for logo, code, or inline code */
-  --font-family-mono: monospace;
+  /* Cormorant Garamond (loaded in src/lib/fonts.ts) for everything set in font-serif, standing in for Perpetua. */
+  --font-serif: var(--font-cormorant), Baskerville, "Baskerville Old Face", Georgia, serif;
+  /* Cormorant runs lighter than the faces the type scale was tuned on, so each weight steps up one notch:
+     normal 500, medium 600, semibold 700. Sizes, case and spacing stay as they were. */
+  --font-weight-normal: 500;
+  --font-weight-medium: 600;
+  --font-weight-semibold: 700;
 
   --aspect-ratio-16-9: 16 / 9;
   --aspect-ratio-4-3: 4 / 3;
@@ -121,26 +146,31 @@ a {
 }
 
 a:hover {
-  color: #6f8200;
+  color: var(--color-olive);
   text-decoration-line: underline;
 }
 
-.section-title,
-.personal-sections strong {
-  color: #6f8200;
+/* One focus ring everywhere: 2px signal. In the base layer, so the offset utilities on components still win. */
+@layer base {
+  a:focus-visible,
+  summary:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
 }
 
-html.dark .section-title,
-html.dark .personal-sections strong {
-  color: #b0bf59;
+/* olive switches to its night value by itself (html.dark redefines --color-olive), so these need no night rule. */
+.section-title,
+.personal-sections strong {
+  color: var(--color-olive);
 }
 
 .site-navigation a[aria-current="page"] {
-  color: #6f8200;
-}
-
-html.dark .site-navigation a[aria-current="page"] {
-  color: #b0bf59;
+  color: var(--color-olive);
 }
 
 .navigation-submenu {
@@ -180,14 +210,10 @@ html.dark .site-navigation a[aria-current="page"] {
   }
 }
 
-/* Keep card descriptions and images outside the site's general link hover. */
+/* Keep card descriptions and images outside the general link hover of the site. */
 .project-placard {
-  --project-highlight: #6f8200;
+  --project-highlight: var(--color-olive);
   color: var(--site-text-primary);
-}
-
-html.dark .project-placard {
-  --project-highlight: #b0bf59;
 }
 
 a.project-placard:is(:hover, :focus-visible) {
@@ -207,7 +233,7 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
 }
 
 .prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
-  color: #6f8200;
+  color: var(--color-olive);
   text-decoration-line: underline;
 }
 
@@ -220,7 +246,7 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
 }
 
 .prose .entry-callout {
-  border-left: 2px solid #6f8200;
+  border-left: 2px solid var(--color-olive);
   margin-block: 1.75rem;
   padding: 0.1rem 0 0.1rem 1rem;
 }
@@ -261,6 +287,87 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
   background: #a8a29e;
 }
 
+/* Empty photographic frames use the same paper, rules, and olive as placards. */
+.photo-layout-note {
+  border-left: 2px solid var(--color-olive);
+  padding-left: 1rem;
+  color: var(--site-text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.photo-collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1.75rem;
+  padding-block: 1rem 2rem;
+}
+
+.photo-collage-item { min-width: 0; margin: 0; }
+.photo-collage-item:nth-child(even) { padding-top: 4rem; }
+.photo-collage-item--square { padding-inline: 1rem; }
+.photo-placeholder, .photo-image {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--color-stone-300);
+  background: var(--color-paper-tint);
+}
+.photo-placeholder { display: grid; place-items: center; overflow: hidden; }
+.photo-placeholder--portrait { aspect-ratio: 4 / 5; }
+.photo-placeholder--landscape { aspect-ratio: 3 / 2; }
+.photo-placeholder--square { aspect-ratio: 1; }
+.photo-placeholder--compact { aspect-ratio: auto; height: 14rem; }
+.photo-placeholder-frame {
+  position: absolute;
+  inset: 18% 19% 23%;
+  border: 1px solid var(--color-stone-300);
+}
+.photo-placeholder--portrait .photo-placeholder-frame { inset-inline: 27%; }
+.photo-placeholder-number {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--color-stone-600);
+}
+.photo-placeholder-label {
+  position: absolute;
+  bottom: 8%;
+  padding-inline: 0.75rem;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--color-stone-600);
+}
+.photo-image img { width: 100%; height: 100%; object-fit: contain; }
+/* paper-tint darkens by itself at night; the frames step their lines up so they hold on the dark paper. */
+html.dark .photo-placeholder, html.dark .photo-image { border-color: var(--color-stone-600); }
+html.dark .photo-placeholder-frame { border-color: var(--color-stone-700); }
+html.dark .photo-placeholder-number, html.dark .photo-placeholder-label { color: var(--color-stone-400); }
+/* Photographs in journal and Venture entries sit in a frame like the gallery stand-ins: a warm fill and a hairline
+   border. A figure carries the frame (with a fine inner line around the picture and the caption inside); a bare
+   image gets the frame itself. */
+.entry-body img { box-sizing: border-box; padding: 1rem; border: 1px solid var(--color-stone-300); background: var(--color-paper-tint); }
+.entry-body figure { margin: 2.5rem 0; padding: 1rem 1rem 0.75rem; border: 1px solid var(--color-stone-300); background: var(--color-paper-tint); }
+.entry-body figure img { display: block; width: 100%; margin: 0; padding: 0; background: none; border: 1px solid var(--color-stone-300); }
+.entry-body figure img + img { margin-top: 1rem; }
+.entry-body figure figcaption { margin: 0.75rem 0 0; text-align: center; font-size: 0.75rem; line-height: 1.5; letter-spacing: 0.02em; color: var(--color-stone-600); }
+html.dark .entry-body img, html.dark .entry-body figure { border-color: var(--color-stone-600); }
+html.dark .entry-body figure img { border-color: var(--color-stone-700); }
+html.dark .entry-body figure figcaption { color: var(--color-stone-400); }
+@media (max-width: 639px) {
+  .photo-collage { gap: 1rem; }
+  .photo-collage-item:nth-child(even) { padding-top: 2rem; }
+  .photo-collage-item--square { padding-inline: 0; }
+  .photo-placeholder-label { letter-spacing: 0; }
+}
+@media (max-width: 359px) {
+  .photo-collage { grid-template-columns: minmax(0, 1fr); }
+  .photo-collage-item:nth-child(even) { padding-top: 0; }
+}
+
 /* @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -273,3 +380,22 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
   --bg-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --bg-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
 } */
+
+/* Contour-map background (src/components/site/topo-background.tsx), fixed behind the page. */
+/* Sized to the large viewport, so a phone toolbar showing or hiding never re-crops (and visibly zooms) the map. */
+.topo-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+}
+
+@media print {
+  .topo-background {
+    display: none;
+  }
+}

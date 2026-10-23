@@ -70,7 +70,7 @@ export default function Guides({ guides }: { guides: SanityGuide[] }) {
         There&apos;d be no{"\u00a0"}<b>scope for imagination</b>{"\u00a0"}then, would there?
         <br />
         <br />
-        <span className="block text-right font-serif text-xs italic leading-relaxed text-stone-450">
+        <span className="block text-right font-serif text-xs italic leading-relaxed text-stone-500">
           - Anne of Green Gables, L. M. Montgomery
         </span>
       </p>

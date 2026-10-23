@@ -66,7 +66,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
             completeLabel="climbed"
             incompleteLabel="not yet climbed"
           />
-          <span className={peak.completed ? "text-[#6f8200]" : undefined}>
+          <span className={peak.completed ? "text-olive" : undefined}>
             {peak.completed ? "climbed" : "not yet climbed"}
           </span>
         </p>
@@ -109,7 +109,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
           <div>
             <dt className="text-[0.65rem] lowercase tracking-widest text-stone-400">source</dt>
             <dd className="mt-1 font-serif">
-              <a href={peak.sourceUrl} target="_blank" rel="noreferrer" className="text-[#6f8200]">
+              <a href={peak.sourceUrl} target="_blank" rel="noreferrer" className="text-olive">
                 Peakbagger ↗
               </a>
             </dd>
@@ -126,7 +126,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
             <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
               {ascentsNewestFirst.map((ascent) => (
                 <div key={ascent.ordinal} className="border-b border-stone-300 py-6 dark:border-stone-700">
-                  <p className="text-[0.65rem] lowercase tracking-widest text-[#6f8200]">
+                  <p className="text-[0.65rem] lowercase tracking-widest text-olive">
                     {formatOccurrence(ascent.ordinal, "ascent")}
                   </p>
                   <dl className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -157,7 +157,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
                 <Link
                   key={`${ascent.ordinal}-${ascent.entrySlug}`}
                   href={`/venture/${ascent.entrySlug}`}
-                  className="flex items-center justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-[#6f8200] dark:border-stone-700"
+                  className="flex items-center justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-olive dark:border-stone-700"
                 >
                   <span>{formatOccurrence(ascent.ordinal, "ascent")}</span>
                   <span aria-hidden="true">read →</span>

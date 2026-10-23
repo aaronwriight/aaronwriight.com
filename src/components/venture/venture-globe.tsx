@@ -191,7 +191,7 @@ export function VentureGlobe({
 
     markerLinks
       .append("line")
-      .attr("class", "pointer-events-none stroke-[#859900] opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100")
+      .attr("class", "pointer-events-none stroke-signal opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100")
       .attr("stroke-width", 1)
       .attr("x1", 7)
       .attr("y1", -5)
@@ -397,9 +397,9 @@ export function VentureGlobe({
           aria-label="Interactive globe of Venture places. Drag or use arrow keys to rotate, scroll or use plus and minus to zoom, then select a marker to open its entry."
         />
         <div className="absolute right-3 top-3 flex overflow-hidden border border-stone-300 bg-white/95 text-stone-900 shadow-sm dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100" aria-label="Map controls">
-          <button type="button" className="h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-in")} aria-label="Zoom in">+</button>
-          <button type="button" className="h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-out")} aria-label="Zoom out">−</button>
-          <button type="button" className="h-9 px-3 text-[0.65rem] lowercase tracking-widest no-underline hover:bg-stone-100 dark:hover:bg-stone-800" onClick={() => controlMap("reset")}>reset</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-in")} aria-label="Zoom in">+</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base no-underline hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-out")} aria-label="Zoom out">−</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 px-3 text-[0.65rem] lowercase tracking-widest no-underline hover:bg-stone-100 dark:hover:bg-stone-800" onClick={() => controlMap("reset")}>reset</button>
         </div>
         {entries.length === 0 && (
           <p className="pointer-events-none absolute inset-x-6 bottom-5 m-0 text-center font-serif text-xs italic text-stone-400">
@@ -411,7 +411,7 @@ export function VentureGlobe({
         <span>drag to rotate · scroll or use controls to zoom · select a marker to open its page</span>
         {countries.length > 0 && (
           <span className="inline-flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#859900]/30" aria-hidden="true" />
+            <span className="h-2.5 w-2.5 rounded-full bg-signal/30" aria-hidden="true" />
             visited country
           </span>
         )}

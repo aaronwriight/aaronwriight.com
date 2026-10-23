@@ -193,13 +193,16 @@ export function Northeast115Map({
         ]);
         if (!topLeft || !bottomRight) continue;
 
+        // Rounded so the server and the browser print identical attributes; a last-digit difference fails
+        // hydration, and the rebuilt <html> loses the night-mode class.
+        const round = (value: number) => Math.round(value * 1000) / 1000;
         tiles.push({
           id: `${zoomLevel}:${tileX}:${tileY}`,
           href: `${hillshadeServiceUrl}/tile/${zoomLevel}/${tileY}/${tileX}`,
-          x: topLeft[0] - 0.25,
-          y: topLeft[1] - 0.25,
-          width: bottomRight[0] - topLeft[0] + 0.5,
-          height: bottomRight[1] - topLeft[1] + 0.5,
+          x: round(topLeft[0] - 0.25),
+          y: round(topLeft[1] - 0.25),
+          width: round(bottomRight[0] - topLeft[0] + 0.5),
+          height: round(bottomRight[1] - topLeft[1] + 0.5),
         });
       }
     }
@@ -344,9 +347,8 @@ export function Northeast115Map({
                   vectorEffect="non-scaling-stroke"
                   pointerEvents="none"
                 >
-                  <title>
-                    {area.name}: {area.completedPeakCount} of {area.peakCount} climbed
-                  </title>
+                  {/* One string child: React renders a <title> with several children empty on the server. */}
+                  <title>{`${area.name}: ${area.completedPeakCount} of ${area.peakCount} climbed`}</title>
                 </path>
               ))}
             </g>
@@ -385,7 +387,7 @@ export function Northeast115Map({
                     onFocus={() => setActivePeak(peak.slug)}
                     onBlur={() => setActivePeak(null)}
                   >
-                    <g transform={`translate(${coordinates[0]},${coordinates[1]})`}>
+                    <g transform={`translate(${coordinates[0].toFixed(3)},${coordinates[1].toFixed(3)})`}>
                       <g transform={`scale(${1 / mapTransform.k})`}>
                       <circle r={14} fill="transparent" stroke="none" />
                       <circle
@@ -420,9 +422,7 @@ export function Northeast115Map({
                       >
                         {peak.name}
                       </text>
-                      <title>
-                        {peak.name} · {peak.range} · {peak.completed ? "climbed" : "not yet climbed"}
-                      </title>
+                      <title>{`${peak.name} · ${peak.range} · ${peak.completed ? "climbed" : "not yet climbed"}`}</title>
                       </g>
                     </g>
                   </Link>
@@ -432,14 +432,14 @@ export function Northeast115Map({
           </g>
         </svg>
         <div className="absolute right-3 top-3 flex overflow-hidden border border-stone-300 bg-white/95 text-stone-900 shadow-sm dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100" aria-label="Map controls">
-          <button type="button" className="h-9 w-9 border-r border-stone-300 text-base hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-in")} aria-label="Zoom in">+</button>
-          <button type="button" className="h-9 w-9 border-r border-stone-300 text-base hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-out")} aria-label="Zoom out">−</button>
-          <button type="button" className="h-9 px-3 text-[0.65rem] lowercase tracking-widest hover:bg-stone-100 dark:hover:bg-stone-800" onClick={() => controlMap("reset")}>reset</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-in")} aria-label="Zoom in">+</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 w-9 border-r border-stone-300 text-base hover:bg-stone-100 dark:border-stone-600 dark:hover:bg-stone-800" onClick={() => controlMap("zoom-out")} aria-label="Zoom out">−</button>
+          <button type="button" className="focus-visible:-outline-offset-2 h-9 px-3 text-[0.65rem] lowercase tracking-widest hover:bg-stone-100 dark:hover:bg-stone-800" onClick={() => controlMap("reset")}>reset</button>
         </div>
       </div>
       <figcaption className="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[0.68rem] text-stone-400">
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#859900]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-signal" aria-hidden="true" />
           climbed
         </span>
         {variant === "index" && (
@@ -449,17 +449,17 @@ export function Northeast115Map({
           </span>
         )}
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-4 border border-[#859900]/60 bg-[#859900]/10" aria-hidden="true" />
+          <span className="h-2.5 w-4 border border-signal/60 bg-signal/10" aria-hidden="true" />
           Northeast 115 ranges
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span className="h-px w-4 bg-stone-300 dark:bg-stone-450" aria-hidden="true" />
           state boundaries
         </span>
-        <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-[#6f8200]">
+        <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-olive">
           terrain relief: Esri World Hillshade ↗
         </a>
-        <a href="https://doi.org/10.48601/earthenv-t9k2-1407" target="_blank" rel="noreferrer" className="text-[#6f8200]">
+        <a href="https://doi.org/10.48601/earthenv-t9k2-1407" target="_blank" rel="noreferrer" className="text-olive">
           range boundaries: GMBA v2 ↗
         </a>
         <span>drag to pan · scroll to zoom · select a marker to open its page</span>
@@ -523,7 +523,7 @@ export function Northeast115Index({
   );
 
   const controlClassName =
-    "mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 outline-none transition-colors focus:border-[#859900] dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
+    "mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
   const controlsAreDefault =
     state === "all" &&
     range === "all" &&
@@ -592,7 +592,7 @@ export function Northeast115Index({
           type="button"
           onClick={resetControls}
           disabled={controlsAreDefault}
-          className="cursor-pointer font-serif text-xs text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-[#6f8200] disabled:cursor-default disabled:opacity-40 disabled:hover:text-stone-500"
+          className="cursor-pointer font-serif text-xs text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-olive disabled:cursor-default disabled:opacity-40 disabled:hover:text-stone-500"
         >
           reset filters &amp; sort
         </button>
@@ -611,7 +611,7 @@ export function Northeast115Index({
           <Link
             key={peak.slug}
             href={`/venture/trails/${peak.slug}`}
-            className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-stone-300 py-4 text-stone-900 transition-colors hover:text-[#6f8200] dark:border-stone-700 dark:text-stone-100"
+            className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-stone-300 py-4 text-stone-900 transition-colors hover:text-olive dark:border-stone-700 dark:text-stone-100"
             style={{ textDecoration: "none" }}
           >
             <span className="text-xs tabular-nums text-stone-400">{String(peak.rank).padStart(3, "0")}</span>

@@ -17,7 +17,7 @@ try {
 
     const nav = page.getByRole("navigation", { name: "Home pages", exact: true });
     const science = nav.getByRole("link", { name: "cognitive science", exact: true });
-    const photography = nav.getByRole("link", { name: "photography", exact: true });
+    const photography = nav.getByRole("link", { name: "frame it wright photography", exact: true });
     const toggleFor = (link) => link.locator("..").getByRole("button");
 
     await science.hover();

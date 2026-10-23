@@ -56,7 +56,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
             {(entry.collections.length > 0 || entry.tags.length > 0) && (
               <ul aria-label="post tags and collections" className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
                 {entry.collections.map((collection) => (
-                  <li key={`collection:${collection}`} className="text-[#859900]">
+                  <li key={`collection:${collection}`} className="text-olive">
                     {formatCollection(collection)}
                   </li>
                 ))}
@@ -72,7 +72,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
         </div>
 
         <div
-          className="prose prose-stone mt-10 max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-[#6f8200] prose-img:my-10 prose-img:w-full"
+          className="entry-body prose prose-stone mt-10 max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-olive prose-img:my-10 prose-img:w-full"
           dangerouslySetInnerHTML={{ __html: entry.bodyHtml }}
         />
       </div>

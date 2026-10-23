@@ -131,7 +131,7 @@ function AdventureRows({ items }: { items: readonly VentureAdventureItem[] }) {
               <h3 className="m-0 font-serif text-base font-normal leading-tight text-stone-900 dark:text-stone-100">
                 <Link href={item.href}>{item.title}</Link>
               </h3>
-              <span className="text-[0.65rem] lowercase tracking-widest text-[#859900]">
+              <span className="text-[0.65rem] lowercase tracking-widest text-olive">
                 {item.records.length} {item.records.length === 1 ? "field note" : "field notes"}
               </span>
             </div>
@@ -153,7 +153,7 @@ function AdventureRows({ items }: { items: readonly VentureAdventureItem[] }) {
             <MusicTagline music={item.music} className="mt-1" />
             {item.excerpt && <p className="mt-2 font-serif text-sm italic leading-6 text-stone-450">{item.excerpt}</p>}
             {journalHrefs.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#6f8200]">
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-olive">
                 {journalHrefs.map((journalHref, index) => (
                   <Link key={journalHref} href={journalHref}>
                     {journalHrefs.length === 1 ? "read the journal entry" : `read journal entry ${index + 1}`} →
@@ -280,7 +280,7 @@ export function VentureAdventureList({ items }: { items: readonly VentureAdventu
           <select
             value={organizeBy}
             onChange={(event) => changeOrganizeBy(event.target.value as OrganizeBy)}
-            className="mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 outline-none focus:border-[#859900] dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
+            className="mt-1 w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
           >
             <option value="kind">{organizeOptionLabels[view]}</option>
             <option value="trip">trip</option>

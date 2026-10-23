@@ -22,5 +22,5 @@ const tagColors: Record<string, string> = {
 
 export function getSfiTagColor(tag: string): string {
   const normalizedTag = tag.trim().toLowerCase();
-  return tagColors[normalizedTag] ?? "#859900";
+  return tagColors[normalizedTag] ?? "var(--color-olive)";
 }

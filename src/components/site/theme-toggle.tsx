@@ -36,7 +36,7 @@ export function ThemeToggle() {
       aria-label={isDark ? "Switch to light mode" : "Switch to night mode"}
       aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to night mode"}
-      className="inline-flex cursor-pointer items-center gap-3 text-sm leading-none lowercase text-stone-500 transition-colors hover:text-[#6f8200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#859900]"
+      className="inline-flex cursor-pointer items-center gap-3 text-sm leading-none lowercase text-stone-500 transition-colors hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
     >
       <span>night</span>
       <span

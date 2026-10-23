@@ -26,7 +26,7 @@ export function DisclosureSection({ id, title, count, children }: {
 
   return (
     <details ref={ref} id={id} className="group/disclosure scroll-mt-6 py-4">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6f8200] [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal [&::-webkit-details-marker]:hidden">
         <span className="flex items-baseline gap-3">
           <span className="font-serif text-base text-stone-900 dark:text-stone-100">{title}</span>
           {count !== undefined && <span className="text-xs text-stone-500">{count}</span>}

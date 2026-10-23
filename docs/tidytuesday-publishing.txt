@@ -1,0 +1,132 @@
+TIDYTUESDAY: SOURCE, REVIEW, AND SITE HANDOFF
+Last reviewed: 2026-10-09
+
+Relationship to the site
+------------------------
+The independent aaronwriight/tidytuesday repository remains the analysis source.
+Frameitwright presents selected, explicitly published results under cognitive
+science > projects > tidy tuesday. No repository merge or Quarto-site embed is
+needed. The existing undergraduate Twitter-sentiment figure remains untouched;
+it is not relabeled as a newly published TidyTuesday challenge.
+
+Observed source structure
+-------------------------
+The attached repository has _quarto.yml, index.qmd, template.qmd,
+scripts/template.qmd, scripts/new-viz-from-template.sh, renv.lock, uv.lock,
+and .github/workflows/quarto-publish.yml. The Quarto index discovers analyses
+under challenges/YYYY/.../r or python. Local challenge work and many render
+frames exist but are not tracked in the current checkout. They are not imported
+or selected by this workflow. README links and _quarto.yml still reference the
+legacy website; changing those belongs to a later, explicitly approved update
+of that independent repository.
+
+Ownership and destinations
+--------------------------
+- Analysis, data, plotting code, original exports, and environment lockfiles:
+  stay in the independent TidyTuesday repository.
+- Draft handoff JSON: author-owned, outside public/ and preferably outside Git.
+  A disposable copy may live in ignored .tidytuesday-review/drafts/.
+- Local review: .tidytuesday-review/<slug>-<unique suffix>/ contains an HTML
+  preview, stripped PNG derivative, proposed site record, and review receipt.
+  These files are local-only and must not be committed or publicly served.
+- Published site metadata: content/tidy-tuesday/plots.json.
+- Published site derivative: public/images/tidy-tuesday/<slug>/plot.png.
+- Runtime adapter: src/lib/tidytuesday.ts; project page uses ProjectFigure.
+
+The tracked site catalog begins empty. Neither the example manifest nor local
+review output is read by the site. Vercel builds only the committed catalog and
+derivatives; it does not need the independent checkout, Python, R, Quarto, a
+symlink, or an absolute workstation path. There is one deployment derivative per
+published plot, not another editable analysis/source tree.
+
+Author sequence (same review-before-publish convention as writing)
+-----------------------------------------------------------------
+1. In the independent repository, finish and render the analysis using its own
+   environment. Deliberately choose one static PNG export. The handoff script
+   never executes analysis code or scans for a newest/best image.
+2. Commit the intended analysis source there and, before deployment, ensure that
+   commit is pushed and publicly accessible. Validation checks local committed
+   bytes; it does NOT check remote availability or push anything. If the current
+   ignore rules exclude your source, resolve that deliberately in that repository.
+3. Copy content/tidy-tuesday/plot.example.json to your private author workspace.
+   Fill all fields. source and image are paths relative to the source checkout.
+   Give the dataset a public HTTPS URL, with no tokens/query/fragment. Describe
+   the axes, principal pattern, annotations, caveats, and attribution in the
+   alt/description/caption fields. No arbitrary HTML is rendered from metadata.
+4. Set the source checkout path explicitly for your machine:
+
+   export TIDYTUESDAY_SOURCE_ROOT="/absolute/path/to/tidytuesday"
+
+   Alternatively add --source-root /absolute/path/to/tidytuesday to each command.
+   The checkout origin must be https://github.com/aaronwriight/tidytuesday
+   (with optional .git suffix), or its git@github.com SSH equivalent.
+5. Validate and render a local review:
+
+   pnpm tidytuesday validate /path/to/plot.json
+   pnpm tidytuesday review /path/to/plot.json
+
+   Equivalent without pnpm: python3 scripts/tidytuesday.py <command> <manifest>.
+   Open the printed index.html in your browser. Inspect the graphic, accessible
+   image description, caption, dataset, and source link. No web server is needed.
+   Review writes a new directory each time and never overwrites an earlier one.
+6. Use the DIRECTORY containing the inspected index.html as --review:
+
+   pnpm tidytuesday publish /path/to/plot.json \
+     --review .tidytuesday-review/<printed-directory> --dry-run
+
+   Only when ready to make the files eligible for public deployment:
+
+   pnpm tidytuesday publish /path/to/plot.json \
+     --review .tidytuesday-review/<printed-directory> --yes
+
+   publish stages public files locally; it does not commit, upload, or deploy.
+   Any change to the manifest, analysis revision, source bytes, source PNG, or
+   reviewed output requires a fresh review. Existing slugs/assets are refused.
+7. Inspect the Git diff and site preview. Commit the catalog and corresponding
+   derivative together, then use the normal site deployment process. Confirm the
+   source-at-commit and dataset links work before deploying. Review folders and
+   source manifests stay private. A public Git commit exposes its assets even
+   before a site deploy; unpublished is not an access-control mechanism.
+
+Validation and reproducibility
+------------------------------
+This first handoff supports static, non-interlaced, 8-bit PNG only (15 MiB,
+24 megapixels, maximum 10,000 pixels per side). Export other formats in the
+analysis environment first. GIF, SVG, PDF, and interactive HTML are intentionally
+unsupported. There is no cropping, resizing, image selection, external upload,
+or network dependency. PNG structure, palette/transparency chunk consistency,
+chunk checksums, decompressed pixel length,
+scanlines, dimensions, expected file types, source/destination containment,
+metadata, and destination collisions are checked. Ancillary metadata is removed
+from a separate derivative; original bytes remain untouched.
+
+Each published record includes the source repository, immutable commit, relative
+analysis path, and SHA-256 hashes of analysis, original PNG, and site PNG. This is
+provenance, not proof that the image was rendered from the code. Reproduction also
+depends on the source repository's data, environment, and render instructions;
+review those before release. Publication stages complete files and rolls back
+the new asset if the catalog update fails. Run one publisher at a time.
+
+Corrections and withdrawal
+--------------------------
+Automatic replacement/deletion is deliberately unavailable. For an unpublished
+handoff, revise the manifest/source and make a new review. For a plot already
+deployed, review a revision under a new slug or prepare an explicit Git change
+removing the old record and its one generated derivative. A Git revert can undo
+a publication commit. A withdrawal from the current site does not erase public
+Git history or third-party caches. Source originals must remain intact.
+
+Checks
+------
+python3 -m unittest discover -s scripts -p test_tidytuesday.py -v
+Tests use synthetic PNGs and disposable Git repositories. They cover metadata
+stripping, source preservation, private review, explicit publication, dry-run,
+provenance, stale/tampered review rejection, invalid PNG/metadata, path/symlink
+escapes, existing-slug refusal, and rollback after a failed catalog promotion.
+
+Manual decisions remaining
+--------------------------
+Choose the first plot and its narrative; commit/push the intended source; verify
+dataset rights/attribution and public availability; decide whether the source
+repository should continue deploying its separate Quarto gallery. No actual
+plot selection, plot publication, source push, or hosting change occurred here.

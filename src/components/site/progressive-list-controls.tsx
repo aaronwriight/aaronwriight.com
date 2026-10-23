@@ -28,10 +28,10 @@ export function ListBatchSizeControl({
               aria-label={`${label}: ${size}`}
               aria-pressed={value === size}
               onClick={() => onChange(size)}
-              className={`cursor-pointer border-b pb-0.5 font-serif text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#859900] ${
+              className={`cursor-pointer border-b pb-0.5 font-serif text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal ${
                 value === size
-                  ? "border-[#859900] text-[#6f8200]"
-                  : "border-transparent text-stone-400 hover:text-[#6f8200]"
+                  ? "border-olive text-olive"
+                  : "border-transparent text-stone-400 hover:text-olive"
               }`}
             >
               {size}
@@ -77,7 +77,7 @@ export function ProgressiveRevealControl({
               : `Show ${nextCount} more ${nextCount === 1 ? singularLabel : pluralLabel}`
           }
           onClick={onShowMore}
-          className="cursor-pointer border-b border-transparent pb-0.5 lowercase tracking-widest text-[#6f8200] transition-colors hover:border-current focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#859900]"
+          className="cursor-pointer border-b border-transparent pb-0.5 lowercase tracking-widest text-olive transition-colors hover:border-current focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
         >
           show more
         </button>

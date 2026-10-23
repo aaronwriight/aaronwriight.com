@@ -20,7 +20,7 @@ export function ScienceShell({
         <SectionMenu title="cognitive science" links={scienceLinks} parentLinks={parentLinks} />
 
         <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-[#6f8200] prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
+          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
           style={{ maxWidth: "56rem" }}
         >
           <PageHeader title={title} subtitle={subtitle} accent={title === "resources"} />
@@ -63,7 +63,7 @@ export function TopicDetails({
           <em>{title}</em>
         </strong>{" "}
         <em className="text-stone-400">|</em>{" "}
-        <span className="text-[#6f8200] group-hover:underline">
+        <span className="text-olive group-hover:underline">
           <em>{question}</em>
         </span>
       </summary>

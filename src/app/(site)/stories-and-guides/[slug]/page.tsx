@@ -31,7 +31,7 @@ export async function generateMetadata(
     perspective: "published",
   });
   const builder = imageUrlBuilder({ projectId, dataset });
-  let seoImage = `/images/sand_dollar.png`; // .png image
+  let seoImage = `/sand_dollar.png`; // .png image
   if (initial?.data?.hero_image) {
     seoImage = builder
       .image(initial?.data?.hero_image)

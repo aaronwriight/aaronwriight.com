@@ -1,0 +1,11 @@
+{
+  "slug": "replace-with-your-plot-slug",
+  "title": "Replace with the plot title",
+  "date": "2026-10-06",
+  "description": "Describe the question and the pattern explored.",
+  "caption": "Describe the chart, relevant caveats, and attribution.",
+  "alt": "Describe chart type, variables, main pattern, and key annotations.",
+  "image": "challenges/2026/your-challenge/viz/plot.png",
+  "source": "challenges/2026/your-challenge/r/analysis.qmd",
+  "datasetUrl": "https://github.com/rfordatascience/tidytuesday"
+}

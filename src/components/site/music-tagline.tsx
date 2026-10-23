@@ -1,5 +1,9 @@
 import type { MusicCredit } from "@/lib/music-credit";
 
+export function MusicIcon() {
+  return <span aria-hidden="true" className="text-[0.7rem]">♪</span>;
+}
+
 export function MusicTagline({
   music,
   className = "",
@@ -19,9 +23,7 @@ export function MusicTagline({
     <p
       className={`flex flex-wrap items-baseline gap-x-1 text-xs leading-6 text-stone-450 ${className}`}
     >
-      <span aria-hidden="true" className="text-[0.7rem]">
-        ♪
-      </span>
+      <MusicIcon />
       <span aria-hidden="true" className="text-[0.7rem]">
         •
       </span>
@@ -30,7 +32,7 @@ export function MusicTagline({
           href={music.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-inherit transition-colors hover:text-[#6f8200]"
+          className="text-inherit transition-colors hover:text-olive"
           aria-label={`${music.title} by ${music.artist} (opens in a new tab)`}
         >
           {credit}

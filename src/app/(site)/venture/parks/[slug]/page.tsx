@@ -84,7 +84,7 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
           <div>
             <dt className="text-[0.65rem] lowercase tracking-widest text-stone-400">source</dt>
             <dd className="mt-1 font-serif">
-              <a href={park.sourceUrl} target="_blank" rel="noreferrer" className="text-[#6f8200]">
+              <a href={park.sourceUrl} target="_blank" rel="noreferrer" className="text-olive">
                 official NPS page ↗
               </a>
             </dd>
@@ -101,7 +101,7 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
             <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
               {visitsNewestFirst.map(({ visit, index }) => (
                 <article key={`${visit.date ?? "visit"}-${index}`} className="border-b border-stone-300 py-6 dark:border-stone-700">
-                  <h3 className="m-0 text-[0.65rem] font-normal lowercase tracking-widest text-[#6f8200]">
+                  <h3 className="m-0 text-[0.65rem] font-normal lowercase tracking-widest text-olive">
                     {formatOccurrence(index + 1, "visit")}
                   </h3>
                   <dl className="mt-3 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
@@ -141,10 +141,10 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
                 <Link
                   key={`${visit.entrySlug}-${index}`}
                   href={`/venture/${visit.entrySlug}`}
-                  className="flex items-baseline justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-stone-900 transition-colors hover:text-[#6f8200] dark:border-stone-700 dark:text-stone-100"
+                  className="flex items-baseline justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-stone-900 transition-colors hover:text-olive dark:border-stone-700 dark:text-stone-100"
                 >
                   <span>{formatOccurrence(index + 1, "visit")}</span>
-                  <span className="text-xs text-[#6f8200]">read the journal entry →</span>
+                  <span className="text-xs text-olive">read the journal entry →</span>
                 </Link>
               ))}
             </div>

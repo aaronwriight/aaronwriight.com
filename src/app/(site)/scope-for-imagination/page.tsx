@@ -4,7 +4,7 @@ import { getAllSfiPosts, getSfiYears } from "@/lib/sfi-posts";
 
 export const metadata: Metadata = {
   title: "scope for imagination | aaron wright",
-  description: "A digital journal for photographs, musings, life updates, and the occasional rant.",
+  description: "A digital journal for photographs, reflections, life updates, and the occasional rant.",
 };
 
 export default async function ScopeForImaginationAboutPage() {
@@ -14,7 +14,7 @@ export default async function ScopeForImaginationAboutPage() {
   return (
     <JournalShell
       title="about"
-      subtitle="a digital journal for photographs, musings, life updates, and the occasional rant"
+      subtitle="a digital journal for photographs, reflections, life updates, and the occasional rant"
       years={years.length > 0 ? years : [new Date().getFullYear()]}
     >
       {null}

@@ -62,7 +62,7 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
           <SfiPostHeader post={post} large className="border-b border-stone-300 pb-7 dark:border-stone-700" />
         </div>
 
-        <div className="prose prose-stone mt-10 w-full max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-[#6f8200] prose-img:my-10 prose-img:w-full">
+        <div className="entry-body prose prose-stone mt-10 w-full max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-olive prose-img:my-10 prose-img:w-full">
           {post.body ? (
             <PortableText value={post.body} components={myPortableTextComponents} />
           ) : (

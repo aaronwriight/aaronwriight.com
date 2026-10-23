@@ -87,7 +87,7 @@ export const resourceSections: ResourceSection[] = [
 ].sort((a, b) => a.title.localeCompare(b.title, "en"));
 
 export const readingTags = [
-  ["language", "#859901"],
+  ["language", "#859900"],
   ["emotion", "#2AA198"],
   ["social", "#5B8FA8"],
   ["computational", "#6c71c4"],

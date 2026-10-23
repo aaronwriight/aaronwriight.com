@@ -76,7 +76,7 @@ def validate_http_url(value: str) -> str:
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create a new local SFI HTML draft.")
     parser.add_argument("--subtitle", required=True, help="working subtitle for the post")
-    parser.add_argument("--tags", default="musings", help="comma-separated tags for the eventual post")
+    parser.add_argument("--tags", default="reflections", help="comma-separated tags for the eventual post")
     parser.add_argument("--location", default="Cambridge, MA", help="location shown in the eventual post header")
     parser.add_argument("--title", default="scope for imagination", help="post title")
     parser.add_argument("--music-title", help="optional song title shown with the post")

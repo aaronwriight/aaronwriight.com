@@ -23,7 +23,7 @@ export function SitePageShell({
       <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
         <SiteMenu />
         <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-[#6f8200] prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
+          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
           style={{ maxWidth: contentMaxWidth }}
         >
           <PageHeader title={title} subtitle={subtitle} />
@@ -49,7 +49,7 @@ export function PageHeader({
         {title}
       </h1>
       {subtitle ? (
-        <p className="m-0 mt-2 font-serif text-sm leading-6 text-stone-500 first-letter:lowercase">
+        <p className="m-0 mt-2 font-serif text-sm leading-6 text-stone-500">
           {subtitle}
         </p>
       ) : null}
@@ -120,10 +120,10 @@ export function SectionPageShell({
       <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
         <SectionMenu title={section} links={links} parentLinks={parentLinks} />
         <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-[#6f8200] prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
+          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
           style={{ maxWidth: contentMaxWidth }}
         >
-          {showTitle && <PageHeader title={title} subtitle={subtitle} accent={section === "personal"} />}
+          {showTitle && <PageHeader title={title} subtitle={subtitle} />}
           <div className={showTitle ? "mt-8 space-y-5" : "space-y-5"}>{children}</div>
         </article>
       </div>
@@ -157,7 +157,7 @@ export function PhotographyShell({
   children: React.ReactNode;
 }) {
   return (
-    <SectionPageShell section="frame it wright" links={sectionLinks.photography} parentLinks={creativeParentLinks} title={title} subtitle={subtitle}>
+    <SectionPageShell section="Frame It Wright Photography" links={sectionLinks.photography} title={title} subtitle={subtitle}>
       {children}
     </SectionPageShell>
   );
@@ -224,22 +224,6 @@ export function LiteratureShell({
 }) {
   return (
     <SectionPageShell section="literature" links={sectionLinks.literature} parentLinks={creativeParentLinks} title={title} subtitle={subtitle}>
-      {children}
-    </SectionPageShell>
-  );
-}
-
-export function PersonalShell({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle?: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <SectionPageShell section="personal" links={sectionLinks.personal} title={title} subtitle={subtitle}>
       {children}
     </SectionPageShell>
   );

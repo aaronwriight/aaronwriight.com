@@ -7,7 +7,6 @@ export type NavigationItem = {
 };
 
 export const creativeProjects: NavigationItem[] = [
-  { label: "frame it wright", href: "/frame-it-wright-photography" },
   { label: "scope for imagination", href: "/scope-for-imagination" },
   { label: "venture", href: "/venture" },
   { label: "sand dollar hunting", href: "/literature/sand-dollar-hunting" },
@@ -37,24 +36,22 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
   creative: [
     { label: "about", href: "/creative" },
     { label: "projects", href: "/creative/projects", children: creativeProjects },
+    { label: "inspirations", href: "/creative/inspirations", children: [
+      { label: "art & media", href: "/creative/inspirations#art" },
+      { label: "communities", href: "/creative/inspirations#communities" },
+      { label: "creative initiatives & inspirations", href: "/creative/inspirations#inspirations" },
+    ] },
+    { label: "mailing list", href: "/creative/mailing-list" },
   ],
   photography: [
     { label: "about", href: "/frame-it-wright-photography" },
     { label: "portfolio", href: "/frame-it-wright-photography/portfolio" },
     { label: "gallery", href: "/frame-it-wright-photography/gallery" },
     { label: "booking", href: "/frame-it-wright-photography/booking" },
-    { label: "mailing list", href: "/frame-it-wright-photography/mailing-list" },
   ],
   literature: [
     { label: "about", href: "/literature" },
     { label: "projects", href: "/creative/projects#literature", children: creativeProjects.filter(({ href }) => href.startsWith("/literature/")) },
-  ],
-  personal: [
-    { label: "about", href: "/personal", children: [
-      { label: "art & media", href: "/personal#art" },
-      { label: "communities", href: "/personal#communities" },
-      { label: "creative initiatives & inspirations", href: "/personal#inspirations" },
-    ] },
   ],
   contact: [],
   venture: [
@@ -66,13 +63,15 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
       { label: "travels", href: "/venture/travels" },
     ] },
   ],
-  wiki: [],
+  wiki: [
+    { label: "about", href: "/about" },
+    { label: "software & platforms", href: "/about/platforms" },
+  ],
 };
 
 export const siteLinks: NavigationItem[] = [
   { label: "cognitive science", href: "/cognitive-science", children: scienceLinks },
-  { label: "photography", href: "/frame-it-wright-photography", children: sectionLinks.photography },
+  { label: "frame it wright photography", href: "/frame-it-wright-photography", children: sectionLinks.photography },
   { label: "creative", href: "/creative", children: sectionLinks.creative },
-  { label: "personal", href: "/personal", children: sectionLinks.personal },
   { label: "contact", href: "/contact" },
 ];

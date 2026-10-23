@@ -8,19 +8,18 @@ import { draftMode } from "next/headers";
 import GuidesPreview from "@/components/guides/guides-preview";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "aaron wright | cognitive scientist, artist",
-  description: "aaron wright - cognitive scientist, artist",
-  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
+  title: "aaron wright | cognitive scientist, photographer, artist",
+  description: "aaron wright - cognitive scientist, photographer, artist",
   openGraph: {
-    title: "aaron wright | cognitive scientist, artist",
-    description: "aaron wright - cognitive scientist, artist",
+    title: "aaron wright | cognitive scientist, photographer, artist",
+    description: "aaron wright - cognitive scientist, photographer, artist",
     images: ["/sand_dollar.png"],
     authors: ["https://aaronwriight.github.io"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "aaron wright | cognitive scientist, artist",
-    description: "aaron wright - cognitive scientist, artist",
+    title: "aaron wright | cognitive scientist, photographer, artist",
+    description: "aaron wright - cognitive scientist, photographer, artist",
     images: ["/sand_dollar.png"],
   },
 };

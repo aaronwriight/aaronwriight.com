@@ -31,6 +31,10 @@ const albums = [
   { title: "Honey", artist: "Samia", href: "https://open.spotify.com/album/2eN97mVJc9gsJqmHnHpInv", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023c4add03c996a83696a7129b" },
   { title: "Oh Wonder", artist: "Oh Wonder", href: "https://open.spotify.com/album/37ABUtLPqktcopsBJ7jmXT", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e027cc94e776ebb63dd08c8422c" },
   { title: "Women In Music, Pt. III (Expanded Edition)", artist: "HAIM", href: "https://open.spotify.com/album/79thwyFL6Uo6rgTp3YWEAf", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02667f8cfd1be0d0cc2b825e25" },
+  { title: "SYRE", artist: "Jaden", href: "https://open.spotify.com/album/4IFpj2jyRcugt1yzH82m3E", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e026aafb01504b69173c877bdca" },
+  { title: "Heartbreak Magic", artist: "Riah", href: "https://open.spotify.com/album/3EHwhZfwyVZqCgtthoYbfE", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02266c585531e652a4465e6859" },
+  { title: "Bloodline", artist: "Mon Rovîa", href: "https://open.spotify.com/album/7Ln3LF8E2WFUZENabeVuIX", artwork: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02f3d4bdfdbaa1f80c1c899d7b" },
+  { title: "Prizefighter", artist: "Mumford & Sons", href: "https://open.spotify.com/album/4jnBkfheZqprSwXV7qyrc0", artwork: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02192f60a400ee278d0fa10d8d" },
 ] as const;
 
 export function AlbumCarousel() {
@@ -145,7 +149,7 @@ export function AlbumCarousel() {
                   sizes="(min-width: 640px) 128px, 112px"
                   className="m-0 aspect-square w-full rounded-sm border border-stone-200 object-cover transition-opacity group-hover:opacity-80 dark:border-stone-700"
                 />
-                <span className="mt-2 block text-xs leading-4 text-stone-900 group-hover:text-[#6f8200] dark:text-stone-100">
+                <span className="mt-2 block text-xs leading-4 text-stone-900 group-hover:text-olive dark:text-stone-100">
                   <em>{album.title}</em>
                 </span>
                 <span className="mt-0.5 block text-[0.7rem] leading-4 text-stone-500">{album.artist}</span>

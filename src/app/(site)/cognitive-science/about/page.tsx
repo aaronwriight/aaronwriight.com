@@ -32,9 +32,9 @@ export default function CognitiveScienceAboutPage() {
       <div className="divide-y divide-stone-300 border-y border-stone-300 dark:divide-stone-700 dark:border-stone-700">
         <DisclosureSection id="research-overview" title="Research overview">
           <p>
-            I study the <span className="text-[#6f8200]"><em>social mind in dialogue</em></span>: how the human brain processes{" "}
-            <span className="text-[#6f8200]"><em>language</em></span> and structures{" "}
-            <span className="text-[#6f8200]"><em>conversation</em></span>.
+            I study the <span className="text-olive"><em>social mind in dialogue</em></span>: how the human brain processes{" "}
+            <span className="text-olive"><em>language</em></span> and structures{" "}
+            <span className="text-olive"><em>conversation</em></span>.
           </p>
 
           <p>

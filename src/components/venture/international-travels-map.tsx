@@ -189,7 +189,7 @@ export function InternationalTravelsMap({
       .attr("x", 57)
       .attr("y", -24)
       .attr("fill", "var(--venture-map-label)")
-      .attr("font-family", "serif")
+      .style("font-family", "var(--font-serif)")
       .attr("font-size", 13)
       .attr("paint-order", "stroke")
       .attr("stroke", "var(--venture-map-halo)")
@@ -394,7 +394,7 @@ export function InternationalTravelsMap({
           <button
             type="button"
             onClick={() => controlsRef.current.zoomBy(1.45)}
-            className="flex h-8 w-8 items-center justify-center border border-stone-300 bg-white/95 font-serif text-base text-stone-900 transition-colors hover:border-[#859900] hover:text-[#6f8200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#859900] dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
+            className="flex h-8 w-8 items-center justify-center border border-stone-300 bg-white/95 font-serif text-base text-stone-900 transition-colors hover:border-olive hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
             aria-label="zoom in"
           >
             +
@@ -402,7 +402,7 @@ export function InternationalTravelsMap({
           <button
             type="button"
             onClick={() => controlsRef.current.zoomBy(1 / 1.45)}
-            className="flex h-8 w-8 items-center justify-center border border-stone-300 bg-white/95 font-serif text-base text-stone-900 transition-colors hover:border-[#859900] hover:text-[#6f8200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#859900] dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
+            className="flex h-8 w-8 items-center justify-center border border-stone-300 bg-white/95 font-serif text-base text-stone-900 transition-colors hover:border-olive hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
             aria-label="zoom out"
           >
             −
@@ -410,7 +410,7 @@ export function InternationalTravelsMap({
           <button
             type="button"
             onClick={() => controlsRef.current.reset()}
-            className="h-8 border border-stone-300 bg-white/95 px-2.5 text-[0.62rem] lowercase tracking-wider text-stone-900 transition-colors hover:border-[#859900] hover:text-[#6f8200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#859900] dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
+            className="h-8 border border-stone-300 bg-white/95 px-2.5 text-[0.62rem] lowercase tracking-wider text-stone-900 transition-colors hover:border-olive hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-600 dark:bg-stone-900/95 dark:text-stone-100 dark:hover:bg-stone-800"
           >
             reset
           </button>
@@ -420,10 +420,10 @@ export function InternationalTravelsMap({
       <figcaption className={`${variant === "atlas" ? "mt-1.5" : "mt-2"} flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[0.68rem] text-stone-400`}>
         <span>drag to rotate · scroll or use controls to zoom</span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#859900]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-signal" aria-hidden="true" />
           visited country
         </span>
-        <a href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer" className="text-[#6f8200]">
+        <a href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer" className="text-olive">
           boundaries &amp; terrain: Natural Earth ↗
         </a>
       </figcaption>

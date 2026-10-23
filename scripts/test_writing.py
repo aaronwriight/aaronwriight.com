@@ -254,7 +254,7 @@ class WritingPipelineTests(unittest.TestCase):
                 "--location",
                 "Cambridge, MA",
                 "--tags",
-                "musings",
+                "reflections",
                 "--no-prompt",
             )
             self.assertEqual(result, 0, error)
@@ -407,7 +407,7 @@ class WritingPipelineTests(unittest.TestCase):
                     "--location",
                     "Kansas City, MO",
                     "--tags",
-                    "sfi,musings",
+                    "sfi,reflections",
                     "--no-prompt",
                 )
             self.assertEqual(result, 0, error)
@@ -537,7 +537,7 @@ class WritingPipelineTests(unittest.TestCase):
                     "--location",
                     "Kansas City, MO",
                     "--tags",
-                    "sfi,musings",
+                    "sfi,reflections",
                     "--no-prompt",
                 )
             self.assertEqual(result, 0, error)
@@ -704,7 +704,7 @@ class WritingPipelineTests(unittest.TestCase):
                 "--location",
                 "Kansas City, MO",
                 "--tags",
-                "musings",
+                "reflections",
                 "--no-prompt",
             )
             self.assertEqual(result, 0, error)
@@ -796,7 +796,7 @@ class WritingPipelineTests(unittest.TestCase):
                 "--location",
                 "Kansas City, MO",
                 "--tags",
-                "musings",
+                "reflections",
                 "--no-prompt",
             )
             self.assertEqual(result, 0, error)
@@ -856,7 +856,7 @@ class WritingPipelineTests(unittest.TestCase):
                 "--location",
                 "Kansas City, MO",
                 "--tags",
-                "musings",
+                "reflections",
                 "--no-prompt",
             )
             self.assertEqual(result, 0, error)
@@ -910,7 +910,7 @@ class WritingPipelineTests(unittest.TestCase):
                     "--location",
                     "Kansas City, MO",
                     "--tags",
-                    "musings",
+                    "reflections",
                     "--no-prompt",
                 )
             self.assertEqual(result, 0, error)
@@ -1098,7 +1098,7 @@ class WritingPipelineTests(unittest.TestCase):
                     "",  # default title
                     "small hours",
                     "Cambridge, MA",
-                    "musings,night",
+                    "reflections,night",
                     "Late summer notes",
                     "late-summer-notes",
                     "slow-living",
@@ -1152,7 +1152,7 @@ class WritingPipelineTests(unittest.TestCase):
             metadata = writing.load_json_object(folder / "post.json")
             self.assertEqual(metadata["title"], "scope for imagination")
             self.assertEqual(metadata["subtitle"], "small hours")
-            self.assertEqual(metadata["tags"], ["musings", "night"])
+            self.assertEqual(metadata["tags"], ["reflections", "night"])
             self.assertEqual(metadata["trip"], "Late summer notes")
             self.assertEqual(metadata["thread"], "late-summer-notes")
             self.assertEqual(metadata["collections"], ["slow-living"])
@@ -1253,7 +1253,7 @@ class WritingPipelineTests(unittest.TestCase):
                 "--location",
                 "Kansas City, MO",
                 "--tags",
-                "sfi,musings",
+                "sfi,reflections",
                 "--no-prompt",
             )
             self.assertEqual(result, 0, error)
@@ -1965,7 +1965,7 @@ Centered *text*.
                 "artist": "Yebba",
                 "album": "Jean",
             }
-            metadata["tags"] = ["sfi", "musings"]
+            metadata["tags"] = ["sfi", "reflections"]
             writing.write_json(post.path, metadata)
             post = writing.AuthorPost(post.path, metadata)
             author_before = self.snapshot_files(post.directory)
@@ -2003,7 +2003,7 @@ Centered *text*.
             )
             self.assertIn('<li style="color: #f4a825">sfi</li>', preview_html)
             self.assertIn(
-                '<li style="color: var(--green)">musings</li>', preview_html
+                '<li style="color: var(--green)">reflections</li>', preview_html
             )
             preview_images = list(preview.rglob("summit.jpg"))
             self.assertEqual(len(preview_images), 1)
@@ -2053,6 +2053,9 @@ Centered *text*.
                 "render",
                 "view",
                 "newsletter",
+                "source",
+                "refresh",
+                "adopt",
             },
         )
         self.assertEqual(writing.STATUSES, ("draft", "unpublished", "published"))
@@ -2107,6 +2110,176 @@ Centered *text*.
                 / "post.json"
             )
             self.assertEqual(metadata["status"], "draft")
+
+
+class ExternalWritingTests(unittest.TestCase):
+    run_cli = WritingPipelineTests.run_cli
+    snapshot_files = staticmethod(WritingPipelineTests.snapshot_files)
+    create_docx = staticmethod(WritingPipelineTests.create_docx)
+
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name) / "website"
+        self.source = Path(self.temporary.name) / "personal-writing"
+        self.root.mkdir()
+        for blog in writing.BLOGS:
+            (self.source / blog).mkdir(parents=True)
+        result, _, error = self.run_cli(self.root, "source", str(self.source))
+        self.assertEqual(result, 0, error)
+
+    def draft(self, blog: str, entry: str = "1", *, docx: bool = False) -> writing.AuthorPost:
+        source = self.source / blog / ("manuscript.docx" if docx else "manuscript.md")
+        if docx:
+            self.create_docx(source)
+        else:
+            source.write_text("## Field notes\n\nA complete paragraph from the external manuscript.\n", encoding="utf-8")
+        arguments = [
+            "draft", "--blog", blog, "--entry", entry, "--source", f"{blog}/{source.name}",
+            "--subtitle", "field notes", "--location", "Cambridge", "--tags", "writing", "--no-prompt",
+        ]
+        if blog == "venture":
+            arguments.extend(["--trip", "A walk", "--lat", "42.37", "--lon", "-71.11"])
+        before = self.snapshot_files(self.source)
+        result, _, error = self.run_cli(self.root, *arguments)
+        self.assertEqual(result, 0, error)
+        self.assertEqual(before, self.snapshot_files(self.source))
+        return writing.locate_post(entry.zfill(4), self.root)
+
+    def test_sfi_and_venture_docx_review_preview_and_dry_run_preserve_source(self) -> None:
+        for blog, entry in (("sfi", "1"), ("venture", "2")):
+            with self.subTest(blog=blog):
+                post = self.draft(blog, entry, docx=True)
+                before = self.snapshot_files(self.source)
+                for command in (("review", entry), ("render", entry), ("publish", entry, "--dry-run")):
+                    result, _, error = self.run_cli(self.root, *command)
+                    self.assertEqual(result, 0, error)
+                self.assertEqual(before, self.snapshot_files(self.source))
+                self.assertFalse((self.root / "content").exists())
+                self.assertTrue((self.root / ".writing-preview" / post.slug / "index.html").is_file())
+                self.assertFalse(list(post.directory.glob("*.docx")))
+
+    def test_stale_manuscript_and_edited_cache_block_until_explicit_refresh(self) -> None:
+        post = self.draft("sfi")
+        source = self.source / "sfi" / "manuscript.md"
+        source.write_text("An updated paragraph saved by the writer.\n", encoding="utf-8")
+        for command in (("review", "1"), ("render", "1"), ("publish", "1", "--dry-run")):
+            result, output, error = self.run_cli(self.root, *command)
+            self.assertEqual(result, 1)
+            self.assertIn("external source changed", output + error)
+        result, _, error = self.run_cli(self.root, "refresh", "1")
+        self.assertEqual(result, 0, error)
+        self.assertIn("updated paragraph", post.source_path.read_text(encoding="utf-8"))
+        post.source_path.write_text("A competing local edit.\n", encoding="utf-8")
+        result, output, error = self.run_cli(self.root, "review", "1")
+        self.assertEqual(result, 1)
+        self.assertIn("derived cache was edited", output + error)
+        source_before = self.snapshot_files(self.source)
+        result, _, error = self.run_cli(self.root, "resource", "1", "--yes")
+        self.assertEqual(result, 0, error)
+        self.assertEqual(source_before, self.snapshot_files(self.source))
+
+    def test_synthetic_publication_and_erasure_touch_only_website_outputs(self) -> None:
+        self.draft("venture", docx=True)
+        before = self.snapshot_files(self.source)
+        with mock.patch("writing.current_publication_stamp", return_value=("2027-01-02", "12:34")):
+            result, _, error = self.run_cli(self.root, "publish", "1", "--yes")
+        self.assertEqual(result, 0, error)
+        post = writing.locate_post("0001", self.root)
+        self.assertTrue(post.slug.endswith("20270102"))
+        self.assertTrue((self.root / "content" / "scope-for-imagination" / "posts" / "0001.json").is_file())
+        self.assertTrue((self.root / "content" / "venture" / "entries" / f"{post.slug}.json").is_file())
+        for command in (("review", "1"), ("unpublish", "1", "--yes"), ("erase", "1", "--yes")):
+            result, _, error = self.run_cli(self.root, *command)
+            self.assertEqual(result, 0, error)
+        self.assertEqual(before, self.snapshot_files(self.source))
+        self.assertFalse(post.directory.exists())
+
+    def test_legacy_metadata_adoption_reserves_numbers_without_using_old_body(self) -> None:
+        # Make the legacy fixture before enabling external-source mode.
+        (self.root / writing.SOURCE_CONFIG).unlink()
+        legacy = WritingPipelineTests.create_post(self, self.root, entry="1")
+        before = self.snapshot_files(self.root / "writing")
+        result, _, error = self.run_cli(self.root, "source", str(self.source))
+        self.assertEqual(result, 0, error)
+        self.assertEqual(writing.next_entry(self.root), "0002")
+        result, _, error = self.run_cli(self.root, "review", "1")
+        self.assertEqual(result, 1)
+        self.assertIn("adopt", error)
+        source = self.source / "sfi" / "current.md"
+        source.write_text("The ground-truth external manuscript body.\n", encoding="utf-8")
+        result, _, error = self.run_cli(self.root, "adopt", "1", "--source", "sfi/current.md")
+        self.assertEqual(result, 0, error)
+        adopted = writing.locate_post("1", self.root)
+        self.assertEqual(adopted.metadata, {**legacy.metadata, "$schema": writing.author_schema(self.root)})
+        self.assertIn("ground-truth", adopted.source_path.read_text(encoding="utf-8"))
+        self.assertEqual(before, self.snapshot_files(self.root / "writing"))
+        self.assertEqual(writing.next_entry(self.root), "0002")
+
+    def test_source_and_destination_symlinks_cannot_mutate_external_folder(self) -> None:
+        post = self.draft("sfi")
+        # The explicit external post target is never a managed author destination. A copy of the author record makes
+        # the external folder a real post, so the refusal comes from the guard rather than from a missing post.json.
+        planted = self.source / "sfi" / "post.json"
+        writing.write_json(planted, post.metadata)
+        before = self.snapshot_files(self.source)
+        result, _, error = self.run_cli(self.root, "publish", str(self.source / "sfi"), "--yes")
+        self.assertEqual(result, 1)
+        self.assertIn("refusing to modify an author record outside", error)
+        self.assertEqual(before, self.snapshot_files(self.source))
+        self.assertFalse((self.root / "content").exists())
+        planted.unlink()
+        before = self.snapshot_files(self.source)
+        (self.root / "content").mkdir()
+        (self.root / "content" / "scope-for-imagination").symlink_to(self.source / "sfi", target_is_directory=True)
+        result, _, error = self.run_cli(self.root, "publish", "1", "--yes")
+        self.assertEqual(result, 1)
+        self.assertIn("outside the website repository", error)
+        self.assertEqual(before, self.snapshot_files(self.source))
+        self.assertEqual(writing.load_json_object(post.path)["status"], "draft")
+
+    def test_output_root_override_cannot_write_into_the_configured_external_source(self) -> None:
+        before = self.snapshot_files(self.source)
+        with mock.patch("writing.PROJECT_ROOT", self.root):
+            result, _, error = self.run_cli(self.source, "draft", "--no-prompt")
+        self.assertEqual(result, 1)
+        self.assertIn("cannot be used as a website output root", error)
+        self.assertEqual(before, self.snapshot_files(self.source))
+
+    def test_external_metadata_resolves_the_single_committed_editor_schema(self) -> None:
+        canonical_schema = self.root / "writing" / "post.schema.json"
+        canonical_schema.parent.mkdir(parents=True)
+        canonical_schema.write_bytes((writing.PROJECT_ROOT / "writing" / "post.schema.json").read_bytes())
+        post = self.draft("sfi")
+        self.assertEqual((post.directory / post.metadata["$schema"]).resolve(), canonical_schema.resolve())
+        self.assertTrue((post.directory / post.metadata["$schema"]).is_file())
+        result, _, error = self.run_cli(self.root, "review", "1")
+        self.assertEqual(result, 0, error)
+        metadata = {**post.metadata, "$schema": writing.AUTHOR_SCHEMA}
+        writing.write_json(post.path, metadata)
+        result, output, error = self.run_cli(self.root, "review", "1")
+        self.assertEqual(result, 1)
+        self.assertIn("$schema must be '../../../writing/post.schema.json'", output + error)
+        result, _, error = self.run_cli(self.root, "refresh", "1")
+        self.assertEqual(result, 0, error)
+        self.assertEqual(writing.load_json_object(post.path)["$schema"], writing.author_schema(self.root))
+
+    def test_native_source_images_track_only_explicit_references(self) -> None:
+        source = self.source / "sfi" / "illustrated.md"
+        images = source.parent / "images"
+        images.mkdir()
+        (images / "selected.png").write_bytes(b"selected-image")
+        (images / "unrelated.png").write_bytes(b"do-not-copy")
+        source.write_text("A complete paragraph.\n\n![Illustration](images/selected.png)\n", encoding="utf-8")
+        result, _, error = self.run_cli(self.root, "draft", "--blog", "sfi", "--source", "sfi/illustrated.md", "--location", "Cambridge", "--no-prompt")
+        self.assertEqual(result, 0, error)
+        post = writing.locate_post("1", self.root)
+        self.assertTrue((post.directory / "images" / "selected.png").is_file())
+        self.assertFalse((post.directory / "images" / "unrelated.png").exists())
+        (images / "selected.png").write_bytes(b"new-writer-image")
+        result, output, error = self.run_cli(self.root, "review", "1")
+        self.assertEqual(result, 1)
+        self.assertIn("external source changed", output + error)
 
 
 if __name__ == "__main__":

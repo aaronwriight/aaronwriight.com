@@ -21,14 +21,14 @@ export default function VentureTravelsPage() {
           <Link
             key={destination.slug}
             href={`/venture/travels/${destination.slug}`}
-            className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-3 border-b border-stone-300 py-4 text-stone-900 transition-colors hover:text-[#6f8200] dark:border-stone-700 dark:text-stone-100"
+            className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-3 border-b border-stone-300 py-4 text-stone-900 transition-colors hover:text-olive dark:border-stone-700 dark:text-stone-100"
           >
             <span className="text-xs tabular-nums text-stone-400">{String(index + 1).padStart(2, "0")}</span>
             <span>
               <span className="block font-serif text-sm text-current">{destination.name}</span>
               <span className="mt-0.5 block text-[0.68rem] text-stone-500">{destination.region}</span>
             </span>
-            <span className="text-[0.65rem] lowercase tracking-widest text-[#859900]">
+            <span className="text-[0.65rem] lowercase tracking-widest text-olive">
               {destination.visits.length} {destination.visits.length === 1 ? "visit" : "visits"}
             </span>
           </Link>

@@ -14,8 +14,8 @@ type UpsertResendContactInput = {
 export class ResendContactError extends Error {
   status: number;
 
-  constructor(status: number, message: string) {
-    super(message);
+  constructor(status: number) {
+    super(`Resend request failed (HTTP ${status}).`);
     this.name = "ResendContactError";
     this.status = status;
   }
@@ -27,11 +27,6 @@ function cleanProperties(properties: ResendProperties = {}) {
       .map(([key, value]) => [key, value?.trim()])
       .filter((entry): entry is [string, string] => Boolean(entry[1])),
   );
-}
-
-async function readResendError(response: Response) {
-  const error = (await response.json().catch(() => null)) as { message?: string } | null;
-  return error?.message || "Unknown Resend error";
 }
 
 export async function upsertResendContact({
@@ -66,7 +61,7 @@ export async function upsertResendContact({
   if (response.ok) return;
 
   if (response.status !== 409) {
-    throw new ResendContactError(response.status, await readResendError(response));
+    throw new ResendContactError(response.status);
   }
 
   const updateResponse = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
@@ -79,16 +74,13 @@ export async function upsertResendContact({
       properties: cleanContactProperties,
     }),
   });
+  if (!updateResponse.ok) throw new ResendContactError(updateResponse.status);
   const segmentResponse = await fetch(
     `https://api.resend.com/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(segmentId)}`,
     { method: "POST", headers: { Authorization: `Bearer ${apiKey}` } },
   );
-  if (updateResponse.ok && (segmentResponse.ok || segmentResponse.status === 409)) return;
-
-  throw new ResendContactError(
-    updateResponse.ok ? segmentResponse.status : updateResponse.status,
-    updateResponse.ok ? await readResendError(segmentResponse) : await readResendError(updateResponse),
-  );
+  if (segmentResponse.ok) return;
+  throw new ResendContactError(segmentResponse.status);
 }
 
 export async function unsubscribeResendContact({
@@ -110,5 +102,5 @@ export async function unsubscribeResendContact({
   // Do not reveal whether an address is present in the private contact list.
   if (response.ok || response.status === 404) return;
 
-  throw new ResendContactError(response.status, await readResendError(response));
+  throw new ResendContactError(response.status);
 }
