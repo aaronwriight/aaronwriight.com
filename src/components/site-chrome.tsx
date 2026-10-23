@@ -34,7 +34,7 @@ export default function SiteChrome({
         <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
         <TopoBackground />
         <div className="flex min-h-screen flex-col gap-4">
-          <header className="container m-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-2 px-6 py-10 md:pt-20">
+          <header className="container m-auto flex flex-row items-start justify-between gap-4 px-6 py-10 md:items-center md:pt-20">
             <div className="flex flex-col">
               <span className="font-serif text-sm lowercase tracking-widest">
                 aaron wright
