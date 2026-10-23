@@ -12,7 +12,7 @@ import {
 
 // The settings chosen in the texture study ("high peaks mist"). Regenerate the data with scripts/topo_background.py.
 const TEXTURE_URL = "/textures/high-peaks-mist.json";
-const STRENGTH = 0.2; // overall strength of the contours: a faint watermark, so text always reads first
+const STRENGTH = 0.26; // overall strength of the contours: faint, so text always reads first
 const NIGHT_STRENGTH = 0.85; // night mode draws a little softer, because colour glows on dark
 const SHOW_PEAK_LABELS = false; // true adds small summit names and heights
 const DRIFT_PER_PIXEL = 0.004; // contour intervals the lines move per pixel scrolled

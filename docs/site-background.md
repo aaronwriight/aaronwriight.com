@@ -19,7 +19,7 @@ the whole page, faint enough to read text over, and they drift slowly as the pag
 
 | Constant | Default | Effect |
 | --- | --- | --- |
-| `STRENGTH` | `0.2` | Overall strength of the contours: a faint watermark, so text always reads first (the texture study started at 0.68). |
+| `STRENGTH` | `0.26` | Overall strength of the contours: faint, so text always reads first (the texture study started at 0.68). |
 | `NIGHT_STRENGTH` | `0.85` | Relative strength in night mode, where colour reads stronger on dark. |
 | `SHOW_PEAK_LABELS` | `false` | Adds small summit names with their published heights. |
 | `DRIFT_PER_PIXEL` | `0.004` | How far the contours flow per pixel scrolled (`0` keeps them still). |
