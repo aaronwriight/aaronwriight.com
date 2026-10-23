@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "aaron wright | cognitive scientist, photographer, artist",
     description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/sand_dollar.png"],
+    images: ["/brand/og-image.jpg"],
     authors: ["https://aaronwriight.github.io"],
   },
   twitter: {
     card: "summary_large_image",
     title: "aaron wright | cognitive scientist, photographer, artist",
     description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/sand_dollar.png"],
+    images: ["/brand/og-image.jpg"],
   },
 };
 export default async function Page() {

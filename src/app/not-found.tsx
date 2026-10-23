@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "404 | aaron wright",
     description: "",
-    images: ["/sand_dollar.png"],
+    images: ["/brand/og-image.jpg"],
     authors: ["https://aaronwriight.github.io"],
   },
 };

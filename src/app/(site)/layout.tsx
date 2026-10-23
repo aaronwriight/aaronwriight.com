@@ -11,21 +11,25 @@ export const metadata: Metadata = {
   description: "aaron wright - cognitive scientist, photographer, artist",
   metadataBase: new URL(siteUrl),
   icons: {
-    icon: [{ url: "/sand_dollar.png", type: "image/png" }],
-    shortcut: "/sand_dollar.png",
-    apple: "/sand_dollar.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/brand/icon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/brand/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: "/brand/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "aaron wright | cognitive scientist, photographer, artist",
     description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/sand_dollar.png"],
+    images: [{ url: "/brand/og-image.jpg", width: 1200, height: 630, alt: "aaron wright: cognitive scientist, photographer, artist" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "aaron wright | cognitive scientist, photographer, artist",
     description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/sand_dollar.png"],
+    images: ["/brand/og-image.jpg"],
   },
 };
 
