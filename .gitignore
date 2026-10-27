@@ -16,6 +16,9 @@ __pycache__/
 /.writing-source.local.json
 # elevation tiles downloaded by scripts/topo_background.py
 /.topo-cache/
+# the local brand package, rebuilt from scratch by scripts/brand_package.py (in .brand-package.tmp, then moved)
+/brand-package/
+/.brand-package.tmp/
 /.writing-workspace/
 
 # next.js
