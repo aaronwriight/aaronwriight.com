@@ -124,7 +124,9 @@ export function NewsletterSignup({
 
         <label className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
           <span className="block lowercase tracking-wider">{interestLabel}</span>
-          <select name={interestName} defaultValue={interestOptions[0]?.value} className={fieldClass}>
+          {/* Left on "select", the field is not sent and the list records "everything". */}
+          <select name={interestName} defaultValue="" className={fieldClass}>
+            <option value="" disabled>select</option>
             {interestOptions.map((option) => (
               <option key={option.value} value={option.value}>{option.label}</option>
             ))}

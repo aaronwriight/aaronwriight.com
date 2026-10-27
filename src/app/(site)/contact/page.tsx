@@ -86,7 +86,7 @@ export default function ContactPage() {
 
         <section aria-labelledby="creative-contact" className="contact-placard min-w-0 border border-stone-300 bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-950">
           <h2 id="creative-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">creative</h2>
-          <p className="mt-5 font-serif text-sm text-stone-900 dark:text-stone-100">scope for imagination &amp; other projects</p>
+          <p className="mt-5 font-serif text-sm text-stone-900 dark:text-stone-100">Scope for Imagination &amp; Other projects</p>
           <p className="mt-5 text-xs leading-6 text-stone-500">Writing, creative collaborations, shared interests, and a good conversation.</p>
           <p className="mt-5 font-serif text-sm"><Link href="mailto:aaron.anthonyva@gmail.com" className="break-words text-olive">aaron.anthonyva@gmail.com</Link></p>
           <nav aria-label="Creative contact links" className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs lowercase tracking-wider">
