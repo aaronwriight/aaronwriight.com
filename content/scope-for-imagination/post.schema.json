@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/scope-for-imagination-post.json",
+  "$id": "https://aaronwriight.com/schemas/scope-for-imagination-post.json",
   "title": "Published Scope for Imagination Post",
   "type": "object",
   "additionalProperties": false,

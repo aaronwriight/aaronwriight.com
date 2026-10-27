@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/national-parks.json",
+  "$id": "https://aaronwriight.com/schemas/national-parks.json",
   "title": "Venture National Parks Catalog",
   "type": "object",
   "additionalProperties": false,

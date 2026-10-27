@@ -6,7 +6,7 @@ import { serif } from "@/lib/fonts";
 import { SITE_THEME_STORAGE_KEY } from "@/lib/site-theme";
 import Link from "next/link";
 
-/* LINE 24 IS THE SITE LOGO */
+/* THE SITE LOGO IS <Logo /> IN THE HEADER BELOW */
 
 const themeInitializationScript = `
   (function () {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/writing-post.json",
+  "$id": "https://aaronwriight.com/schemas/writing-post.json",
   "title": "Unified SFI and Venture Author Post",
   "description": "The author-owned metadata contract. Draft values may be empty or null; the writing review and publish commands enforce publication completeness.",
   "type": "object",

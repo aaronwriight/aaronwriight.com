@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/venture-entry.json",
+  "$id": "https://aaronwriight.com/schemas/venture-entry.json",
   "title": "Venture Entry",
   "type": "object",
   "additionalProperties": false,

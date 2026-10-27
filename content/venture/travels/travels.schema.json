@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/venture-travels.json",
+  "$id": "https://aaronwriight.com/schemas/venture-travels.json",
   "title": "Venture International Travels Catalog",
   "type": "object",
   "additionalProperties": false,

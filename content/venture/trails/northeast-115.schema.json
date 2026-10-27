@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aaronwriight.vercel.app/schemas/northeast-115.json",
+  "$id": "https://aaronwriight.com/schemas/northeast-115.json",
   "title": "Venture Northeast 115 Catalog",
   "type": "object",
   "additionalProperties": false,

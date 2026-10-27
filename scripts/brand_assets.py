@@ -9,7 +9,7 @@ Reads images/logo_vmono.png (the logo in black ink on a transparent ground; imag
 - public/brand/apple-touch-icon.png, icon-192.png, icon-512.png   the whole mark on white, for home screens
 - public/brand/og-image.jpg                 the sharing image (images/brand/og-template.png with the logo dropped in)
 
-The largest connected shape in the drawing is taken to be the cup; everything else (corners, small vignettes) is
+The largest connected shape in the drawing is taken to be the cup; everything else (the corners and the dot) is
 "around it". Needs Pillow, NumPy and SciPy.
 """
 

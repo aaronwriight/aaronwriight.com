@@ -368,19 +368,6 @@ html.dark .entry-body figure figcaption { color: var(--color-stone-400); }
   .photo-collage-item:nth-child(even) { padding-top: 0; }
 }
 
-/* @import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-@theme {
-  --animation-spin-slow: spin 30s linear infinite;
-  --font-family-sans: var(--font-geist-sans);
-  --font-family-mono: var(--font-geist-mono);
-  --aspect-ratio-16-9: 16 / 9;
-  --aspect-ratio-4-3: 4 / 3;
-  --bg-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --bg-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
-} */
-
 /* Contour-map background (src/components/site/topo-background.tsx), fixed behind the page. */
 /* Sized to the large viewport, so a phone toolbar showing or hiding never re-crops (and visibly zooms) the map. */
 .topo-background {

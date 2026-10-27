@@ -10,18 +10,6 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "aaron wright | cognitive scientist, photographer, artist",
   description: "aaron wright - cognitive scientist, photographer, artist",
-  openGraph: {
-    title: "aaron wright | cognitive scientist, photographer, artist",
-    description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/brand/og-image.jpg"],
-    authors: ["https://aaronwriight.github.io"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "aaron wright | cognitive scientist, photographer, artist",
-    description: "aaron wright - cognitive scientist, photographer, artist",
-    images: ["/brand/og-image.jpg"],
-  },
 };
 export default async function Page() {
   const { isEnabled: isDraftMode } = await draftMode();

@@ -7,8 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "aaron wright",
     description: "an ode to slow living",
-    images: ["/brand/og-image.jpg"],
-    authors: ["https://aaronwriight.github.io"],
+    images: [{ url: "/brand/og-image.jpg", width: 1200, height: 630, alt: "aaron wright: cognitive scientist, photographer, artist" }],
   },
 };
 

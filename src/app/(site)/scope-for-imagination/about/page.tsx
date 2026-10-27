@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function ScopeForImaginationLegacyAboutPage() {
-  redirect("/scope-for-imagination");
+  permanentRedirect("/scope-for-imagination");
 }
