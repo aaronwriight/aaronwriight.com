@@ -115,13 +115,13 @@ export default function PublicationsPage() {
             Wolna, A., <strong>Wright, A.</strong>, Casto, C., Lipkin, B., & Fedorenko, E. (2025, March). The extended language network: Language
             selective brain areas whose contributions to language remain to be discovered. <em>McGovern Travel & Technology Awards Poster Session,
             Cambridge, MA.</em>{" "}
-            <ExternalLink href="https://aaronwriight.github.io/files/posters/Wolna.Agata.Wright.Aaron_v2%20copy.pdf">PDF</ExternalLink>
+            <ExternalLink href="/files/posters/Wolna.Agata.Wright.Aaron_v2.pdf">PDF</ExternalLink>
           </li>
           <li>
             Wolna, A., <strong>Wright, A.</strong>, Wodniecka, Z., & Fedorenko. (2025, April). From Words to Stories: Engagement of
             language-specific and domain-general neural mechanisms in native and second language comprehension.{" "}
             <em>Annual Meeting of the Cognitive Neuroscience Society, Boston, MA.</em>{" "}
-            <ExternalLink href="https://aaronwriight.github.io/files/posters/CNS_2025_poster%20copy.pdf">PDF</ExternalLink>
+            <ExternalLink href="/files/posters/CNS_2025_poster.pdf">PDF</ExternalLink>
           </li>
         </ul>
       </section>
