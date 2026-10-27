@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "../cogSlides"
+		},
+		{
+			"path": "../../../../../cb_ch_conversation"
 		}
 	],
 	"settings": {}

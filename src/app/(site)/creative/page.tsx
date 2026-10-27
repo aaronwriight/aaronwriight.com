@@ -40,7 +40,7 @@ export default function CreativeAboutPage() {
 
       <div className="not-prose space-y-3 border-t border-stone-200 pt-5 text-sm leading-6 dark:border-stone-800">
         <p className="flex items-baseline gap-2">
-          <span className="shrink-0 text-stone-500"><MusicIcon /><span className="sr-only">Music</span>:</span>
+          <span className="shrink-0 text-stone-500"><MusicIcon /><span className="sr-only">Music</span> :</span>
           <Link href="https://www.youtube.com/watch?v=TiD_dSExqVU" className="text-olive">COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)</Link>
         </p>
         <p className="flex items-baseline gap-2">
@@ -48,7 +48,7 @@ export default function CreativeAboutPage() {
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative top-0.5 mr-1 h-3.5 w-3.5">
               <path d="M12 5.5C9 3.5 5.5 3.5 2 4.5v15c3.5-1 7-1 10 1 3-2 6.5-2 10-1v-15c-3.5-1-7-1-10 1Zm0 0v15" />
             </svg>
-            <span className="sr-only">Books</span>:
+            <span className="sr-only">Books</span> :
           </span>
           <span><Link href="https://www.kristinohlson.com/books/sweet-in-tooth-and-claw" className="text-olive">Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World</Link>; Anne of Green Gables</span>
         </p>
