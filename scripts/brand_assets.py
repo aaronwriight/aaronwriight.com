@@ -2,7 +2,7 @@
 
     python3 scripts/brand_assets.py
 
-Reads images/aaronwriight.png (the logo on a transparent ground) and writes:
+Reads images/logo_vmono.png (the logo in black ink on a transparent ground; images/logo_color.png is the sepia version) and writes:
 - public/brand/aaronwriight-logo.png        the header logo by day
 - public/brand/aaronwriight-logo-night.png  the night version: the cup dimmed, everything around it in light ink
 - public/favicon.ico, public/brand/icon-32.png        the cup alone, for browser tabs
@@ -20,7 +20,7 @@ from PIL import Image, ImageFilter
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parent.parent
-MASTER = ROOT / "images" / "aaronwriight.png"
+MASTER = ROOT / "images" / "logo_vmono.png"
 OG_TEMPLATE = ROOT / "images" / "brand" / "og-template.png"
 OUT = ROOT / "public" / "brand"
 
@@ -30,8 +30,9 @@ NIGHT_INK = 0.9  # brightness of the inverted marks around the cup at night
 OG_BOX = (110, 155, 360, 320)  # where the logo sits in the sharing template: x, y, width, height
 
 
-def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
+def read_master() -> tuple[Image.Image, Image.Image, np.ndarray, np.ndarray, np.ndarray]:
+    """The mark by day and by night at the master's full resolution, cropped to the drawing (scripts/brand_package.py
+    builds the brand lockups from these), plus the cleaned drawing and the cup's masks for the tab icons."""
     src = np.array(Image.open(MASTER).convert("RGBA")).astype(float)
     alpha = src[..., 3]
     ink = alpha > 24
@@ -56,14 +57,12 @@ def main() -> None:
     def to_image(arr: np.ndarray) -> Image.Image:
         return Image.fromarray(arr[box].clip(0, 255).astype("uint8"), "RGBA")
 
-    logo = to_image(day)
-    logo = logo.resize((LOGO_WIDTH, round(logo.height * LOGO_WIDTH / logo.width)), Image.LANCZOS)
-    logo.save(OUT / "aaronwriight-logo.png", optimize=True)
-    night_logo = to_image(night).resize(logo.size, Image.LANCZOS)
-    night_logo.save(OUT / "aaronwriight-logo-night.png", optimize=True)
+    return to_image(day), to_image(night), day, labels == cup_id, cup
 
-    # The cup alone, square, for tab icons.
-    cys, cxs = np.nonzero(labels == cup_id)
+
+def cup_alone(day: np.ndarray, cup_shape: np.ndarray, cup: np.ndarray) -> Image.Image:
+    """The cup without its corners and dot, centred on a square at full resolution: the mark below about 48px."""
+    cys, cxs = np.nonzero(cup_shape)
     side = max(cxs.max() - cxs.min(), cys.max() - cys.min()) + 24
     cx, cy = (cxs.min() + cxs.max()) // 2, (cys.min() + cys.max()) // 2
     cup_only = day.copy()
@@ -73,7 +72,20 @@ def main() -> None:
     sy0, sx0 = max(0, y0), max(0, x0)
     sy1, sx1 = min(cup_only.shape[0], y0 + side), min(cup_only.shape[1], x0 + side)
     canvas[sy0 - y0: sy1 - y0, sx0 - x0: sx1 - x0] = cup_only[sy0:sy1, sx0:sx1]
-    cup_square = Image.fromarray(canvas.clip(0, 255).astype("uint8"), "RGBA")
+    return Image.fromarray(canvas.clip(0, 255).astype("uint8"), "RGBA")
+
+
+def main() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    day_mark, night_mark, day, cup_shape, cup = read_master()
+
+    logo = day_mark.resize((LOGO_WIDTH, round(day_mark.height * LOGO_WIDTH / day_mark.width)), Image.LANCZOS)
+    logo.save(OUT / "aaronwriight-logo.png", optimize=True)
+    night_logo = night_mark.resize(logo.size, Image.LANCZOS)
+    night_logo.save(OUT / "aaronwriight-logo-night.png", optimize=True)
+
+    # The cup alone, square, for tab icons.
+    cup_square = cup_alone(day, cup_shape, cup)
 
     def fit(img: Image.Image, size: int, background=None, margin=0.0) -> Image.Image:
         tile = Image.new("RGBA", (size, size), background or (0, 0, 0, 0))
@@ -101,7 +113,7 @@ def main() -> None:
     og.alpha_composite(scaled, (x + (w - scaled.width) // 2, y + (h - scaled.height) // 2))
     og.convert("RGB").save(OUT / "og-image.jpg", quality=90, optimize=True, progressive=True)
 
-    print(f"logo {logo.size[0]}x{logo.size[1]}; cup is shape {cup_id} of {count}; wrote {OUT.relative_to(ROOT)}/ and public/favicon.ico")
+    print(f"logo {logo.size[0]}x{logo.size[1]} (master crop {day_mark.size[0]}x{day_mark.size[1]}); wrote {OUT.relative_to(ROOT)}/ and public/favicon.ico")
 
 
 if __name__ == "__main__":
