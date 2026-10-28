@@ -28,7 +28,7 @@ export default function ContactPage() {
           </p>
           <p className="text-xs lowercase tracking-wider">
             <Link
-              href="/files/cv/WrightAaron_cv_2026_current.pdf?v=2026-09-12"
+              href="/files/cv/WrightAaron_cv_2026_current.pdf?v=2026-10-27"
               target="_blank"
               rel="noopener noreferrer"
               className="text-olive"
