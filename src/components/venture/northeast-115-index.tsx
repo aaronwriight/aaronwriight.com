@@ -457,10 +457,10 @@ export function Northeast115Map({
           state boundaries
         </span>
         <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-olive">
-          terrain relief: Esri World Hillshade ↗
+          terrain relief: Esri World Hillshade
         </a>
         <a href="https://doi.org/10.48601/earthenv-t9k2-1407" target="_blank" rel="noreferrer" className="text-olive">
-          range boundaries: GMBA v2 ↗
+          range boundaries: GMBA v2
         </a>
         <span>drag to pan · scroll to zoom · select a marker to open its page</span>
       </figcaption>

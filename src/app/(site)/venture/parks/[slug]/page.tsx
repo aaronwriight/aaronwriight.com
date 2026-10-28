@@ -85,7 +85,7 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
             <dt className="text-[0.65rem] lowercase tracking-widest text-stone-400">source</dt>
             <dd className="mt-1 font-serif">
               <a href={park.sourceUrl} target="_blank" rel="noreferrer" className="text-olive">
-                official NPS page ↗
+                official NPS page
               </a>
             </dd>
           </div>

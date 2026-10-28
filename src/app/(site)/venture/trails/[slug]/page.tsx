@@ -110,7 +110,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
             <dt className="text-[0.65rem] lowercase tracking-widest text-stone-400">source</dt>
             <dd className="mt-1 font-serif">
               <a href={peak.sourceUrl} target="_blank" rel="noreferrer" className="text-olive">
-                Peakbagger ↗
+                Peakbagger
               </a>
             </dd>
           </div>

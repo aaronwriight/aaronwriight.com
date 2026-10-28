@@ -424,7 +424,7 @@ export function InternationalTravelsMap({
           visited country
         </span>
         <a href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer" className="text-olive">
-          boundaries &amp; terrain: Natural Earth ↗
+          boundaries &amp; terrain: Natural Earth
         </a>
       </figcaption>
     </figure>

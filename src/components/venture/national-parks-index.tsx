@@ -766,10 +766,10 @@ export function NationalParksMap({
           not yet visited
         </span>
         <a href={hillshadeServiceUrl} target="_blank" rel="noreferrer" className="text-olive">
-          terrain relief: Esri World Hillshade ↗
+          terrain relief: Esri World Hillshade
         </a>
         <a href={boundarySourceUrl} target="_blank" rel="noreferrer" className="text-olive">
-          park boundaries: NPS ↗
+          park boundaries: NPS
         </a>
         <a
           href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html"
@@ -777,7 +777,7 @@ export function NationalParksMap({
           rel="noreferrer"
           className="text-olive"
         >
-          state boundaries: U.S. Census Bureau ↗
+          state boundaries: U.S. Census Bureau
         </a>
       </figcaption>
     </figure>
