@@ -17,7 +17,7 @@ export default function AboutPage() {
       <div>
         <h2 className="m-0  text-sm  font-medium antialiased"><b>bio</b></h2>
         <p className="m-0 mt-2 text-sm  antialiased">
-          A creative endeavor by <Link href="https://aaronwriight.github.io">Aaron Wright</Link>.
+          A creative endeavor by <Link href="/contact">Aaron Wright</Link>.
         </p>
       </div>
       <div>
