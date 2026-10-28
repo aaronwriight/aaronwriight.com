@@ -50,7 +50,7 @@ export default function CreativeAboutPage() {
             </svg>
             <span className="sr-only">Books</span> :
           </span>
-          <span><Link href="https://www.kristinohlson.com/books/sweet-in-tooth-and-claw" className="text-olive">Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World</Link>; Anne of Green Gables</span>
+          <span><Link href="https://www.kristinohlson.com/books/sweet-in-tooth-and-claw" className="text-olive">Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World</Link></span>
         </p>
         {/* Two additional favorite-things entries are unfinished in the author's draft and intentionally not rendered. */}
       </div>

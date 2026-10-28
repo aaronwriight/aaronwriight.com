@@ -9,16 +9,23 @@ type ProjectPlacardProps = {
   href?: string;
   image?: string;
   alt?: string;
+  photo?: { src: string; alt: string; width: number; height: number };
   preview?: React.ReactNode;
   linkLabel?: string;
   headingLevel?: "h2" | "h3";
 };
 
-export function ProjectPlacard({ category, title, subtitle, description, href, image, alt = "", preview, linkLabel = "explore project", headingLevel: Heading = "h2" }: ProjectPlacardProps) {
-  const className = "project-placard grid gap-6 border border-stone-300 bg-white p-5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal sm:p-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-8 dark:border-stone-700 dark:bg-stone-950";
+export function ProjectPlacard({ category, title, subtitle, description, href, image, alt = "", photo, preview, linkLabel = "explore project", headingLevel: Heading = "h2" }: ProjectPlacardProps) {
+  // A photograph sets its own column: it keeps its shape and fills it, so neither orientation leaves a margin around it.
+  const columns = photo ? "lg:grid-cols-[auto_minmax(0,1fr)]" : "lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)]";
+  const className = `project-placard grid gap-6 border border-stone-300 bg-white p-5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal sm:p-6 ${columns} lg:gap-8 dark:border-stone-700 dark:bg-stone-950`;
   const content = (
     <>
-      {preview ? <div className="flex min-w-0 flex-col justify-center">{preview}</div> : image ? (
+      {photo ? (
+        <div className="max-w-full lg:h-64" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}>
+          <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 400px, 90vw" className="h-full w-full object-cover" />
+        </div>
+      ) : preview ? <div className="flex min-w-0 flex-col justify-center">{preview}</div> : image ? (
         <div className="flex min-w-0 flex-col justify-center">
           {/* By day, one hairline rectangle around the picture on white. At night the picture becomes a matted print: a
               dark mat inside the hairline and the picture's white dimmed, because most figures have a white ground drawn in. */}

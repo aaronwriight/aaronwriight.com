@@ -46,7 +46,7 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
   photography: [
     { label: "about", href: "/frame-it-wright-photography" },
     { label: "portfolio", href: "/frame-it-wright-photography/portfolio" },
-    { label: "gallery", href: "/frame-it-wright-photography/gallery" },
+    { label: "galleries", href: "/frame-it-wright-photography/gallery" },
     { label: "booking", href: "/frame-it-wright-photography/booking" },
   ],
   literature: [
