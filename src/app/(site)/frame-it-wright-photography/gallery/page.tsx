@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { PhotographyShell } from "@/components/site/site-content";
 import Link from "next/link";
 import { ProjectPlacard } from "@/components/site/project-placard";
-import { PhotoPlaceholder } from "@/components/photography/photo-layout";
+import { ClientGalleryLine, PhotoPlaceholder } from "@/components/photography/photo-layout";
+import { GalleryCollection } from "@/components/photography/gallery-collection";
 import { photographyGalleries, photographyStudies } from "@/lib/photography";
 import { picTimeClientUrl } from "@/data/photography";
 
@@ -16,9 +17,7 @@ export default function PhotographyGalleryPage() {
   return (
     <PhotographyShell title="galleries" subtitle="a little more of the story">
       <p>Room for a session, an occasion, or an unfolding photo essay. Each collection will have a few opening frames here, with its full public gallery on Pic-Time when available.</p>
-      {photographyGalleries.length > 0 && <section aria-label="Public galleries" className="not-prose space-y-6">
-        {photographyGalleries.map((gallery) => <ProjectPlacard key={gallery.slug} {...gallery} href={`/frame-it-wright-photography/gallery/${gallery.slug}`} photo={gallery.images[0]} linkLabel="view gallery" />)}
-      </section>}
+      {photographyGalleries.length > 0 && <GalleryCollection galleries={photographyGalleries} aside={<ClientGalleryLine />} />}
       {photographyGalleries.length === 0 && <section aria-labelledby="gallery-studies" className="not-prose space-y-6">
         <div>
           <h2 id="gallery-studies" className="m-0 font-serif text-sm">gallery studies</h2>

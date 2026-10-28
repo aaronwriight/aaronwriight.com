@@ -50,12 +50,12 @@ pnpm photography prepare .photography-workspace/my-collection/gallery.json ~/pat
 `prepare` reads only the files you name and never changes them. It writes a JPEG
 copy into the draft folder, at most 2048 pixels on the long side, converted to
 sRGB, without EXIF/GPS, comments, or other camera metadata, and lists it in the
-manifest with an empty alt. It does not crop or retouch. It cannot read camera
+manifest with an empty alt and `portfolio: false`. It does not crop or retouch. It cannot read camera
 raw files (CR2 and similar); export a JPEG from your editor first. An existing
 derivative is only rebuilt with `--replace`. You can still export derivatives
 yourself instead, as clean JPEG/PNG/WebP files without private metadata.
 
-The validator accepts at most 60 still images per gallery, each no larger than
+The validator accepts at most 20 still images per gallery, each no larger than
 3 MiB and 8000 pixels per side. It checks file bytes, image decoding, dimensions,
 metadata, path containment, duplicate files, and descriptive alt text; a draft
 with an empty alt fails until every photograph is described. An image entry looks like:
@@ -115,14 +115,21 @@ also use the public account entry. This is an outbound link, not FIW authenticat
 A collection absent from the landing page may still need the emailed invitation.
 
 **Division (decided October 2026):** the portfolio and galleries live on this
-site; Pic-Time is only for releasing client galleries. Each public gallery is one
-content area (couples & engagement, wedding, and so on), shown in justified rows
-with a full-screen viewer. The portfolio shows every `portfolio: true` image from
-all galleries, with filters for each content area and "all". Both carry the
-"looking for your photos?" line to the Pic-Time client page. A gallery may still
-set `picTimeUrl` to an explicitly public Pic-Time gallery, but none needs one.
-A `portfolio: true` image appears in both views from the same public file.
-Neither view needs an embedded Pic-Time API.
+site; Pic-Time holds the full shoots and is only for releasing client galleries.
+Each public gallery is one content area (couples & engagement, wedding, and so on)
+with at most 20 photographs. The galleries page shows every gallery's placard
+above its photographs in justified rows, with filters for each gallery and "all".
+The portfolio is only your favorites, marked `portfolio: true`, set out in an
+irregular arrangement with each one's `caption` as the note on why you chose it.
+Both carry the "looking for your photos?" line to the Pic-Time client page, and
+both open a full-screen viewer. A favorite appears in its gallery and the
+portfolio from the same public file. A gallery may still set `picTimeUrl` to an
+explicitly public Pic-Time gallery, but none needs one, and neither page needs an
+embedded Pic-Time API.
+
+`.photography-workspace/curate/index.html` is a local board for choosing: which
+photographs go on the site per gallery, the cover, the favorites, and their notes.
+Its "copy my choices" output is applied to the drafts before review.
 
 Candidate photographs remain unselected. User-supplied content areas live in
 `src/data/photography.ts`: Events, Couples & Engagement, Wedding, Family, Friends,

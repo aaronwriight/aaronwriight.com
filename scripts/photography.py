@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 FIELDS = {"slug", "category", "title", "subtitle", "description", "visibility", "publicApproved", "picTimeUrl", "images"}
 IMAGE_FIELDS = {"source", "alt", "caption", "shape", "portfolio"}
-MAX_IMAGES = 60  # a gallery is one content area's public set; client deliveries stay on Pic-Time
+MAX_IMAGES = 20  # a gallery shows a chosen few; the full shoots stay with clients on Pic-Time
 LONG_EDGE = 2048  # prepare: longest side of a web derivative, enough for the full-screen viewer
 QUALITY = 82
 
@@ -251,7 +251,7 @@ def prepare(path, originals, replace=False):
             if name not in listed:
                 ratio = width / height
                 shape = "square" if 0.95 <= ratio <= 1.05 else "landscape" if ratio > 1 else "portrait"
-                data["images"].append({"source": name, "alt": "", "caption": "", "shape": shape, "portfolio": True})
+                data["images"].append({"source": name, "alt": "", "caption": "", "shape": shape, "portfolio": False})
                 listed.add(name)
             written.append(name)
     finally:

@@ -166,7 +166,7 @@ class PhotographyTests(unittest.TestCase):
             self.assertFalse(image.getexif())
             self.assertNotIn("comment", image.info)
         entry = json.loads(self.path.read_text())["images"][-1]
-        self.assertEqual(entry, {"source": "frame.jpg", "alt": "", "caption": "", "shape": "portrait", "portfolio": True})
+        self.assertEqual(entry, {"source": "frame.jpg", "alt": "", "caption": "", "shape": "portrait", "portfolio": False})
         with self.assertRaises(photography.PhotographyError):
             photography.validate(self.path)
         with self.assertRaises(photography.PhotographyError):

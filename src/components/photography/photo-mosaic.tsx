@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { PhotoViewer, type ViewerPhoto } from "@/components/photography/photo-viewer";
 
-export type MosaicPhoto = { src: string; alt: string; width: number; height: number; area?: string };
+export type MosaicPhoto = ViewerPhoto;
 
 type Mode = { target: number; width: number };
 // Target row height as a share of the row width, and a nominal width for weighing the gaps: about two portraits a
@@ -41,8 +42,6 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
   const [mode, setMode] = useState<keyof typeof MODES>("wide");
   const [open, setOpen] = useState<number | null>(null);
   const grid = useRef<HTMLDivElement>(null);
-  const viewer = useRef<HTMLDialogElement>(null);
-  const swipe = useRef<number | null>(null);
 
   const visible = useMemo(() => photos.filter((photo) => area === "all" || photo.area === area), [photos, area]);
   const rows = useMemo(() => partition(visible, MODES[mode]), [visible, mode]);
@@ -58,14 +57,6 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const dialog = viewer.current;
-    if (open !== null && dialog && !dialog.open) dialog.showModal();
-    if (open === null && dialog?.open) dialog.close();
-  }, [open]);
-
-  const step = (offset: number) => setOpen((index) => (index === null ? null : (index + offset + visible.length) % visible.length));
-  const current = open === null ? null : visible[open];
   let index = 0;
 
   return (
@@ -102,49 +93,7 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
           );
         })}
       </div>
-      <dialog
-        ref={viewer}
-        aria-label="Photograph viewer"
-        className="photo-viewer"
-        onClose={() => setOpen(null)}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowRight") step(1);
-          if (event.key === "ArrowLeft") step(-1);
-        }}
-      >
-        {current && (
-          <div className="photo-viewer-frame">
-            <div
-              className="photo-viewer-stage"
-              onPointerDown={(event) => (swipe.current = event.clientX)}
-              onPointerUp={(event) => {
-                const distance = swipe.current === null ? 0 : event.clientX - swipe.current;
-                swipe.current = null;
-                if (Math.abs(distance) > 50) step(distance < 0 ? 1 : -1);
-              }}
-            >
-              <div className="relative h-full w-full">
-                <Image key={current.src} src={current.src} alt={current.alt} fill sizes="100vw" draggable={false} className="object-contain" />
-              </div>
-              <button type="button" className="photo-mosaic-chip photo-viewer-nav left-4" onClick={() => step(-1)} aria-label="Previous photograph">
-                ← prev
-              </button>
-              <button type="button" className="photo-mosaic-chip photo-viewer-nav right-4" onClick={() => step(1)} aria-label="Next photograph">
-                next →
-              </button>
-            </div>
-            <div className="photo-viewer-bar">
-              <span>{current.area}</span>
-              <span>
-                {open! + 1} / {visible.length}
-              </span>
-              <button type="button" className="photo-mosaic-chip" onClick={() => setOpen(null)}>
-                close
-              </button>
-            </div>
-          </div>
-        )}
-      </dialog>
+      <PhotoViewer photos={visible} index={open} onChange={setOpen} />
     </div>
   );
 }

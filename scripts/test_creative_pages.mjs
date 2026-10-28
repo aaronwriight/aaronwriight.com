@@ -38,7 +38,7 @@ try {
           assert(await page.locator(".photo-placeholder").count() > 0);
         } else {
           // Published photographs: described for screen readers, never labelled with camera file names.
-          if (path.endsWith("portfolio")) assert.equal(await page.locator(".photo-mosaic-tile").count(), portfolioCount);
+          if (path.endsWith("portfolio")) assert.equal(await page.locator(".photo-spread-item").count(), portfolioCount);
           assert(await page.locator("main article img").evaluateAll(images => images.every(image => image.alt.trim().length > 10)));
           assert(!/IMG_\d/.test(await page.locator("main article").first().innerText()));
         }
