@@ -2,7 +2,8 @@
 
     python3 scripts/brand_assets.py
 
-Reads images/logo_vmono.png (the logo in black ink on a transparent ground; images/logo_color.png is the sepia version) and writes:
+Reads images/logo_color.png (the sepia logo on a transparent ground; images/logo_vmono.png is the black-ink version and
+images/logo_mono.png a one-colour variant) and writes:
 - public/brand/aaronwriight-logo.png        the header logo by day
 - public/brand/aaronwriight-logo-night.png  the night version: the cup dimmed, everything around it in light ink
 - public/favicon.ico, public/brand/icon-32.png        the cup alone, for browser tabs
@@ -20,7 +21,7 @@ from PIL import Image, ImageFilter
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parent.parent
-MASTER = ROOT / "images" / "logo_vmono.png"
+MASTER = ROOT / "images" / "logo_color.png"  # the sepia drawing; swap in logo_vmono.png for black ink
 OG_TEMPLATE = ROOT / "images" / "brand" / "og-template.png"
 OUT = ROOT / "public" / "brand"
 
