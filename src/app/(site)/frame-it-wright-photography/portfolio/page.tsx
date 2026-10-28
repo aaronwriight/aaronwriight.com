@@ -26,7 +26,7 @@ export default function PhotographyPortfolioPage() {
       </>}
       <div className="flex flex-wrap justify-between gap-3 border-t border-stone-300 pt-5 text-xs dark:border-stone-700">
         <span className="text-stone-500">frame it wright photography</span>
-        <Link href="/frame-it-wright-photography/booking">make something together <span aria-hidden="true">→</span></Link>
+        <Link href="/frame-it-wright-photography/booking">create with me <span aria-hidden="true">→</span></Link>
       </div>
     </PhotographyShell>
   );
