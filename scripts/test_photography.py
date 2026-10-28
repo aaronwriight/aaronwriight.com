@@ -151,6 +151,47 @@ class PhotographyTests(unittest.TestCase):
                     photography.validate(self.path)
                 self.data[key] = original
 
+    def test_prepare_shrinks_strips_metadata_and_waits_for_alt_text(self):
+        originals = self.root / "originals"
+        originals.mkdir()
+        exif = Image.Exif()
+        exif[0x010F] = "Synthetic camera"
+        exif[0x0112] = 6  # rotated 90 degrees: the derivative must come out upright
+        Image.new("RGB", (3000, 2000), "olive").save(originals / "frame.jpg", exif=exif, comment=b"private note")
+        source_before = (originals / "frame.jpg").read_bytes()
+        self.assertEqual(photography.prepare(self.path, [originals / "frame.jpg"]), ["frame.jpg"])
+        self.assertEqual(source_before, (originals / "frame.jpg").read_bytes())
+        with Image.open(self.draft / "frame.jpg") as image:
+            self.assertEqual(image.size, (1365, 2048))
+            self.assertFalse(image.getexif())
+            self.assertNotIn("comment", image.info)
+        entry = json.loads(self.path.read_text())["images"][-1]
+        self.assertEqual(entry, {"source": "frame.jpg", "alt": "", "caption": "", "shape": "portrait", "portfolio": True})
+        with self.assertRaises(photography.PhotographyError):
+            photography.validate(self.path)
+        with self.assertRaises(photography.PhotographyError):
+            photography.prepare(self.path, [originals / "frame.jpg"])
+        photography.prepare(self.path, [originals / "frame.jpg"], replace=True)
+        self.assertEqual(len(json.loads(self.path.read_text())["images"]), 2)
+        data = json.loads(self.path.read_text())
+        data["images"][-1]["alt"] = "Synthetic olive rectangle"
+        self.path.write_text(json.dumps(data))
+        photography.validate(self.path)
+        (originals / "raw.cr2").write_bytes(b"not an image Pillow can read")
+        with self.assertRaises(photography.PhotographyError):
+            photography.prepare(self.path, [originals / "raw.cr2"])
+
+    def test_gallery_size_is_capped(self):
+        for index in range(photography.MAX_IMAGES):
+            Image.new("RGB", (20, 30), (index, 0, 0)).save(self.draft / f"frame-{index}.png")
+        self.data["images"] = [{"source": f"frame-{index}.png", "alt": "Synthetic rectangle", "caption": "", "shape": "portrait", "portfolio": True} for index in range(photography.MAX_IMAGES)]
+        self.save()
+        photography.validate(self.path)
+        self.data["images"].append(dict(self.data["images"][0], source="chosen.png"))
+        self.save()
+        with self.assertRaises(photography.PhotographyError):
+            photography.validate(self.path)
+
 
 if __name__ == "__main__":
     unittest.main()

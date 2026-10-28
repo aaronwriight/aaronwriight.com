@@ -1,8 +1,10 @@
 // Local UI regression checks. External traffic is blocked and email APIs are mocked.
 // Run with the same PLAYWRIGHT_MODULE / PLAYWRIGHT_EXECUTABLE_PATH as test_navigation_hover.mjs.
 import assert from "node:assert/strict";
-import { mkdir } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
+const catalog = JSON.parse(await readFile(new URL("../content/photography/published.json", import.meta.url), "utf8"));
+const portfolioCount = catalog.flatMap(gallery => gallery.images.filter(image => image.portfolio)).length;
 const base = process.env.CREATIVE_TEST_URL || "http://127.0.0.1:4184";
 const artifacts = process.env.CREATIVE_TEST_ARTIFACTS || "/private/tmp/frameitwright-creative-checks";
 await mkdir(artifacts, { recursive: true });
@@ -31,8 +33,15 @@ try {
       assert.equal(await page.locator("h1").innerText(), title);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `Overflow at ${width}: ${path}`);
       if (path.includes("photography/portfolio") || path.includes("photography/gallery")) {
-        assert.equal(await page.locator("main article img").count(), 0, "Photography must contain no selected photos");
-        assert(await page.locator(".photo-placeholder").count() > 0);
+        if (!catalog.length || path.includes("study-")) {
+          assert.equal(await page.locator("main article img").count(), 0, "Photography must contain no selected photos");
+          assert(await page.locator(".photo-placeholder").count() > 0);
+        } else {
+          // Published photographs: described for screen readers, never labelled with camera file names.
+          if (path.endsWith("portfolio")) assert.equal(await page.locator(".photo-mosaic-tile").count(), portfolioCount);
+          assert(await page.locator("main article img").evaluateAll(images => images.every(image => image.alt.trim().length > 10)));
+          assert(!/IMG_\d/.test(await page.locator("main article").first().innerText()));
+        }
         if (path.endsWith("portfolio") || path.endsWith("gallery")) {
           await page.screenshot({ path: `${artifacts}/${path.endsWith("portfolio") ? "portfolio" : "galleries"}-${width}.png`, fullPage: true });
         }

@@ -41,12 +41,24 @@ Only this account's HTTPS Pic-Time host is accepted, without query strings,
 fragments, credentials, or account/invitation paths. This syntax check does not
 prove a URL is public: an access-bearing path can still be a secret.
 
-When you decide on photographs, export clean JPEG/PNG/WebP web derivatives into
-the draft folder yourself, without EXIF/GPS, comments, or embedded private
-metadata. The validator accepts at most 12 still images, each no larger than
+When you decide on photographs, make web derivatives of the exact files you chose:
+
+```sh
+pnpm photography prepare .photography-workspace/my-collection/gallery.json ~/path/to/IMG_0001.jpg ~/path/to/IMG_0002.jpg
+```
+
+`prepare` reads only the files you name and never changes them. It writes a JPEG
+copy into the draft folder, at most 2048 pixels on the long side, converted to
+sRGB, without EXIF/GPS, comments, or other camera metadata, and lists it in the
+manifest with an empty alt. It does not crop or retouch. It cannot read camera
+raw files (CR2 and similar); export a JPEG from your editor first. An existing
+derivative is only rebuilt with `--replace`. You can still export derivatives
+yourself instead, as clean JPEG/PNG/WebP files without private metadata.
+
+The validator accepts at most 60 still images per gallery, each no larger than
 3 MiB and 8000 pixels per side. It checks file bytes, image decoding, dimensions,
-metadata, path containment, duplicate files, and descriptive alt text. It does
-not resize, strip metadata, crop, or retouch files. An image entry looks like:
+metadata, path containment, duplicate files, and descriptive alt text; a draft
+with an empty alt fails until every photograph is described. An image entry looks like:
 
 ```json
 {
@@ -102,13 +114,15 @@ for gallery access and sign-in on Pic-Time. The portfolio and platforms wiki
 also use the public account entry. This is an outbound link, not FIW authentication.
 A collection absent from the landing page may still need the emailed invitation.
 
-**Recommended division:** keep the website portfolio as a small selection across
-collections. Gallery placards open a local page with the chosen snapshot (up to
-12 web derivatives), and its `picTimeUrl` opens the full explicitly public gallery.
-Pic-Time remains the delivery, account, and gallery-management system. A
-`portfolio: true` image can appear in both local views from the same public file.
-This retains the site's design without maintaining a second client-gallery system.
-Neither a full-gallery link nor the client-entry action needs an embedded API.
+**Division (decided October 2026):** the portfolio and galleries live on this
+site; Pic-Time is only for releasing client galleries. Each public gallery is one
+content area (couples & engagement, wedding, and so on), shown in justified rows
+with a full-screen viewer. The portfolio shows every `portfolio: true` image from
+all galleries, with filters for each content area and "all". Both carry the
+"looking for your photos?" line to the Pic-Time client page. A gallery may still
+set `picTimeUrl` to an explicitly public Pic-Time gallery, but none needs one.
+A `portfolio: true` image appears in both views from the same public file.
+Neither view needs an embedded Pic-Time API.
 
 Candidate photographs remain unselected. User-supplied content areas live in
 `src/data/photography.ts`: Events, Couples & Engagement, Wedding, Family, Friends,

@@ -368,6 +368,45 @@ html.dark .entry-body figure figcaption { color: var(--color-stone-400); }
   .photo-collage-item:nth-child(even) { padding-top: 0; }
 }
 
+/* Justified photo rows: each tile grows in proportion to its aspect ratio, so every tile in a row shares one height. */
+.photo-mosaic { display: grid; gap: 12px; }
+.photo-mosaic-row { display: flex; gap: 12px; }
+.photo-mosaic-tile { position: relative; flex-basis: 0; min-width: 0; padding: 0; border: 0; background: var(--color-stone-100); cursor: zoom-in; }
+.photo-mosaic-tile img { transition: opacity 0.2s ease; }
+.photo-mosaic-tile:hover img { opacity: 0.92; }
+.photo-mosaic-tile:focus-visible, .photo-mosaic-chip:focus-visible { outline: 2px solid var(--color-olive); outline-offset: 3px; }
+html.dark .photo-mosaic-tile { background: var(--color-stone-900); }
+.photo-mosaic-chip {
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: var(--site-text-secondary);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+.photo-mosaic-chip:hover, .photo-mosaic-chip[aria-pressed="true"] { color: var(--color-olive); }
+.photo-mosaic-chip[aria-pressed="true"] { border-bottom-color: currentColor; }
+
+/* The viewer covers the page in the page colour, with thin text controls. */
+.photo-viewer { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #fff; color: var(--site-text-primary); }
+html.dark .photo-viewer { background: var(--color-stone-950); }
+.photo-viewer::backdrop { background: transparent; }
+html:has(.photo-viewer[open]) { overflow: hidden; }
+.photo-viewer-frame { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; }
+.photo-viewer-stage { position: relative; min-height: 0; padding: 40px 88px 12px; touch-action: pan-y; }
+.photo-viewer-nav { position: absolute; top: 50%; transform: translateY(-50%); }
+.photo-viewer-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px 22px; color: var(--site-text-secondary); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: lowercase; }
+@media (max-width: 639px) {
+  .photo-mosaic, .photo-mosaic-row { gap: 8px; }
+  .photo-viewer-stage { padding: 16px 8px 8px; }
+  .photo-viewer-nav { display: none; }
+  .photo-viewer-bar { padding: 12px 16px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .photo-mosaic-tile img { transition: none; } }
+
 /* Contour-map background (src/components/site/topo-background.tsx), fixed behind the page. */
 /* Sized to the large viewport, so a phone toolbar showing or hiding never re-crops (and visibly zooms) the map. */
 .topo-background {

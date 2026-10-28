@@ -1,4 +1,5 @@
 import published from "../../content/photography/published.json";
+import { photographyCategories } from "@/data/photography";
 
 export type PhotographyImage = {
   src: string;
@@ -20,9 +21,20 @@ export type PhotographyGallery = {
   images: PhotographyImage[];
 };
 
+const areaOrder = (category: string) => {
+  const index = (photographyCategories as readonly string[]).indexOf(category);
+  return index < 0 ? photographyCategories.length : index;
+};
+
 // Only explicit publishing writes this portable, public catalog. Drafts and
 // personal originals are never read by the application or a Vercel build.
-export const photographyGalleries = published as PhotographyGallery[];
+// Galleries follow the content-area order, whatever order they were published in.
+export const photographyGalleries = [...(published as PhotographyGallery[])].sort((a, b) => areaOrder(a.category) - areaOrder(b.category));
+
+// The portfolio: every image marked portfolio, labelled with its gallery for the filters and the viewer.
+export const portfolioPhotos = photographyGalleries.flatMap((gallery) =>
+  gallery.images.filter((image) => image.portfolio).map((image) => ({ ...image, area: gallery.title })),
+);
 
 export const photographyStudies = [
   {

@@ -1,5 +1,15 @@
 import Image from "next/image";
 import type { PhotographyImage } from "@/lib/photography";
+import { picTimeClientUrl } from "@/data/photography";
+
+// Clients find their delivered galleries on Pic-Time; the portfolio and galleries here are the public work.
+export function ClientGalleryLine() {
+  return (
+    <p className="m-0 text-[0.8rem] tracking-[0.04em] text-stone-500">
+      looking for your photos? <a href={picTimeClientUrl} className="border-b border-current text-olive">find your gallery</a>
+    </p>
+  );
+}
 
 type Shape = "portrait" | "landscape" | "square";
 

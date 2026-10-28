@@ -19,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 FIELDS = {"slug", "category", "title", "subtitle", "description", "visibility", "publicApproved", "picTimeUrl", "images"}
 IMAGE_FIELDS = {"source", "alt", "caption", "shape", "portfolio"}
+MAX_IMAGES = 60  # a gallery is one content area's public set; client deliveries stay on Pic-Time
+LONG_EDGE = 2048  # prepare: longest side of a web derivative, enough for the full-screen viewer
+QUALITY = 82
 
 
 class PhotographyError(ValueError):
@@ -145,8 +148,8 @@ def validate(path):
                 or not re.fullmatch(r"/[A-Za-z0-9/_-]*", parsed.path)
                 or any(part.lower() in {"professional", "login", "invite", "invitation", "access", "admin"} for part in parsed.path.split("/"))):
             raise PhotographyError("Use an ordinary HTTPS public Pic-Time gallery URL on your host, without account paths, credentials, queries, or fragments.")
-    if not isinstance(data["images"], list) or len(data["images"]) > 12:
-        raise PhotographyError("images must be a list of at most 12 approved web derivatives.")
+    if not isinstance(data["images"], list) or len(data["images"]) > MAX_IMAGES:
+        raise PhotographyError(f"images must be a list of at most {MAX_IMAGES} approved web derivatives.")
     assets = []
     digest = hashlib.sha256(raw)
     seen = set()
@@ -200,6 +203,62 @@ def validate(path):
         digest.update(content)
         assets.append({"bytes": content, "extension": extension, "hash": asset_hash, "width": width, "height": height, "item": item})
     return data, assets, digest.hexdigest()
+
+
+def prepare(path, originals, replace=False):
+    """Write a clean web derivative of each named original into the draft folder and list it in the manifest.
+
+    Reads only the files given; originals are never changed. New entries get an empty alt, so check refuses the
+    draft until every photograph is described."""
+    try:
+        from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
+    except ImportError:
+        raise PhotographyError("prepare requires Pillow; install the documented photography requirements.") from None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        raise PhotographyError("Cannot read a valid gallery JSON file.") from None
+    if not isinstance(data, dict) or set(data) != FIELDS or not isinstance(data["images"], list):
+        raise PhotographyError("Gallery fields must match the draft template; do not store client data here.")
+    listed = {item.get("source") for item in data["images"] if isinstance(item, dict)}
+    srgb = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB"))
+    written = []
+    try:
+        for original in originals:
+            name = f"{original.stem}.jpg"
+            destination = path.parent / name
+            if destination.is_symlink() or (destination.exists() and not replace):
+                raise PhotographyError(f"{name} already exists in the draft folder; pass --replace to rebuild it.")
+            try:
+                with Image.open(original) as image:
+                    image = ImageOps.exif_transpose(image)
+                    icc = image.info.get("icc_profile")
+                    image = image.convert("RGB")
+                    image.info = {}  # Pillow would otherwise carry the source's comment into the derivative
+                    if icc:
+                        source_profile = ImageCms.ImageCmsProfile(io.BytesIO(icc))
+                        if "srgb" not in ImageCms.getProfileDescription(source_profile).lower():
+                            image = ImageCms.profileToProfile(image, source_profile, srgb, outputMode="RGB")
+                            icc = srgb.tobytes()
+                    image.thumbnail((LONG_EDGE, LONG_EDGE), Image.LANCZOS)
+                    buffer = io.BytesIO()
+                    # No exif or comment is passed, so none is written; only the colour profile travels with the pixels.
+                    image.save(buffer, "JPEG", quality=QUALITY, optimize=True, progressive=True, **({"icc_profile": icc} if icc else {}))
+                    width, height = image.size
+            except (UnidentifiedImageError, OSError):
+                raise PhotographyError(f"{original.name} could not be read; export a JPEG, PNG or TIFF from your editor first.") from None
+            destination.write_bytes(buffer.getvalue())
+            if name not in listed:
+                ratio = width / height
+                shape = "square" if 0.95 <= ratio <= 1.05 else "landscape" if ratio > 1 else "portrait"
+                data["images"].append({"source": name, "alt": "", "caption": "", "shape": shape, "portfolio": True})
+                listed.add(name)
+            written.append(name)
+    finally:
+        # Files written before a failure stay listed, so a rerun with the remaining originals picks up where this stopped.
+        if written:
+            atomic_json(path, data)
+    return written
 
 
 def review(path, root=ROOT):
@@ -269,9 +328,12 @@ def main():
     commands = parser.add_subparsers(dest="command", required=True)
     draft = commands.add_parser("draft")
     draft.add_argument("slug")
-    for name in ("check", "review", "publish"):
+    for name in ("prepare", "check", "review", "publish"):
         command = commands.add_parser(name)
         command.add_argument("manifest", type=Path)
+        if name == "prepare":
+            command.add_argument("originals", type=Path, nargs="+")
+            command.add_argument("--replace", action="store_true")
         if name == "publish":
             command.add_argument("--dry-run", action="store_true")
             command.add_argument("--confirm-public", action="store_true")
@@ -287,6 +349,9 @@ def main():
                 json.dump({"slug": args.slug, "category": "photography", "title": "Untitled collection", "subtitle": "", "description": "A collection in progress.", "visibility": "public", "publicApproved": False, "picTimeUrl": "", "images": []}, handle, indent=2)
                 handle.write("\n")
             print(f"Draft created: {path.relative_to(ROOT)}")
+        elif args.command == "prepare":
+            written = prepare(args.manifest, args.originals, replace=args.replace)
+            print(f"Prepared {len(written)} web derivatives (at most {LONG_EDGE}px, no camera or location data). Describe each in alt, then check.")
         elif args.command == "check":
             data, assets, _ = validate(args.manifest)
             print(f"Valid draft: {len(assets)} derivatives. Public approval: {data['publicApproved']}. Nothing published.")
