@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MusicTagline } from "@/components/site/music-tagline";
+import { PostSoundtrack } from "@/components/site/post-soundtrack";
 import { VentureShell } from "@/components/site/site-content";
 import { getSfiTagColor } from "@/lib/sfi-posts";
 import { formatVentureHeaderDate, getAllVentureEntries, getVentureEntry } from "@/lib/venture-entries";
@@ -53,6 +54,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
               trip: {entry.trip ?? "to add"}
             </p>
             <MusicTagline music={entry.music} className="mt-1" />
+            <PostSoundtrack music={entry.music} />
             {(entry.collections.length > 0 || entry.tags.length > 0) && (
               <ul aria-label="post tags and collections" className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
                 {entry.collections.map((collection) => (

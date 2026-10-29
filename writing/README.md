@@ -559,7 +559,7 @@ The machine-readable contract is [`writing/post.schema.json`](../writing/post.sc
 | `trip` | author | Optional public trip or grouping name for either blog, such as `La Vida August 2026 M1`. Venture requires one; unrelated SFI posts may use `null`. |
 | `thread` | author | Optional lowercase, hyphenated slug shared by several entries in one story, trip, or series. |
 | `slug` | commands, author may override | `NNNN-title-subtitle-YYYYMMDD`, automatically derived from entry, title, subtitle, and date. Draft creates a provisional date suffix; first publish finalizes it, the folder, and any Word-derived HTML filename. A manual slug requires an explicit date. |
-| `music` | author | Optional tagline with required `title` and `artist`, plus optional `album` and absolute `url`. Use `null` for no song. |
+| `music` | author | Optional tagline with required `title` and `artist`, plus optional `album` and absolute `url`. A Spotify track link as the `url` also offers readers the song in Spotify's player (see below). Use `null` for no song. |
 | `tags` | author | Manual descriptive tags. Every Venture post must include `venture`. |
 | `blog` | author at draft creation | `sfi` for a general entry or `venture` for the Venture subset. |
 | `collections` | author | Optional collection slugs such as `northeast-115`, `national-parks`, or `travels`. |
@@ -570,12 +570,19 @@ The machine-readable contract is [`writing/post.schema.json`](../writing/post.sc
 
 ```json
 "music": {
-  "title": "Sweet Heat Lightning",
-  "artist": "Gregory Alan Isakov",
-  "album": "Appaloosa Bones",
-  "url": "https://example.com/song"
+  "title": "Water & Wanderlust",
+  "artist": "Yebba",
+  "album": "Jean",
+  "url": "https://open.spotify.com/track/1MqqCX67EWjbYn6pUjMGxQ"
 }
 ```
+
+When `url` is a Spotify track link (`https://open.spotify.com/track/...`; copy it from Spotify with Share → Copy Song Link), the
+entry page shows "♪ listen while you read" under the song credit. Nothing loads from Spotify until a reader taps it. Spotify's
+player then plays the song: a preview clip that Spotify chooses (often 15 to 30 seconds) for readers not signed in to Spotify,
+the full song for readers who are. When it ends, it rests for 15 seconds and plays again, until the reader pauses it or taps
+"stop the music". Spotify's player has no volume control, so the song cannot fade in or out. Any other link keeps the credit
+as a plain link.
 
 If there is no music tagline, use:
 

@@ -59,7 +59,7 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
     <JournalShell title={post.title} showTitle={false} years={years} backLink={[postYear, `/scope-for-imagination/${postYear}`]}>
       <div className="w-full">
         <div className="not-prose">
-          <SfiPostHeader post={post} large className="border-b border-stone-300 pb-7 dark:border-stone-700" />
+          <SfiPostHeader post={post} large listen className="border-b border-stone-300 pb-7 dark:border-stone-700" />
         </div>
 
         <div className="entry-body prose prose-stone mt-10 w-full max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-olive prose-img:my-10 prose-img:w-full">
