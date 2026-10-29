@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MusicTagline } from "@/components/site/music-tagline";
 import { spotifyTrackUri, type MusicCredit } from "@/lib/music-credit";
 
-// "Listen while you read": the post's song in Spotify's own player, which plays a preview clip (Spotify picks it, often
-// 15 to 30 seconds) unless the reader is signed in to Spotify. Nothing loads from Spotify until the reader asks. When the song (or preview)
-// ends, the player rests and then plays it again. Spotify's player has no volume control, so there are no fades.
+// The song credit on an entry's own page, with its note as a quiet play button. Tapping the note opens Spotify's
+// compact player under the credit and plays the song: a preview clip (Spotify picks it, often 15 to 30 seconds) unless
+// the reader is signed in to Spotify. When it ends, it rests and plays again; tapping the note stops it and the player
+// goes away. Nothing loads from Spotify until then.
+//
+// Spotify's terms require its player to be shown, unaltered, while it plays, and it has no volume control, so the song
+// cannot fade or play out of sight; browsers also block sound until the reader taps. Hence a tap, not autoplay.
 // API: https://developer.spotify.com/documentation/embeds/references/iframe-api
 
 type PlaybackState = { isPaused: boolean; isBuffering: boolean; duration: number; position: number };
@@ -51,14 +56,14 @@ function loadSpotifyApi(): Promise<IframeApi> {
   return apiPromise;
 }
 
-export function PostSoundtrack({ music }: { music?: MusicCredit | null }) {
+export function PlayableMusicTagline({ music, className = "" }: { music?: MusicCredit | null; className?: string }) {
   const uri = spotifyTrackUri(music);
-  const [open, setOpen] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
   const holder = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!open || !uri || !holder.current) return;
+    if (!playing || !uri || !holder.current) return;
     const wrapper = holder.current;
     let controller: EmbedController | null = null;
     let restTimer: number | undefined;
@@ -98,12 +103,12 @@ export function PostSoundtrack({ music }: { music?: MusicCredit | null }) {
             return;
           }
           controller = embed;
-          // The reader just asked, so start right away (browsers that want a tap on the player itself will show it).
+          // The reader just tapped, so start right away (browsers that want a tap on the player itself will show it).
           embed.addListener("ready", () => embed.play());
           embed.addListener("playback_update", ({ data }) => {
             const { duration, position } = data;
-            // At the end the player reports position = duration without ever saying it paused, and a preview's
-            // duration is the clip's own length (often 15 to 30 seconds), so position alone tells us it finished.
+            // At the end the player reports position = duration without saying it paused, and a preview's duration is
+            // the clip's own length, so position alone tells us it finished.
             if (duration > 0 && position >= duration - END_SLACK_MS) {
               if (ended) return;
               ended = true;
@@ -111,15 +116,16 @@ export function PostSoundtrack({ music }: { music?: MusicCredit | null }) {
               restTimer = window.setTimeout(playAgain, REST_MS);
               return;
             }
-            // Anything else (playing again, or the reader pausing mid-song) cancels a pending replay; a reader's
-            // pause is left alone until they press play.
+            // Playing again, or the reader pausing mid-song: cancel a pending replay and leave a pause alone.
             ended = false;
             clearRest();
           });
         });
       })
       .catch(() => {
-        if (!cancelled) setFailed(true);
+        if (cancelled) return;
+        setPlaying(false);
+        setUnavailable(true);
       });
 
     return () => {
@@ -128,36 +134,32 @@ export function PostSoundtrack({ music }: { music?: MusicCredit | null }) {
       controller?.destroy();
       wrapper.replaceChildren();
     };
-  }, [open, uri]);
+  }, [playing, uri]);
 
-  if (!uri || failed) return null;
+  if (!uri || unavailable) return <MusicTagline music={music} className={className} />;
 
-  const buttonClass =
-    "cursor-pointer text-xs leading-6 text-olive hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal";
+  const note = (
+    <button
+      type="button"
+      aria-pressed={playing}
+      aria-label={playing ? `Stop ${music?.title}` : `Play a preview of ${music?.title}`}
+      title={playing ? "stop" : "play a preview"}
+      onClick={() => setPlaying((value) => !value)}
+      className={`-m-1 cursor-pointer p-1 text-[0.7rem] leading-none transition-colors hover:text-olive focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-signal ${
+        playing ? "text-olive motion-safe:animate-pulse" : "text-inherit"
+      }`}
+    >
+      ♪
+    </button>
+  );
 
   return (
-    <div className="space-y-2">
-      {open ? (
-        <>
-          {/* Clipped to the player's own 12px rounding: at night the browser paints a light backdrop behind Spotify's
-              light-scheme page, which would otherwise show at the corners. */}
-          <div
-            ref={holder}
-            className="max-w-md overflow-hidden rounded-[12px] [&_iframe]:block"
-            aria-label={`${music?.title} by ${music?.artist}, in Spotify's player`}
-          />
-          <p className="flex flex-wrap items-baseline gap-x-2 text-[0.7rem] leading-5 text-stone-450">
-            <span>a preview unless you are signed in to Spotify; it plays again after a short rest</span>
-            <span aria-hidden="true">•</span>
-            <button type="button" className={buttonClass} onClick={() => setOpen(false)}>
-              stop the music
-            </button>
-          </p>
-        </>
-      ) : (
-        <button type="button" className={buttonClass} onClick={() => setOpen(true)}>
-          <span aria-hidden="true">♪ </span>listen while you read
-        </button>
+    <div className={className}>
+      <MusicTagline music={music} icon={note} />
+      {playing && (
+        // Clipped to the player's own 12px rounding: at night the browser paints a light backdrop behind Spotify's
+        // light-scheme page, which would otherwise show at the corners.
+        <div ref={holder} className="mt-1 max-w-xs overflow-hidden rounded-[12px] [&_iframe]:block" />
       )}
     </div>
   );

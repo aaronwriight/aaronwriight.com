@@ -578,11 +578,12 @@ The machine-readable contract is [`writing/post.schema.json`](../writing/post.sc
 ```
 
 When `url` is a Spotify track link (`https://open.spotify.com/track/...`; copy it from Spotify with Share → Copy Song Link), the
-entry page shows "♪ listen while you read" under the song credit. Nothing loads from Spotify until a reader taps it. Spotify's
-player then plays the song: a preview clip that Spotify chooses (often 15 to 30 seconds) for readers not signed in to Spotify,
-the full song for readers who are. When it ends, it rests for 15 seconds and plays again, until the reader pauses it or taps
-"stop the music". Spotify's player has no volume control, so the song cannot fade in or out. Any other link keeps the credit
-as a plain link.
+♪ in front of the song credit on the entry page becomes a quiet play button. Nothing loads from Spotify until a reader taps it.
+Spotify's compact player then appears under the credit and plays the song: a preview clip that Spotify chooses (often 15 to 30
+seconds) for readers not signed in to Spotify, the full song for readers who are. When it ends, it rests for 15 seconds and plays
+again; a pause in the player is left alone, and tapping the ♪ again stops the song and hides the player. Spotify's terms require
+its player to be visible while it plays and it has no volume control, so the song cannot fade or start on its own. Any other
+link keeps the credit as a plain link.
 
 If there is no music tagline, use:
 

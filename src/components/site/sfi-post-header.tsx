@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MusicTagline } from "@/components/site/music-tagline";
-import { PostSoundtrack } from "@/components/site/post-soundtrack";
+import { PlayableMusicTagline } from "@/components/site/song-preview";
 import type { SfiPost } from "@/lib/sfi-posts";
 import { formatSfiHeaderDate, getSfiTagColor } from "@/lib/sfi-post-display";
 
@@ -19,7 +19,7 @@ export function SfiPostHeader({
   post: SfiPostHeaderData;
   href?: string;
   large?: boolean;
-  /** Offer the song in Spotify's player (only on the entry's own page, never in lists). */
+  /** Make the song credit's note a play button (only on the entry's own page, never in lists). */
   listen?: boolean;
   className?: string;
 }) {
@@ -55,8 +55,7 @@ export function SfiPostHeader({
           • {post.location} • {post.entry}
         </p>
 
-        <MusicTagline music={post.music} />
-        {listen && <PostSoundtrack music={post.music} />}
+        {listen ? <PlayableMusicTagline music={post.music} /> : <MusicTagline music={post.music} />}
 
         {post.tags.length > 0 && (
           <ul aria-label="post tags" className="flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
