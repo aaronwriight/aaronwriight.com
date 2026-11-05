@@ -296,18 +296,8 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
   line-height: 1.7;
 }
 
-.photo-collage {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 1.75rem;
-  padding-block: 1rem 2rem;
-}
-
-.photo-collage-item { min-width: 0; margin: 0; }
-.photo-collage-item:nth-child(even) { padding-top: 4rem; }
-.photo-collage-item--square { padding-inline: 1rem; }
-.photo-placeholder, .photo-image {
+/* Empty frames standing in for photographs; the portfolio and gallery studies set them out as .photo-spread items. */
+.photo-placeholder {
   position: relative;
   width: 100%;
   border: 1px solid var(--color-stone-300);
@@ -341,9 +331,8 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
   letter-spacing: 0.08em;
   color: var(--color-stone-600);
 }
-.photo-image img { width: 100%; height: 100%; object-fit: contain; }
 /* paper-tint darkens by itself at night; the frames step their lines up so they hold on the dark paper. */
-html.dark .photo-placeholder, html.dark .photo-image { border-color: var(--color-stone-600); }
+html.dark .photo-placeholder { border-color: var(--color-stone-600); }
 html.dark .photo-placeholder-frame { border-color: var(--color-stone-700); }
 html.dark .photo-placeholder-number, html.dark .photo-placeholder-label { color: var(--color-stone-400); }
 /* Photographs in journal and Venture entries sit in a frame like the gallery stand-ins: a warm fill and a hairline
@@ -358,14 +347,7 @@ html.dark .entry-body img, html.dark .entry-body figure { border-color: var(--co
 html.dark .entry-body figure img { border-color: var(--color-stone-700); }
 html.dark .entry-body figure figcaption { color: var(--color-stone-400); }
 @media (max-width: 639px) {
-  .photo-collage { gap: 1rem; }
-  .photo-collage-item:nth-child(even) { padding-top: 2rem; }
-  .photo-collage-item--square { padding-inline: 0; }
   .photo-placeholder-label { letter-spacing: 0; }
-}
-@media (max-width: 359px) {
-  .photo-collage { grid-template-columns: minmax(0, 1fr); }
-  .photo-collage-item:nth-child(even) { padding-top: 0; }
 }
 
 /* Justified photo rows: each tile grows in proportion to its aspect ratio, so every tile in a row shares one height. */

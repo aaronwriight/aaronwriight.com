@@ -1,6 +1,5 @@
-import Image from "next/image";
-import type { PhotographyImage } from "@/lib/photography";
 import { picTimeClientUrl } from "@/data/photography";
+import { spreadPlace } from "@/components/photography/spread-place";
 
 // Clients find their delivered galleries on Pic-Time; the portfolio and galleries here are the public work.
 export function ClientGalleryLine() {
@@ -23,18 +22,13 @@ export function PhotoPlaceholder({ shape = "landscape", number = "01", compact =
   );
 }
 
-export function PhotoCollage({ images = [], shapes = ["portrait", "landscape", "square", "square", "landscape", "portrait"] }: { images?: PhotographyImage[]; shapes?: readonly Shape[] }) {
+// Empty frames set out like the portfolio's photographs (spread-place.ts): staggered pairs on wide screens, varied
+// widths in one column on narrow ones. Seven shapes make one full turn of the arrangement.
+export function PhotoCollage({ shapes = ["portrait", "landscape", "square", "square", "landscape", "portrait", "landscape"] }: { shapes?: readonly Shape[] }) {
   return (
-    <div className="photo-collage not-prose">
-      {images.length ? images.map((item) => (
-        <figure key={item.src} className={`photo-collage-item photo-collage-item--${item.shape}`}>
-          <div className={`photo-image photo-placeholder--${item.shape}`}>
-            <Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes="(min-width: 1280px) 480px, (min-width: 768px) 40vw, 90vw" />
-          </div>
-          {item.caption && <figcaption className="mt-3 text-xs leading-relaxed text-stone-500">{item.caption}</figcaption>}
-        </figure>
-      )) : shapes.map((shape, index) => (
-        <div key={index} className={`photo-collage-item photo-collage-item--${shape}`}>
+    <div className="photo-spread not-prose">
+      {shapes.map((shape, index) => (
+        <div key={index} className="photo-spread-item" style={spreadPlace(index, shape !== "landscape").style}>
           <PhotoPlaceholder shape={shape} number={String(index + 1).padStart(2, "0")} />
         </div>
       ))}
