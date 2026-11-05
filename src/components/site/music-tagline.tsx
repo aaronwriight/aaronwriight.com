@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import type { MusicCredit } from "@/lib/music-credit";
 
 export function MusicIcon() {
@@ -8,12 +7,9 @@ export function MusicIcon() {
 export function MusicTagline({
   music,
   className = "",
-  icon = <MusicIcon />,
 }: {
   music?: MusicCredit | null;
   className?: string;
-  /** What stands in front of the credit; the entry page swaps the note for a play button (song-preview.tsx). */
-  icon?: ReactNode;
 }) {
   if (!music) return null;
 
@@ -27,7 +23,7 @@ export function MusicTagline({
     <p
       className={`flex flex-wrap items-baseline gap-x-1 text-xs leading-6 text-stone-450 ${className}`}
     >
-      {icon}
+      <MusicIcon />
       <span aria-hidden="true" className="text-[0.7rem]">
         •
       </span>

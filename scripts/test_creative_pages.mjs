@@ -174,21 +174,6 @@ try {
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `SFI mailing list overflow at ${width}`);
     await page.screenshot({ path: `${artifacts}/sfi-mailing-list-${width}.png`, fullPage: true });
 
-    // Song preview: entry 0001 links its song on Spotify, so on its page the credit's note is a play button (never in
-    // lists), and nothing is requested from Spotify until the reader taps it (external traffic is blocked here, so the
-    // player then bows out and the plain credit stays).
-    const spotifyRequests = [];
-    page.on("request", request => { if (new URL(request.url()).hostname.endsWith("spotify.com")) spotifyRequests.push(request.url()); });
-    await page.goto(base + "/scope-for-imagination/0001", { waitUntil: "networkidle" });
-    const listen = page.getByRole("button", { name: "Play a preview of Water & Wanderlust" });
-    assert(await listen.isVisible(), "The entry offers its song");
-    assert.equal(spotifyRequests.length, 0, "Nothing loads from Spotify before the reader asks");
-    const playerRequested = page.waitForRequest(request => request.url().startsWith("https://open.spotify.com/embed/iframe-api/v1"));
-    await listen.click();
-    await playerRequested;
-    await page.goto(base + "/scope-for-imagination/index", { waitUntil: "networkidle" });
-    assert.equal(await page.getByRole("button", { name: /Play a preview of/ }).count(), 0, "Lists show the credit, not the player");
-
     // Contour-map background: present on every page, photography included, and never wider than the page.
     await page.goto(base + "/creative", { waitUntil: "networkidle" });
     await page.waitForFunction(() => document.documentElement.dataset.topo === "on");
@@ -207,7 +192,7 @@ try {
   assert(await noScriptPage.getByRole("button", { name: "prepare an inquiry" }).isDisabled(), "No-JS form cannot submit personal data to the URL");
   await noScript.close();
   assert.deepEqual(errors, []);
-  console.log("Creative pages: desktop/mobile, light/dark, placeholder boundaries, canonical URLs, Creative redirects, contact separation, conditional booking validation/privacy, no-JS safety, mocked subscription states, the song preview, and the contour background passed.");
+  console.log("Creative pages: desktop/mobile, light/dark, placeholder boundaries, canonical URLs, Creative redirects, contact separation, conditional booking validation/privacy, no-JS safety, mocked subscription states, and the contour background passed.");
   console.log(`Screenshots: ${artifacts}`);
 } finally {
   await browser.close();

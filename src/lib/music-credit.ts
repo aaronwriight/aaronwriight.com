@@ -16,15 +16,6 @@ function isHttpUrl(value: string): boolean {
   }
 }
 
-/**
- * The Spotify track URI ("spotify:track:<id>") when the credit links to a Spotify track, else null. A Spotify link is
- * what turns on the post's "listen while you read" player.
- */
-export function spotifyTrackUri(music: MusicCredit | null | undefined): string | null {
-  const match = music?.url?.match(/^https:\/\/open\.spotify\.com\/(?:intl-[a-z-]+\/)?track\/([A-Za-z0-9]{22})(?:[/?#]|$)/);
-  return match ? `spotify:track:${match[1]}` : null;
-}
-
 export function isMusicCredit(value: unknown): value is MusicCredit {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
 

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { MusicTagline } from "@/components/site/music-tagline";
-import { PlayableMusicTagline } from "@/components/site/song-preview";
 import type { SfiPost } from "@/lib/sfi-posts";
 import { formatSfiHeaderDate, getSfiTagColor } from "@/lib/sfi-post-display";
 
@@ -13,14 +12,11 @@ export function SfiPostHeader({
   post,
   href,
   large = false,
-  listen = false,
   className = "",
 }: {
   post: SfiPostHeaderData;
   href?: string;
   large?: boolean;
-  /** Make the song credit's note a play button (only on the entry's own page, never in lists). */
-  listen?: boolean;
   className?: string;
 }) {
   return (
@@ -55,7 +51,7 @@ export function SfiPostHeader({
           • {post.location} • {post.entry}
         </p>
 
-        {listen ? <PlayableMusicTagline music={post.music} /> : <MusicTagline music={post.music} />}
+        <MusicTagline music={post.music} />
 
         {post.tags.length > 0 && (
           <ul aria-label="post tags" className="flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
