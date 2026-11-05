@@ -28,7 +28,7 @@ export default function ContactPage() {
           </p>
           <p className="text-xs lowercase tracking-wider">
             <Link
-              href="/files/cv/WrightAaron_cv_2026_current.pdf?v=2026-10-27"
+              href="/files/cv/WrightAaron_cv_2026_current.pdf?v=2026-11-04"
               target="_blank"
               rel="noopener noreferrer"
               className="text-olive"
@@ -36,7 +36,14 @@ export default function ContactPage() {
               cv
             </Link>{" "}
             <span className="text-stone-400">|</span>{" "}
-            <Link href="/resume" className="text-olive">resume</Link>
+            <Link
+              href="/files/resume/WrightAaron_resume_Research_2026_current.pdf?v=2026-11-04"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-olive"
+            >
+              resume
+            </Link>
           </p>
         </div>
       </div>

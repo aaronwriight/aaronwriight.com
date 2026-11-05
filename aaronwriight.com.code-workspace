@@ -4,9 +4,6 @@
 			"path": "."
 		},
 		{
-			"path": "../aaronwriight.github.io"
-		},
-		{
 			"path": "../tidytuesday"
 		},
 		{
@@ -23,6 +20,9 @@
 		},
 		{
 			"path": "../../../../../cb_ch_conversation"
+		},
+		{
+			"path": "../../../../cv"
 		}
 	],
 	"settings": {}
