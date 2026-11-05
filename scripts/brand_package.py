@@ -46,7 +46,7 @@ PACKAGE = ROOT / "brand-package"
 PACKAGE_TMP = ROOT / ".brand-package.tmp"  # built here, then moved over PACKAGE, so a failed run leaves the old one
 GROUNDS = ROOT / "images" / "brand"
 SECTIONS = ROOT / "src" / "app" / "(site)"
-MASTER_DRAWING = ROOT / "images" / "logo_color.png"  # keep in step with MASTER in scripts/brand_assets.py
+MASTER_DRAWING = ROOT / "images" / "logo_vmono.png"
 FONT_DIR = Path(os.environ.get(
     "BRAND_FONT_DIR", "/usr/local/texlive/2024/texmf-dist/fonts/truetype/catharsis/cormorantgaramond"))
 # The fonts' licence: beside the fonts, else where TeX Live keeps it.
