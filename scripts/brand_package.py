@@ -46,7 +46,9 @@ PACKAGE = ROOT / "brand-package"
 PACKAGE_TMP = ROOT / ".brand-package.tmp"  # built here, then moved over PACKAGE, so a failed run leaves the old one
 GROUNDS = ROOT / "images" / "brand"
 SECTIONS = ROOT / "src" / "app" / "(site)"
-MASTER_DRAWING = ROOT / "images" / "logo_vmono.png"
+# Photography has its own route group (its own layout, served at frameitwright.com) since November 2026.
+SECTION_GROUPS = {"frame-it-wright-photography": ROOT / "src" / "app" / "(photography)"}
+MASTER_DRAWING = ROOT / "images" / "logo_orig_ink.png"
 FONT_DIR = Path(os.environ.get(
     "BRAND_FONT_DIR", "/usr/local/texlive/2024/texmf-dist/fonts/truetype/catharsis/cormorantgaramond"))
 # The fonts' licence: beside the fonts, else where TeX Live keeps it.
@@ -282,7 +284,7 @@ def build_web(brand: Brand, marks: dict[str, Image.Image]) -> None:
         for name, (width, height) in BANNERS.items():
             banner(brand, marks["day"], width, height).save(out / name, quality=90, optimize=True, progressive=True)
 
-    section = SECTIONS / brand.section
+    section = SECTION_GROUPS.get(brand.section, SECTIONS) / brand.section
     alt = f"{brand.name}: {brand.line}"
     for stem in ("opengraph-image", "twitter-image"):
         shutil.copyfile(out / "card.jpg", section / f"{stem}.jpg")
