@@ -23,6 +23,12 @@
 		},
 		{
 			"path": "../../../../cv"
+		},
+		{
+			"path": "../../../../resources/headshot:pfp"
+		},
+		{
+			"path": "../cortex"
 		}
 	],
 	"settings": {}
