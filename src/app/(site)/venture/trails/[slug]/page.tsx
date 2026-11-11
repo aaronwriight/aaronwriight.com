@@ -116,14 +116,14 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
           </div>
         </dl>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">field notes</h2>
+        <section>
+          <h2 className="section-heading">field notes</h2>
           {peak.ascents.length === 0 ? (
-            <p className="mt-5 border-t border-stone-300 pt-5 font-serif text-sm italic text-stone-500 dark:border-stone-700">
+            <p className="font-serif text-sm italic text-stone-500">
               No field notes recorded yet.
             </p>
           ) : (
-            <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+            <div>
               {ascentsNewestFirst.map((ascent) => (
                 <div key={ascent.ordinal} className="border-b border-stone-300 py-6 dark:border-stone-700">
                   <p className="text-[0.65rem] lowercase tracking-widest text-olive">
@@ -145,14 +145,14 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
           )}
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">journal entries</h2>
+        <section>
+          <h2 className="section-heading">journal entries</h2>
           {linkedAscents.length === 0 ? (
-            <p className="mt-5 border-t border-stone-300 pt-5 font-serif text-sm italic text-stone-500 dark:border-stone-700">
+            <p className="font-serif text-sm italic text-stone-500">
               No journal entry linked yet.
             </p>
           ) : (
-            <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+            <div>
               {linkedAscents.map((ascent) => (
                 <Link
                   key={`${ascent.ordinal}-${ascent.entrySlug}`}
@@ -160,7 +160,7 @@ export default async function VentureTrailPage({ params }: { params: Promise<{ s
                   className="flex items-center justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-olive dark:border-stone-700"
                 >
                   <span>{formatOccurrence(ascent.ordinal, "ascent")}</span>
-                  <span aria-hidden="true">read →</span>
+                  <span aria-hidden="true">read</span>
                 </Link>
               ))}
             </div>

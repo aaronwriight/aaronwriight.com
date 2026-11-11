@@ -70,7 +70,7 @@ export function ProjectGroup({ id, title, description, projects }: {
   return (
     <section id={id} aria-labelledby={`${id}-heading`} className="not-prose space-y-5">
       <header>
-        <h2 id={`${id}-heading`} className="m-0 font-serif text-sm font-medium lowercase tracking-widest">{title}</h2>
+        <h2 id={`${id}-heading`} className="section-heading">{title}</h2>
         <p className="mb-0 mt-2 max-w-2xl text-sm leading-relaxed text-stone-500">{description}</p>
       </header>
       <div className="space-y-6">

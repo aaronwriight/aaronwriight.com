@@ -15,20 +15,20 @@ export default function AboutPage() {
   return (
     <WikiShell title="wiki">
       <div>
-        <h2 className="m-0  text-sm  font-medium antialiased"><b>bio</b></h2>
+        <h2>bio</h2>
         <p className="m-0 mt-2 text-sm  antialiased">
           A creative endeavor by <Link href="/contact">Aaron Wright</Link>.
         </p>
       </div>
       <div>
-        <h2 className="m-0  text-sm  font-medium antialiased"><b>nav</b></h2>
+        <h2>nav</h2>
         <p className="m-0 mt-2 text-sm antialiased">
           This site gathers a few threads of my life, from cognitive science, mentorship, creative interests, writing, and photography, to all the
           little things that broaden my scope for imagination. I hope you enjoy :)
         </p>
       </div>
       <div id="dev" className="scroll-mt-8">
-        <h2 className="m-0  text-sm  font-medium antialiased"><b>dev</b></h2>
+        <h2>dev</h2>
         <p className="m-0 mt-2 text-sm  antialiased">
           Written in React via <Link href="https://nextjs.org">Next.js</Link>, with{" "}
           <Link href="https://sanity.io">Sanity</Link> as the CMS and a few homemade tools for publishing the journal.

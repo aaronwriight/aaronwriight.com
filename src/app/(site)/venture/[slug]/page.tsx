@@ -1,3 +1,4 @@
+import { ReadingPanel } from "@/components/site/reading-panel";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MusicTagline } from "@/components/site/music-tagline";
@@ -38,7 +39,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
 
   return (
     <VentureShell title={entry.subtitle} showTitle={false} backLink={["index", "/venture/index"]}>
-      <div className="w-full max-w-3xl">
+      <ReadingPanel className="w-full max-w-3xl">
         <div className="not-prose">
           <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
             <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">{entry.title}</h1>
@@ -75,7 +76,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
           className="entry-body prose prose-stone mt-10 max-w-none font-serif text-sm leading-7 dark:prose-invert prose-headings:font-serif prose-a:text-olive prose-img:my-10 prose-img:w-full"
           dangerouslySetInnerHTML={{ __html: entry.bodyHtml }}
         />
-      </div>
+      </ReadingPanel>
     </VentureShell>
   );
 }

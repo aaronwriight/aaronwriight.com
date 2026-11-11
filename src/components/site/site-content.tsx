@@ -38,7 +38,7 @@ export function SitePageShell({
       <div className="site-wrap py-11">
         <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
           <PageHeader title={title} subtitle={subtitle} />
-          <div className="mt-8 space-y-5">{children}</div>
+          <div className="page-body mt-8 space-y-5">{children}</div>
         </article>
       </div>
     </main>
@@ -140,7 +140,7 @@ export function SectionPageShell({
       <div className="site-wrap py-11">
         <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
           {showTitle && <PageHeader title={title} subtitle={subtitle} />}
-          <div className={showTitle ? "mt-8 space-y-5" : "space-y-5"}>{children}</div>
+          <div className={showTitle ? "page-body mt-8 space-y-5" : "page-body space-y-5"}>{children}</div>
         </article>
       </div>
     </main>

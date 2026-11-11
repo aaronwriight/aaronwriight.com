@@ -91,14 +91,14 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
           </div>
         </dl>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">field notes</h2>
+        <section>
+          <h2 className="section-heading">field notes</h2>
           {park.visits.length === 0 ? (
-            <p className="mt-5 border-t border-stone-300 pt-5 font-serif text-sm italic text-stone-500 dark:border-stone-700">
+            <p className="font-serif text-sm italic text-stone-500">
               Field notes will begin with the first visit.
             </p>
           ) : (
-            <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+            <div>
               {visitsNewestFirst.map(({ visit, index }) => (
                 <article key={`${visit.date ?? "visit"}-${index}`} className="border-b border-stone-300 py-6 dark:border-stone-700">
                   <h3 className="m-0 text-[0.65rem] font-normal lowercase tracking-widest text-olive">
@@ -129,14 +129,14 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
           )}
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">journal entries</h2>
+        <section>
+          <h2 className="section-heading">journal entries</h2>
           {linkedVisits.length === 0 ? (
-            <p className="mt-5 border-t border-stone-300 pt-5 font-serif text-sm italic text-stone-500 dark:border-stone-700">
+            <p className="font-serif text-sm italic text-stone-500">
               No journal entry linked yet.
             </p>
           ) : (
-            <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+            <div>
               {linkedVisits.map(({ visit, index }) => (
                 <Link
                   key={`${visit.entrySlug}-${index}`}
@@ -144,7 +144,7 @@ export default async function VentureParkPage({ params }: { params: Promise<{ sl
                   className="flex items-baseline justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-stone-900 transition-colors hover:text-olive dark:border-stone-700 dark:text-stone-100"
                 >
                   <span>{formatOccurrence(index + 1, "visit")}</span>
-                  <span className="text-xs text-olive">read the journal entry →</span>
+                  <span className="text-xs text-olive">read the journal entry</span>
                 </Link>
               ))}
             </div>

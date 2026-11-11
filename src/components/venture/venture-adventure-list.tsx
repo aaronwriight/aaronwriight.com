@@ -156,7 +156,7 @@ function AdventureRows({ items }: { items: readonly VentureAdventureItem[] }) {
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-olive">
                 {journalHrefs.map((journalHref, index) => (
                   <Link key={journalHref} href={journalHref}>
-                    {journalHrefs.length === 1 ? "read the journal entry" : `read journal entry ${index + 1}`} →
+                    {journalHrefs.length === 1 ? "read the journal entry" : `read journal entry ${index + 1}`}
                   </Link>
                 ))}
               </div>

@@ -22,8 +22,8 @@ export function ScienceShell({
       <SectionBar section="cognitive science" href="/cognitive-science" links={scienceLinks} trail={near ? [near[0], near[1]] : undefined} current={title} />
       <div className="site-wrap py-11">
         <article className={articleClass} style={{ maxWidth: "56rem" }}>
-          <PageHeader title={title} subtitle={subtitle} accent={title === "resources"} />
-          <div className="mt-8 space-y-5">{children}</div>
+          <PageHeader title={title} subtitle={subtitle} />
+          <div className="page-body mt-8 space-y-5">{children}</div>
         </article>
       </div>
     </main>

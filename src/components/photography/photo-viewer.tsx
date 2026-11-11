@@ -45,10 +45,10 @@ export function PhotoViewer({ photos, index, onChange }: { photos: ViewerPhoto[]
               <Image key={current.src} src={current.src} alt={current.alt} fill sizes="100vw" draggable={false} className="object-contain" />
             </div>
             <button type="button" className="photo-mosaic-chip photo-viewer-nav left-4" onClick={() => step(-1)} aria-label="Previous photograph">
-              ← prev
+              prev
             </button>
             <button type="button" className="photo-mosaic-chip photo-viewer-nav right-4" onClick={() => step(1)} aria-label="Next photograph">
-              next →
+              next
             </button>
           </div>
           {current.caption && <p className="photo-viewer-caption">{current.caption}</p>}

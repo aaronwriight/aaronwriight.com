@@ -5,7 +5,7 @@ import { SfiPostHeader, type SfiPostHeaderData } from "@/components/site/sfi-pos
 export function LatestPost({ post, href }: { post: SfiPostHeaderData & { excerpt?: string }; href: string }) {
   return (
     <section aria-labelledby="latest-post" className="not-prose">
-      <h2 id="latest-post" className="mb-4 font-serif text-xs font-normal lowercase tracking-widest text-stone-500">the latest</h2>
+      <h2 id="latest-post" className="subsection-heading">the latest</h2>
       <article className="grid gap-x-10 gap-y-4 border-y border-stone-300 py-6 dark:border-stone-700 md:grid-cols-[minmax(0,1.1fr)_minmax(13rem,0.9fr)] md:items-end">
         <SfiPostHeader post={post} href={href} />
         {post.excerpt ? (

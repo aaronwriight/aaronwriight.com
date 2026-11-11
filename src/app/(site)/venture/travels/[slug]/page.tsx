@@ -84,9 +84,9 @@ export default async function VentureTravelDestinationPage({ params }: { params:
           </div>
         </dl>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">field notes</h2>
-          <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+        <section>
+          <h2 className="section-heading">field notes</h2>
+          <div>
             {visitsNewestFirst.map((visit) => (
               <article key={visit.ordinal} className="border-b border-stone-300 py-6 dark:border-stone-700">
                 <h3 className="m-0 text-[0.65rem] font-normal lowercase tracking-widest text-olive">
@@ -111,16 +111,16 @@ export default async function VentureTravelDestinationPage({ params }: { params:
           </div>
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-xs font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100">
+        <section>
+          <h2 className="section-heading">
             journal entries
           </h2>
           {linkedVisits.length === 0 ? (
-            <p className="mt-5 border-t border-stone-300 pt-5 font-serif text-sm italic text-stone-500 dark:border-stone-700">
+            <p className="font-serif text-sm italic text-stone-500">
               No journal entry linked yet.
             </p>
           ) : (
-            <div className="mt-5 border-t border-stone-300 dark:border-stone-700">
+            <div>
               {linkedVisits.map((visit) => (
                 <Link
                   key={`${visit.ordinal}-${visit.entrySlug}`}
@@ -128,7 +128,7 @@ export default async function VentureTravelDestinationPage({ params }: { params:
                   className="flex items-baseline justify-between gap-4 border-b border-stone-300 py-5 font-serif text-sm text-stone-900 transition-colors hover:text-olive dark:border-stone-700 dark:text-stone-100"
                 >
                   <span>{visitLabel(visit.ordinal)}</span>
-                  <span className="text-xs text-olive">read the journal entry →</span>
+                  <span className="text-xs text-olive">read the journal entry</span>
                 </Link>
               ))}
             </div>

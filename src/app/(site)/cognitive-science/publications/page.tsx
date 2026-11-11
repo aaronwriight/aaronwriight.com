@@ -16,7 +16,7 @@ export default function PublicationsPage() {
       </p>
 
       <section>
-        <p className="m-0 font-medium">papers</p>
+        <h2>papers</h2>
         <ul>
           <li>
             <p>
@@ -109,7 +109,7 @@ export default function PublicationsPage() {
       </section>
 
       <section>
-        <p className="m-0 font-medium">posters & presentations</p>
+        <h2>posters & presentations</h2>
         <ul>
           <li>
             Wolna, A., <strong>Wright, A.</strong>, Casto, C., Lipkin, B., & Fedorenko, E. (2025, March). The extended language network: Language
