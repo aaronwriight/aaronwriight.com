@@ -413,6 +413,15 @@
         "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
         "shape": "landscape",
         "portfolio": true
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/e11ca831f6029808b338d20031f79617e6144757be4b25a65b545a2c437ddfe3.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "Someone in a yellow blouse smiles softly at the camera while a person in a white off-shoulder dress kisses their cheek, sunlit trees behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
       }
     ]
   },
