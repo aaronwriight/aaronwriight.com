@@ -715,7 +715,7 @@ html.dark .site-nav-drop { box-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 12px 24px -
 @media (max-width: 767px) {
   .site-nav-drop, .site-nav-caret { display: none !important; }
 }
-@media (prefers-reduced-motion: reduce) { .site-nav-drop { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .site-nav-drop, .site-nav-item.has-drop:is(:hover, :focus-within) .site-nav-drop { transition: none; } }
 
 /* The "under construction" card a front-door plaque can show before letting people in. */
 .construction-card { width: min(92vw, 30rem); margin: auto; padding: 1.75rem 1.75rem 1.5rem; color: var(--site-text-primary); }
