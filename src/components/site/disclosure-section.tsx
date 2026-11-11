@@ -26,12 +26,13 @@ export function DisclosureSection({ id, title, count, children }: {
 
   return (
     <details ref={ref} id={id} className="group/disclosure scroll-mt-6 py-4">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal [&::-webkit-details-marker]:hidden">
+      {/* Pointed at, the title turns olive and underlines and the plus turns olive, so it reads as something to open. */}
+      <summary className="group/summary flex cursor-pointer list-none items-center justify-between gap-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal [&::-webkit-details-marker]:hidden">
         <span className="flex items-baseline gap-3">
-          <span className="font-serif text-base text-stone-900 dark:text-stone-100">{title}</span>
+          <span className="font-serif text-base text-stone-900 decoration-1 underline-offset-4 transition-colors group-hover/summary:text-olive group-hover/summary:underline group-focus-visible/summary:text-olive dark:text-stone-100">{title}</span>
           {count !== undefined && <span className="text-xs text-stone-500">{count}</span>}
         </span>
-        <span aria-hidden="true" className="text-lg text-stone-500 transition-transform group-open/disclosure:rotate-45">+</span>
+        <span aria-hidden="true" className="text-lg text-stone-500 transition-[transform,color] group-open/disclosure:rotate-45 group-hover/summary:text-olive">+</span>
       </summary>
       <div className="pb-3 pt-1 sm:pl-4">{children}</div>
     </details>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ScienceShell, TopicDetails } from "@/components/science/science-content";
-import { DisclosureSection } from "@/components/site/disclosure-section";
 
 export const metadata: Metadata = {
   title: "science about",
@@ -29,8 +28,9 @@ export default function CognitiveScienceAboutPage() {
       <p>Hi, I&apos;m Aaron! :)</p>
       <p>I&apos;m creative, but I try to be empirical too, lol.</p>
 
-      <div className="divide-y divide-stone-300 border-y border-stone-300 dark:divide-stone-700 dark:border-stone-700">
-        <DisclosureSection id="research-overview" title="Research overview">
+      {/* Research overview and timeline are open sections, not fold-outs. */}
+      <section id="research-overview" aria-labelledby="research-overview-title" className="scroll-mt-6 border-t border-stone-300 pt-6 dark:border-stone-700">
+        <h2 id="research-overview-title">Research overview</h2>
           <p>
             I study the <span className="text-olive"><em>social mind in dialogue</em></span>: how the human brain processes{" "}
             <span className="text-olive"><em>language</em></span> and structures{" "}
@@ -101,10 +101,11 @@ export default function CognitiveScienceAboutPage() {
             </li>
           </ul>
 
-          <p>The brain&apos;s functional landscape is yet largely unexplored. Otherwise, if I&apos;m not doing science, I&apos;m probably hiking.</p>
-        </DisclosureSection>
+          <p>If I&apos;m not doing science, I&apos;m probably hiking.</p>
+      </section>
 
-        <DisclosureSection id="timeline" title="Timeline">
+      <section id="timeline" aria-labelledby="timeline-title" className="scroll-mt-6 border-t border-stone-300 pt-6 dark:border-stone-700">
+        <h2 id="timeline-title">Timeline</h2>
           <p>
             I&apos;ve been privileged to work with and learn from several wonderful scholars, and my scientific lens is as much a product of their
             wisdom and prompting as it is formed around my own desire to mentor future scholars.
@@ -149,8 +150,7 @@ export default function CognitiveScienceAboutPage() {
               with and for one&apos;s community.
             </TimelineEntry>
           </ul>
-        </DisclosureSection>
-      </div>
+      </section>
     </ScienceShell>
   );
 }
