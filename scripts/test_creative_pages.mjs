@@ -13,6 +13,9 @@ await mkdir(artifacts, { recursive: true });
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || undefined });
 const errors = [];
 try {
+  // While the photography site is closed (PHOTOGRAPHY_LOCKED in next.config.mjs), every photography address serves only
+  // the under-construction page: check that instead of the pages, and skip the booking form until it reopens.
+  const photographyLocked = (await (await fetch(base + PHOTO)).text()).includes("under construction");
   for (const width of [1440, 390]) {
     const context = await browser.newContext({ viewport: { width, height: 1000 } });
     await context.route("**/*", route => new URL(route.request().url()).origin === base ? route.continue() : route.abort());
@@ -35,6 +38,13 @@ try {
     ]) {
       const response = await page.goto(base + path, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200, path);
+      if (photographyLocked && path.startsWith(PHOTO)) {
+        assert.equal(await page.locator("h1").innerText(), "Frame it Wright Photography", path);
+        assert((await page.locator("body").innerText()).includes("under construction"), path);
+        assert.equal(await page.locator('meta[name="robots"]').getAttribute("content"), "noindex, nofollow", path);
+        assert.equal(await page.locator('img[src*="photography"], img[srcset*="photography"]').count(), 0, `Closed photography shows no photographs: ${path}`);
+        continue;
+      }
       assert.equal(await page.locator("h1").innerText(), title);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `Overflow at ${width}: ${path}`);
       if (path.startsWith(PHOTO)) {
@@ -67,68 +77,71 @@ try {
       }
       assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), canonicalFor(path));
     }
-    await page.goto(base + "/frame-it-wright-photography/portfolio", { waitUntil: "networkidle" });
+    await page.goto(base + (photographyLocked ? "/creative" : `${PHOTO}/portfolio`), { waitUntil: "networkidle" });
     await page.getByRole("button", { name: "Switch to night mode" }).click();
     assert(await page.locator("html").evaluate(element => element.classList.contains("dark")));
     await page.screenshot({ path: `${artifacts}/portfolio-dark-${width}.png`, fullPage: true });
     await page.getByRole("button", { name: "Switch to light mode" }).click();
 
-    await page.goto(base + `${PHOTO}/mailing-list`, { waitUntil: "networkidle" });
-    assert.equal(new URL(page.url()).pathname, `${PHOTO}/contact`);
-    const inquiry = page.getByRole("form", { name: "Prepare a photography inquiry" });
-    const draft = inquiry.getByRole("link", { name: "open email draft" });
-    const prepare = inquiry.getByRole("button", { name: "prepare an inquiry" });
-    const shoots = ["wedding", "couples & engagement", "family, friends, & lifestyle", "graduation & seniors", "portraits", "events", "something else"];
-    assert.deepEqual(await inquiry.locator('input[name="shootType"]').evaluateAll(inputs => inputs.map(input => input.value)), shoots);
-    let inquiryRequests = 0;
-    const trackInquiry = request => { if (request.method() !== "GET") inquiryRequests++; };
-    page.on("request", trackInquiry);
-    await prepare.click();
-    assert.equal(await draft.count(), 0, "Empty inquiry cannot prepare a draft");
-    await inquiry.getByLabel("First name *", { exact: true }).fill("Test");
-    await inquiry.getByLabel("Last name *", { exact: true }).fill("Reader");
-    await inquiry.getByLabel("Email *", { exact: true }).fill("not-an-email");
-    await inquiry.getByRole("radio", { name: "couples & engagement", exact: true }).check({ force: true });
-    await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("unsure");
-    assert.equal(await inquiry.getByLabel("Location or area *", { exact: true }).count(), 0);
-    await inquiry.getByLabel("Scenery or vibe (optional)", { exact: true }).fill("A quiet trail at sunset");
-    await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("A relaxed celebration with friends.");
-    await prepare.click();
-    assert.equal(await draft.count(), 0, "Invalid email cannot prepare a draft");
-    await inquiry.getByLabel("Email *", { exact: true }).fill("offline@example.com");
-    await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("   ");
-    await prepare.click();
-    assert.equal(await draft.count(), 0, "Whitespace-only idea is invalid");
-    await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("A relaxed celebration with friends.");
-    await inquiry.getByLabel("Tell me about yourself! (optional)", { exact: true }).fill("We love hiking and music.");
-    await inquiry.getByLabel("Preferred date range or season (optional)", { exact: true }).fill("A weekend in October");
-    await inquiry.getByLabel("How far could you travel? (optional)", { exact: true }).fill("Within an hour");
-    await inquiry.getByLabel("I'd like to arrange a call about ideas and plans (optional)", { exact: true }).check();
-    await prepare.click();
-    let href = await draft.getAttribute("href");
-    assert(href.startsWith("mailto:frameitwright@gmail.com?"));
-    let body = new URL(href).searchParams.get("body");
-    for (const expected of ["First name: Test", "Last name: Reader", "Email: offline@example.com", "Shoot type: couples & engagement", "A quiet trail at sunset", "A little about me:", "We love hiking and music.", "A little about my idea:", "A relaxed celebration with friends.", "Within an hour", "Please email me to find a time."]) assert(body.includes(expected), expected);
-    assert.equal(await inquiry.locator('input[name="phone"]').getAttribute("required"), null);
-    await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("known");
-    assert.equal(await draft.count(), 0, "Changing the inquiry invalidates its draft");
-    assert.equal(await inquiry.getByLabel("Scenery or vibe (optional)", { exact: true }).count(), 0);
-    await prepare.click();
-    assert.equal(await draft.count(), 0, "Known location needs a location value");
-    await inquiry.getByLabel("Location or area *", { exact: true }).fill("Boston waterfront");
-    await prepare.click();
-    href = await draft.getAttribute("href");
-    body = new URL(href).searchParams.get("body");
-    assert(body.includes("Location: Boston waterfront"));
-    assert(!body.includes("A quiet trail at sunset"), "Hidden venue preferences are excluded");
-    assert.equal(inquiryRequests, 0, "Preparing an inquiry must never send contact details");
-    page.off("request", trackInquiry);
-    assert(!page.url().includes("offline@example.com"));
+    if (!photographyLocked) {
+      await page.goto(base + `${PHOTO}/mailing-list`, { waitUntil: "networkidle" });
+      assert.equal(new URL(page.url()).pathname, `${PHOTO}/contact`);
+      const inquiry = page.getByRole("form", { name: "Prepare a photography inquiry" });
+      const draft = inquiry.getByRole("link", { name: "open email draft" });
+      const prepare = inquiry.getByRole("button", { name: "prepare an inquiry" });
+      const shoots = ["wedding", "couples & engagement", "family, friends, & lifestyle", "graduation & seniors", "portraits", "events", "something else"];
+      assert.deepEqual(await inquiry.locator('input[name="shootType"]').evaluateAll(inputs => inputs.map(input => input.value)), shoots);
+      let inquiryRequests = 0;
+      const trackInquiry = request => { if (request.method() !== "GET") inquiryRequests++; };
+      page.on("request", trackInquiry);
+      await prepare.click();
+      assert.equal(await draft.count(), 0, "Empty inquiry cannot prepare a draft");
+      await inquiry.getByLabel("First name *", { exact: true }).fill("Test");
+      await inquiry.getByLabel("Last name *", { exact: true }).fill("Reader");
+      await inquiry.getByLabel("Email *", { exact: true }).fill("not-an-email");
+      await inquiry.getByRole("radio", { name: "couples & engagement", exact: true }).check({ force: true });
+      await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("unsure");
+      assert.equal(await inquiry.getByLabel("Location or area *", { exact: true }).count(), 0);
+      await inquiry.getByLabel("Scenery or vibe (optional)", { exact: true }).fill("A quiet trail at sunset");
+      await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("A relaxed celebration with friends.");
+      await prepare.click();
+      assert.equal(await draft.count(), 0, "Invalid email cannot prepare a draft");
+      await inquiry.getByLabel("Email *", { exact: true }).fill("offline@example.com");
+      await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("   ");
+      await prepare.click();
+      assert.equal(await draft.count(), 0, "Whitespace-only idea is invalid");
+      await inquiry.getByLabel("A little about your idea *", { exact: true }).fill("A relaxed celebration with friends.");
+      await inquiry.getByLabel("Tell me about yourself! (optional)", { exact: true }).fill("We love hiking and music.");
+      await inquiry.getByLabel("Preferred date range or season (optional)", { exact: true }).fill("A weekend in October");
+      await inquiry.getByLabel("How far could you travel? (optional)", { exact: true }).fill("Within an hour");
+      await inquiry.getByLabel("I'd like to arrange a call about ideas and plans (optional)", { exact: true }).check();
+      await prepare.click();
+      let href = await draft.getAttribute("href");
+      assert(href.startsWith("mailto:frameitwright@gmail.com?"));
+      let body = new URL(href).searchParams.get("body");
+      for (const expected of ["First name: Test", "Last name: Reader", "Email: offline@example.com", "Shoot type: couples & engagement", "A quiet trail at sunset", "A little about me:", "We love hiking and music.", "A little about my idea:", "A relaxed celebration with friends.", "Within an hour", "Please email me to find a time."]) assert(body.includes(expected), expected);
+      assert.equal(await inquiry.locator('input[name="phone"]').getAttribute("required"), null);
+      await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("known");
+      assert.equal(await draft.count(), 0, "Changing the inquiry invalidates its draft");
+      assert.equal(await inquiry.getByLabel("Scenery or vibe (optional)", { exact: true }).count(), 0);
+      await prepare.click();
+      assert.equal(await draft.count(), 0, "Known location needs a location value");
+      await inquiry.getByLabel("Location or area *", { exact: true }).fill("Boston waterfront");
+      await prepare.click();
+      href = await draft.getAttribute("href");
+      body = new URL(href).searchParams.get("body");
+      assert(body.includes("Location: Boston waterfront"));
+      assert(!body.includes("A quiet trail at sunset"), "Hidden venue preferences are excluded");
+      assert.equal(inquiryRequests, 0, "Preparing an inquiry must never send contact details");
+      page.off("request", trackInquiry);
+      assert(!page.url().includes("offline@example.com"));
 
-    for (const [oldPath, newPath] of [["/personal", "/creative"], ["/personal/inspirations", "/creative/inspirations"], ["/personal#art", "/creative/inspirations#art"], ["/personal/inspirations#communities", "/creative/inspirations#communities"]]) {
-      await page.goto(base + oldPath, { waitUntil: "networkidle" });
-      await page.waitForURL(base + newPath);
+      for (const [oldPath, newPath] of [["/personal", "/creative"], ["/personal/inspirations", "/creative/inspirations"], ["/personal#art", "/creative/inspirations#art"], ["/personal/inspirations#communities", "/creative/inspirations#communities"]]) {
+        await page.goto(base + oldPath, { waitUntil: "networkidle" });
+        await page.waitForURL(base + newPath);
+      }
     }
+
     await page.goto(base + "/contact", { waitUntil: "networkidle" });
     assert.equal(await page.locator(".contact-placard").count(), 3);
     assert.equal(await page.locator('#photography-contact').innerText(), "photography");
@@ -178,12 +191,14 @@ try {
     assert.equal(await page.locator("[data-topo-background]").count(), 0, "Photography has its own ground, without contours");
     await context.close();
   }
-  const noScript = await browser.newContext({ javaScriptEnabled: false });
-  await noScript.route("**/*", route => new URL(route.request().url()).origin === base ? route.continue() : route.abort());
-  const noScriptPage = await noScript.newPage();
-  await noScriptPage.goto(base + `${PHOTO}/contact`);
-  assert(await noScriptPage.getByRole("button", { name: "prepare an inquiry" }).isDisabled(), "No-JS form cannot submit personal data to the URL");
-  await noScript.close();
+  if (!photographyLocked) {
+    const noScript = await browser.newContext({ javaScriptEnabled: false });
+    await noScript.route("**/*", route => new URL(route.request().url()).origin === base ? route.continue() : route.abort());
+    const noScriptPage = await noScript.newPage();
+    await noScriptPage.goto(base + `${PHOTO}/contact`);
+    assert(await noScriptPage.getByRole("button", { name: "prepare an inquiry" }).isDisabled(), "No-JS form cannot submit personal data to the URL");
+    await noScript.close();
+  }
   assert.deepEqual(errors, []);
   console.log("Creative pages: desktop/mobile, light/dark, placeholder boundaries, canonical URLs, Creative redirects, contact separation, conditional booking validation/privacy, no-JS safety, mocked subscription states, and the contour background passed.");
   console.log(`Screenshots: ${artifacts}`);

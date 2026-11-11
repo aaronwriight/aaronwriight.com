@@ -1,0 +1,36 @@
+{
+  "cv": [
+    {
+      "src": "/images/cv/WrightAaron_cv_2026_current-1.png",
+      "width": 1530,
+      "height": 1980
+    },
+    {
+      "src": "/images/cv/WrightAaron_cv_2026_current-2.png",
+      "width": 1530,
+      "height": 1980
+    },
+    {
+      "src": "/images/cv/WrightAaron_cv_2026_current-3.png",
+      "width": 1530,
+      "height": 1980
+    },
+    {
+      "src": "/images/cv/WrightAaron_cv_2026_current-4.png",
+      "width": 1530,
+      "height": 1980
+    },
+    {
+      "src": "/images/cv/WrightAaron_cv_2026_current-5.png",
+      "width": 1530,
+      "height": 1980
+    }
+  ],
+  "resume": [
+    {
+      "src": "/images/cv/WrightAaron_resume_Research_2026_current-1.png",
+      "width": 1530,
+      "height": 1980
+    }
+  ]
+}

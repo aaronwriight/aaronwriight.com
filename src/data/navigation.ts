@@ -29,7 +29,7 @@ export const scienceLinks: NavigationItem[] = [
   ] },
   { label: "mentorship", href: "/cognitive-science/mentorship" },
   { label: "collaborators", href: "/cognitive-science/collaborators" },
-  { label: "cv", href: "/files/cv/WrightAaron_cv_2026_current.pdf" },
+  { label: "cv", href: "/cognitive-science/cv" },
 ];
 
 export const sectionLinks: Record<string, NavigationItem[]> = {

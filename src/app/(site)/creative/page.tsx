@@ -38,22 +38,22 @@ export default function CreativeAboutPage() {
 
       <p>In either case, I hope to leave you with a little more scope for imagination in your life –– stick aroudn to see where I&apos;ve found it in my own. :)</p>
 
-      <div className="not-prose space-y-3 border-t border-stone-200 pt-5 text-sm leading-6 dark:border-stone-800">
-        <p className="flex items-baseline gap-2">
-          <span className="shrink-0 text-stone-500"><MusicIcon /><span className="sr-only">Music</span> :</span>
-          <Link href="https://www.youtube.com/watch?v=TiD_dSExqVU" className="text-olive">COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)</Link>
-        </p>
-        <p className="flex items-baseline gap-2">
-          <span className="inline-flex shrink-0 items-baseline text-stone-500">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative top-0.5 mr-1 h-3.5 w-3.5">
-              <path d="M12 5.5C9 3.5 5.5 3.5 2 4.5v15c3.5-1 7-1 10 1 3-2 6.5-2 10-1v-15c-3.5-1-7-1-10 1Zm0 0v15" />
-            </svg>
-            <span className="sr-only">Books</span> :
-          </span>
-          <span><Link href="https://www.kristinohlson.com/books/sweet-in-tooth-and-claw" className="text-olive">Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World</Link></span>
-        </p>
+      {/* Favourite things, set like bullets: the icons in one column, centred on one another, the colons in the next,
+          each centred on the first line of its entry. */}
+      <dl className="not-prose m-0 grid grid-cols-[1rem_auto_minmax(0,1fr)] gap-x-2 gap-y-3 border-t border-stone-200 pt-5 text-sm leading-6 dark:border-stone-800">
+        <dt className="flex h-6 items-center justify-center text-stone-500"><MusicIcon /><span className="sr-only">Music</span></dt>
+        <dd className="m-0 flex h-6 items-center text-stone-500" aria-hidden="true">:</dd>
+        <dd className="m-0"><Link href="https://www.youtube.com/watch?v=TiD_dSExqVU" className="text-olive">COIN - Sagittarius Superstar (feat. Faye Webster) (Official Video)</Link></dd>
+        <dt className="flex h-6 items-center justify-center text-stone-500">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+            <path d="M12 5.5C9 3.5 5.5 3.5 2 4.5v15c3.5-1 7-1 10 1 3-2 6.5-2 10-1v-15c-3.5-1-7-1-10 1Zm0 0v15" />
+          </svg>
+          <span className="sr-only">Books</span>
+        </dt>
+        <dd className="m-0 flex h-6 items-center text-stone-500" aria-hidden="true">:</dd>
+        <dd className="m-0"><Link href="https://www.kristinohlson.com/books/sweet-in-tooth-and-claw" className="text-olive">Sweet in Tooth and Claw: Stories of Generosity and Cooperation in the Natural World</Link></dd>
         {/* Two additional favorite-things entries are unfinished in the author's draft and intentionally not rendered. */}
-      </div>
+      </dl>
 
       {/* Where "scope for imagination" comes from. It closed the old home page (the stories & guides list) until
           November 2026. */}

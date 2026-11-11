@@ -720,3 +720,8 @@ html.dark .site-nav-drop { box-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 12px 24px -
 /* The "under construction" card a front-door plaque can show before letting people in. */
 .construction-card { width: min(92vw, 30rem); margin: auto; padding: 1.75rem 1.75rem 1.5rem; color: var(--site-text-primary); }
 .construction-card::backdrop { background: rgb(28 25 23 / 0.35); }
+
+/* CV and resume pages (src/components/site/document-pages.tsx): by day they sit in the sand paper, with a hairline
+   between pages; at night each page is a print. */
+.document-page + .document-page { border-top: 1px solid rgb(214 211 209 / 0.7); padding-top: 1.5rem; box-sizing: content-box; }
+html.dark .document-page { border: 5px solid var(--color-print); border-radius: 5px; padding-top: 0; }

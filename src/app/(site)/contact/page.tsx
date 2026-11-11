@@ -27,21 +27,11 @@ export default function ContactPage() {
             cambridge, ma / providence, ri
           </p>
           <p className="text-xs lowercase tracking-wider">
-            <Link
-              href="/files/cv/WrightAaron_cv_2026_current.pdf?v=2026-11-04"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-olive"
-            >
+            <Link href="/cognitive-science/cv" className="text-olive">
               cv
             </Link>{" "}
             <span className="text-stone-400">|</span>{" "}
-            <Link
-              href="/files/resume/WrightAaron_resume_Research_2026_current.pdf?v=2026-11-04"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-olive"
-            >
+            <Link href="/resume" className="text-olive">
               resume
             </Link>
           </p>
