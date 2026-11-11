@@ -48,9 +48,10 @@ export const photographyShootTypes = [
   { key: "something else", label: "something else" },
 ];
 
-// Kudos from clients. Placeholders until real ones are in; replace the bracketed text with clients' own words.
+// Kudos from clients, in clients' own words. The bracketed ones are placeholders until more come in.
 export const kudos = [
-  { quote: "[a client's words about how the session felt]", by: "[names]", session: "couples & engagement" },
+  // From writing/testimonials.rtf (Steph, 7/11/26).
+  { quote: "Thank you so much for yesterday!!! I have never seen the kids be so into pictures before and have such authentic smiles! You made it very fun and your prompts were awesome 👏🏻", by: "Steph", session: "family, friends, & lifestyle" },
   { quote: "[a client's words about the photographs themselves]", by: "[name]", session: "graduation & seniors" },
   { quote: "[a client's words about working with you]", by: "[names]", session: "family, friends, & lifestyle" },
 ];
