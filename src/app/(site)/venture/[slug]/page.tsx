@@ -39,6 +39,7 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
   return (
     <VentureShell title={entry.subtitle} showTitle={false} backLink={["index", "/venture/index"]}>
       <div className="w-full max-w-3xl">
+        <span className="no-contours" hidden />
         <div className="not-prose">
           <header className="border-b border-stone-300 pb-7 dark:border-stone-700">
             <h1 className="font-serif text-2xl font-normal leading-tight text-stone-900 dark:text-stone-100 sm:text-3xl">{entry.title}</h1>

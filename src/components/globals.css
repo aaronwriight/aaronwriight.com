@@ -758,8 +758,8 @@ html.dark :is(.section-heading, .subsection-heading, article.prose h2:not(:where
   margin-top: 0;
 }
 
-/* Pages that sit on plain tan, without the contours behind them: individual journal posts and the creative projects
-   page (its placards). A page asks for it with an empty .no-contours element. */
+/* Pages that sit on plain tan, without the contours behind them: individual journal posts (Scope for Imagination and
+   Venture) and the creative projects page (its placards). A page asks for it with an empty .no-contours element. */
 html:has(.no-contours) .topo-background { display: none; }
 
 /* Post tags in little boxes, like the photographs' date stamps: monospaced, in a warm white box; each keeps its colour. */
