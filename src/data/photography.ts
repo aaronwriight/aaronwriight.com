@@ -2,8 +2,9 @@
 export const picTimeClientUrl = "https://frameitwrightphotography.pic-time.com/client";
 export const instagramUrl = "https://www.instagram.com/frameitwrightphotography/";
 
-// While the photography site's last pages are written, the front door's photography plaque shows an "under
-// construction" card before letting people in. Set to false to send them straight through.
+// While the photography site's last pages are written it is closed: the front door's photography plaque shows an
+// "under construction" card, and every photography address serves only the under-construction page (with
+// PHOTOGRAPHY_LOCKED in next.config.mjs). Set both to false to open it.
 export const photographyUnderConstruction = true;
 
 // The categories galleries are published under (scripts/photography.py). Kept whole: events and travel stay in the

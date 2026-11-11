@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PhotoChrome } from "@/components/photography/photo-chrome";
+import { photographyUnderConstruction } from "@/data/photography";
 import { themeInitializationScript } from "@/components/site-chrome";
 import { mono, serif } from "@/lib/fonts";
 import "@/components/globals.css";
@@ -19,7 +20,11 @@ export default function PhotographyLayout({ children }: Readonly<{ children: Rea
     <html lang="en" className={`scroll-smooth ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-paper font-serif font-normal text-stone-900 lining-nums dark:text-stone-100">
         <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
-        <PhotoChrome>{children}</PhotoChrome>
+        {photographyUnderConstruction ? (
+          <main className="fiw grid min-h-screen place-items-center px-4 py-16">{children}</main>
+        ) : (
+          <PhotoChrome>{children}</PhotoChrome>
+        )}
       </body>
     </html>
   );

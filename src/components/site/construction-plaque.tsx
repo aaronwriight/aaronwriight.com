@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 // A front-door plaque whose section is still being built: clicking it opens a small "under construction" card instead
-// of going straight in, with a way to peek anyway. Without JavaScript it is an ordinary link.
+// of going in. Without JavaScript it is an ordinary link (to the under-construction page).
 export function ConstructionPlaque({
   href,
   className,
@@ -39,9 +39,8 @@ export function ConstructionPlaque({
         <p className="m-0 mt-3 font-serif text-base leading-relaxed text-stone-600 dark:text-stone-400">
           Photographs are going up and the last few pages are being written. Thanks for your patience: it&apos;s nearly there!
         </p>
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <Link href={href} className="site-mono text-stone-900 underline underline-offset-4 dark:text-stone-100">have a peek anyway</Link>
-          <button type="button" onClick={() => dialog.current?.close()} className="site-mono cursor-pointer text-stone-500 hover:text-olive">stay here</button>
+        <div className="mt-6">
+          <button type="button" onClick={() => dialog.current?.close()} className="site-mono cursor-pointer text-stone-500 hover:text-olive">close</button>
         </div>
       </dialog>
     </>

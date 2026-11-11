@@ -1,4 +1,9 @@
 const PHOTO = '/frame-it-wright-photography'
+// While true, the photography site is closed: every photography address (on frameitwright.com and under
+// /frame-it-wright-photography) is served the under-construction page and nothing else. Change together with
+// photographyUnderConstruction in src/data/photography.ts.
+const PHOTOGRAPHY_LOCKED = true
+const CLOSED = `${PHOTO}/under-construction`
 const FIW = [{ type: 'host', value: 'frameitwright.com' }]
 const AW = [{ type: 'host', value: 'aaronwriight.com' }]
 // Top-level paths frameitwright.com serves as they are (not photography pages).
@@ -82,6 +87,16 @@ const nextConfig = {
   // second rule must not match the first one's result (the prefix itself is excluded), and shared files (the build's
   // assets, images, brand files) are left alone.
   async rewrites() {
+    if (PHOTOGRAPHY_LOCKED) {
+      return {
+        beforeFiles: [
+          { source: '/', has: FIW, destination: CLOSED },
+          { source: `/:path((?!${sharedRoots.join('|')}).+)`, has: FIW, destination: CLOSED },
+          { source: PHOTO, destination: CLOSED },
+          { source: `${PHOTO}/:path((?!under-construction$).+)`, destination: CLOSED },
+        ],
+      }
+    }
     return {
       beforeFiles: [
         { source: '/', has: FIW, destination: PHOTO },
