@@ -1,1 +1,682 @@
-[]
+[
+  {
+    "slug": "couples-engagement",
+    "category": "Couples & Engagement",
+    "title": "couples & engagement",
+    "subtitle": "",
+    "description": "Couples and engagement sessions.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/couples-engagement/95c6b84e09594a27d3236201568fcb500c5e38764db72ed7271411f1324edca8.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A couple presses cheek to cheek and looks into the camera with calm expressions, the man resting a hand on his head, trees behind.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/f2f58c5e25a607b327858e0e488d6860f8cc73efe93e0fd9449ff0c48035cb37.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A woman with long red hair gazes up at a man in the blurred foreground, dappled shadows falling across her face in bright sun.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/2773aa6881ecb33dd665a88e51c770a286fdb9e5a38bbd36a314d57dc369dbeb.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A woman with red hair looks straight at the camera with a faint smile as a man leans in, dappled shadows across her face.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "portrait",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/5ea212a1d7f91be66d589fa76e3e739d36a958c0ce02391753d839609453c498.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A solitaire diamond ring sits in an open beige velvet box nestled on a dark shrub with small amber leaves.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f65e12a8bf72ae7de5b4d7971c92653cb2c7358ef01e82e5ccd2c5d4f6bb37ee.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "From above, a couple lies head to head on dark grass as he laughs and she gazes down, resting a ringed hand in his hair.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/b4b8c300b773879ab5824cf8db1e73d24a0b0b9b0be43a084eaf4b31e3e6f201.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies on the grass with heads together, she grinning up at the camera while he smiles with lips closed.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ae9a1d008c38f80d2583c505e7e11a7349df989d0347f3ccd90a33b812e7b162.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies on the grass with heads together, both laughing with wide open smiles and looking up at the camera.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/b0228d02b3f766121c39538dfabce8e701902edbbd7857d61c92cbac114bbdd7.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies laughing on the grass with heads together, his eyes squeezed shut as a hand reaches toward his hair.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/c4178e9f62be2c445f4f8eebc2d7e7198791a135b2711faf1a40aecbf9a548c8.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A gold ring with three stones sits upright in an open black ring box with a cream lining, resting on speckled rock.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/889faa78cd031f5b6b14e830eedf108f29d590665ccb2eacf2ba0ef7bbef3628.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug tightly and laugh, one in a mauve crop top with eyes squeezed shut, on a rocky shore under an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/7d8d0251f7f1a731b29c4c654c7f17bbb20f9c98c60a67e276d8960bc24b3319.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug by misty water, one in a white shirt smiling in profile while the other rests a ringed hand on her back.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/124aa3242daa481086f8ed01b8c62bc04b8e6750627b9edd6f380da97bbd60b0.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug cheek to cheek smiling at the camera, one in a mauve crop top, one in a black dress, on a rocky shore.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/447bf0f7a05da8e67d0dc5e96aea24217a0ffe8550fd517191263b033be804d8.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A hand with a diamond ring and pale nails rests on the back of a man's black shirt as a couple embraces, faces out of focus.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f25193c11e7b844016bf3f1df60bad80eb458889bf92fcc139da85b998b86076.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple stands small in the frame on a wide stone jetty beside calm water as he kisses her forehead under a pale overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/e3dec77bee38cdedc1cfdcf69dd131b96ac6da0794db624fc224cd414a90f171.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A couple embraces on flat rock as he kisses her forehead, with a stone wall and gray sea behind them under an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/8348b18ffe2d07a7cd9fd028a73a73a2a7ba083addc4f79d2c001ed317600486.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple stands close on a rocky ledge above gray water, her back to the camera while he smiles and gazes out to the side.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/3dfe57e8fa550e7de5734b37dfec3c6dec896f1eda61a97cf3f4c0afc52d99bc.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple kisses with eyes closed and arms linked, her ringed hand in view, their hair damp beneath an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ce204198b16ebe75a0ed90017399d88b3f7fdb0e1e97442c2054ec2244e702df.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "In a tight crop, a woman in a mauve top and jeans smiles down as her ringed hand rests in a man's hand, their arms linked.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/fd2de02a7f8b128d81868b6472afc33bfed553281dc63d895881cb80e4c83438.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A man in a black polo laughs with eyes shut as a woman at the frame's edge reaches toward his face, a hazy shore behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/a4ebc4e781b2559d4957b5c41b49aeab5f5a27c23ab04926aa61d588782b9b29.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple smiles nose to nose with eyes closed, her hand cradling the side of his head, damp hair and gray sea behind them.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      }
+    ]
+  },
+  {
+    "slug": "wedding",
+    "category": "Wedding",
+    "title": "wedding",
+    "subtitle": "",
+    "description": "Wedding days.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/wedding/9d668d0951d37bf85aaf321832e7bedb3684d7c956680f7556f31578c1435096.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A bride in an off-the-shoulder tulle gown holding a white and green bouquet looks back over one shoulder beside a bright stairwell window.",
+        "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
+        "shape": "portrait",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/wedding/6096d823f821b099710d4d48e5f6199f0786e675e2ae818bc4aa9a95ead2d354.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Seen from below through a blur of veil, a bride holding a white and green bouquet gazes down seriously in front of a wooden door.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/wedding/c3ea3fa5ccc05d22c96448c99ac13056945a27b7522661737c8c26e9d0113fde.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Seen from below through a blur of veil, a bride smiles down at the camera under a bright blue sky beside a white building.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      }
+    ]
+  },
+  {
+    "slug": "family-friends-lifestyle",
+    "category": "Family, Friends, & Lifestyle",
+    "title": "family, friends, & lifestyle",
+    "subtitle": "",
+    "description": "Family, friends, and lifestyle sessions.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/family-friends-lifestyle/357e6d0f81e4bcecee72ceab49b89fb862964c2c9cd822fb003af7a670cc89a4.jpg",
+        "width": 2048,
+        "height": 1638,
+        "alt": "A person with long dark wavy hair and a pale blue puff-sleeve dress laughs behind a stone wall on a sunny, tree-lined lawn.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/95c5b31865cef95f1516658236260eaaa9a125b505bd7158d7cbd29d962c1e5f.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A smiling bearded person in a cream wide-brimmed hat and plaid jacket stands beside a white car in bright autumn sun, holding a second hat.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/4229d430500a1bfceab202aee160d303aa457bb2339d318e524d666110c57b74.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Two people walk arm in arm down a weathered wooden dock past moored boats, smiling at each other under a pale autumn sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/a077eb00d450f062786262de19776b62f0f3fb948da60c04bd72452db1537b37.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling person holding a camera stands on a stone curb at a mountain overlook, a second person peeking out from behind, in hazy sun.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/d789f527a44aecfa4d8c8002224b840cfb4cb5547208ee917688e13ac3a45004.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Seen over a blurred shoulder, a raised hand with a festival wristband holds up a phone framing a crowded field under a pink dusk sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/85f5215e7580f315d84c40262cf7550ebd69f92c44914732bec27f99024c8769.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Close view of two hands, one with a festival wristband and one with black bracelets, holding a phone that shows the crowd and pink sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/94cc6b35bc7a92fd9658abb065b22036305e8053b702ba81032e42a4f7e37a0e.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A person with long blonde hair leans back and stretches one arm up toward a large wicker surface, the scene softly blurred in warm amber tones.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/a3f6a6366980eca118f306a65d05915a7a38ce654dbe180950af8400eb590476.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Two people in fleece sweatshirts laugh side by side next to a map sign, with a green valley and snow-capped mountains behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/6a094620b3bc01adc98b323bbdb765dd156de53ece52b50cb0dd4e43ea764fbb.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "One person rides piggyback on another, both laughing toward the camera in front of a grassy plain and misty snow-capped mountains.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/cdb7122db84566db0af241c3aca093700df91af7d771474bb32e185bf90030cc.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A smiling person in a gray sweatshirt stands at a spotting scope on a tripod by a road at dusk, with several others gathered behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/009d679ad1f0f08ae35e7eb2e59e190386bd4074cb92e4b93e37475da3b4ea3e.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Six friends in summer dresses stand barefoot in a staggered line under a large tree, leaning out to smile at the camera.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "portrait",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/55b3b70e32ff4394586682bb639e3bf6ef1061c4320c88c8d62d380bf2d23be1.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A smiling person in glasses and a denim dress leans on a wooden fence beside a pasture with a black cow as others stand nearby.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/12f63931f5db3aa973b4016ee37fd32717e48dd4e33d80c5ba1f33b9adf8ad5f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two friends embrace and smile on a sunny lawn, one in a denim vest and white skirt, with trees and a stone wall behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/9054039c8ad03198056de4f799e1efd255038a7c8e323bb8163cf8eeffa36ad7.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "Two smiling people pose close together in a sunlit wooded clearing, one with curly red hair and a denim jacket, the other in pale blue.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/02751a963ae3e66817372f45f973c655765dfd3fdd00bfda23c94d72e83afd9e.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A laughing person in denim and white heels crouches beside a weathered wooden fence while two cows stand in the pasture behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/58aea5890642b0ba36cc6e26f27be3c7ba29e9b37467eef78b1f301269d6318b.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "In a grassy field at dusk, one person in white glances back at the camera as the other, in glasses and a denim jacket, laughs.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/e80780295785a0676044d65e1f3acc65eeeb37fc66b7e6516859b7af835f1b3c.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two people hug with heads touching and smile at the camera in a wide grassy field edged by dark trees in soft evening light.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/8d561b6aafae5105c3808770df8fffc851050ecbb0c138722e16eae8b8ccea3f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Close crop of two people cheek to cheek in a field, one in white looking at the camera while the other, in glasses, smiles off to the side.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/0728e4218dcbe652322afd73b8e5692586c7c5da64ef3ee401e73726e6d9b8a0.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A person with dark wavy hair and a black coat leans against a pale stone pillar, glancing over one shoulder, with blurred pink blossoms behind.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/448a0c25eb1119c3132b2ad1db2bd7e142859282d0eec17845f29f12d62850a3.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Two children in pale blue dresses hug a smiling adult seated between them on a sandy beach, with calm water and a tree-lined shore behind.",
+        "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
+        "shape": "landscape",
+        "portfolio": true
+      }
+    ]
+  },
+  {
+    "slug": "graduation",
+    "category": "Graduation (High School & College)",
+    "title": "graduation",
+    "subtitle": "",
+    "description": "High school and college graduation portraits.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/graduation/057d41749130a6a41709a8c303d32d037961321bc15ca411946298f70fd5b415.jpg",
+        "width": 2048,
+        "height": 1024,
+        "alt": "A graduate in a white dress walks with head down across an empty white-walled pavilion, an open black gown flaring out behind.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/59e146df84ba053801d40c89bc7959c6ecfebe6d7668a02f354590ff42b0f5ca.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A laughing graduate in a black cap and gown stands beside a red brick building, with a blurred sidewalk and spring trees behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/5707434e3fe06f81172e148e71d952199f97cce8d61fd7a5a8bcffab185266dc.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling graduate in an open black gown and white sneakers sits on a wooden bench with ankles crossed, a sunny lawn and buildings behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/0f9a4523ae62c49903f1483cd2be5831a750a0ba91155685bc23d840561767f7.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A person in a speckled cardigan, black jeans and sneakers laughs while leaning against a brick wall painted in bright green and teal stripes.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/ef94f4ef7069b3bd3793e9e76320982428afd346897a7fabca98665ca55083a1.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A person in a speckled cardigan gazes seriously at the camera in front of a colorful abstract mural of blue, orange and yellow shapes.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/bd8533fc3b4e3b041f9ab0d56a3fad2485c11807e75882e2bff14ffcae961f02.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling graduate in a white sleeveless dress sits on a curved stone bench holding a mortarboard, with evergreens and pink blossoms behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/1fc1272b5f4c7ca2aa8a332c24ac47881467c6213a49335b2097a147a6baf28d.jpg",
+        "width": 2048,
+        "height": 1024,
+        "alt": "A graduate in a black gown over a white dress stands in an empty pavilion, holding a mortarboard and brushing back hair while looking aside.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/0421418d4f49719b10bdb723eebacdb4dc47a7222c633353bd46aa4741b2463a.jpg",
+        "width": 2048,
+        "height": 1229,
+        "alt": "Framed by trimmed hedges, a graduate in a black gown stands alone at the center of a large white open-air pavilion with a peaked ceiling.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/graduation/72bc6380ca4c8ea210b5eb148b74340e93375d85c98fee39abbd3f4f8755acfb.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A graduate in a black cap and gown leans on a railing with chin resting on clasped hands, smiling softly at the camera.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/5731f36e67a7e3ae4457ed123af10959bdfae9e4f9698d0b770ce0ac21f819c3.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A graduate in a black cap and gown leans on a metal railing with one cheek resting in a hand, blurred trees behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/246d6c74b72c91e7d0c4acbefda2d6c97262d1b803b590dcd017603a5618c562.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling graduate in a black cap and gown over a white dress wears pearls and a medal on a blue ribbon beside a brick wall.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/6632885a13b4a1f738692d038ecb84529be8f81613c0bb9a27a13cb03316401c.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A graduate in a black cap and gown with a white stole over a coral dress leans against a tall white column in sunlight.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/a3392c7f509f614e94a44a0b22473dbac9e37c79308f34f16587cfacf05db007.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A blurred, smiling graduate in a coral dress holds out a mortarboard decorated with a painted sunset, ocean waves and tropical flowers.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/81545b78e4fee2cc4aa3483070aec4ca9ba5c565b85f38338c7ae0c4b6d897b7.jpg",
+        "width": 2048,
+        "height": 1024,
+        "alt": "Five graduates in summer dresses and stoles run barefoot and laughing along the water's edge of a sandy beach under a cloudy sky.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/graduation/ba868ad5c30b16f27e45a7108b9d925323e04e7b3a5aeadfec816360f79faf63.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A person in an off-the-shoulder white dress smiles back over one shoulder in a field of tall green grass in soft, warm light.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/b26feedde41043b4b747d6686ecfd60b1c88d2e9d6d87eb195595ff9eed8021f.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A person with tousled strawberry-blond hair and a cream cable-knit sweater stands with a calm expression in a golden meadow, an old barn blurred behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/graduation/9a12a2d788e2a580440502b064e5f8272173a3e49b8b048e88dd7d0f397cbc1d.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling person in a cream cable-knit sweater and jeans sits with hands clasped among white wildflowers and autumn foliage.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      }
+    ]
+  },
+  {
+    "slug": "travel",
+    "category": "Travel",
+    "title": "travel",
+    "subtitle": "",
+    "description": "Travel photographs.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/travel/cbdc21d05e86697689a36255e217a28afc0d3fcd0a77a1735c0e9a7b9b74fa46.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Layers of hazy mountain ridges fade into pale, washed-out light above a deep, shadowed valley.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/8983bb2734c1fe3bb9e99a4413ad035c609947e321347a1791c5978ef713d0c8.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A small dark wooden cabin sits among towering conifers on a sunlit forest floor scattered with fallen logs and stumps.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/78b3a254af5e604aa25b2a18bfc84d402d3d5a7e6a52da281d4f1457e7b93d91.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A tall waterfall pours down sheer granite cliffs above a pine forest and grassy meadow under a blue sky streaked with contrails.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/98ae74cec50c56114d6b2012a5a6bcf8fb88a6d1444bfeac96db7de57cec45d9.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Looking up at a waterfall spraying down a dark rock face, with a small tree on the ridge against a bright, hazy sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/671c25b5016db391d04e83fac934824bb163226a6d43dc358b3f98c5ebce70cb.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A paved path curves through dark brush toward a jagged, snow-streaked mountain range under soft pink-tinged clouds at twilight.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/72971bfa8dd4a32d5d9632d72995b7cd58daa7cdc8a575d46a25ac412e25b886.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Jagged snow-streaked peaks stand in dark silhouette beneath a pale twilight sky touched with pink clouds.",
+        "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/travel/e657fc010c9abad6dc5bca72fc2a93bf58749338af1116884489694c1a89f141.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A person in a black puffer jacket and jeans looks through binoculars beside a winding paved path on an overcast day.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/798fa71348881cf3e0c92c656fd06be69e4bc66733070d5c0e4679ebef0e3342.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A tall freestanding red sandstone arch rises over a desert of rock formations and distant mesas under a partly cloudy sky.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/d5529b0245c1c506bbf85aa7f4a83e9d57452971f9c79f63cc447d30050b0583.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Towering red and cream sandstone cliffs catch soft light above a shadowed, tree-filled canyon floor.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/travel/72a45f72ed4cc044e7b92ecc4bb660df443631c6ae953e73e85a82d2ce2020ad.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Sunlight filters into a narrow red-rock canyon, with pines clinging to the walls and dark water streaks running down the rock.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      }
+    ]
+  }
+]

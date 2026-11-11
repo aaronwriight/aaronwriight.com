@@ -10,6 +10,7 @@
     "lint": "next lint",
     "writing": "python3 scripts/writing.py",
     "photography": "python3 scripts/photography.py",
+    "photography:stamps": "python3 scripts/photo_stamps.py",
     "tidytuesday": "python3 scripts/tidytuesday.py",
     "venture": "python3 scripts/venture.py",
     "sfi:draft": "python3 scripts/sfi_draft.py",

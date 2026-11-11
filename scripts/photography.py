@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 FIELDS = {"slug", "category", "title", "subtitle", "description", "visibility", "publicApproved", "picTimeUrl", "images"}
 IMAGE_FIELDS = {"source", "alt", "caption", "shape", "portfolio"}
-MAX_IMAGES = 20  # a gallery shows a chosen few; the full shoots stay with clients on Pic-Time
+MAX_IMAGES = 30  # a gallery shows a chosen few (raised from 20 in November 2026); the full shoots stay with clients on Pic-Time
 LONG_EDGE = 2048  # prepare: longest side of a web derivative, enough for the full-screen viewer
 QUALITY = 82
 

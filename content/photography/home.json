@@ -1,0 +1,16 @@
+{
+  "_note": "Photographs for the Frame it Wright home page. 'collage' is the two rows at the bottom, left to right (order them so the seams between photographs don't line up from row to row); each row keeps every photograph's own shape (no cropping). 'plaque' is the photograph on the aaronwriight.com front door's photography plaque. Paths are the published image paths in published.json.",
+  "plaque": "/images/photography/travel/72a45f72ed4cc044e7b92ecc4bb660df443631c6ae953e73e85a82d2ce2020ad.jpg",
+  "collage": [
+    [
+      "/images/photography/family-friends-lifestyle/357e6d0f81e4bcecee72ceab49b89fb862964c2c9cd822fb003af7a670cc89a4.jpg",
+      "/images/photography/graduation/59e146df84ba053801d40c89bc7959c6ecfebe6d7668a02f354590ff42b0f5ca.jpg",
+      "/images/photography/family-friends-lifestyle/448a0c25eb1119c3132b2ad1db2bd7e142859282d0eec17845f29f12d62850a3.jpg"
+    ],
+    [
+      "/images/photography/wedding/6096d823f821b099710d4d48e5f6199f0786e675e2ae818bc4aa9a95ead2d354.jpg",
+      "/images/photography/graduation/81545b78e4fee2cc4aa3483070aec4ca9ba5c565b85f38338c7ae0c4b6d897b7.jpg",
+      "/images/photography/couples-engagement/ae9a1d008c38f80d2583c505e7e11a7349df989d0347f3ccd90a33b812e7b162.jpg"
+    ]
+  ]
+}
