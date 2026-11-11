@@ -55,14 +55,14 @@ export default async function VentureEntryPage({ params }: { params: Promise<{ s
             </p>
             <MusicTagline music={entry.music} className="mt-1" />
             {(entry.collections.length > 0 || entry.tags.length > 0) && (
-              <ul aria-label="post tags and collections" className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
+              <ul aria-label="post tags and collections" className="mt-2 flex flex-wrap gap-1.5">
                 {entry.collections.map((collection) => (
-                  <li key={`collection:${collection}`} className="text-olive">
+                  <li key={`collection:${collection}`} className="tag-box text-olive">
                     {formatCollection(collection)}
                   </li>
                 ))}
                 {entry.tags.map((tag) => (
-                  <li key={`tag:${tag}`} style={{ color: getSfiTagColor(tag) }}>
+                  <li key={`tag:${tag}`} className="tag-box" style={{ color: getSfiTagColor(tag) }}>
                     {tag}
                   </li>
                 ))}

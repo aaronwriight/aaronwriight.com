@@ -54,9 +54,9 @@ export function SfiPostHeader({
         <MusicTagline music={post.music} />
 
         {post.tags.length > 0 && (
-          <ul aria-label="post tags" className="flex flex-wrap gap-x-3 gap-y-1 text-[0.65rem] lowercase tracking-widest">
+          <ul aria-label="post tags" className="flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
-              <li key={tag} style={{ color: getSfiTagColor(tag) }}>
+              <li key={tag} className="tag-box" style={{ color: getSfiTagColor(tag) }}>
                 {tag}
               </li>
             ))}

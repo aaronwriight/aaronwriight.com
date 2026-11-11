@@ -57,7 +57,9 @@ const nextConfig = {
   // preview deployments are untouched). frameitwright.com is the photography section's own address: see below.
   async redirects() {
     return [
-      ...['www.aaronwriight.com', 'aaronwriight.vercel.app'].map((host) => ({
+      // frameitwrightphotography.vercel.app was the project's address before it was renamed; links to it (an old lab
+      // page, for one) land here once that address is attached to the project in Vercel.
+      ...['www.aaronwriight.com', 'aaronwriight.vercel.app', 'frameitwrightphotography.vercel.app'].map((host) => ({
         source: '/:path*',
         has: [{ type: 'host', value: host }],
         destination: 'https://aaronwriight.com/:path*',

@@ -56,7 +56,7 @@ export function PageHeader({
 }) {
   return (
     <header className="not-prose border-b border-stone-300 pb-5 dark:border-stone-700">
-      <h1 className={`${accent ? "section-title " : ""}m-0 font-serif text-base font-medium lowercase tracking-widest text-stone-900 dark:text-stone-100`}>
+      <h1 className={`${accent ? "section-title " : ""}page-title m-0 font-serif lowercase text-stone-900 dark:text-stone-100`}>
         {title}
       </h1>
       {subtitle ? (

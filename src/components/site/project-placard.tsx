@@ -32,7 +32,7 @@ export function ProjectPlacard({ category, title, subtitle, description, href, i
           {/* The picture as a single print: a warm white border and a soft shadow, the figure straight inside it. At night
               the picture's white is dimmed, because most figures have a white ground drawn in. */}
           <div className="print h-56">
-            <div className="relative h-full overflow-hidden bg-white dark:brightness-[0.88]">
+            <div className="relative h-full overflow-hidden bg-white">
               <Image src={image} alt={alt} fill sizes="(min-width: 1024px) 440px, (min-width: 768px) 60vw, 90vw" className="object-contain p-1" />
             </div>
           </div>

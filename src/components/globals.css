@@ -721,22 +721,19 @@ html.dark .site-nav-drop { box-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 12px 24px -
 .construction-card { width: min(92vw, 30rem); margin: auto; padding: 1.75rem 1.75rem 1.5rem; color: var(--site-text-primary); }
 .construction-card::backdrop { background: rgb(28 25 23 / 0.35); }
 
-/* CV and resume pages (src/components/site/document-pages.tsx): by day they sit in the sand paper, with a hairline
-   between pages; at night each page is a print. */
-.document-page + .document-page { border-top: 1px solid rgb(214 211 209 / 0.7); padding-top: 1.5rem; box-sizing: content-box; }
-html.dark .document-page { border: 5px solid var(--color-print); border-radius: 5px; padding-top: 0; }
-
 /* ---------- Headings, one system for the whole site ----------
    Page title (PageHeader's h1): lowercase, spaced, a rule below it, never in the accent colour.
    Section heading (h2 in a page's text, or .section-heading): bold, lowercase, spaced, a rule above it.
    Subheading (.subsection-heading): bold, lowercase, small and grey, no rule. */
+/* Page titles: the largest heading on a page. */
+.page-title { font-size: 1.35rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.14em; }
 .section-heading,
 article.prose h2:not(:where(.not-prose, .not-prose *)) {
   margin: 2.75rem 0 1rem;
   padding-top: 1rem;
   border-top: 1px solid var(--color-stone-300);
   font-family: var(--font-serif);
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.12em;
@@ -747,7 +744,7 @@ html.dark :is(.section-heading, article.prose h2:not(:where(.not-prose, .not-pro
 .subsection-heading {
   margin: 0 0 0.75rem;
   font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: lowercase;
@@ -778,4 +775,16 @@ html[data-reading="print"] .reading-panel {
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
+}
+
+/* Post tags in little boxes, like the photographs' date stamps: monospaced, in a warm white box; each keeps its colour. */
+.tag-box {
+  display: inline-block;
+  padding: 0.22rem 0.4rem 0.2rem;
+  border-radius: 2px;
+  background: rgb(255 253 248 / 0.85);
+  box-shadow: 0 0 0 1px rgb(120 100 80 / 0.12);
+  font: 500 0.62rem/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
 }
