@@ -22,7 +22,7 @@ export function ReadingsResourceBrowser() {
   }
 
   return (
-    <div className="divide-y divide-stone-300 border-y border-stone-300 dark:divide-stone-700 dark:border-stone-700">
+    <div className="">
       <DisclosureSection id="articles" title="Articles" count={readings.length}>
           <p>Articles and scholars that have captured my attention, challenged my scientific convictions, shaped my understanding, and inspired my favorite discussions.</p>
           <p className="text-xs text-stone-500">Filter by topic, or explore a few favorites. ★ marks a favorite.</p>

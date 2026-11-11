@@ -1,4 +1,3 @@
-import { ReadingPanel } from "@/components/site/reading-panel";
 import type { Metadata } from "next";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
@@ -58,7 +57,8 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
 
   return (
     <JournalShell title={post.title} showTitle={false} years={years} backLink={[postYear, `/scope-for-imagination/${postYear}`]}>
-      <ReadingPanel>
+      <div className="w-full">
+        <span className="no-contours" hidden />
         <div className="not-prose">
           <SfiPostHeader post={post} large className="border-b border-stone-300 pb-7 dark:border-stone-700" />
         </div>
@@ -70,7 +70,7 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
             <div dangerouslySetInnerHTML={{ __html: post.bodyHtml || "" }} />
           )}
         </div>
-      </ReadingPanel>
+      </div>
     </JournalShell>
   );
 }

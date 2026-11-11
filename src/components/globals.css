@@ -722,16 +722,16 @@ html.dark .site-nav-drop { box-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 12px 24px -
 .construction-card::backdrop { background: rgb(28 25 23 / 0.35); }
 
 /* ---------- Headings, one system for the whole site ----------
-   Page title (PageHeader's h1): lowercase, spaced, a rule below it, never in the accent colour.
-   Section heading (h2 in a page's text, or .section-heading): bold, lowercase, spaced, a rule above it.
-   Subheading (.subsection-heading): bold, lowercase, small and grey, no rule. */
+   Every heading has its rule under it: page titles (PageHeader's h1: lowercase, spaced, never in the accent colour),
+   section headings (h2 in a page's text, or .section-heading: bold, lowercase, spaced), subheadings
+   (.subsection-heading: bold, small and grey) and fold-out headers (DisclosureSection). */
 /* Page titles: the largest heading on a page. */
 .page-title { font-size: 1.35rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.14em; }
 .section-heading,
 article.prose h2:not(:where(.not-prose, .not-prose *)) {
-  margin: 2.75rem 0 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-stone-300);
+  margin: 2.75rem 0 1.1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-stone-300);
   font-family: var(--font-serif);
   font-size: 1.05rem;
   font-weight: 700;
@@ -740,9 +740,11 @@ article.prose h2:not(:where(.not-prose, .not-prose *)) {
   text-transform: lowercase;
   color: var(--site-text-primary);
 }
-html.dark :is(.section-heading, article.prose h2:not(:where(.not-prose, .not-prose *))) { border-color: var(--color-stone-700); }
+html.dark :is(.section-heading, .subsection-heading, article.prose h2:not(:where(.not-prose, .not-prose *))) { border-color: var(--color-stone-700); }
 .subsection-heading {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-stone-300);
   font-family: var(--font-serif);
   font-size: 0.82rem;
   font-weight: 700;
@@ -751,31 +753,14 @@ html.dark :is(.section-heading, article.prose h2:not(:where(.not-prose, .not-pro
   color: var(--site-text-secondary);
 }
 
-/* Journal entries' reading panel (src/components/site/reading-panel.tsx), being decided: none by default (the entry on
-   the paper, contours behind it); ?reading=panel a flat panel in the footer's warm white, solid so the contours stop at
-   its edge; ?reading=print the same panel as a print. */
-html[data-reading] .reading-panel {
-  position: relative;
-  z-index: 0;
-  padding: 2.25rem 2.5rem 2.75rem;
-  background: #fbf7ef; /* the footer's warm white over the sand, made solid */
-}
-html.dark[data-reading] .reading-panel { background: #1b1611; }
-html[data-reading="panel"] .reading-panel { border-block: 1px solid rgb(214 211 209 / 0.6); }
-html.dark[data-reading="panel"] .reading-panel { border-color: var(--color-stone-700); }
-html[data-reading="print"] .reading-panel {
-  border: 5px solid var(--color-print);
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgb(60 40 20 / 0.18), 0 8px 18px -12px rgb(60 40 20 / 0.3);
-}
-@media (max-width: 639px) { html[data-reading] .reading-panel { padding: 1.25rem 1.1rem 1.75rem; } }
-/* A section heading that opens a page's text (first thing under the page title) leaves out its rule: the title's rule
-   is just above it. */
+/* A section heading that opens a page's text starts right under the page title. */
 :is(.page-body > h2:first-child, .page-body > :first-child > h2:first-child, .page-body > :first-child > :first-child > h2:first-child, .page-body > :first-child > :first-child > :first-child > h2:first-child) {
   margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
 }
+
+/* Pages that sit on plain tan, without the contours behind them: individual journal posts and the creative projects
+   page (its placards). A page asks for it with an empty .no-contours element. */
+html:has(.no-contours) .topo-background { display: none; }
 
 /* Post tags in little boxes, like the photographs' date stamps: monospaced, in a warm white box; each keeps its colour. */
 .tag-box {

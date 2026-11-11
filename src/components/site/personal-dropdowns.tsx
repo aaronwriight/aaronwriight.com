@@ -6,7 +6,7 @@ import { AlbumCarousel } from "@/components/site/album-carousel";
 
 export function PersonalDropdowns() {
   return (
-    <div className="personal-sections divide-y divide-stone-300 border-y border-stone-300 dark:divide-stone-700 dark:border-stone-700">
+    <div className="personal-sections">
       <DisclosureSection id="art" title="Art & media">
         <div className="mt-5 space-y-5">
           <AlbumCarousel />
