@@ -50,7 +50,6 @@ export default function CreativeProjectsPage() {
   return (
     <CreativeShell title="projects">
       <div className="space-y-12">
-        <span className="no-contours" hidden />
         {groups.map((group) => <ProjectGroup key={group.id} {...group} />)}
       </div>
     </CreativeShell>
