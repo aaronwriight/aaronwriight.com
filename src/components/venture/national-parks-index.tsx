@@ -716,7 +716,7 @@ export function NationalParksMap({
 
   return (
     <figure className={`not-prose m-0 w-full ${variant === "index" ? "mt-9" : ""}`}>
-      <div className="relative isolate overflow-hidden border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-950">
+      <div className="relative isolate overflow-hidden print-map">
         <svg
           ref={svgRef}
           className={`block w-full touch-none select-none bg-white outline-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:outline-none dark:bg-stone-950 ${variant === "atlas" ? "aspect-[56/33]" : "aspect-[5/3]"}`}

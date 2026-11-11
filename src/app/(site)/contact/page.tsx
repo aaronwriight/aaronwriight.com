@@ -54,7 +54,7 @@ export default function ContactPage() {
       </p>
 
       <div className="not-prose grid gap-6 xl:grid-cols-3">
-        <section aria-labelledby="science-contact" className="contact-placard min-w-0 border border-stone-300 bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-950">
+        <section aria-labelledby="science-contact" className="contact-placard print-placard min-w-0 p-5 sm:p-6">
           <h2 id="science-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">science</h2>
 
           <div className="mt-5 space-y-2">
@@ -77,7 +77,7 @@ export default function ContactPage() {
           </nav>
         </section>
 
-        <section aria-labelledby="photography-contact" className="contact-placard min-w-0 border border-stone-300 bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-950">
+        <section aria-labelledby="photography-contact" className="contact-placard print-placard min-w-0 p-5 sm:p-6">
           <h2 id="photography-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">photography</h2>
           <p className="mt-5 font-serif text-sm text-stone-900 dark:text-stone-100">Frame It Wright Photography</p>
           <p className="mt-5 text-xs leading-6 text-stone-500">Photo sessions, bookings, and making photographs together.</p>
@@ -86,12 +86,12 @@ export default function ContactPage() {
           </div>
           <nav aria-label="Photography contact links" className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs lowercase tracking-wider">
             <Link href="https://www.instagram.com/frameitwrightphotography/" className="text-olive">instagram</Link>
-            <Link href="/frame-it-wright-photography/booking" className="text-olive">booking</Link>
-            <Link href="/frame-it-wright-photography" className="text-olive">about</Link>
+            <Link href="/frame-it-wright-photography/contact" className="text-olive">booking</Link>
+            <Link href="/frame-it-wright-photography/about" className="text-olive">about</Link>
           </nav>
         </section>
 
-        <section aria-labelledby="creative-contact" className="contact-placard min-w-0 border border-stone-300 bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-950">
+        <section aria-labelledby="creative-contact" className="contact-placard print-placard min-w-0 p-5 sm:p-6">
           <h2 id="creative-contact" className="font-serif text-[1.4rem] font-normal lowercase leading-tight text-stone-900 dark:text-stone-100">creative</h2>
           <p className="mt-5 font-serif text-sm text-stone-900 dark:text-stone-100">Scope for Imagination &amp; Other projects</p>
           <p className="mt-5 text-xs leading-6 text-stone-500">Writing, creative collaborations, shared interests, and a good conversation.</p>

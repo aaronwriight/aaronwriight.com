@@ -10,7 +10,7 @@ import type { NortheastPeak, NortheastRangeArea } from "@/lib/venture-trails";
 
 function AtlasMapLoading() {
   return (
-    <div className="flex aspect-[56/33] items-center justify-center border border-stone-200 bg-white font-serif text-xs italic text-stone-400 dark:border-stone-700 dark:bg-stone-950">
+    <div className="print-map flex aspect-[56/33] items-center justify-center font-serif text-xs italic text-stone-400">
       loading map…
     </div>
   );

@@ -36,6 +36,8 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
   creative: [
     { label: "about", href: "/creative" },
     { label: "projects", href: "/creative/projects", children: creativeProjects },
+    // One page with both journals' entries, newest first (each journal keeps its own pages too).
+    { label: "journal", href: "/creative/journal" },
     { label: "inspirations", href: "/creative/inspirations", children: [
       { label: "art & media", href: "/creative/inspirations#art" },
       { label: "communities", href: "/creative/inspirations#communities" },
@@ -44,10 +46,10 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
     { label: "mailing list", href: "/creative/mailing-list" },
   ],
   photography: [
-    { label: "about", href: "/frame-it-wright-photography" },
+    { label: "about", href: "/frame-it-wright-photography/about" },
     { label: "portfolio", href: "/frame-it-wright-photography/portfolio" },
-    { label: "galleries", href: "/frame-it-wright-photography/gallery" },
-    { label: "booking", href: "/frame-it-wright-photography/booking" },
+    { label: "galleries", href: "/frame-it-wright-photography/galleries" },
+    { label: "contact", href: "/frame-it-wright-photography/contact" },
   ],
   literature: [
     { label: "about", href: "/literature" },
@@ -58,9 +60,9 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
     { label: "about", href: "/venture/about" },
     { label: "atlas", href: "/venture" },
     { label: "index", href: "/venture/index", children: [
+      { label: "travels", href: "/venture/travels" },
       { label: "northeast 115", href: "/venture/trails" },
       { label: "national parks", href: "/venture/parks" },
-      { label: "travels", href: "/venture/travels" },
     ] },
   ],
   wiki: [

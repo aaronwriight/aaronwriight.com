@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PhotoViewer, type ViewerPhoto } from "@/components/photography/photo-viewer";
+import { stampText } from "@/lib/stamp";
 
-export type MosaicPhoto = ViewerPhoto;
+export type MosaicPhoto = ViewerPhoto & { taken?: string };
 
 type Mode = { target: number; width: number };
 // Target row height as a share of the row width, and a nominal width for weighing the gaps: about two portraits a
@@ -86,6 +87,7 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
                 return (
                   <button key={photo.src} type="button" aria-haspopup="dialog" onClick={() => setOpen(position)} className="photo-mosaic-tile" style={{ flexGrow: photo.width / photo.height, aspectRatio: `${photo.width} / ${photo.height}` }}>
                     <Image src={photo.src} alt={photo.alt} fill sizes={`(min-width: 768px) ${Math.ceil(share * 1200)}px, ${Math.ceil(share * 100)}vw`} className="object-cover" />
+                    {photo.taken && <span className="date-stamp" aria-hidden="true">{stampText(photo.taken)}</span>}
                   </button>
                 );
               })}

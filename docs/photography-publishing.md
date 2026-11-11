@@ -55,7 +55,7 @@ raw files (CR2 and similar); export a JPEG from your editor first. An existing
 derivative is only rebuilt with `--replace`. You can still export derivatives
 yourself instead, as clean JPEG/PNG/WebP files without private metadata.
 
-The validator accepts at most 20 still images per gallery, each no larger than
+The validator accepts at most 30 still images per gallery, each no larger than
 3 MiB and 8000 pixels per side. It checks file bytes, image decoding, dimensions,
 metadata, path containment, duplicate files, and descriptive alt text; a draft
 with an empty alt fails until every photograph is described. An image entry looks like:
@@ -95,6 +95,17 @@ preview the site, then use the normal repository release process. Existing galle
 replacement requires `--replace`. Empty image lists support metadata-only entries.
 Never use the publish command merely to demonstrate an unapproved photo.
 
+After publishing, refresh the retro date stamps (the small `'23 05 01` in the corner of each print):
+
+```sh
+pnpm photography:stamps
+```
+
+`scripts/photo_stamps.py` matches each published image to its draft by content hash and the draft to its original
+under `~/Desktop/life/photography` by file name, reads only the capture date, and writes
+`content/photography/stamps.json` (`{ "/images/photography/...jpg": "2023-05-01" }`). No time, place, or other EXIF
+leaves the originals, and published images stay metadata-free. A photograph without a date simply has no stamp.
+
 The original draft and derivatives are not changed. Generated assets have immutable
 hash names; replacement does not erase earlier files. To reverse an uncommitted
 publication, restore the catalog and remove only the generated files shown in
@@ -114,10 +125,22 @@ for gallery access and sign-in on Pic-Time. The portfolio and platforms wiki
 also use the public account entry. This is an outbound link, not FIW authentication.
 A collection absent from the landing page may still need the emailed invitation.
 
-**Division (decided October 2026):** the portfolio and galleries live on this
+**Structure (November 2026):** Frame it Wright Photography is its own small site, served at frameitwright.com
+(host rules in `next.config.mjs`; the same pages stay at `/frame-it-wright-photography` locally and on previews).
+It has its own layout (`src/app/(photography)`): about, portfolio, galleries, contact. The portfolio's five
+sessions (`photographySessions` in `src/data/photography.ts`) each draw on published categories, and each session
+page shows every photograph in justified rows, favorites first. The galleries page is for clients only: the way to
+Pic-Time, with no portfolio photographs; elsewhere its link reads "find your photos". Contact is the booking page.
+Events and travel stay in the data but not the portfolio; home and about draw on every gallery.
+
+**Hand-picked photographs:** `content/photography/home.json` names the photography home's collage (two rows, left to
+right, each photograph keeping its own shape) and the photograph on the aaronwriight.com front door's photography
+plaque, by published image path. Edit it to change them; a path that is no longer published is skipped.
+
+**Division (decided October 2026, superseded in part above):** the portfolio and galleries live on this
 site; Pic-Time holds the full shoots and is only for releasing client galleries.
 Each public gallery is one content area (couples & engagement, wedding, and so on)
-with at most 20 photographs. The galleries page shows every gallery's placard
+with at most 30 photographs (20 until November 2026). The galleries page shows every gallery's placard
 above its photographs in justified rows, with filters for each gallery and "all".
 The portfolio is only your favorites, marked `portfolio: true`, set out in an
 irregular arrangement with each one's `caption` as the note on why you chose it.

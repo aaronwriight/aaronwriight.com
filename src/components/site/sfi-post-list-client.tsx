@@ -24,11 +24,11 @@ function PostRows({ posts }: { posts: readonly SfiPostListItem[] }) {
       {posts.map((post) => (
         <article
           key={post.entry}
-          className="grid gap-x-10 gap-y-4 border-b border-stone-300 py-6 dark:border-stone-700 lg:grid-cols-[minmax(0,1.1fr)_minmax(15rem,0.9fr)] lg:items-end"
+          className="grid gap-x-10 gap-y-4 border-b border-stone-300 py-6 dark:border-stone-700 md:grid-cols-[minmax(0,1.1fr)_minmax(13rem,0.9fr)] md:items-end"
         >
           <SfiPostHeader post={post} href={`/scope-for-imagination/${post.entry}`} />
           {post.excerpt ? (
-            <p className="m-0 max-w-sm font-serif text-xs italic leading-5 text-stone-450 lg:justify-self-end">
+            <p className="m-0 max-w-sm font-serif text-xs italic leading-5 text-stone-450 md:justify-self-end">
               {post.excerpt}
             </p>
           ) : null}

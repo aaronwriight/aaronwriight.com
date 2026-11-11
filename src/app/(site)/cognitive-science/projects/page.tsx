@@ -23,8 +23,8 @@ const projects = [
     href: "/cognitive-science/projects/cortex",
     subtitle: "the tidyverse for computational neuroscience.",
     description: "A modular ecosystem for making neuroscience workflows more consistent, reproducible, and approachable.",
-    image: "/images/projects/cortex.png",
-    alt: "Cortex artwork showing a neuroscience workflow from preprocessing through modeling, mapping, and visualization.",
+    image: "/images/projects/cortex-social-card.png",
+    alt: "Cortex artwork: a brain with language regions shaded in orange, ringed by its workflow (preprocess, segment, model, map, analyze, visualize), on contour lines.",
   },
   {
     category: "creative",

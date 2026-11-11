@@ -19,8 +19,9 @@ const DRIFT_PER_PIXEL = 0.004; // contour intervals the lines move per pixel scr
 const GRID_STEP = 5; // CSS pixels between elevation samples (more on very large screens, see gridStep)
 const MAX_CELLS = 60000; // keeps one redraw within a frame on large displays
 const MIN_PHASE_CHANGE = 0.02; // contour intervals the drift must move before the lines are redrawn
-// Path prefixes where the background is not drawn (none at the moment; every page shares it).
-const HIDDEN_ON: string[] = [];
+// The contours are creative's own (November 2026): drawn only on the creative section's pages. Everywhere else (the
+// front door, science, the wiki, contact) is plain sand, and the creative plaque on the front door carries them.
+const SHOWN_ON = ["/creative", "/venture", "/scope-for-imagination", "/literature", "/stories-and-guides", "/personal"];
 
 const DAY: TopoPalette = { maroon: "#954f72", orange: "#f4a825", olive: "#6f8200", cyan: "#2aa198" };
 const NIGHT: TopoPalette = { maroon: "#c47fa3", orange: "#f2be5c", olive: "#b0bf59", cyan: "#4fc3b6" };
@@ -32,7 +33,7 @@ function gridStep(width: number, height: number) {
 
 export function TopoBackground() {
   const pathname = usePathname() ?? "";
-  const hidden = HIDDEN_ON.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const hidden = !SHOWN_ON.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

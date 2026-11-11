@@ -4,7 +4,9 @@ import assert from "node:assert/strict";
 import { mkdir, readFile } from "node:fs/promises";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
 const catalog = JSON.parse(await readFile(new URL("../content/photography/published.json", import.meta.url), "utf8"));
-const portfolioCount = catalog.flatMap(gallery => gallery.images.filter(image => image.portfolio)).length;
+const PHOTO = "/frame-it-wright-photography";
+// Photography pages are canonical on frameitwright.com, at the same path without the section prefix.
+const canonicalFor = path => path.startsWith(PHOTO) ? `https://frameitwright.com${path.slice(PHOTO.length)}`.replace(/\/$/, "") || "https://frameitwright.com" : `https://aaronwriight.com${path}`;
 const base = process.env.CREATIVE_TEST_URL || "http://127.0.0.1:4184";
 const artifacts = process.env.CREATIVE_TEST_ARTIFACTS || "/private/tmp/frameitwright-creative-checks";
 await mkdir(artifacts, { recursive: true });
@@ -17,10 +19,13 @@ try {
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(error.message));
     for (const [path, title] of [
-      ["/frame-it-wright-photography/portfolio", "portfolio"],
-      ["/frame-it-wright-photography/gallery", "galleries"],
-      ["/frame-it-wright-photography/gallery/study-portraits", "portraits"],
-      ["/frame-it-wright-photography/booking", "booking"],
+      [PHOTO, "Frame it Wright Photography"],
+      [`${PHOTO}/about`, "Hi! I'm Aaron."],
+      [`${PHOTO}/portfolio`, "portfolio"],
+      [`${PHOTO}/portfolio/couples-engagement`, "couples & engagement"],
+      [`${PHOTO}/portfolio/portraits`, "portraits"],
+      [`${PHOTO}/galleries`, "galleries"],
+      [`${PHOTO}/contact`, "Create with me!"],
       ["/creative/mailing-list", "mailing list"],
       ["/creative", "about"],
       ["/creative/inspirations", "inspirations"],
@@ -32,19 +37,13 @@ try {
       assert.equal(response.status(), 200, path);
       assert.equal(await page.locator("h1").innerText(), title);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `Overflow at ${width}: ${path}`);
-      if (path.includes("photography/portfolio") || path.includes("photography/gallery")) {
-        if (!catalog.length || path.includes("study-")) {
-          assert.equal(await page.locator("main article img").count(), 0, "Photography must contain no selected photos");
-          assert(await page.locator(".photo-placeholder").count() > 0);
-        } else {
-          // Published photographs: described for screen readers, never labelled with camera file names.
-          if (path.endsWith("portfolio")) assert.equal(await page.locator(".photo-spread-item").count(), portfolioCount);
-          assert(await page.locator("main article img").evaluateAll(images => images.every(image => image.alt.trim().length > 10)));
-          assert(!/IMG_\d/.test(await page.locator("main article").first().innerText()));
-        }
-        if (path.endsWith("portfolio") || path.endsWith("gallery")) {
-          await page.screenshot({ path: `${artifacts}/${path.endsWith("portfolio") ? "portfolio" : "galleries"}-${width}.png`, fullPage: true });
-        }
+      if (path.startsWith(PHOTO)) {
+        // Published photographs: described for screen readers, never labelled with camera file names; no arrows.
+        if (catalog.length) assert(await page.locator("main img").evaluateAll(images => images.every(image => image.alt === "" ? image.closest("[aria-hidden=true]") : image.alt.trim().length > 10)));
+        assert(!/IMG_\d/.test(await page.locator("main").innerText()));
+        assert(!(await page.locator("body").innerText()).includes("→"), `No arrows: ${path}`);
+        assert.equal(await page.getByRole("link", { name: "Create with me!" }).count(), path.endsWith("/contact") ? 0 : 1, path);
+        await page.screenshot({ path: `${artifacts}/photography${path.slice(PHOTO.length).replaceAll("/", "-") || "-home"}-${width}.png`, fullPage: true });
       }
       if (path === "/creative") {
         const article = await page.locator("main article").innerText();
@@ -58,20 +57,15 @@ try {
       if (path === "/creative/projects") {
         assert.equal(await page.locator('main article a[href="/frame-it-wright-photography"]').count(), 0);
       }
-      if (path.endsWith("photography/gallery")) {
-        const portal = page.getByRole("link", { name: "Find your photographs on Pic-Time — continue to the gallery and sign-in page" });
+      if (path.endsWith("/galleries")) {
+        const portal = page.getByRole("link", { name: "Open your gallery on Pic-Time" });
         assert.equal(await portal.getAttribute("href"), "https://frameitwrightphotography.pic-time.com/client");
         assert.equal(await page.locator('input[type="password"]').count(), 0);
-      }
-      if (path.endsWith("photography/booking")) {
-        assert.equal(await page.locator("main article header p").innerText(), "Create with me!");
-        assert.equal(await page.locator("main article header p").evaluate(el => getComputedStyle(el).textTransform), "none");
-        await page.screenshot({ path: `${artifacts}/booking-${width}.png`, fullPage: true });
       }
       if (path === "/creative" || path === "/creative/inspirations") {
         await page.screenshot({ path: `${artifacts}/${path === "/creative" ? "creative" : "inspirations"}-${width}.png`, fullPage: true });
       }
-      assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), `https://aaronwriight.com${path}`);
+      assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), canonicalFor(path));
     }
     await page.goto(base + "/frame-it-wright-photography/portfolio", { waitUntil: "networkidle" });
     await page.getByRole("button", { name: "Switch to night mode" }).click();
@@ -79,13 +73,13 @@ try {
     await page.screenshot({ path: `${artifacts}/portfolio-dark-${width}.png`, fullPage: true });
     await page.getByRole("button", { name: "Switch to light mode" }).click();
 
-    await page.goto(base + "/frame-it-wright-photography/mailing-list", { waitUntil: "networkidle" });
-    assert.equal(new URL(page.url()).pathname, "/frame-it-wright-photography/booking");
+    await page.goto(base + `${PHOTO}/mailing-list`, { waitUntil: "networkidle" });
+    assert.equal(new URL(page.url()).pathname, `${PHOTO}/contact`);
     const inquiry = page.getByRole("form", { name: "Prepare a photography inquiry" });
     const draft = inquiry.getByRole("link", { name: "open email draft" });
     const prepare = inquiry.getByRole("button", { name: "prepare an inquiry" });
-    const shoots = ["Events", "Couples & Engagement", "Wedding", "Family, Friends, & Lifestyle", "Graduation (High School & College)", "Headshots"];
-    assert.deepEqual(await inquiry.locator('select[name="shootType"] option:not([disabled])').allTextContents(), shoots);
+    const shoots = ["wedding", "couples & engagement", "family, friends, & lifestyle", "graduation & seniors", "portraits", "events", "something else"];
+    assert.deepEqual(await inquiry.locator('input[name="shootType"]').evaluateAll(inputs => inputs.map(input => input.value)), shoots);
     let inquiryRequests = 0;
     const trackInquiry = request => { if (request.method() !== "GET") inquiryRequests++; };
     page.on("request", trackInquiry);
@@ -94,7 +88,7 @@ try {
     await inquiry.getByLabel("First name *", { exact: true }).fill("Test");
     await inquiry.getByLabel("Last name *", { exact: true }).fill("Reader");
     await inquiry.getByLabel("Email *", { exact: true }).fill("not-an-email");
-    await inquiry.getByRole("combobox", { name: "Shoot type *", exact: true }).selectOption("Couples & Engagement");
+    await inquiry.getByRole("radio", { name: "couples & engagement", exact: true }).check({ force: true });
     await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("unsure");
     assert.equal(await inquiry.getByLabel("Location or area *", { exact: true }).count(), 0);
     await inquiry.getByLabel("Scenery or vibe (optional)", { exact: true }).fill("A quiet trail at sunset");
@@ -114,7 +108,7 @@ try {
     let href = await draft.getAttribute("href");
     assert(href.startsWith("mailto:frameitwright@gmail.com?"));
     let body = new URL(href).searchParams.get("body");
-    for (const expected of ["First name: Test", "Last name: Reader", "Email: offline@example.com", "Shoot type: Couples & Engagement", "A quiet trail at sunset", "A little about me:", "We love hiking and music.", "A little about my idea:", "A relaxed celebration with friends.", "Within an hour", "Please email me to find a time."]) assert(body.includes(expected), expected);
+    for (const expected of ["First name: Test", "Last name: Reader", "Email: offline@example.com", "Shoot type: couples & engagement", "A quiet trail at sunset", "A little about me:", "We love hiking and music.", "A little about my idea:", "A relaxed celebration with friends.", "Within an hour", "Please email me to find a time."]) assert(body.includes(expected), expected);
     assert.equal(await inquiry.locator('input[name="phone"]').getAttribute("required"), null);
     await inquiry.getByRole("combobox", { name: "Location *", exact: true }).selectOption("known");
     assert.equal(await draft.count(), 0, "Changing the inquiry invalidates its draft");
@@ -174,21 +168,20 @@ try {
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `SFI mailing list overflow at ${width}`);
     await page.screenshot({ path: `${artifacts}/sfi-mailing-list-${width}.png`, fullPage: true });
 
-    // Contour-map background: present on every page, photography included, and never wider than the page.
+    // Contour-map background: present on main-site pages, not in photography, and never wider than the page.
     await page.goto(base + "/creative", { waitUntil: "networkidle" });
     await page.waitForFunction(() => document.documentElement.dataset.topo === "on");
     assert.equal(await page.locator("[data-topo-background]").count(), 1);
     assert.equal(await page.locator("[data-topo-background]").getAttribute("aria-hidden"), "true");
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `Background overflow at ${width}`);
-    await page.goto(base + "/frame-it-wright-photography/portfolio", { waitUntil: "networkidle" });
-    await page.waitForFunction(() => document.documentElement.dataset.topo === "on");
-    assert.equal(await page.locator("[data-topo-background]").count(), 1, "Photography pages share the background");
+    await page.goto(base + `${PHOTO}/portfolio`, { waitUntil: "networkidle" });
+    assert.equal(await page.locator("[data-topo-background]").count(), 0, "Photography has its own ground, without contours");
     await context.close();
   }
   const noScript = await browser.newContext({ javaScriptEnabled: false });
   await noScript.route("**/*", route => new URL(route.request().url()).origin === base ? route.continue() : route.abort());
   const noScriptPage = await noScript.newPage();
-  await noScriptPage.goto(base + "/frame-it-wright-photography/booking");
+  await noScriptPage.goto(base + `${PHOTO}/contact`);
   assert(await noScriptPage.getByRole("button", { name: "prepare an inquiry" }).isDisabled(), "No-JS form cannot submit personal data to the URL");
   await noScript.close();
   assert.deepEqual(errors, []);

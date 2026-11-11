@@ -16,7 +16,7 @@ export default function CreativeMailingListPage() {
         <p>A quiet place to keep in touch: new writing, notes from the blogs, and creative projects as they take shape.</p>
         <p>
           Follow along with <Link href="/scope-for-imagination">Scope for Imagination</Link>, <Link href="/venture">Venture</Link>,
-          photography, and other work in progress. For a session or collaboration, visit <Link href="/frame-it-wright-photography/booking">booking</Link>.
+          photography, and other work in progress. For a session or collaboration, visit <Link href="/frame-it-wright-photography/contact">booking</Link>.
         </p>
       </div>
       <div className="not-prose max-w-2xl border-t border-stone-300 pt-7 dark:border-stone-700">

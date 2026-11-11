@@ -6,10 +6,10 @@ export function LatestPost({ post, href }: { post: SfiPostHeaderData & { excerpt
   return (
     <section aria-labelledby="latest-post" className="not-prose">
       <h2 id="latest-post" className="mb-4 font-serif text-xs font-normal lowercase tracking-widest text-stone-500">the latest</h2>
-      <article className="grid gap-x-10 gap-y-4 border-y border-stone-300 py-6 dark:border-stone-700 lg:grid-cols-[minmax(0,1.1fr)_minmax(15rem,0.9fr)] lg:items-end">
+      <article className="grid gap-x-10 gap-y-4 border-y border-stone-300 py-6 dark:border-stone-700 md:grid-cols-[minmax(0,1.1fr)_minmax(13rem,0.9fr)] md:items-end">
         <SfiPostHeader post={post} href={href} />
         {post.excerpt ? (
-          <p className="m-0 max-w-sm font-serif text-sm italic leading-6 text-stone-500 lg:justify-self-end">{post.excerpt}</p>
+          <p className="m-0 max-w-sm font-serif text-sm italic leading-6 text-stone-500 md:justify-self-end">{post.excerpt}</p>
         ) : null}
       </article>
     </section>

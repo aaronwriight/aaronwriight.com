@@ -1,8 +1,22 @@
 import Link from "next/link";
 import { NavigationList } from "@/components/site/navigation-list";
+import { SectionBar } from "@/components/site/site-bars";
 import { siteLinks, sectionLinks, type NavigationItem } from "@/data/navigation";
 
 const contentMaxWidth = "64rem";
+
+// The article column, centred under the bars.
+export const articleClass = "prose prose-stone mx-auto min-w-0 w-full max-w-none text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case";
+
+// Where each section's name in its bar leads.
+export const sectionHomes: Record<string, string> = {
+  "cognitive science": "/cognitive-science",
+  creative: "/creative",
+  "scope for imagination": "/scope-for-imagination",
+  venture: "/venture",
+  literature: "/literature",
+  wiki: "/about",
+};
 
 const creativeParentLinks = [
   ["projects", "/creative/projects"],
@@ -18,14 +32,11 @@ export function SitePageShell({
   subtitle?: React.ReactNode;
   children: React.ReactNode;
 }) {
+  // The site bar in the header names every world, so these pages need no menu of their own.
   return (
-    <main className="container mx-auto flex-1 px-6 py-11">
-      <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
-        <SiteMenu />
-        <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
-          style={{ maxWidth: contentMaxWidth }}
-        >
+    <main className="flex-1">
+      <div className="site-wrap py-11">
+        <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
           <PageHeader title={title} subtitle={subtitle} />
           <div className="mt-8 space-y-5">{children}</div>
         </article>
@@ -115,14 +126,19 @@ export function SectionPageShell({
   showTitle?: boolean;
   children: React.ReactNode;
 }) {
+  // The section's own bar (its name, its pages, sub-pages as drop-downs) sits under the site bar, in place of the side
+  // menu. Parent links become breadcrumbs: a creative project's sections show "creative /" before their name, and a
+  // page one level down (a back link such as "northeast 115") shows after it.
+  const parents = (parentLinks ?? []).filter(([, href]) => href !== "/");
+  const inCreative = section !== "creative" && parents.some(([, href]) => href === "/creative/projects");
+  const parent: [string, string] | undefined = inCreative ? ["creative", "/creative"] : undefined;
+  const near = parents.find(([, href]) => !(inCreative && href === "/creative/projects"));
+  const trail: [string, string] | undefined = near ? [near[0], near[1]] : undefined;
   return (
-    <main className="container mx-auto flex-1 px-6 py-11">
-      <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
-        <SectionMenu title={section} links={links} parentLinks={parentLinks} />
-        <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
-          style={{ maxWidth: contentMaxWidth }}
-        >
+    <main className="flex-1">
+      {links.length > 0 && <SectionBar section={section} href={sectionHomes[section] ?? links[0].href} links={links} parent={parent} trail={trail} current={title} />}
+      <div className="site-wrap py-11">
+        <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
           {showTitle && <PageHeader title={title} subtitle={subtitle} />}
           <div className={showTitle ? "mt-8 space-y-5" : "space-y-5"}>{children}</div>
         </article>

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { PageHeader, SectionMenu } from "@/components/site/site-content";
+import { SectionBar } from "@/components/site/site-bars";
+import { PageHeader, articleClass } from "@/components/site/site-content";
 
 import { scienceLinks } from "@/data/navigation";
 
@@ -14,15 +15,13 @@ export function ScienceShell({
   parentLinks?: string[][];
   children: React.ReactNode;
 }) {
+  // Breadcrumbs, as in the creative bars: a project's page reads "cognitive science / projects".
+  const near = (parentLinks ?? []).find(([, href]) => href !== "/");
   return (
-    <main className="container mx-auto flex-1 px-6 py-11">
-      <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
-        <SectionMenu title="cognitive science" links={scienceLinks} parentLinks={parentLinks} />
-
-        <article
-          className="prose prose-stone min-w-0 w-full max-w-none self-start text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case"
-          style={{ maxWidth: "56rem" }}
-        >
+    <main className="flex-1">
+      <SectionBar section="cognitive science" href="/cognitive-science" links={scienceLinks} trail={near ? [near[0], near[1]] : undefined} current={title} />
+      <div className="site-wrap py-11">
+        <article className={articleClass} style={{ maxWidth: "56rem" }}>
           <PageHeader title={title} subtitle={subtitle} accent={title === "resources"} />
           <div className="mt-8 space-y-5">{children}</div>
         </article>

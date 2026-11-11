@@ -1,7 +1,7 @@
 "use client";
 
 import { type FormEvent, useEffect, useId, useState } from "react";
-import { photographyShootTypes } from "@/data/photography";
+import { photographyShootTypes, sessionPrompts } from "@/data/photography";
 
 const fieldClass = "w-full border border-stone-300 bg-white px-3 py-2 font-serif text-sm text-stone-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100";
 const labelClass = "block space-y-1.5 text-xs text-stone-600 dark:text-stone-400";
@@ -11,11 +11,17 @@ export function BookingInquiry() {
   const [formError, setFormError] = useState("");
   const [locationChoice, setLocationChoice] = useState("");
   const [ready, setReady] = useState(false);
+  const [shootKey, setShootKey] = useState("");
   const id = useId();
 
   // Without JavaScript, keep the local-only form disabled so a native form
   // submission cannot place contact details in a URL or send them to the site.
-  useEffect(() => setReady(true), []);
+  // A link from a session page (?session=wedding) arrives with that session chosen.
+  useEffect(() => {
+    setReady(true);
+    const session = new URLSearchParams(window.location.search).get("session");
+    if (session && photographyShootTypes.some(({ key }) => key === session)) setShootKey(session);
+  }, []);
 
   function prepareDraft(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -108,13 +114,17 @@ export function BookingInquiry() {
         <fieldset className="space-y-5 border-t border-stone-300 pt-6 dark:border-stone-700">
           <legend className="pr-3 font-serif text-sm">The shoot you have in mind</legend>
           <div className="grid gap-5 sm:grid-cols-2">
-            <label className={labelClass}>
-              <span className="block tracking-wide">Shoot type *</span>
-              <select name="shootType" className={fieldClass} defaultValue="" required>
-                <option value="" disabled>Choose a shoot type</option>
-                {photographyShootTypes.map((shootType) => <option key={shootType} value={shootType}>{shootType}</option>)}
-              </select>
-            </label>
+            <fieldset className="space-y-2.5 sm:col-span-2">
+              <legend className="mb-2.5 text-xs tracking-wide text-stone-600 dark:text-stone-400">Session *</legend>
+              <div className="flex flex-wrap gap-2">
+                {photographyShootTypes.map(({ key, label }) => (
+                  <label key={key} className="fiw-chip relative">
+                    <input type="radio" name="shootType" value={label} required checked={shootKey === key} onChange={() => setShootKey(key)} />
+                    <span>{label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
             <label className={labelClass}>
               <span className="block tracking-wide">Preferred date range or season (optional)</span>
               <input name="timing" maxLength={160} placeholder="A few dates, a season, or flexible" className={fieldClass} />
@@ -160,7 +170,7 @@ export function BookingInquiry() {
 
         <label className={labelClass}>
           <span className="block font-serif text-sm text-stone-900 dark:text-stone-100">A little about your idea *</span>
-          <textarea name="idea" maxLength={1500} rows={5} required placeholder="What would your perfect shoot look like?" className={`${fieldClass} resize-y`} />
+          <textarea name="idea" maxLength={1500} rows={5} required placeholder={sessionPrompts[shootKey] ?? sessionPrompts["something else"]} className={`${fieldClass} resize-y`} />
         </label>
         <p className="text-xs leading-6 text-stone-600 dark:text-stone-400">
           This prepares an email draft. Your details stay in this page until you open the draft; review and send it yourself when you are ready. Nothing is booked or sent from this form.
@@ -173,7 +183,7 @@ export function BookingInquiry() {
           {draftHref && (
             <div className="space-y-3 border-l-2 border-stone-400 pl-4 text-sm leading-6 dark:border-stone-600">
               <p>Your draft is ready. Open it in your email app, review it, and send it to start the conversation.</p>
-              <a href={draftHref} className="inline-block text-olive underline underline-offset-4">open email draft →</a>
+              <a href={draftHref} className="inline-block text-olive underline underline-offset-4">open email draft</a>
             </div>
           )}
         </div>

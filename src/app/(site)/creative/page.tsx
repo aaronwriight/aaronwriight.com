@@ -54,6 +54,23 @@ export default function CreativeAboutPage() {
         </p>
         {/* Two additional favorite-things entries are unfinished in the author's draft and intentionally not rendered. */}
       </div>
+
+      {/* Where "scope for imagination" comes from. It closed the old home page (the stories & guides list) until
+          November 2026. */}
+      <figure className="not-prose ml-auto mt-14 max-w-xl text-right">
+        <blockquote className="m-0 font-serif text-sm italic leading-relaxed">
+          Well, that is one of the things to find out sometime.
+          <br />
+          Isn&apos;t it splendid to think of all the things there are to find out about?
+          <br />
+          It just makes me feel glad to be alive - it&apos;s such an interesting world.
+          <br />
+          It wouldn&apos;t be half so interesting if we know all about everything, would it?
+          <br />
+          There&apos;d be no{"\u00a0"}<b>scope for imagination</b>{"\u00a0"}then, would there?
+        </blockquote>
+        <figcaption className="mt-3 font-serif text-xs italic leading-relaxed text-stone-500">- Anne of Green Gables, L. M. Montgomery</figcaption>
+      </figure>
     </CreativeShell>
   );
 }

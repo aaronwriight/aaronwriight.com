@@ -2,7 +2,8 @@
 
 import { SanityGuide } from "@/sanity/types/guides";
 import { GuideThumbnail } from "./thumbnail";
-import { SiteMenu } from "@/components/site/site-content";
+import { SectionBar } from "@/components/site/site-bars";
+import { sectionLinks } from "@/data/navigation";
 
 function sortableGuideDate(guide: SanityGuide): string {
   return /^\d{4}-\d{2}-\d{2}$/.test(guide.date_of_guide ?? "") ? guide.date_of_guide : "";
@@ -24,9 +25,10 @@ export default function Guides({ guides }: { guides: SanityGuide[] }) {
     });
 
   return (
-    <main className="container relative mx-auto flex-1 px-7 py-12 sm:px-6 sm:py-11">
-      <div className="grid items-start gap-y-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-x-16">
-        <SiteMenu />
+    <main className="relative flex-1">
+      {/* Stories & guides lives in the creative menu, so it carries the creative bar. */}
+      <SectionBar section="creative" href="/creative" links={sectionLinks.creative} />
+      <div className="site-wrap py-11">
         <section className="w-full self-start space-y-8 text-left">
           {groupedGuidesByYear.map((year) => {
         return (

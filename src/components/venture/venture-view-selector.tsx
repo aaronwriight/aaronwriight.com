@@ -7,9 +7,9 @@ const ventureViews: readonly Readonly<{
   label: string;
   description: string;
 }>[] = [
+  { id: "travels", label: "travels", description: "countries & journeys" },
   { id: "peaks", label: "northeast 115", description: "peaks and ranges across the northeast" },
   { id: "parks", label: "national parks", description: "parks across the united states" },
-  { id: "travels", label: "travels", description: "countries & journeys" },
 ];
 
 export function VentureViewSelector({

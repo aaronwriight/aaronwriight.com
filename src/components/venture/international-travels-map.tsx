@@ -372,7 +372,7 @@ export function InternationalTravelsMap({
 
   return (
     <figure className={`not-prose m-0 w-full ${variant === "atlas" ? "mt-0" : "mt-9"}`}>
-      <div className="relative isolate overflow-hidden border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-950">
+      <div className="relative isolate overflow-hidden print-map">
         <canvas
           ref={reliefCanvasRef}
           width={Math.round(mapWidth * 0.5)}

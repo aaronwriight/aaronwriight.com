@@ -386,7 +386,7 @@ export function VentureGlobe({
 
   return (
     <div className="not-prose w-full">
-      <div className="relative isolate w-full overflow-hidden border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-950">
+      <div className="relative isolate w-full overflow-hidden print-map">
         <svg
           ref={svgRef}
           className="block aspect-[56/33] w-full touch-none select-none bg-white outline-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:outline-none dark:bg-stone-950"
