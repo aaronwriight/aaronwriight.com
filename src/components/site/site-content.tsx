@@ -16,6 +16,7 @@ export const sectionHomes: Record<string, string> = {
   venture: "/venture",
   literature: "/literature",
   wiki: "/about",
+  contact: "/contact",
 };
 
 const creativeParentLinks = [
@@ -136,7 +137,8 @@ export function SectionPageShell({
   const trail: [string, string] | undefined = near ? [near[0], near[1]] : undefined;
   return (
     <main className="flex-1">
-      {links.length > 0 && <SectionBar section={section} href={sectionHomes[section] ?? links[0].href} links={links} parent={parent} trail={trail} current={title} />}
+      {/* A section with a home of its own (contact) keeps the bar for its breadcrumb even with no pages to list. */}
+      {(links.length > 0 || sectionHomes[section]) && <SectionBar section={section} href={sectionHomes[section] ?? links[0].href} links={links} parent={parent} trail={trail} current={title} />}
       <div className="site-wrap py-11">
         <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
           {showTitle && <PageHeader title={title} subtitle={subtitle} />}
