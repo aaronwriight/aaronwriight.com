@@ -17,6 +17,11 @@ export default function TidyTuesdayProjectPage() {
         Part of my creative work in cognitive science, with analyses in R and Python.
       </p>
       <p>
+        <a href="https://github.com/rfordatascience/tidytuesday">#TidyTuesday</a> is a weekly community project: each week a new public dataset
+        is posted, and people around the world clean, explore, and chart it, then share their work. My contributions live in a small Quarto
+        gallery built with tidyverse tools in R and with Python, adapted from the galleries of Guillaume Noblet and Cédric Scherer.
+      </p>
+      <p>
         <a href="https://github.com/aaronwriight/tidytuesday">Explore the TidyTuesday source repository</a>.
         New studies will appear here as they are ready to share, alongside the earlier project below.
       </p>
@@ -44,6 +49,7 @@ export default function TidyTuesdayProjectPage() {
         caption="Hourly sentiment scores from an undergraduate data science project."
         width={1200}
         height={900}
+        single
       />
     </ProjectShell>
   );

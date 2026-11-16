@@ -5,7 +5,7 @@ import { ProjectFigure } from "@/components/science/project-figure";
 
 export const metadata: Metadata = {
   title: "the extended language network",
-  description: "Extended language network project",
+  description: "Language-selective brain areas beyond the core frontal and temporal network, mapped in 772 participants.",
 };
 
 export default function ExtendedLanguageNetworkProjectPage() {
@@ -26,6 +26,9 @@ export default function ExtendedLanguageNetworkProjectPage() {
         width={900}
         height={700}
       />
+      <p className="text-xs text-stone-500">
+        Wolna, A., Wright, A., Casto, C., Hutchinson, S., Lipkin, B., &amp; Fedorenko, E. (2026). <em>The Journal of Neuroscience.</em>
+      </p>
       <PublicationLinks
         links={[
           { label: "DOI", href: "https://doi.org/10.1523/JNEUROSCI.0638-25.2026" },
@@ -38,12 +41,58 @@ export default function ExtendedLanguageNetworkProjectPage() {
         ]}
       >
         <p>
-          Using fMRI data from 772 participants performing an extensively validated language localizer, this work delineates areas that respond
-          reliably to language across written and auditory modalities and evaluates their selectivity relative to a demanding non-linguistic task.
-          The newly identified extended language-selective network includes areas around the temporal poles, medial frontal cortex, hippocampus, and
-          cerebellum.
+          Although language neuroscience has largely focused on &ldquo;core&rdquo; left frontal and temporal brain areas and their right-hemisphere
+          homotopes, numerous other areas&mdash;cortical and subcortical&mdash;have been implicated in linguistic processing. However, these
+          areas&rsquo; contributions to language remain unclear given that the evidence for their recruitment comes from diverse paradigms, many of
+          which conflate language processing with perceptual, motor, or task-related cognitive processes. Using fMRI data from 772 participants (438
+          females, 334 males) performing an extensively validated language &ldquo;localizer&rdquo; paradigm that isolates language processing from
+          other processes, we (1) delineate a comprehensive set of areas that respond reliably to language across written and auditory modalities
+          and (2) evaluate these areas&rsquo; selectivity for language relative to a demanding nonlinguistic task. In line with prior claims, many
+          areas outside the core fronto-temporal network respond during language processing, and most of them show selectivity for language
+          relative to general task demands. These language-selective areas of the extended language network include areas around the temporal
+          poles, in the medial frontal cortex, in the hippocampus, and in the cerebellum, among others. Although distributed across many parts of
+          the brain, the extended language-selective network still only comprises a small fraction (&lt;5%) of the gray matter volume, challenging
+          the view that the entire brain processes language. These newly identified language-selective areas can now be systematically
+          characterized to decipher their contributions to language processing, including testing whether these contributions differ from those
+          of the core language areas.
         </p>
       </PublicationLinks>
+
+      <h2>in brief</h2>
+      <p>
+        Areas well beyond the classic frontal and temporal language regions have been tied to language over the years, from the temporal poles to
+        the cerebellum. But much of that evidence comes from tasks that mix language with reading letters, hearing sounds, moving, or simply
+        working hard, and from group-averaged maps that blur over differences between individual brains. It has been hard to say which of these
+        areas actually care about language.
+      </p>
+      <p>
+        We took one consistent pass over the whole brain. All 772 participants read sentences and strings of nonwords, a contrast that isolates
+        language from the act of reading. A subset also listened to intact and degraded passages from <em>Alice in Wonderland</em>, which let us keep
+        only the areas that respond to language whether it is read or heard, and about 490 also did a demanding spatial working-memory task, which
+        separates areas tuned to language from areas that respond to any hard task. Rather than averaging brains together, we found each
+        person&rsquo;s own language-responsive region within group-level parcels, drawn both from the language data and from four standard
+        atlases.
+      </p>
+      <p>
+        The search turned up 17 areas outside the core network that respond to both written and spoken language, around the temporal poles, in
+        medial frontal cortex, in the hippocampus, and in the cerebellum. Most of them are selective: like the core areas, they respond little to the
+        working-memory task. A few, mostly in the cerebellum, respond to language without being selective for it, which may point to a role in
+        integrating language with other information. And for all its reach, the extended network is small, under 5% of the brain&rsquo;s grey
+        matter, or about the size of a large strawberry.
+      </p>
+      <ProjectFigure
+        src="/images/projects/extended-language-network/figure-3.png"
+        alt="Brain surfaces and a cerebellar flat map with language parcels in red, each ringed by bar plots of responses to sentences, nonwords, intact and degraded speech, and hard and easy spatial working memory, with check marks for language-selective regions."
+        caption="Responses in the core and extended language regions: reds for reading and listening, blues for the working-memory task; two checks mark a language-selective region. Adapted from Wolna, Wright et al. (2026), CC BY."
+        width={1250}
+        height={1800}
+        tall
+      />
+      <p>
+        These areas are now well-defined targets for asking what each one contributes to language, and whether it does something different from
+        the core network. The parcels are shared on <a href="https://osf.io/7594t/">OSF</a> in both volume and surface space, with the code and data to
+        reproduce the analyses and figures in a <a href="https://github.com/aaronwriight/extended_language_network-osf">public repository</a>.
+      </p>
     </ProjectShell>
   );
 }
