@@ -17,7 +17,7 @@ export default function ExtendedLanguageNetworkProjectPage() {
       <ProjectFigure
         src="/images/projects/extended-language-network/overview.png"
         alt="A cortical surface illustration with language-responsive regions shaded in warm tones."
-        caption="A view of the broader cortical landscape motivating the extended language network project."
+        caption="The canonical language network, shown on the Glasser multimodal parcellation."
         width={1800}
         height={1293}
         wrap="left"
@@ -59,50 +59,87 @@ export default function ExtendedLanguageNetworkProjectPage() {
         </p>
       </PublicationLinks>
 
-      <h2>in brief</h2>
+      <h2>background</h2>
+      <p>
+        Language reliably engages a left-lateralized network of frontal and temporal areas that supports comprehension and production, whether
+        the input is read or heard. Over the years, many other structures have also been tied to language: medial frontal cortex, the temporal
+        poles, ventral temporal and parietal areas, the hippocampus, the basal ganglia, the thalamus, and the cerebellum. That evidence is hard to
+        weigh. Much of it comes from single paradigms that mix language with perception, movement, or the general effort of doing a task, and
+        from group-averaged maps, which blur over real differences in where functional areas sit in each person&rsquo;s brain. Two studies
+        reporting nearby peaks may not have found the same area at all.
+      </p>
+
+      <h2>methods</h2>
       <ProjectFigure
         src="/images/projects/extended-language-network/figure-1-tasks.png"
         alt="The three tasks. Reading: sentences and nonword lists shown one word at a time, 450 ms each, in 6-second trials. Listening: intact and degraded passages from Alice in Wonderland in 18-second trials. Spatial working memory: easy and hard sequences of squares flashed on a 3 by 4 grid, followed by a choice and feedback, in 8-second trials."
-        caption="The localizers: reading sentences versus nonwords, listening to intact versus degraded speech, and a hard versus easy spatial working-memory task. Adapted from Wolna, Wright et al. (2026), CC BY."
+        caption="The three tasks: reading sentences versus nonwords, listening to intact versus degraded speech, and a hard versus easy spatial working-memory task."
         width={2000}
         height={1283}
         wrap="left"
       />
       <p>
-        Areas well beyond the classic frontal and temporal language regions have been tied to language over the years, from the temporal poles to
-        the cerebellum. But much of that evidence comes from tasks that mix language with reading letters, hearing sounds, moving, or simply
-        working hard, and from group-averaged maps that blur over differences between individual brains. It has been hard to say which of these
-        areas actually care about language.
+        We drew on fMRI data from 772 participants, all of whom completed a well-validated reading localizer: sentences against lists of
+        pronounceable nonwords, a contrast that isolates word meaning and sentence structure from the act of reading. A subset of 86 also listened
+        to passages from <em>Alice in Wonderland</em> against acoustically degraded versions, and 489 completed a demanding spatial working-memory
+        task.
       </p>
       <p>
-        We took one consistent pass over the whole brain. All 772 participants read sentences and strings of nonwords, a contrast that isolates
-        language from the act of reading. A subset also listened to intact and degraded passages from <em>Alice in Wonderland</em>, which let us keep
-        only the areas that respond to language whether it is read or heard, and about 490 also did a demanding spatial working-memory task, which
-        separates areas tuned to language from areas that respond to any hard task. Rather than averaging brains together, we found each
-        person&rsquo;s own language-responsive region within group-level parcels, drawn both from the language data and from four standard
-        atlases.
+        Rather than averaging brains, we used functional localization. Group-level parcels came from two sources: 27 parcels derived from the
+        language data themselves, by overlaying the most language-responsive voxels of 706 participants and dividing the overlap map with a
+        watershed algorithm (the group-constrained subject-specific approach), and, for comparison, four standard atlases: Desikan&ndash;Killiany&ndash;Tourville,
+        Harvard&ndash;Oxford cortical and subcortical, and the Glasser multimodal parcellation. Within each parcel, each participant&rsquo;s
+        functional region of interest was the 10% of voxels most responsive to language, chosen on one half of the data and measured on the other.
       </p>
-      {/* The findings start below the localizer figure, beside the parcel figure. */}
-      <div aria-hidden="true" className="clear-both" />
+      <p>
+        Each region was then tested with linear mixed-effects models. We counted a region as <em>language-responsive</em> if it preferred
+        language in both modalities (sentences over nonwords, intact over degraded speech), and as <em>language-selective</em> if, in addition,
+        its response to language exceeded its response to the hard working-memory task.
+      </p>
+
+      <h2>results</h2>
       <ProjectFigure
         src="/images/projects/extended-language-network/figure-3.png"
         alt="Brain surfaces and a cerebellar flat map with language parcels in red, each ringed by bar plots of responses to sentences, nonwords, intact and degraded speech, and hard and easy spatial working memory, with check marks for language-selective regions."
-        caption="Responses in the core and extended language regions: reds for reading and listening, blues for the working-memory task; two checks mark a language-selective region. Adapted from Wolna, Wright et al. (2026), CC BY."
+        caption="Responses in the core and extended language regions: reds for reading and listening, blues for the working-memory task; two checks mark a language-selective region."
         width={1250}
         height={1800}
         wrap="right"
       />
       <p>
-        The search turned up 17 areas outside the core network that respond to both written and spoken language, around the temporal poles, in
-        medial frontal cortex, in the hippocampus, and in the cerebellum. Most of them are selective: like the core areas, they respond little to the
-        working-memory task. A few, mostly in the cerebellum, respond to language without being selective for it, which may point to a role in
-        integrating language with other information. And for all its reach, the extended network is small, under 5% of the brain&rsquo;s grey
-        matter.
+        Beyond the core frontal and temporal areas and their right-hemisphere counterparts, 17 areas responded to both written and spoken
+        language: seven cortical, five cerebellar, and five subcortical. Most were selective for language, with little or no response to the
+        working-memory task. They include both temporal poles, a left ventral temporal area, three medial frontal areas, an area in the left
+        precuneus, areas in the right cerebellum with a mirror-image area on the left, and both the hippocampus and amygdala on each side.
       </p>
       <p>
-        These areas are now well-defined targets for asking what each one contributes to language, and whether it does something different from
-        the core network. The parcels are shared on <a href="https://osf.io/7594t/">OSF</a> in both volume and surface space, with the code and data to
-        reproduce the analyses and figures in a <a href="https://github.com/aaronwriight/extended_language_network-osf">public repository</a>.
+        The atlases told a consistent story. Language-selective regions turned up in 20 of 72 parcels of the Desikan&ndash;Killiany&ndash;Tourville
+        atlas, 42 of 96 in the Harvard&ndash;Oxford cortical atlas, and 95 of 380 in the Glasser parcellation, spanning frontal and temporal
+        cortex in both hemispheres along with left precentral and inferior parietal areas. Subcortically, the hippocampi and amygdalae were
+        language-selective, the left thalamus responded to language without being selective for it, and the basal ganglia showed no reliable
+        response to language at all.
+      </p>
+      <p>
+        For all its reach, the extended network is small: under 5% of the brain&rsquo;s grey matter.
+      </p>
+
+      <h2>discussion</h2>
+      <p>
+        A response to language across modalities, and not to a hard non-linguistic task, rules out perception and general effort as the
+        explanation. What these areas actually compute is still open, which makes them well-defined targets for the kind of systematic work that
+        has characterized the core network. The few areas that respond to language without being selective, in the cerebellum and thalamus, sit in
+        structures often proposed as integrators, and may combine linguistic signals with information from elsewhere.
+      </p>
+      <p>
+        The results also suggest caution about some earlier claims. Activation during a &ldquo;language task&rdquo; need not reflect language: in
+        paradigms free of task demands, the basal ganglia did not respond, and occipital responses to reading did not carry over to listening.
+        And while the network reaches into nearly every major part of the brain, within each part it occupies only a small, well-defined patch,
+        which argues against the view that language is processed by the brain as a whole. Parcels built from functional data, rather than from
+        anatomy, proved the better guide to finding those patches.
+      </p>
+      <p>
+        The parcels are shared on <a href="https://osf.io/7594t/">OSF</a> in both volume and surface space, with the code and data to reproduce
+        the analyses and figures in a <a href="https://github.com/aaronwriight/extended_language_network-osf">public repository</a>.
       </p>
     </ProjectShell>
   );

@@ -21,7 +21,7 @@ export function ProjectFigure({ src, alt, caption, width, height, tall = false, 
   return (
     <figure className={`project-figure not-prose my-8 flex flex-col items-center ${wrap ? `wrap-${wrap}` : ""}`}>
       <div className={`print max-w-full ${wrap ? "md:w-full" : ""}`}>
-        <div className="bg-white p-1.5 sm:p-2">
+        <div className="bg-[#ffffff] p-1.5 sm:p-2">
           <Image src={src} alt={alt} width={width} height={height} sizes={wrap ? "(min-width: 768px) 380px, 90vw" : "(min-width: 1024px) 720px, 90vw"} className={`block h-auto max-w-full ${limits}`} />
         </div>
       </div>

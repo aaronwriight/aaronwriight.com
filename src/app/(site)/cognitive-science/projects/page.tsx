@@ -32,8 +32,13 @@ const projects = [
     href: "/cognitive-science/projects/tidy-tuesday",
     subtitle: "experiments in communicating patterns through data",
     description: "For now, a visualization from an undergraduate project exploring Twitter sentiment.",
-    image: "/images/projects/tidy-tuesday.png",
-    alt: "An annotated bar chart of hourly AFINN sentiment scores for tweets about Twitter’s free-speech policies, alongside Elon Musk’s Twitter activity.",
+    // The chart is drawn on its own white ground, so its print takes the chart's shape rather than holding it in a box.
+    photo: {
+      src: "/images/projects/tidy-tuesday.png",
+      alt: "An annotated bar chart of hourly AFINN sentiment scores for tweets about Twitter’s free-speech policies, alongside Elon Musk’s Twitter activity.",
+      width: 9600,
+      height: 7200,
+    },
   },
 ];
 
