@@ -127,11 +127,11 @@ html.dark .venture-terrain-layer {
   /* signal: focus rings and state marks only (active underlines, map markers, completion dots). Same in both themes. */
   --color-signal: #859900;
   /* paper-tint: the only filled surface (photo frames, placeholders, the mat around placard pictures). */
-  --color-paper-tint: #fcf7ee;
+  --color-paper-tint: #fdfaf4;
 
   /* Retro (November 2026): the page is sand-coloured paper, panels and print borders are a warm white, and the
      photography section's accent is golden hour. Each switches to its night value in html.dark below. */
-  --color-paper: #f8f2e6;
+  --color-paper: #fbf8f1;
   --color-white: #fffdf8;
   --color-print: #fffdf8;
   --color-wright: #b7791f;
@@ -767,7 +767,7 @@ html:has(.no-contours) .topo-background { display: none; }
   position: relative;
   z-index: 0;
   padding: 2.25rem 2.5rem 2.75rem;
-  background: #fbf7ef;
+  background: #fdfbf5;
   border: 1px solid rgb(214 211 209 / 0.6);
 }
 html.dark .reading-panel { background: #1b1611; border-color: var(--color-stone-700); }
