@@ -1173,7 +1173,7 @@ def markdown_to_html(source: str, image_web_root: str) -> str:
         unordered = re.match(r"^\s*[-*+]\s+(.+)$", line)
         ordered = re.match(r"^\s*\d+[.)]\s+(.+)$", line)
         quote = re.match(r"^\s*>\s?(.*)$", line)
-        directive = re.match(r"^\s*:::\s*(center|callout)\s*$", line, flags=re.IGNORECASE)
+        directive = re.match(r"^\s*:::\s*(center|callout|wrap-left|wrap-right)\s*$", line, flags=re.IGNORECASE)
 
         if directive:
             flush_all()
@@ -1186,8 +1186,14 @@ def markdown_to_html(source: str, image_web_root: str) -> str:
             if index >= len(lines):
                 raise WritingError(f"unclosed ::: {kind} block")
             inner = markdown_to_html("\n".join(inner_lines), image_web_root)
-            tag = "div" if kind == "center" else "aside"
-            class_name = "entry-centered" if kind == "center" else "entry-callout"
+            tag = "aside" if kind == "callout" else "div"
+            class_name = {
+                "center": "entry-centered",
+                "callout": "entry-callout",
+                # A figure the text wraps around, floated to one side from tablet width up (globals.css).
+                "wrap-left": "entry-wrap entry-wrap-left",
+                "wrap-right": "entry-wrap entry-wrap-right",
+            }[kind]
             blocks.append(f'<{tag} class="{class_name}">{inner}</{tag}>')
         elif not line.strip():
             flush_all()
@@ -2841,6 +2847,10 @@ def preview_document_html(post: AuthorPost, body_html: str) -> str:
     article figcaption {{ margin-top: .65rem; color: var(--auxiliary); font-size: .78rem; font-style: italic; text-align: center; }}
     article blockquote {{ border-left: 2px solid var(--line); color: #57534e; padding-left: 1.25rem; }}
     article .entry-centered {{ text-align: center; }}
+    article .entry-wrap-left {{ float: left; width: 42%; margin: .35rem 2rem 1.25rem 0; }}
+    article .entry-wrap-right {{ float: right; width: 42%; margin: .35rem 0 1.25rem 2rem; }}
+    article .entry-wrap img {{ width: 100%; }}
+    article h2, article h3 {{ clear: both; }}
     article .entry-callout {{ border: 1px solid var(--line); margin: 2rem 0; padding: 1rem 1.25rem; }}
     article code {{ background: #f5f5f4; font-size: .85em; padding: .1rem .25rem; }}
   </style>

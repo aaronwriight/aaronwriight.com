@@ -127,11 +127,11 @@ html.dark .venture-terrain-layer {
   /* signal: focus rings and state marks only (active underlines, map markers, completion dots). Same in both themes. */
   --color-signal: #859900;
   /* paper-tint: the only filled surface (photo frames, placeholders, the mat around placard pictures). */
-  --color-paper-tint: #fcf8f0;
+  --color-paper-tint: #fcf9f1;
 
   /* Retro (November 2026): the page is sand-coloured paper, panels and print borders are a warm white, and the
      photography section's accent is golden hour. Each switches to its night value in html.dark below. */
-  --color-paper: #f9f5eb;
+  --color-paper: #faf6ed;
   --color-white: #fffdf8;
   --color-print: #fffdf8;
   --color-wright: #b7791f;
@@ -277,6 +277,22 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
 .prose .entry-centered img {
   margin-inline: auto;
 }
+
+/* Text wrapped around a figure, shared by project pages (ProjectFigure's `wrap`) and posts (::: wrap-left /
+   ::: wrap-right, or class="wrap-left" on a figure). From tablet width up, the figure floats to one side at a little
+   under half the column; on phones it stays in the column. Headings, rules and full-width figures start below it, and
+   the page body contains its floats, so a figure never hangs out of a panel. A project figure also starts below any
+   figure before it, so two never sit side by side. */
+@media (min-width: 768px) {
+  .wrap-right, .entry-body figure.wrap-right, .prose .entry-wrap-right { float: right; width: 42%; margin: 0.35rem 0 1.25rem 2rem; }
+  .wrap-left, .entry-body figure.wrap-left, .prose .entry-wrap-left { float: left; width: 42%; margin: 0.35rem 2rem 1.25rem 0; }
+}
+.page-body, .entry-body { display: flow-root; }
+:is(.page-body, .entry-body) :is(h2, h3, hr),
+.project-figure { clear: both; }
+.prose .entry-wrap > :first-child, .prose .entry-wrap figure, .prose .entry-wrap img { margin-top: 0; }
+.prose .entry-wrap > :last-child { margin-bottom: 0; }
+.prose .entry-wrap img { width: 100%; margin-bottom: 0; }
 
 .prose .entry-callout {
   border-left: 2px solid var(--color-olive);
@@ -767,7 +783,7 @@ html:has(.no-contours) .topo-background { display: none; }
   position: relative;
   z-index: 0;
   padding: 2.25rem 2.5rem 2.75rem;
-  background: #fcf9f2;
+  background: #fcfaf3;
   border: 1px solid rgb(214 211 209 / 0.6);
 }
 html.dark .reading-panel { background: #1b1611; border-color: var(--color-stone-700); }
@@ -784,3 +800,7 @@ html.dark .reading-panel { background: #1b1611; border-color: var(--color-stone-
   letter-spacing: 0.06em;
   text-transform: lowercase;
 }
+
+/* Project figures (src/components/science/project-figure.tsx) keep their white ground at night, dimmed a little so a
+   bright figure does not glare off the dark page. */
+html.dark .project-figure .print > div { filter: brightness(0.88); }

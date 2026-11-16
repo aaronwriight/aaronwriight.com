@@ -49,7 +49,6 @@ export default function TidyTuesdayProjectPage() {
         caption="Hourly sentiment scores from an undergraduate data science project."
         width={1200}
         height={900}
-        single
       />
     </ProjectShell>
   );

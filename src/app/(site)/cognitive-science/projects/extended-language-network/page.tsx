@@ -14,18 +14,19 @@ export default function ExtendedLanguageNetworkProjectPage() {
       title="the extended language network"
       subtitle="language-selective brain areas whose contributions to language remain to be discovered."
     >
+      <ProjectFigure
+        src="/images/projects/extended-language-network/overview.png"
+        alt="A cortical surface illustration with language-responsive regions shaded in warm tones."
+        caption="A view of the broader cortical landscape motivating the extended language network project."
+        width={1800}
+        height={1293}
+        wrap="left"
+      />
       <p>
         Language neuroscience has largely focused on core left frontal and temporal areas, but many other cortical, subcortical, and cerebellar areas
         have been implicated in linguistic processing. This project asks which of those areas respond reliably and selectively to language, and what
         their contributions may be.
       </p>
-      <ProjectFigure
-        src="/images/projects/extended-language-network.png"
-        alt="A cortical surface illustration with language-responsive regions shaded in warm tones."
-        caption="A view of the broader cortical landscape motivating the extended language network project."
-        width={900}
-        height={700}
-      />
       <p className="text-xs text-stone-500">
         Wolna, A., Wright, A., Casto, C., Hutchinson, S., Lipkin, B., &amp; Fedorenko, E. (2026). <em>The Journal of Neuroscience.</em>
       </p>
@@ -59,6 +60,14 @@ export default function ExtendedLanguageNetworkProjectPage() {
       </PublicationLinks>
 
       <h2>in brief</h2>
+      <ProjectFigure
+        src="/images/projects/extended-language-network/figure-1-tasks.png"
+        alt="The three tasks. Reading: sentences and nonword lists shown one word at a time, 450 ms each, in 6-second trials. Listening: intact and degraded passages from Alice in Wonderland in 18-second trials. Spatial working memory: easy and hard sequences of squares flashed on a 3 by 4 grid, followed by a choice and feedback, in 8-second trials."
+        caption="The localizers: reading sentences versus nonwords, listening to intact versus degraded speech, and a hard versus easy spatial working-memory task. Adapted from Wolna, Wright et al. (2026), CC BY."
+        width={2000}
+        height={1283}
+        wrap="left"
+      />
       <p>
         Areas well beyond the classic frontal and temporal language regions have been tied to language over the years, from the temporal poles to
         the cerebellum. But much of that evidence comes from tasks that mix language with reading letters, hearing sounds, moving, or simply
@@ -73,21 +82,23 @@ export default function ExtendedLanguageNetworkProjectPage() {
         person&rsquo;s own language-responsive region within group-level parcels, drawn both from the language data and from four standard
         atlases.
       </p>
-      <p>
-        The search turned up 17 areas outside the core network that respond to both written and spoken language, around the temporal poles, in
-        medial frontal cortex, in the hippocampus, and in the cerebellum. Most of them are selective: like the core areas, they respond little to the
-        working-memory task. A few, mostly in the cerebellum, respond to language without being selective for it, which may point to a role in
-        integrating language with other information. And for all its reach, the extended network is small, under 5% of the brain&rsquo;s grey
-        matter, or about the size of a large strawberry.
-      </p>
+      {/* The findings start below the localizer figure, beside the parcel figure. */}
+      <div aria-hidden="true" className="clear-both" />
       <ProjectFigure
         src="/images/projects/extended-language-network/figure-3.png"
         alt="Brain surfaces and a cerebellar flat map with language parcels in red, each ringed by bar plots of responses to sentences, nonwords, intact and degraded speech, and hard and easy spatial working memory, with check marks for language-selective regions."
         caption="Responses in the core and extended language regions: reds for reading and listening, blues for the working-memory task; two checks mark a language-selective region. Adapted from Wolna, Wright et al. (2026), CC BY."
         width={1250}
         height={1800}
-        tall
+        wrap="right"
       />
+      <p>
+        The search turned up 17 areas outside the core network that respond to both written and spoken language, around the temporal poles, in
+        medial frontal cortex, in the hippocampus, and in the cerebellum. Most of them are selective: like the core areas, they respond little to the
+        working-memory task. A few, mostly in the cerebellum, respond to language without being selective for it, which may point to a role in
+        integrating language with other information. And for all its reach, the extended network is small, under 5% of the brain&rsquo;s grey
+        matter.
+      </p>
       <p>
         These areas are now well-defined targets for asking what each one contributes to language, and whether it does something different from
         the core network. The parcels are shared on <a href="https://osf.io/7594t/">OSF</a> in both volume and surface space, with the code and data to

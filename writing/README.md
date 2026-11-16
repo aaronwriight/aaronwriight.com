@@ -308,7 +308,21 @@ Use a `callout` directive for a distinct aside:
 :::
 ```
 
-Both directives must have their opening and closing `:::` lines. Do not nest directives.
+Use `wrap-left` or `wrap-right` to float an image to one side so the following paragraphs wrap around it. From tablet width up it takes a little under half the column; on phones it sits in the column as usual. The next heading always starts below it.
+
+```md
+::: wrap-right
+![Marcy Dam in the Adirondacks](images/marcy-dam.jpg)
+
+*An optional caption beneath the image.*
+:::
+
+The paragraphs after the block run alongside the image.
+```
+
+In HTML, put `class="wrap-left"` or `class="wrap-right"` on the `<figure>`.
+
+All directives must have their opening and closing `:::` lines. Do not nest directives.
 
 #### HTML patterns
 
