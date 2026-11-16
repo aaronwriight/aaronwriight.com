@@ -280,17 +280,21 @@ a.project-placard:is(:hover, :focus-visible) .project-placard-highlight {
 
 /* Text wrapped around a figure, shared by project pages (ProjectFigure's `wrap`) and posts (::: wrap-left /
    ::: wrap-right, or class="wrap-left" on a figure). From tablet width up, the figure floats to one side at a little
-   under half the column (a third with .wrap-narrow, for a tall figure); on phones it stays in the column. Headings, rules and full-width figures start below it, and
+   under half the column (a third with .wrap-narrow, half with .wrap-wide); on phones it stays in the column. Headings, rules and full-width figures start below it, and
    the page body contains its floats, so a figure never hangs out of a panel. A project figure also starts below any
    figure before it, so two never sit side by side. */
 @media (min-width: 768px) {
   .wrap-right, .entry-body figure.wrap-right, .prose .entry-wrap-right { float: right; width: 42%; margin: 0.35rem 0 1.25rem 2rem; }
   .wrap-left, .entry-body figure.wrap-left, .prose .entry-wrap-left { float: left; width: 42%; margin: 0.35rem 2rem 1.25rem 0; }
   :is(.wrap-left, .wrap-right).wrap-narrow { width: 31%; }
+  :is(.wrap-left, .wrap-right).wrap-wide { width: 50%; }
 }
 .page-body, .entry-body { display: flow-root; }
 :is(.page-body, .entry-body) :is(h2, h3, hr),
 .project-figure { clear: both; }
+/* A heading that may carry on beside a tall figure from the section before: it narrows to the space left (its rule
+   stops at the figure) instead of starting below it. */
+:is(.page-body, .entry-body) :is(h2, h3).beside-figure { clear: none; display: flow-root; }
 .prose .entry-wrap > :first-child, .prose .entry-wrap figure, .prose .entry-wrap img { margin-top: 0; }
 .prose .entry-wrap > :last-child { margin-bottom: 0; }
 .prose .entry-wrap img { width: 100%; margin-bottom: 0; }

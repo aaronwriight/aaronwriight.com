@@ -101,7 +101,7 @@ export default function ExtendedLanguageNetworkProjectPage() {
         width={1250}
         height={1800}
         wrap="right"
-        narrow
+        wide
       />
       <p>
         We counted a region as <em>language-responsive</em> if it preferred language in both modalities (sentences over nonwords, intact over
@@ -125,7 +125,8 @@ export default function ExtendedLanguageNetworkProjectPage() {
         For all its reach, the extended network is small: under 5% of the brain&rsquo;s grey matter.
       </p>
 
-      <h2>discussion</h2>
+      {/* The discussion carries on beside the parcel figure, which runs longer than the results. */}
+      <h2 className="beside-figure">discussion</h2>
       <p>
         A response to language across modalities, and not to a hard non-linguistic task, rules out perception and general effort as the
         explanation. What these areas actually compute is still open, which makes them well-defined targets for the kind of systematic work that
