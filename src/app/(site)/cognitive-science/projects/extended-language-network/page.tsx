@@ -90,22 +90,24 @@ export default function ExtendedLanguageNetworkProjectPage() {
         watershed algorithm (the group-constrained subject-specific approach), and, for comparison, four standard atlases: Desikan&ndash;Killiany&ndash;Tourville,
         Harvard&ndash;Oxford cortical and subcortical, and the Glasser multimodal parcellation. Within each parcel, each participant&rsquo;s
         functional region of interest was the 10% of voxels most responsive to language, chosen on one half of the data and measured on the other.
-      </p>
-      <p>
-        Each region was then tested with linear mixed-effects models. We counted a region as <em>language-responsive</em> if it preferred
-        language in both modalities (sentences over nonwords, intact over degraded speech), and as <em>language-selective</em> if, in addition,
-        its response to language exceeded its response to the hard working-memory task.
+        Each region was then tested with linear mixed-effects models.
       </p>
 
       <h2>results</h2>
       <ProjectFigure
         src="/images/projects/extended-language-network/figure-3.png"
         alt="Brain surfaces and a cerebellar flat map with language parcels in red, each ringed by bar plots of responses to sentences, nonwords, intact and degraded speech, and hard and easy spatial working memory, with check marks for language-selective regions."
-        caption="Responses in the core and extended language regions: reds for reading and listening, blues for the working-memory task; two checks mark a language-selective region."
+        caption="Responses in each language region: reds for reading and listening, blues for working memory; two checks mark a language-selective region."
         width={1250}
         height={1800}
         wrap="right"
+        narrow
       />
+      <p>
+        We counted a region as <em>language-responsive</em> if it preferred language in both modalities (sentences over nonwords, intact over
+        degraded speech), and as <em>language-selective</em> if, in addition, its response to language exceeded its response to the hard
+        working-memory task.
+      </p>
       <p>
         Beyond the core frontal and temporal areas and their right-hemisphere counterparts, 17 areas responded to both written and spoken
         language: seven cortical, five cerebellar, and five subcortical. Most were selective for language, with little or no response to the
