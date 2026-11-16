@@ -1514,6 +1514,10 @@ Centered *text*.
 ::: wrap-right
 ![A lake](images/lake.jpg)
 :::
+
+::: wrap-left wide
+![A ridge at dusk](images/dusk.jpg)
+:::
 """
         rendered = writing.markdown_to_html(source, "/images/posts/example")
         self.assertIn("<h2>Section</h2>", rendered)
@@ -1522,6 +1526,7 @@ Centered *text*.
         self.assertIn("<blockquote>", rendered)
         self.assertIn('class="entry-callout"', rendered)
         self.assertIn('<div class="entry-wrap entry-wrap-right">', rendered)
+        self.assertIn('<div class="entry-wrap entry-wrap-left wrap-wide">', rendered)
         self.assertNotIn("not-a-real-file", rendered)
 
     def test_unpublish_preserves_author_work_and_removes_all_venture_outputs(self) -> None:

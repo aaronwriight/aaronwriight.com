@@ -308,7 +308,7 @@ Use a `callout` directive for a distinct aside:
 :::
 ```
 
-Use `wrap-left` or `wrap-right` to float an image to one side so the following paragraphs wrap around it. From tablet width up it takes a little under half the column; on phones it sits in the column as usual. The next heading always starts below it.
+Use `wrap-left` or `wrap-right` to float an image to one side so what follows wraps around it. Everything after the block runs beside the image until it ends, headings included, so a new section can begin alongside it. From tablet width up the image takes a little under half the column; add `narrow` for a third or `wide` for half (`::: wrap-right wide`). On phones it sits in the column as usual.
 
 ```md
 ::: wrap-right
@@ -320,7 +320,7 @@ Use `wrap-left` or `wrap-right` to float an image to one side so the following p
 The paragraphs after the block run alongside the image.
 ```
 
-In HTML, put `class="wrap-left"` or `class="wrap-right"` on the `<figure>`.
+In HTML, put `class="wrap-left"` or `class="wrap-right"` on the `<figure>`, with `wrap-narrow` or `wrap-wide` to change its width.
 
 All directives must have their opening and closing `:::` lines. Do not nest directives.
 

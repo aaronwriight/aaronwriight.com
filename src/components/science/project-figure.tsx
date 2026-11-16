@@ -4,8 +4,8 @@ import Image from "next/image";
 // with the caption beneath it, never a placard with a second print nested inside. The picture always sits on white,
 // so figures drawn on a transparent ground keep their shading at night, where the whole print is dimmed a little.
 // `tall` is for a dense portrait figure (a paper's multi-panel figure), let run taller so its labels stay legible.
-// `wrap` floats the figure to one side so the text runs around it (.wrap-left / .wrap-right in globals.css); on
-// phones it sits in the column like any other figure.
+// `wrap` floats the figure to one side so the text, headings included, runs around it (.wrap-left / .wrap-right in
+// globals.css); on phones it sits in the column like any other figure.
 export function ProjectFigure({ src, alt, caption, width, height, tall = false, wrap, narrow = false, wide = false }: {
   src: string;
   alt: string;

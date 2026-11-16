@@ -125,8 +125,7 @@ export default function ExtendedLanguageNetworkProjectPage() {
         For all its reach, the extended network is small: under 5% of the brain&rsquo;s grey matter.
       </p>
 
-      {/* The discussion carries on beside the parcel figure, which runs longer than the results. */}
-      <h2 className="beside-figure">discussion</h2>
+      <h2>discussion</h2>
       <p>
         A response to language across modalities, and not to a hard non-linguistic task, rules out perception and general effort as the
         explanation. What these areas actually compute is still open, which makes them well-defined targets for the kind of systematic work that
