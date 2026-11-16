@@ -44,11 +44,11 @@ export default function TidyTuesdayProjectPage() {
         An exploration of sentiment in tweets about Twitter’s free-speech policies over time, with annotations of Elon Musk’s Twitter activity.
       </p>
       <ProjectFigure
-        src="/images/projects/tidy-tuesday.png"
+        src="/images/projects/tidy-tuesday/twitter-sentiment.png"
         alt="An annotated bar chart of hourly AFINN sentiment scores for tweets about Twitter’s free-speech policies, alongside Elon Musk’s Twitter activity."
         caption="Hourly sentiment scores from an undergraduate data science project."
-        width={1200}
-        height={900}
+        width={2400}
+        height={1800}
       />
     </ProjectShell>
   );

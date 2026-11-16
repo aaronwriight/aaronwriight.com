@@ -34,10 +34,10 @@ const projects = [
     description: "For now, a visualization from an undergraduate project exploring Twitter sentiment.",
     // The chart is drawn on its own white ground, so its print takes the chart's shape rather than holding it in a box.
     photo: {
-      src: "/images/projects/tidy-tuesday.png",
+      src: "/images/projects/tidy-tuesday/twitter-sentiment.png",
       alt: "An annotated bar chart of hourly AFINN sentiment scores for tweets about Twitter’s free-speech policies, alongside Elon Musk’s Twitter activity.",
-      width: 9600,
-      height: 7200,
+      width: 2400,
+      height: 1800,
     },
   },
 ];
