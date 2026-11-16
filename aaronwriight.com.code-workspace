@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "../cortex"
+		},
+		{
+			"path": "../extended_language_network"
 		}
 	],
 	"settings": {}
