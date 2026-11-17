@@ -3,12 +3,9 @@ import { NavigationList } from "@/components/site/navigation-list";
 import { SectionBar } from "@/components/site/site-bars";
 import { siteLinks, sectionLinks, type NavigationItem } from "@/data/navigation";
 
-// Reading width for the journals, venture, literature and contact; the science and creative pages use the wider one,
-// so they fill more of the window beside their bars.
-const contentMaxWidth = "64rem";
-export const wideContentWidth = "80rem";
 
-// The article column, centred under the bars.
+// The article column, the full width between the bars' edges on every page, like Frame it Wright's. Journal and venture
+// posts keep a reading width on their own panels.
 export const articleClass = "prose prose-stone mx-auto min-w-0 w-full max-w-none text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case";
 
 // Where each section's name in its bar leads.
@@ -40,7 +37,7 @@ export function SitePageShell({
   return (
     <main className="flex-1">
       <div className="site-wrap py-11">
-        <article className={articleClass} style={{ maxWidth: contentMaxWidth }}>
+        <article className={articleClass}>
           <PageHeader title={title} subtitle={subtitle} />
           <div className="page-body mt-8 space-y-5">{children}</div>
         </article>
@@ -120,7 +117,6 @@ export function SectionPageShell({
   title,
   subtitle,
   showTitle = true,
-  width = contentMaxWidth,
   children,
 }: {
   section: string;
@@ -129,7 +125,6 @@ export function SectionPageShell({
   title: string;
   subtitle?: React.ReactNode;
   showTitle?: boolean;
-  width?: string;
   children: React.ReactNode;
 }) {
   // The section's own bar (its name, its pages, sub-pages as drop-downs) sits under the site bar, in place of the side
@@ -145,7 +140,7 @@ export function SectionPageShell({
       {/* A section with a home of its own (contact) keeps the bar for its breadcrumb even with no pages to list. */}
       {(links.length > 0 || sectionHomes[section]) && <SectionBar section={section} href={sectionHomes[section] ?? links[0].href} links={links} parent={parent} trail={trail} current={title} />}
       <div className="site-wrap py-11">
-        <article className={articleClass} style={{ maxWidth: width }}>
+        <article className={articleClass}>
           {showTitle && <PageHeader title={title} subtitle={subtitle} />}
           <div className={showTitle ? "page-body mt-8 space-y-5" : "page-body space-y-5"}>{children}</div>
         </article>
@@ -156,7 +151,7 @@ export function SectionPageShell({
 
 export function CreativeShell({ title = "about", children }: { title?: string; children: React.ReactNode }) {
   return (
-    <SectionPageShell section="creative" links={sectionLinks.creative} title={title} width={wideContentWidth}>
+    <SectionPageShell section="creative" links={sectionLinks.creative} title={title}>
       {children}
     </SectionPageShell>
   );
@@ -164,7 +159,7 @@ export function CreativeShell({ title = "about", children }: { title?: string; c
 
 export function CreativeProjectShell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <SectionPageShell section="creative" links={sectionLinks.creative} parentLinks={creativeParentLinks} title={title} width={wideContentWidth}>
+    <SectionPageShell section="creative" links={sectionLinks.creative} parentLinks={creativeParentLinks} title={title}>
       {children}
     </SectionPageShell>
   );

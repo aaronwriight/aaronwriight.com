@@ -31,7 +31,7 @@ export function PortfolioBackdrop({ sessions }: { sessions: BackdropSession[] })
       )}
       <div className="fiw-wrap grid content-between gap-10 py-8 md:py-10">
         <div className="fiw-folio-head flex flex-wrap items-baseline justify-between gap-3">
-          <h1 id="portfolio-title" className="fiw-title m-0 text-[clamp(2.8rem,6vw,4.4rem)] text-white">portfolio</h1>
+          <h1 id="portfolio-title" className="fiw-title m-0 text-[clamp(2.8rem,6vw,4.4rem)] text-white">Portfolio</h1>
           <span className="fiw-mono" aria-live="polite">
             {current ? `${current.title} · ${current.count ? `${current.count} photos` : "to come"}` : ""}
           </span>

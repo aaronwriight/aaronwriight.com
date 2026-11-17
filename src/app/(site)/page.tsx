@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { photoPath, photographyUnderConstruction } from "@/data/photography";
+import { researchFocus } from "@/data/science";
 import { ConstructionPlaque } from "@/components/site/construction-plaque";
 import { chosenPhotos, isUpright, portfolioPhotos } from "@/lib/photography";
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const rooms = [
-  { room: "science", label: "science", href: "/cognitive-science", tagline: "the social mind in dialogue" },
+  { room: "science", label: "science", href: "/cognitive-science", tagline: researchFocus.name },
   { room: "photography", label: "photography", href: photoPath(), tagline: "frame it wright photography" },
   { room: "creative", label: "creative", href: "/creative", tagline: "writing, venture, and the in-between" },
 ] as const;

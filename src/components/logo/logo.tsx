@@ -9,8 +9,25 @@ import nightLogo from "../../../public/brand/aaronwriight-logo-night.png";
 export function Logo({ className = "block w-16 shrink-0 md:w-24" }: { className?: string }) {
   return (
     <HomeLink label="Home" className={className}>
+      <LogoImages />
+    </HomeLink>
+  );
+}
+
+// The mark alone, for a link of its own around it (Frame it Wright's top bar, where it leads to that site's home).
+export function LogoMark({ className = "block w-12 shrink-0 md:w-14" }: { className?: string }) {
+  return (
+    <span className={className}>
+      <LogoImages />
+    </span>
+  );
+}
+
+function LogoImages() {
+  return (
+    <>
       <Image src={dayLogo} alt="" className="h-auto w-full dark:hidden" priority />
       <Image src={nightLogo} alt="" className="hidden h-auto w-full dark:block" priority />
-    </HomeLink>
+    </>
   );
 }

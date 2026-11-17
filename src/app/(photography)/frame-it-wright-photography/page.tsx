@@ -30,8 +30,8 @@ export default function FrameItWrightPhotographyPage() {
         <h1 className="fiw-title m-0 text-[clamp(3rem,8vw,5.75rem)]">
           <FrameItWright />
         </h1>
-        <p className="m-0 max-w-sm text-lg leading-snug text-stone-600 dark:text-stone-400">
-          Weddings, couples, families, graduates, and portraits, wherever you&apos;d like to go.
+        <p className="m-0 text-lg leading-snug text-stone-600 dark:text-stone-400">
+          Weddings, engagements, families, graduates, and portraits, with plenty of <em className="fiw-w">scope for imagination</em>.
         </p>
       </section>
 

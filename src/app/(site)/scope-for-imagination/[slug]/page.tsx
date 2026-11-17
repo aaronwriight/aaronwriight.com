@@ -57,8 +57,8 @@ export default async function ScopeForImaginationEntryPage({ params }: { params:
 
   return (
     <JournalShell title={post.title} showTitle={false} years={years} backLink={[postYear, `/scope-for-imagination/${postYear}`]}>
-      {/* The post on its own solid panel; the contours stay on the page around it. */}
-      <div className="reading-panel w-full">
+      {/* The post on its own solid panel at a reading width, centred; the contours stay on the page around it. */}
+      <div className="reading-panel mx-auto w-full max-w-5xl">
         <div className="not-prose">
           <SfiPostHeader post={post} large className="border-b border-stone-300 pb-7 dark:border-stone-700" />
         </div>

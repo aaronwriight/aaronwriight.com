@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo/logo";
 import { PhotoNav } from "@/components/photography/photo-nav";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 import { InstagramIcon } from "@/components/site/footer-links";
@@ -14,13 +15,15 @@ export function FrameItWright({ className = "" }: { className?: string }) {
   );
 }
 
-// Frame it Wright Photography's own top bar and footer, in place of the main site's side menu and contour map.
+// Frame it Wright Photography's own top bar (the mark and the name, leading to its home) and footer, in place of the main
+// site's side menu and contour map.
 export function PhotoChrome({ children }: { children: React.ReactNode }) {
   return (
     <div className="fiw flex min-h-screen flex-col">
       <header className="fiw-bar">
         <div className="fiw-wrap flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5">
-          <Link href={photoPath()} className="text-[1.45rem] italic leading-none hover:no-underline">
+          <Link href={photoPath()} className="flex items-center gap-3 text-[1.45rem] italic leading-none hover:no-underline">
+            <LogoMark />
             <FrameItWright />
           </Link>
           <PhotoNav />

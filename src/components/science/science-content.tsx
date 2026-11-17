@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionBar } from "@/components/site/site-bars";
-import { PageHeader, articleClass, wideContentWidth } from "@/components/site/site-content";
+import { PageHeader, articleClass } from "@/components/site/site-content";
 
 import { scienceLinks } from "@/data/navigation";
 
@@ -21,7 +21,7 @@ export function ScienceShell({
     <main className="flex-1">
       <SectionBar section="cognitive science" href="/cognitive-science" links={scienceLinks} trail={near ? [near[0], near[1]] : undefined} current={title} />
       <div className="site-wrap py-11">
-        <article className={articleClass} style={{ maxWidth: wideContentWidth }}>
+        <article className={articleClass}>
           <PageHeader title={title} subtitle={subtitle} />
           <div className="page-body mt-8 space-y-5">{children}</div>
         </article>

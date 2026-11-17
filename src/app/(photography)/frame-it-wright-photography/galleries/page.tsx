@@ -22,7 +22,7 @@ export default function PhotographyGalleriesPage() {
     <>
       <section className="fiw-wrap grid max-w-4xl gap-6 pt-14 pb-10">
         <span className="fiw-eyebrow">for clients</span>
-        <h1 className="fiw-title m-0 text-[clamp(2.8rem,6vw,4.4rem)]">galleries</h1>
+        <h1 className="fiw-title m-0 text-[clamp(2.8rem,6vw,4.4rem)]">Galleries</h1>
         <p className="m-0 max-w-xl text-lg leading-relaxed">
           Your photographs live on Pic-Time. Continue to my gallery page there to find your collection and follow the sign-in or access instructions.
         </p>
