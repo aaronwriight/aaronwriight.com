@@ -29,12 +29,13 @@ export default function CognitiveScienceAboutPage() {
       <p>Hi, I&apos;m Aaron! :)</p>
       <p>I&apos;m creative, but I try to be empirical too, lol.</p>
 
-      {/* Research overview and timeline are open sections, not fold-outs. The overview's heading is the program's name
-          itself, so the page runs about, the program, then timeline, without a "research overview" heading between. */}
+      {/* The page in three parts: a personal note (above), the research overview, then the timeline. Both sections are
+          open, not fold-outs. */}
       <section id="research-overview" aria-labelledby="research-overview-title" className="scroll-mt-6">
-          {/* The program, then its question, both in display type; the three trails below set their questions the same way. */}
-          <div className="not-prose my-8 grid gap-3">
-            <h2 id="research-overview-title" className="research-program m-0">{researchFocus.title}</h2>
+        <h2 id="research-overview-title">Research overview</h2>
+          {/* The program, then its question, in display type; the three trails below set their questions the same way. */}
+          <div className="not-prose my-7 grid gap-2.5">
+            <p className="research-program m-0">{researchFocus.title}</p>
             <p className="research-program-line m-0">{researchFocus.line.charAt(0).toUpperCase() + researchFocus.line.slice(1)}.</p>
           </div>
 
@@ -101,12 +102,12 @@ export default function CognitiveScienceAboutPage() {
           </ul>
 
           <p>
-            Currently, I do this work at Brown&apos;s{" "}
+            Currently, I work in Brown&apos;s{" "}
             <Link href="https://copsy.brown.edu">Department of Cognitive and Psychological Sciences</Link> and the{" "}
             <Link href="https://carney.brown.edu">Carney Institute for Brain Science</Link>, with{" "}
             <Link href="https://fpetzschner.com/about/">Frederike Petzschner</Link> and her team in the{" "}
             <Link href="https://fpetzschner.com/lab/">Psychiatry, Embodiment and Computation (PEAC) Lab</Link>. My{" "}
-            <Link href="#timeline">timeline</Link> below shows where else I&apos;ve worked toward these questions.
+            timeline below shows where else I&apos;ve worked toward these questions.
           </p>
       </section>
 

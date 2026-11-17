@@ -748,15 +748,14 @@ html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-
 
 .site-mono { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; }
 
-/* The science about page's research overview in display type, like Frame it Wright's titles: the program's name in
-   olive with its line beneath, the central question large on its own, and each trail's question under its olive name,
-   a size down, the list without bullets. The questions run the column's full width. */
-.research-program { font-style: italic; font-weight: 500; font-size: clamp(2.2rem, 4.2vw, 3.3rem); line-height: 1.02; letter-spacing: -0.01em; color: var(--site-text-primary); }
-.research-program-line { font-size: clamp(1.1rem, 1.45vw, 1.3rem); line-height: 1.4; color: var(--site-text-secondary); }
-/* Sized to the column so each question holds one line on laptop and wider screens, shrinking with the window until it
-   reaches its smallest size and wraps. */
-.research-question { font-style: italic; font-weight: 500; font-size: clamp(1.3rem, 2.25vw, 1.8rem); line-height: 1.18; letter-spacing: -0.005em; text-wrap: pretty; color: var(--site-text-primary); }
-.research-subquestion { font-style: italic; font-weight: 500; font-size: clamp(1.05rem, 1.45vw, 1.18rem); line-height: 1.28; text-wrap: pretty; color: var(--site-text-primary); }
+/* The science about page's research overview in display italic, sized to sit under the page's headings rather than
+   compete with them: the program's name with its line beneath, the central question on its own, and each trail's
+   question under its label, a size down, the list without bullets. The questions run the column's full width and hold
+   one line on laptop and wider screens, shrinking with the window until they reach their smallest size and wrap. */
+.research-program { font-style: italic; font-weight: 500; font-size: clamp(1.7rem, 2.8vw, 2.3rem); line-height: 1.05; letter-spacing: -0.005em; color: var(--site-text-primary); }
+.research-program-line { font-size: clamp(1.02rem, 1.25vw, 1.15rem); line-height: 1.4; color: var(--site-text-secondary); }
+.research-question { font-style: italic; font-weight: 500; font-size: clamp(1.15rem, 1.75vw, 1.4rem); line-height: 1.2; text-wrap: pretty; color: var(--site-text-primary); }
+.research-subquestion { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.35vw, 1.1rem); line-height: 1.3; text-wrap: pretty; color: var(--site-text-primary); }
 
 /* Trial (smoothHeaderSections in src/components/site/site-content.tsx): the creative family's page titles and section
    headings in Frame it Wright's italic, unspaced and a little larger, while science keeps the upright, spaced ones. */
