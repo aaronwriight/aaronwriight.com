@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Kudos } from "@/components/photography/kudos";
 import { PrintPhoto } from "@/components/photography/print-photo";
-import { BookingInquiry } from "@/components/site/booking-inquiry";
+import { ContactForms } from "@/components/photography/contact-forms";
 import { instagramUrl, kudos, photographyFaq, photoPath } from "@/data/photography";
 import { isUpright, isWide, pickPhotos } from "@/lib/photography";
-import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "contact",
@@ -13,12 +12,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-// Contact doubles as booking: the invitation and the inquiry form, photographs set out of line down the side, then
-// kudos and the FAQ. ?session=<slug> preselects a session in the form.
+// Contact doubles as booking: the invitation, then the forms (booking a session, or a general question at #general),
+// plain photographs down the side, then kudos and the FAQ. ?session=<slug> preselects a session in the booking form.
 export default function PhotographyContactPage() {
   const used = new Set<string>();
   const side = [...pickPhotos(1, used, isUpright), ...pickPhotos(1, used, isWide), ...pickPhotos(1, used, isUpright)];
-  const tilts = ["md:rotate-[2deg]", "md:-rotate-[2.5deg] md:-ml-8 md:w-[115%]", "md:rotate-[1.5deg] md:ml-10 md:w-[80%]"];
   const ratios = ["4 / 5", "3 / 2", "2 / 3"];
 
   return (
@@ -45,21 +43,21 @@ export default function PhotographyContactPage() {
               To help bridge the gap, you can read a little <Link href={photoPath("/about")} className="fiw-link">about me</Link> here! :)
             </p>
           </div>
-          <section aria-labelledby="inquiry-heading" className="max-w-2xl rounded-[3px] border border-stone-300 bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-paper-tint">
+          <section id="general" aria-labelledby="inquiry-heading" className="max-w-2xl scroll-mt-8 border border-stone-300 bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-paper-tint">
             <h2 id="inquiry-heading" className="fiw-title m-0 mb-3 text-[2rem]">start a conversation</h2>
             <p className="m-0 mb-7 text-sm leading-6">
               Reach out <a href="mailto:frameitwright@gmail.com" className="fiw-link">frameitwright@gmail.com</a> directly, send a message on <a href={instagramUrl} className="fiw-link">Instagram</a>, or prepare a draft below!
             </p>
-            <BookingInquiry />
+            <ContactForms />
           </section>
           <p className="m-0 max-w-2xl text-xs leading-6 text-stone-600 dark:text-stone-400">
-            Following along? The <a href={`${siteUrl}/creative/mailing-list`} className="fiw-link">creative mailing list</a> is for occasional writing and creative updates.
-            Booking inquiries do not subscribe you to it.
+            Just following along? The <Link href={photoPath("/newsletter")} className="fiw-link">newsletter</Link> is an occasional email with new photographs and open dates.
+            Sending an inquiry doesn&apos;t sign you up for it.
           </p>
         </div>
         <div aria-hidden="true" className="hidden content-start gap-10 pt-24 lg:grid">
           {side.map((photo, index) => (
-            <PrintPhoto key={photo.src} photo={photo} ratio={ratios[index]} sizes="30vw" className={tilts[index]} />
+            <PrintPhoto key={photo.src} photo={photo} ratio={ratios[index]} sizes="30vw" />
           ))}
         </div>
       </div>

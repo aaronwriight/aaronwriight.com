@@ -4,14 +4,14 @@ import { NewsletterSignup } from "@/components/site/newsletter-signup";
 import { CreativeShell } from "@/components/site/site-content";
 
 export const metadata: Metadata = {
-  title: "mailing list | creative",
+  title: "newsletter | creative",
   description: "Occasional updates on blogs, writing, photography, and other creative work by Aaron Wright.",
-  alternates: { canonical: "/creative/mailing-list" },
+  alternates: { canonical: "/creative/newsletter" },
 };
 
-export default function CreativeMailingListPage() {
+export default function CreativeNewsletterPage() {
   return (
-    <CreativeShell title="mailing list">
+    <CreativeShell title="newsletter">
       <div className="max-w-2xl space-y-5">
         <p>A quiet place to keep in touch: new writing, notes from the blogs, and creative projects as they take shape.</p>
         <p>

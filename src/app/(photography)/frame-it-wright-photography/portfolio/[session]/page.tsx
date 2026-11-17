@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: session?.title ?? "portfolio", description: session?.line, alternates: { canonical: `/portfolio/${slug}` } };
 }
 
-// One session's gallery: every photograph in justified rows, with the previous and next sessions above and below, then
-// the invitation. The sessions wrap around (wedding follows portraits).
+// One session's gallery: every photograph large, in justified rows across the whole width of the window, with the
+// previous and next sessions above and below, then the invitation. The sessions wrap around (wedding follows portraits).
 export default async function PhotographySessionPage({ params }: Props) {
   const { session: slug } = await params;
   const index = photographySessions.findIndex((item) => item.slug === slug);
@@ -44,13 +44,15 @@ export default async function PhotographySessionPage({ params }: Props) {
         <h1 className="fiw-title m-0 text-[clamp(2.6rem,6vw,4.2rem)]">{session.title}</h1>
         <p className="m-0 max-w-xl text-lg text-stone-600 dark:text-stone-400">{session.line}</p>
       </section>
-      <div className="fiw-wrap">
-        {photos.length > 0 ? (
-          <PhotoMosaic photos={photos} />
-        ) : (
-          <p className="fiw-empty m-0 h-64 rounded-[3px]">photographs to come</p>
-        )}
-      </div>
+      {photos.length > 0 ? (
+        <div className="mx-auto max-w-[112rem] px-3 md:px-5">
+          <PhotoMosaic photos={photos} large />
+        </div>
+      ) : (
+        <div className="fiw-wrap">
+          <p className="fiw-empty m-0 h-64">photographs to come</p>
+        </div>
+      )}
       <nav aria-label="Other sessions" className="fiw-wrap flex flex-wrap justify-between gap-4 pt-8">
         <Link href={photoPath(`/portfolio/${previous.slug}`)} className="fiw-link text-lg italic">previous: {previous.title}</Link>
         <Link href={photoPath(`/portfolio/${next.slug}`)} className="fiw-link text-lg italic">next: {next.title}</Link>

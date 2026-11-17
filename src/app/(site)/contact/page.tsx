@@ -99,7 +99,7 @@ export default function ContactPage() {
           <nav aria-label="Creative contact links" className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs lowercase tracking-wider">
             <Link href="/creative" className="text-olive">about</Link>
             <Link href="/scope-for-imagination" className="text-olive">scope for imagination</Link>
-            <Link href="/creative/mailing-list" className="text-olive">mailing list</Link>
+            <Link href="/creative/newsletter" className="text-olive">newsletter</Link>
             <Link href="https://www.buymeacoffee.com/aaronwriight" className="text-olive">buy me a coffee ;)</Link>
           </nav>
         </section>

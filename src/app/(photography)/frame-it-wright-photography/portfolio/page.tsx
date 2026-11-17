@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CreateWithMe } from "@/components/photography/create-with-me";
 import { PortfolioBackdrop } from "@/components/photography/portfolio-backdrop";
 import { photographySessions, photoPath } from "@/data/photography";
-import { isWide, sessionPhotos } from "@/lib/photography";
+import { isWide, sessionCover, sessionPhotos } from "@/lib/photography";
 
 export const metadata: Metadata = {
   title: "portfolio",
@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 
 export default function PhotographyPortfolioPage() {
   const sessions = photographySessions.map((session) => {
-    // The backdrop is the session's first landscape photograph (favourites come first), or its first of any shape.
+    // The backdrop is the session's first landscape photograph (favourites come first), or its first of any shape, or
+    // (for a session with none yet) the stand-in chosen in home.json.
     const photos = sessionPhotos(session.slug);
-    const cover = photos.find(isWide) ?? photos[0];
+    const cover = photos.find(isWide) ?? photos[0] ?? sessionCover(session.slug);
     return {
       slug: session.slug,
       title: session.title,

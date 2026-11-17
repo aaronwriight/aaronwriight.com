@@ -29,7 +29,7 @@ try {
       [`${PHOTO}/portfolio/portraits`, "portraits"],
       [`${PHOTO}/galleries`, "galleries"],
       [`${PHOTO}/contact`, "Create with me!"],
-      ["/creative/mailing-list", "mailing list"],
+      ["/creative/newsletter", "newsletter"],
       ["/creative", "about"],
       ["/creative/inspirations", "inspirations"],
       ["/creative/projects", "projects"],
@@ -84,8 +84,7 @@ try {
     await page.getByRole("button", { name: "Switch to light mode" }).click();
 
     if (!photographyLocked) {
-      await page.goto(base + `${PHOTO}/mailing-list`, { waitUntil: "networkidle" });
-      assert.equal(new URL(page.url()).pathname, `${PHOTO}/contact`);
+      await page.goto(base + `${PHOTO}/contact`, { waitUntil: "networkidle" });
       const inquiry = page.getByRole("form", { name: "Prepare a photography inquiry" });
       const draft = inquiry.getByRole("link", { name: "open email draft" });
       const prepare = inquiry.getByRole("button", { name: "prepare an inquiry" });
@@ -151,8 +150,8 @@ try {
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `Contact overflow at ${width}`);
     await page.screenshot({ path: `${artifacts}/contact-${width}.png`, fullPage: true });
 
-    await page.goto(base + "/creative/mailing-list", { waitUntil: "networkidle" });
-    const subscribe = page.getByRole("form", { name: "Join the mailing list" });
+    await page.goto(base + "/creative/newsletter", { waitUntil: "networkidle" });
+    const subscribe = page.getByRole("form", { name: "Join the newsletter" });
     let stored = false;
     await page.route("**/api/creative/mailing-list/subscribe", async route => {
       assert.equal(route.request().method(), "POST");
@@ -167,8 +166,8 @@ try {
     await subscribe.getByRole("status").waitFor();
     assert((await subscribe.getByRole("status").innerText()).includes("You’re on the creative list"));
 
-    await page.goto(base + "/scope-for-imagination/mailing-list", { waitUntil: "networkidle" });
-    const journalSubscribe = page.getByRole("form", { name: "Join the mailing list" });
+    await page.goto(base + "/scope-for-imagination/newsletter", { waitUntil: "networkidle" });
+    const journalSubscribe = page.getByRole("form", { name: "Join the newsletter" });
     await page.route("**/api/newsletter/subscribe", async route => {
       assert.equal(route.request().method(), "POST");
       assert.equal(JSON.parse(route.request().postData()).email, "offline@example.com");
@@ -178,8 +177,8 @@ try {
     await journalSubscribe.getByRole("button", { name: "join the list" }).click();
     await journalSubscribe.getByRole("status").waitFor();
     assert.equal(await page.getByRole("form", { name: "Unsubscribe from updates" }).count(), 1);
-    assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `SFI mailing list overflow at ${width}`);
-    await page.screenshot({ path: `${artifacts}/sfi-mailing-list-${width}.png`, fullPage: true });
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `SFI newsletter overflow at ${width}`);
+    await page.screenshot({ path: `${artifacts}/sfi-newsletter-${width}.png`, fullPage: true });
 
     // Contour-map background: present on main-site pages, not in photography, and never wider than the page.
     await page.goto(base + "/creative", { waitUntil: "networkidle" });

@@ -201,7 +201,7 @@ export function JournalShell({
     { label: "index", href: "/scope-for-imagination/index", children:
       years.map((year) => ({ label: String(year), href: `/scope-for-imagination/${year}` })),
     },
-    { label: "mailing list", href: "/scope-for-imagination/mailing-list" },
+    { label: "newsletter", href: "/scope-for-imagination/newsletter" },
   ];
 
   return (

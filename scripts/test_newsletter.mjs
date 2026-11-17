@@ -33,9 +33,10 @@ const creative = loadTypeScript("src/app/api/creative/mailing-list/subscribe/rou
 const sfi = loadTypeScript("src/app/api/newsletter/subscribe/route.ts").POST;
 const unsubscribe = loadTypeScript("src/app/api/newsletter/unsubscribe/route.ts").POST;
 const retiredPhotography = loadTypeScript("src/app/api/photography/mailing-list/subscribe/route.ts").POST;
+const photography = loadTypeScript("src/app/api/photography/newsletter/subscribe/route.ts").POST;
 const originalFetch = globalThis.fetch;
 const originalError = console.error;
-const envNames = ["RESEND_API_KEY", "RESEND_CREATIVE_SEGMENT_ID", "RESEND_SFI_SEGMENT_ID"];
+const envNames = ["RESEND_API_KEY", "RESEND_CREATIVE_SEGMENT_ID", "RESEND_SFI_SEGMENT_ID", "SFI_NEWSLETTER_FROM", "SFI_NEWSLETTER_REPLY_TO"];
 const originalEnv = Object.fromEntries(envNames.map((name) => [name, process.env[name]]));
 let requests;
 let logs;
@@ -48,10 +49,13 @@ beforeEach(() => {
   process.env.RESEND_API_KEY = "offline-test-key";
   process.env.RESEND_CREATIVE_SEGMENT_ID = "offline-creative-segment";
   process.env.RESEND_SFI_SEGMENT_ID = "offline-sfi-segment";
+  // No welcome emails unless a test sets a sender.
+  delete process.env.SFI_NEWSLETTER_FROM;
+  delete process.env.SFI_NEWSLETTER_REPLY_TO;
   console.error = (...args) => logs.push(args);
   globalThis.fetch = async (url, options) => {
     requests.push({ url, options });
-    assert.match(url, /^https:\/\/api\.resend\.com\/contacts/);
+    assert.match(url, /^https:\/\/api\.resend\.com\/(contacts|emails$)/);
     assert(responses.length, "Unexpected upstream request; no real requests are allowed");
     const next = responses.shift();
     if (next instanceof Error) throw next;
@@ -160,6 +164,48 @@ await test("SFI keeps its original audience and preference property", async () =
   assert.deepEqual(body.properties, { interest: "faith", source: "scope_for_imagination" });
 });
 
+await test("a brand-new subscriber is welcomed once the contact is saved", async () => {
+  process.env.SFI_NEWSLETTER_FROM = "Aaron <news@updates.example.com>";
+  responses.push(upstream(201), upstream(200));
+  const response = await creative(request({ ...contact, firstName: "<Reader>" }));
+  assert.equal(response.status, 200);
+  assert.equal(requests.length, 2);
+  assert.match(requests[1].url, /\/emails$/);
+  const email = JSON.parse(requests[1].options.body);
+  assert.equal(email.to, "reader@example.com");
+  assert.equal(email.from, "Aaron <news@updates.example.com>");
+  assert.equal(email.subject, "Welcome to the creative newsletter");
+  assert.match(email.html, /Hello &lt;Reader&gt;,/);
+  assert.match(email.text, /\/creative\/newsletter/);
+  assert.equal(email.reply_to, undefined);
+});
+
+await test("existing contacts are not welcomed again", async () => {
+  process.env.SFI_NEWSLETTER_FROM = "Aaron <news@updates.example.com>";
+  responses.push(upstream(409), upstream(200), upstream(200));
+  assert.equal((await creative(request(contact))).status, 200);
+  assert.equal(requests.length, 3);
+  assert(requests.every(({ url }) => url.includes("/contacts")));
+});
+
+await test("a failed welcome email never undoes a saved sign-up or leaks the address", async () => {
+  process.env.SFI_NEWSLETTER_FROM = "Aaron <news@updates.example.com>";
+  responses.push(upstream(201), upstream(500, "private-address@example.com"));
+  const response = await sfi(request({ email: "reader@example.com" }));
+  assert.equal(response.status, 200);
+  assert.match(JSON.stringify(logs), /Welcome email failed/);
+  assert.doesNotMatch(JSON.stringify(logs), /private-address/);
+});
+
+await test("Frame it Wright's newsletter joins the creative segment as photography", async () => {
+  assert.equal((await photography(request({ email: "reader@example.com", interest: "writing" }))).status, 400);
+  responses.push(upstream(201));
+  assert.equal((await photography(request({ email: "reader@example.com" }))).status, 200);
+  const body = JSON.parse(requests[0].options.body);
+  assert.deepEqual(body.segments, [{ id: "offline-creative-segment" }]);
+  assert.deepEqual(body.properties, { creative_interest: "photography", source: "frame_it_wright" });
+});
+
 await test("unsubscribe validates payloads and hides whether an address exists", async () => {
   assert.equal((await unsubscribe(request(null))).status, 400);
   assert.equal((await unsubscribe(request({ email: "bad" }))).status, 400);
@@ -175,6 +221,6 @@ await test("unsubscribe validates payloads and hides whether an address exists",
 await test("retired photography intake cannot add a booking request to an audience", async () => {
   const response = await retiredPhotography(request(contact));
   assert.equal(response.status, 410);
-  assert.match((await response.json()).message, /booking/);
+  assert.match((await response.json()).message, /moved to the contact page/);
   assert.equal(requests.length, 0);
 });

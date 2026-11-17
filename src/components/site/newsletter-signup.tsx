@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useId, useState } from "react";
+import { FormEvent, useId, useRef, useState } from "react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -69,16 +69,23 @@ export function NewsletterSignup({
   const [subscribeMessage, setSubscribeMessage] = useState("");
   const [unsubscribeStatus, setUnsubscribeStatus] = useState<FormStatus>("idle");
   const [unsubscribeMessage, setUnsubscribeMessage] = useState("");
+  const [joinedEmail, setJoinedEmail] = useState("");
+  const joined = useRef<HTMLDialogElement>(null);
+  const joinedTitleId = useId();
 
   async function handleSubscribe(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+    const email = String(new FormData(form).get("email") ?? "").trim();
     setSubscribeStatus("submitting");
     setSubscribeMessage("");
     try {
       setSubscribeMessage(await submitForm(endpoint, form));
       setSubscribeStatus("success");
+      setJoinedEmail(email);
       form.reset();
+      // A card over the page, like the front door's under-construction card, so the sign-up can't go unnoticed.
+      joined.current?.showModal();
     } catch (error) {
       setSubscribeStatus("error");
       setSubscribeMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
@@ -105,7 +112,24 @@ export function NewsletterSignup({
 
   return (
     <div>
-      <form onSubmit={handleSubscribe} className="space-y-4" aria-label="Join the mailing list" aria-busy={subscribeStatus === "submitting"}>
+      <dialog
+        ref={joined}
+        aria-labelledby={joinedTitleId}
+        className="construction-card print-placard"
+        onClick={(event) => event.target === joined.current && joined.current?.close()}
+      >
+        <p className="site-mono m-0 text-stone-500">subscribed</p>
+        <h2 id={joinedTitleId} className="m-0 mt-3 font-serif text-2xl font-normal italic">{subscribeMessage || "You’re on the list—thank you!"}</h2>
+        <p className="m-0 mt-3 font-serif text-base leading-relaxed text-stone-600 dark:text-stone-400">
+          {joinedEmail ? <>Emails will go to <span className="text-stone-900 dark:text-stone-100">{joinedEmail}</span>. </> : null}
+          There&apos;s nothing to confirm: you can unsubscribe at the bottom of this page, or from any email, whenever you like.
+        </p>
+        <div className="mt-6">
+          <button type="button" autoFocus onClick={() => joined.current?.close()} className="site-mono cursor-pointer text-stone-500 hover:text-olive">close</button>
+        </div>
+      </dialog>
+
+      <form onSubmit={handleSubscribe} className="space-y-4" aria-label="Join the newsletter" aria-busy={subscribeStatus === "submitting"}>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
             <span className="block lowercase tracking-wider">first name (optional)</span>
@@ -122,16 +146,18 @@ export function NewsletterSignup({
           <input name="email" type="email" autoComplete="email" required maxLength={254} className={fieldClass} />
         </label>
 
-        <label className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
-          <span className="block lowercase tracking-wider">{interestLabel}</span>
-          {/* Left on "select", the field is not sent and the list records "everything". */}
-          <select name={interestName} defaultValue="" className={fieldClass}>
-            <option value="" disabled>select</option>
-            {interestOptions.map((option) => (
-              <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
-          </select>
-        </label>
+        {/* Left on "select" (or with no menu at all), the field is not sent and the list records its default. */}
+        {interestOptions.length > 0 && (
+          <label className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">
+            <span className="block lowercase tracking-wider">{interestLabel}</span>
+            <select name={interestName} defaultValue="" className={fieldClass}>
+              <option value="" disabled>select</option>
+              {interestOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </label>
+        )}
 
         {extraFields.map((field) => (
           <label key={field.name} className="block space-y-1.5 text-xs text-stone-600 dark:text-stone-400">

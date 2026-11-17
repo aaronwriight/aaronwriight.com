@@ -56,8 +56,9 @@ export function sessionPhotos(slug: string): SitePhoto[] {
   return [...photos.filter((photo) => photo.portfolio), ...photos.filter((photo) => !photo.portfolio)];
 }
 
-// The photograph that stands for a session (its first favourite), if it has any.
-export const sessionCover = (slug: string): SitePhoto | undefined => sessionPhotos(slug)[0];
+// The photograph that stands for a session: one chosen in home.json's sessionCovers, else its first favourite.
+export const sessionCover = (slug: string): SitePhoto | undefined =>
+  bySrc.get((home.sessionCovers as Record<string, string>)[slug] ?? "") ?? sessionPhotos(slug)[0];
 
 // Photographs for the photography home and other pages: favourites first, then the rest, one session at a time in
 // turn so no session crowds a row. Travel and events photographs are included here, never in the portfolio.
@@ -73,11 +74,13 @@ export const featuredPhotos: SitePhoto[] = (() => {
   return order;
 })();
 
-// The photographs chosen by hand in content/photography/home.json: the front door's photography plaque and the photography
-// home's two-row collage. A path that is no longer published is skipped.
+// The photographs chosen by hand in content/photography/home.json: the front door's photography plaque, the photography
+// home's cover (the large photograph beside the hello; picked automatically when unset) and its two-row collage. A path
+// that is no longer published is skipped.
 const bySrc = new Map(photographyGalleries.flatMap((gallery) => gallery.images.map((image) => [image.src, withStamp(image, gallery.title)] as const)));
 export const chosenPhotos = {
   plaque: bySrc.get(home.plaque),
+  cover: bySrc.get(home.cover),
   collage: home.collage.map((row) => row.map((src) => bySrc.get(src)).filter((photo): photo is SitePhoto => !!photo)).filter((row) => row.length > 0),
 };
 

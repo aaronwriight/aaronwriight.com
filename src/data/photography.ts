@@ -3,9 +3,9 @@ export const picTimeClientUrl = "https://frameitwrightphotography.pic-time.com/c
 export const instagramUrl = "https://www.instagram.com/frameitwrightphotography/";
 
 // While the photography site's last pages are written it is closed: the front door's photography plaque shows an
-// "under construction" card, and every photography address serves only the under-construction page (with
-// PHOTOGRAPHY_LOCKED in next.config.mjs). Set both to false to open it.
-export const photographyUnderConstruction = true;
+// "under construction" card, and every photography address serves only the under-construction page. Set by
+// PHOTOGRAPHY_UNDER_CONSTRUCTION in next.config.mjs, and false under `pnpm dev` and on Vercel previews.
+export const photographyUnderConstruction = process.env.PHOTOGRAPHY_LOCKED === "true";
 
 // The categories galleries are published under (scripts/photography.py). Kept whole: events and travel stay in the
 // data even though the portfolio shows only the five sessions below.
@@ -74,5 +74,6 @@ export const photographyNav = [
   { label: "about", href: photoPath("/about") },
   { label: "portfolio", href: photoPath("/portfolio") },
   { label: "galleries", href: photoPath("/galleries") },
+  { label: "newsletter", href: photoPath("/newsletter") },
   { label: "contact", href: photoPath("/contact") },
 ];

@@ -19,7 +19,8 @@ export default function FrameItWrightPhotographyPage() {
   const covers = photographySessions.map((session) => ({ session, photo: sessionCover(session.slug) }));
   covers.forEach(({ photo }) => photo && used.add(photo.src));
   chosenPhotos.collage.flat().forEach((photo) => used.add(photo.src));
-  const hello = pickPhotos(1, used, isUpright)[0];
+  if (chosenPhotos.cover) used.add(chosenPhotos.cover.src);
+  const hello = chosenPhotos.cover ?? pickPhotos(1, used, isUpright)[0];
   const note = kudos[0];
 
   return (

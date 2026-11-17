@@ -3,14 +3,14 @@ import { JournalShell } from "@/components/site/site-content";
 import { NewsletterSignup } from "@/components/site/newsletter-signup";
 
 export const metadata: Metadata = {
-  title: "mailing list | scope for imagination",
+  title: "newsletter | scope for imagination",
   description: "Subscribe to Scope for Imagination updates.",
 };
 
-export default function MailingListPage() {
+export default function ScopeNewsletterPage() {
   return (
     <JournalShell
-      title="mailing list"
+      title="newsletter"
       subtitle="get an occasional email when a new entry finds its way into Scope for Imagination."
     >
       <div className="not-prose max-w-2xl">

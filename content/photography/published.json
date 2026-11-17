@@ -1,195 +1,5 @@
 [
   {
-    "slug": "couples-engagement",
-    "category": "Couples & Engagement",
-    "title": "couples & engagement",
-    "subtitle": "",
-    "description": "Couples and engagement sessions.",
-    "picTimeUrl": "",
-    "images": [
-      {
-        "src": "/images/photography/couples-engagement/95c6b84e09594a27d3236201568fcb500c5e38764db72ed7271411f1324edca8.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "A couple presses cheek to cheek and looks into the camera with calm expressions, the man resting a hand on his head, trees behind.",
-        "caption": "[your note on why this one is a favourite]",
-        "shape": "landscape",
-        "portfolio": true
-      },
-      {
-        "src": "/images/photography/couples-engagement/f2f58c5e25a607b327858e0e488d6860f8cc73efe93e0fd9449ff0c48035cb37.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A woman with long red hair gazes up at a man in the blurred foreground, dappled shadows falling across her face in bright sun.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/2773aa6881ecb33dd665a88e51c770a286fdb9e5a38bbd36a314d57dc369dbeb.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A woman with red hair looks straight at the camera with a faint smile as a man leans in, dappled shadows across her face.",
-        "caption": "[your note on why this one is a favourite]",
-        "shape": "portrait",
-        "portfolio": true
-      },
-      {
-        "src": "/images/photography/couples-engagement/5ea212a1d7f91be66d589fa76e3e739d36a958c0ce02391753d839609453c498.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "A solitaire diamond ring sits in an open beige velvet box nestled on a dark shrub with small amber leaves.",
-        "caption": "",
-        "shape": "landscape",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/f65e12a8bf72ae7de5b4d7971c92653cb2c7358ef01e82e5ccd2c5d4f6bb37ee.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "From above, a couple lies head to head on dark grass as he laughs and she gazes down, resting a ringed hand in his hair.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/b4b8c300b773879ab5824cf8db1e73d24a0b0b9b0be43a084eaf4b31e3e6f201.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "Seen from above, a couple lies on the grass with heads together, she grinning up at the camera while he smiles with lips closed.",
-        "caption": "",
-        "shape": "landscape",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/ae9a1d008c38f80d2583c505e7e11a7349df989d0347f3ccd90a33b812e7b162.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "Seen from above, a couple lies on the grass with heads together, both laughing with wide open smiles and looking up at the camera.",
-        "caption": "[your note on why this one is a favourite]",
-        "shape": "landscape",
-        "portfolio": true
-      },
-      {
-        "src": "/images/photography/couples-engagement/b0228d02b3f766121c39538dfabce8e701902edbbd7857d61c92cbac114bbdd7.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "Seen from above, a couple lies laughing on the grass with heads together, his eyes squeezed shut as a hand reaches toward his hair.",
-        "caption": "",
-        "shape": "landscape",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/c4178e9f62be2c445f4f8eebc2d7e7198791a135b2711faf1a40aecbf9a548c8.jpg",
-        "width": 1582,
-        "height": 2048,
-        "alt": "A gold ring with three stones sits upright in an open black ring box with a cream lining, resting on speckled rock.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/889faa78cd031f5b6b14e830eedf108f29d590665ccb2eacf2ba0ef7bbef3628.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Two women hug tightly and laugh, one in a mauve crop top with eyes squeezed shut, on a rocky shore under an overcast sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/7d8d0251f7f1a731b29c4c654c7f17bbb20f9c98c60a67e276d8960bc24b3319.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Two women hug by misty water, one in a white shirt smiling in profile while the other rests a ringed hand on her back.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/124aa3242daa481086f8ed01b8c62bc04b8e6750627b9edd6f380da97bbd60b0.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Two women hug cheek to cheek smiling at the camera, one in a mauve crop top, one in a black dress, on a rocky shore.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/447bf0f7a05da8e67d0dc5e96aea24217a0ffe8550fd517191263b033be804d8.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A hand with a diamond ring and pale nails rests on the back of a man's black shirt as a couple embraces, faces out of focus.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/f25193c11e7b844016bf3f1df60bad80eb458889bf92fcc139da85b998b86076.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A couple stands small in the frame on a wide stone jetty beside calm water as he kisses her forehead under a pale overcast sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/e3dec77bee38cdedc1cfdcf69dd131b96ac6da0794db624fc224cd414a90f171.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A couple embraces on flat rock as he kisses her forehead, with a stone wall and gray sea behind them under an overcast sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/8348b18ffe2d07a7cd9fd028a73a73a2a7ba083addc4f79d2c001ed317600486.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A couple stands close on a rocky ledge above gray water, her back to the camera while he smiles and gazes out to the side.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/3dfe57e8fa550e7de5734b37dfec3c6dec896f1eda61a97cf3f4c0afc52d99bc.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A couple kisses with eyes closed and arms linked, her ringed hand in view, their hair damp beneath an overcast sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/ce204198b16ebe75a0ed90017399d88b3f7fdb0e1e97442c2054ec2244e702df.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "In a tight crop, a woman in a mauve top and jeans smiles down as her ringed hand rests in a man's hand, their arms linked.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/fd2de02a7f8b128d81868b6472afc33bfed553281dc63d895881cb80e4c83438.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A man in a black polo laughs with eyes shut as a woman at the frame's edge reaches toward his face, a hazy shore behind.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/couples-engagement/a4ebc4e781b2559d4957b5c41b49aeab5f5a27c23ab04926aa61d588782b9b29.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A couple smiles nose to nose with eyes closed, her hand cradling the side of his head, damp hair and gray sea behind them.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      }
-    ]
-  },
-  {
     "slug": "wedding",
     "category": "Wedding",
     "title": "wedding",
@@ -220,205 +30,6 @@
         "width": 1365,
         "height": 2048,
         "alt": "Seen from below through a blur of veil, a bride smiles down at the camera under a bright blue sky beside a white building.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      }
-    ]
-  },
-  {
-    "slug": "family-friends-lifestyle",
-    "category": "Family, Friends, & Lifestyle",
-    "title": "family, friends, & lifestyle",
-    "subtitle": "",
-    "description": "Family, friends, and lifestyle sessions.",
-    "picTimeUrl": "",
-    "images": [
-      {
-        "src": "/images/photography/family-friends-lifestyle/357e6d0f81e4bcecee72ceab49b89fb862964c2c9cd822fb003af7a670cc89a4.jpg",
-        "width": 2048,
-        "height": 1638,
-        "alt": "A person with long dark wavy hair and a pale blue puff-sleeve dress laughs behind a stone wall on a sunny, tree-lined lawn.",
-        "caption": "",
-        "shape": "landscape",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/95c5b31865cef95f1516658236260eaaa9a125b505bd7158d7cbd29d962c1e5f.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A smiling bearded person in a cream wide-brimmed hat and plaid jacket stands beside a white car in bright autumn sun, holding a second hat.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/4229d430500a1bfceab202aee160d303aa457bb2339d318e524d666110c57b74.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "Two people walk arm in arm down a weathered wooden dock past moored boats, smiling at each other under a pale autumn sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/a077eb00d450f062786262de19776b62f0f3fb948da60c04bd72452db1537b37.jpg",
-        "width": 1536,
-        "height": 2048,
-        "alt": "A smiling person holding a camera stands on a stone curb at a mountain overlook, a second person peeking out from behind, in hazy sun.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/d789f527a44aecfa4d8c8002224b840cfb4cb5547208ee917688e13ac3a45004.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Seen over a blurred shoulder, a raised hand with a festival wristband holds up a phone framing a crowded field under a pink dusk sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/85f5215e7580f315d84c40262cf7550ebd69f92c44914732bec27f99024c8769.jpg",
-        "width": 1582,
-        "height": 2048,
-        "alt": "Close view of two hands, one with a festival wristband and one with black bracelets, holding a phone that shows the crowd and pink sky.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/94cc6b35bc7a92fd9658abb065b22036305e8053b702ba81032e42a4f7e37a0e.jpg",
-        "width": 1536,
-        "height": 2048,
-        "alt": "A person with long blonde hair leans back and stretches one arm up toward a large wicker surface, the scene softly blurred in warm amber tones.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/a3f6a6366980eca118f306a65d05915a7a38ce654dbe180950af8400eb590476.jpg",
-        "width": 1582,
-        "height": 2048,
-        "alt": "Two people in fleece sweatshirts laugh side by side next to a map sign, with a green valley and snow-capped mountains behind.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/6a094620b3bc01adc98b323bbdb765dd156de53ece52b50cb0dd4e43ea764fbb.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "One person rides piggyback on another, both laughing toward the camera in front of a grassy plain and misty snow-capped mountains.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/cdb7122db84566db0af241c3aca093700df91af7d771474bb32e185bf90030cc.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "A smiling person in a gray sweatshirt stands at a spotting scope on a tripod by a road at dusk, with several others gathered behind.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/009d679ad1f0f08ae35e7eb2e59e190386bd4074cb92e4b93e37475da3b4ea3e.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "Six friends in summer dresses stand barefoot in a staggered line under a large tree, leaning out to smile at the camera.",
-        "caption": "[your note on why this one is a favourite]",
-        "shape": "portrait",
-        "portfolio": true
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/55b3b70e32ff4394586682bb639e3bf6ef1061c4320c88c8d62d380bf2d23be1.jpg",
-        "width": 1582,
-        "height": 2048,
-        "alt": "A smiling person in glasses and a denim dress leans on a wooden fence beside a pasture with a black cow as others stand nearby.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/12f63931f5db3aa973b4016ee37fd32717e48dd4e33d80c5ba1f33b9adf8ad5f.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Two friends embrace and smile on a sunny lawn, one in a denim vest and white skirt, with trees and a stone wall behind.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/9054039c8ad03198056de4f799e1efd255038a7c8e323bb8163cf8eeffa36ad7.jpg",
-        "width": 1536,
-        "height": 2048,
-        "alt": "Two smiling people pose close together in a sunlit wooded clearing, one with curly red hair and a denim jacket, the other in pale blue.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/02751a963ae3e66817372f45f973c655765dfd3fdd00bfda23c94d72e83afd9e.jpg",
-        "width": 1365,
-        "height": 2048,
-        "alt": "A laughing person in denim and white heels crouches beside a weathered wooden fence while two cows stand in the pasture behind.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/58aea5890642b0ba36cc6e26f27be3c7ba29e9b37467eef78b1f301269d6318b.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "In a grassy field at dusk, one person in white glances back at the camera as the other, in glasses and a denim jacket, laughs.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/e80780295785a0676044d65e1f3acc65eeeb37fc66b7e6516859b7af835f1b3c.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Two people hug with heads touching and smile at the camera in a wide grassy field edged by dark trees in soft evening light.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/8d561b6aafae5105c3808770df8fffc851050ecbb0c138722e16eae8b8ccea3f.jpg",
-        "width": 1583,
-        "height": 2048,
-        "alt": "Close crop of two people cheek to cheek in a field, one in white looking at the camera while the other, in glasses, smiles off to the side.",
-        "caption": "",
-        "shape": "portrait",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/0728e4218dcbe652322afd73b8e5692586c7c5da64ef3ee401e73726e6d9b8a0.jpg",
-        "width": 2048,
-        "height": 1365,
-        "alt": "A person with dark wavy hair and a black coat leans against a pale stone pillar, glancing over one shoulder, with blurred pink blossoms behind.",
-        "caption": "",
-        "shape": "landscape",
-        "portfolio": false
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/448a0c25eb1119c3132b2ad1db2bd7e142859282d0eec17845f29f12d62850a3.jpg",
-        "width": 2048,
-        "height": 1152,
-        "alt": "Two children in pale blue dresses hug a smiling adult seated between them on a sandy beach, with calm water and a tree-lined shore behind.",
-        "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
-        "shape": "landscape",
-        "portfolio": true
-      },
-      {
-        "src": "/images/photography/family-friends-lifestyle/e11ca831f6029808b338d20031f79617e6144757be4b25a65b545a2c437ddfe3.jpg",
-        "width": 1536,
-        "height": 2048,
-        "alt": "Someone in a yellow blouse smiles softly at the camera while a person in a white off-shoulder dress kisses their cheek, sunlit trees behind.",
         "caption": "",
         "shape": "portrait",
         "portfolio": false
@@ -684,6 +295,656 @@
         "alt": "Sunlight filters into a narrow red-rock canyon, with pines clinging to the walls and dark water streaks running down the rock.",
         "caption": "",
         "shape": "landscape",
+        "portfolio": false
+      }
+    ]
+  },
+  {
+    "slug": "couples-engagement",
+    "category": "Couples & Engagement",
+    "title": "couples & engagement",
+    "subtitle": "",
+    "description": "Couples and engagement sessions.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/couples-engagement/95c6b84e09594a27d3236201568fcb500c5e38764db72ed7271411f1324edca8.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A couple presses cheek to cheek and looks into the camera with calm expressions, the man resting a hand on his head, trees behind.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/f2f58c5e25a607b327858e0e488d6860f8cc73efe93e0fd9449ff0c48035cb37.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A woman with long red hair gazes up at a man in the blurred foreground, dappled shadows falling across her face in bright sun.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/2773aa6881ecb33dd665a88e51c770a286fdb9e5a38bbd36a314d57dc369dbeb.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A woman with red hair looks straight at the camera with a faint smile as a man leans in, dappled shadows across her face.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "portrait",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/5ea212a1d7f91be66d589fa76e3e739d36a958c0ce02391753d839609453c498.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A solitaire diamond ring sits in an open beige velvet box nestled on a dark shrub with small amber leaves.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f65e12a8bf72ae7de5b4d7971c92653cb2c7358ef01e82e5ccd2c5d4f6bb37ee.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "From above, a couple lies head to head on dark grass as he laughs and she gazes down, resting a ringed hand in his hair.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/b4b8c300b773879ab5824cf8db1e73d24a0b0b9b0be43a084eaf4b31e3e6f201.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies on the grass with heads together, she grinning up at the camera while he smiles with lips closed.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ae9a1d008c38f80d2583c505e7e11a7349df989d0347f3ccd90a33b812e7b162.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies on the grass with heads together, both laughing with wide open smiles and looking up at the camera.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/couples-engagement/b0228d02b3f766121c39538dfabce8e701902edbbd7857d61c92cbac114bbdd7.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "Seen from above, a couple lies laughing on the grass with heads together, his eyes squeezed shut as a hand reaches toward his hair.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/c4178e9f62be2c445f4f8eebc2d7e7198791a135b2711faf1a40aecbf9a548c8.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A gold ring with three stones sits upright in an open black ring box with a cream lining, resting on speckled rock.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/889faa78cd031f5b6b14e830eedf108f29d590665ccb2eacf2ba0ef7bbef3628.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug tightly and laugh, one in a mauve crop top with eyes squeezed shut, on a rocky shore under an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/7d8d0251f7f1a731b29c4c654c7f17bbb20f9c98c60a67e276d8960bc24b3319.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug by misty water, one in a white shirt smiling in profile while the other rests a ringed hand on her back.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/124aa3242daa481086f8ed01b8c62bc04b8e6750627b9edd6f380da97bbd60b0.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two women hug cheek to cheek smiling at the camera, one in a mauve crop top, one in a black dress, on a rocky shore.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/447bf0f7a05da8e67d0dc5e96aea24217a0ffe8550fd517191263b033be804d8.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A hand with a diamond ring and pale nails rests on the back of a man's black shirt as a couple embraces, faces out of focus.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f25193c11e7b844016bf3f1df60bad80eb458889bf92fcc139da85b998b86076.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple stands small in the frame on a wide stone jetty beside calm water as he kisses her forehead under a pale overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/e3dec77bee38cdedc1cfdcf69dd131b96ac6da0794db624fc224cd414a90f171.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A couple embraces on flat rock as he kisses her forehead, with a stone wall and gray sea behind them under an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/8348b18ffe2d07a7cd9fd028a73a73a2a7ba083addc4f79d2c001ed317600486.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple stands close on a rocky ledge above gray water, her back to the camera while he smiles and gazes out to the side.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/3dfe57e8fa550e7de5734b37dfec3c6dec896f1eda61a97cf3f4c0afc52d99bc.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple kisses with eyes closed and arms linked, her ringed hand in view, their hair damp beneath an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ce204198b16ebe75a0ed90017399d88b3f7fdb0e1e97442c2054ec2244e702df.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "In a tight crop, a woman in a mauve top and jeans smiles down as her ringed hand rests in a man's hand, their arms linked.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/fd2de02a7f8b128d81868b6472afc33bfed553281dc63d895881cb80e4c83438.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A man in a black polo laughs with eyes shut as a woman at the frame's edge reaches toward his face, a hazy shore behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/a4ebc4e781b2559d4957b5c41b49aeab5f5a27c23ab04926aa61d588782b9b29.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple smiles nose to nose with eyes closed, her hand cradling the side of his head, damp hair and gray sea behind them.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/91490e6aa373d26cfb9f6c3e404a6bbc4c7ab34c84619d01d301a59176ac531f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "In warm sunlight, a man kisses a smiling woman's temple as they hold out a frosted glass cup lettered with miss struck through above mrs.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/73710860e776434ddd802192e300585f96445811f3f6ae8193725708efeec524.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "In warm backlight, one hand with a slim gold ring rests in another's grasp against blurred, glittering water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/056a7d437da02e9c55b3f3be17758461b0e2154418a3d8bd8eededbabf00958f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "In black and white, one hand with a slim ring rests in another's grasp against blurred, shimmering water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/a6836513a89afa951530069d30c8f11d7301b3d40b231fdf7371d4caaf00f5a4.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Black and white close-up of a hand wearing a three-stone ring resting on another hand, in crisp, deep contrast.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/0f4d46ea792bd36079c3030887858d14ff2eef038cb77a3c185e9fed6778be2f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Softer, grainier black and white close-up of a hand wearing a three-stone ring resting on another hand, with lifted shadows.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/9a5d2cfb1f78ff355fffc217a3a2e41114ca465981f825ec7e739355a0395416.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Close-up in warm sunlight of a hand wearing a three-stone ring resting on another hand, with soft green blur behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/d5f97c798b7c883a233b3c6a43156db42e6f976733dde28dccf3dba0c47dfcb1.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Seen from behind, a couple stands hand in hand on a white blanket among small candles, facing a city skyline across the water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ccf00061e243d49ae30a8756ce4e80521db7a3dd8c963c46356f09140c361e1f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple hugs tightly, the man smiling with eyes closed, on a waterfront lawn with candles in the grass and a skyline behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ee159d2999060c5b54ec9e693bb665aed461214896253d5cbf73371eac6f19f6.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A woman in a pink cardigan looks at a smiling man with an open-mouthed, delighted expression, a ring on her hand, beside the water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/b5caa93e6088f7fb28d50fd31c6ebe3047c2474e424fdba3bc94be40d0848ab7.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A couple kisses on the shoreline, her ringed hand cupping his cheek, with a hazy city skyline in the background.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f6117ca3c55223c73f1832a737c94cac3e31d44748c95917cd637964bd794b48.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple stands forehead to forehead, both smiling, her ringed hand on his cheek, with water and a blurred shoreline behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/bb3559f910ec2f643fc44da981fa1ed693f72e0d5d2c0248a7be6552aaca6c29.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Three people laugh arm in arm before a city skyline, a woman in pink between a curly-haired woman and a man in glasses.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/aad1134035b0a236ee3d6ccda1f66b97ca88428b10258ea6e9f909265298741e.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A man in glasses and a gray fleece hugs a laughing woman and kisses the side of her head, with water and a soft skyline behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/59e98eada167e6072d284ef71498825c1547fc1ca24b07a4f1a58b550a6b66d6.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A curly-haired woman in a black jacket kisses the cheek of a woman who squeezes her eyes shut, grinning, beside the water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/0aed6e5a0cb45836403ce497966af4f5296d3b638d828a0fc0e7671291e6137b.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A curly-haired woman and a woman in a pink cardigan embrace side by side, laughing with their arms around each other by the water.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/395815f2755c6b9bf17ff51233ab14f94ed11b38dc7087959787a396acf3beaf.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A smiling woman in a pink cardigan looks up at a man seen from behind as they hold each other, candles glowing in the grass.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/71661503c44bc595f30c81956b67d16904c45ceade4690d72a3c4ac75e69b71a.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A blurred couple stands close together in the foreground while a tall slender tower and marina across the water remain in sharp focus.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/26712ef029ce23d41f37eaf0a49bf96357e6e2e78eed8a43784f3cdff2f22710.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Wide view of a city skyline across the water in soft evening light, with a blurred couple embracing at the right edge.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/1875e567f9932da0d31e3e56c5922eec896ecf0cec5d30e2fa7667264f856c4b.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Seen from behind, a couple walks arm in arm along a railed waterfront walkway toward hillside houses across the water in dim evening light.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/154a5d97bcd03379f82910621119fa788543b4220423cf45a71952c777ca5d22.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple holds each other at the corner railing of a concrete waterfront platform, with lit hillside houses across the water at dusk.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/ac348c494d1167389fae6dc922f7f84bb3fa59291da1601ffdfbb7dd0affac5d.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A woman with her back to the camera is hugged by a man at a waterfront railing, seen past a blurred rail in the foreground.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/499b89cd2feb23021c2c5aa8be665968ea1b8197e839bb605b782f44f35619af.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A couple leans together on a waterfront railing gazing out at the water and hillside houses, seen past a blurred rail in the foreground.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/f325eb622daf5442bff223786782d0b54265733f0ccef1f7105f4d0aa4f1ee8f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A man hugs a laughing woman from behind as they lean against a weathered railing by the water, warm lights glowing on the far shore.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/387fe087819ea0609a7eb3ca214cb766d4748a5f3f4399b879dbf1efaae844b4.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A couple holds each other on a brick waterfront promenade, small against a city skyline lit up across the water at dusk.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/couples-engagement/d7a8cbf33f8960277c2861c04159e02b2018dd0018c56200ebf1f0e4f54ec0be.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Close-up of a woman's hands, one wearing a ring, clasping a man's forearm wrapped across her pink knit cardigan.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      }
+    ]
+  },
+  {
+    "slug": "family-friends-lifestyle",
+    "category": "Family, Friends, & Lifestyle",
+    "title": "family, friends, & lifestyle",
+    "subtitle": "",
+    "description": "Family, friends, and lifestyle sessions.",
+    "picTimeUrl": "",
+    "images": [
+      {
+        "src": "/images/photography/family-friends-lifestyle/357e6d0f81e4bcecee72ceab49b89fb862964c2c9cd822fb003af7a670cc89a4.jpg",
+        "width": 2048,
+        "height": 1638,
+        "alt": "A person with long dark wavy hair and a pale blue puff-sleeve dress laughs behind a stone wall on a sunny, tree-lined lawn.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/95c5b31865cef95f1516658236260eaaa9a125b505bd7158d7cbd29d962c1e5f.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A smiling bearded person in a cream wide-brimmed hat and plaid jacket stands beside a white car in bright autumn sun, holding a second hat.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/4229d430500a1bfceab202aee160d303aa457bb2339d318e524d666110c57b74.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Two people walk arm in arm down a weathered wooden dock past moored boats, smiling at each other under a pale autumn sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/a077eb00d450f062786262de19776b62f0f3fb948da60c04bd72452db1537b37.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A smiling person holding a camera stands on a stone curb at a mountain overlook, a second person peeking out from behind, in hazy sun.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/d789f527a44aecfa4d8c8002224b840cfb4cb5547208ee917688e13ac3a45004.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Seen over a blurred shoulder, a raised hand with a festival wristband holds up a phone framing a crowded field under a pink dusk sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/85f5215e7580f315d84c40262cf7550ebd69f92c44914732bec27f99024c8769.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Close view of two hands, one with a festival wristband and one with black bracelets, holding a phone that shows the crowd and pink sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/94cc6b35bc7a92fd9658abb065b22036305e8053b702ba81032e42a4f7e37a0e.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "A person with long blonde hair leans back and stretches one arm up toward a large wicker surface, the scene softly blurred in warm amber tones.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/a3f6a6366980eca118f306a65d05915a7a38ce654dbe180950af8400eb590476.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "Two people in fleece sweatshirts laugh side by side next to a map sign, with a green valley and snow-capped mountains behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/6a094620b3bc01adc98b323bbdb765dd156de53ece52b50cb0dd4e43ea764fbb.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "One person rides piggyback on another, both laughing toward the camera in front of a grassy plain and misty snow-capped mountains.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/cdb7122db84566db0af241c3aca093700df91af7d771474bb32e185bf90030cc.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "A smiling person in a gray sweatshirt stands at a spotting scope on a tripod by a road at dusk, with several others gathered behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/009d679ad1f0f08ae35e7eb2e59e190386bd4074cb92e4b93e37475da3b4ea3e.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "Six friends in summer dresses stand barefoot in a staggered line under a large tree, leaning out to smile at the camera.",
+        "caption": "[your note on why this one is a favourite]",
+        "shape": "portrait",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/55b3b70e32ff4394586682bb639e3bf6ef1061c4320c88c8d62d380bf2d23be1.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A smiling person in glasses and a denim dress leans on a wooden fence beside a pasture with a black cow as others stand nearby.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/12f63931f5db3aa973b4016ee37fd32717e48dd4e33d80c5ba1f33b9adf8ad5f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two friends embrace and smile on a sunny lawn, one in a denim vest and white skirt, with trees and a stone wall behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/9054039c8ad03198056de4f799e1efd255038a7c8e323bb8163cf8eeffa36ad7.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "Two smiling people pose close together in a sunlit wooded clearing, one with curly red hair and a denim jacket, the other in pale blue.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/02751a963ae3e66817372f45f973c655765dfd3fdd00bfda23c94d72e83afd9e.jpg",
+        "width": 1365,
+        "height": 2048,
+        "alt": "A laughing person in denim and white heels crouches beside a weathered wooden fence while two cows stand in the pasture behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/58aea5890642b0ba36cc6e26f27be3c7ba29e9b37467eef78b1f301269d6318b.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "In a grassy field at dusk, one person in white glances back at the camera as the other, in glasses and a denim jacket, laughs.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/e80780295785a0676044d65e1f3acc65eeeb37fc66b7e6516859b7af835f1b3c.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two people hug with heads touching and smile at the camera in a wide grassy field edged by dark trees in soft evening light.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/8d561b6aafae5105c3808770df8fffc851050ecbb0c138722e16eae8b8ccea3f.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Close crop of two people cheek to cheek in a field, one in white looking at the camera while the other, in glasses, smiles off to the side.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/0728e4218dcbe652322afd73b8e5692586c7c5da64ef3ee401e73726e6d9b8a0.jpg",
+        "width": 2048,
+        "height": 1365,
+        "alt": "A person with dark wavy hair and a black coat leans against a pale stone pillar, glancing over one shoulder, with blurred pink blossoms behind.",
+        "caption": "",
+        "shape": "landscape",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/448a0c25eb1119c3132b2ad1db2bd7e142859282d0eec17845f29f12d62850a3.jpg",
+        "width": 2048,
+        "height": 1152,
+        "alt": "Two children in pale blue dresses hug a smiling adult seated between them on a sandy beach, with calm water and a tree-lined shore behind.",
+        "caption": "[a longer note can sit here too: what you saw, what you were waiting for, why it stays with you]",
+        "shape": "landscape",
+        "portfolio": true
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/2fe0ca705aa64bbe52510baf3237627ed43c96277f62992248ccc1410918b2aa.jpg",
+        "width": 1583,
+        "height": 2048,
+        "alt": "Two smiling children in pale blue dresses rest their hands on the shoulders of an adult in white seated in a wooden chair on the beach.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/7f2d7fb7f90f806c615dc5a1a50c17710138bbdf79db086d11fa26e6dd271a54.jpg",
+        "width": 1582,
+        "height": 2048,
+        "alt": "A person in a striped dress hugs a seated adult in white from behind, both laughing on a sandy beach under an overcast sky.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/c39927e1c2496ed80597836352361c5d71c47281bd2276c7340f05bbec990cda.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "On a beach, a person with blonde hair kisses the cheek of a laughing adult, who clasps the arms hugging them from behind.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/d147768e1366bdd68bd6ad528d75396613a849a0585f13a2f0c54bda62c2abde.jpg",
+        "width": 1639,
+        "height": 2048,
+        "alt": "A person in a white off-shoulder dress kisses the cheek of someone in a yellow blouse, who puckers up playfully, in a sunny meadow.",
+        "caption": "",
+        "shape": "portrait",
+        "portfolio": false
+      },
+      {
+        "src": "/images/photography/family-friends-lifestyle/e11ca831f6029808b338d20031f79617e6144757be4b25a65b545a2c437ddfe3.jpg",
+        "width": 1536,
+        "height": 2048,
+        "alt": "Someone in a yellow blouse smiles softly at the camera while a person in a white off-shoulder dress kisses their cheek, sunlit trees behind.",
+        "caption": "",
+        "shape": "portrait",
         "portfolio": false
       }
     ]

@@ -43,12 +43,13 @@ export const sectionLinks: Record<string, NavigationItem[]> = {
       { label: "communities", href: "/creative/inspirations#communities" },
       { label: "creative initiatives & inspirations", href: "/creative/inspirations#inspirations" },
     ] },
-    { label: "mailing list", href: "/creative/mailing-list" },
+    { label: "newsletter", href: "/creative/newsletter" },
   ],
   photography: [
     { label: "about", href: "/frame-it-wright-photography/about" },
     { label: "portfolio", href: "/frame-it-wright-photography/portfolio" },
     { label: "galleries", href: "/frame-it-wright-photography/galleries" },
+    { label: "newsletter", href: "/frame-it-wright-photography/newsletter" },
     { label: "contact", href: "/frame-it-wright-photography/contact" },
   ],
   literature: [

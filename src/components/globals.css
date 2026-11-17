@@ -174,6 +174,33 @@ a:hover {
   }
 }
 
+/* Dropdowns square like every other field: the browser's own menu (rounded in Safari) is replaced by a plain box with
+   a small chevron. Unlayered, so it outranks the px-* utilities and leaves room for the chevron. */
+select {
+  appearance: none;
+  border-radius: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2378716c' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.7rem auto;
+  padding-inline-end: 2.25rem;
+}
+
+/* Fields the browser fills in (saved name, email, phone) get a soft cream instead of the browser's highlighter yellow or
+   blue. Browsers won't let a page change that background directly, so a large inset shadow paints over it. */
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100rem #f8f1e2 inset;
+  box-shadow: 0 0 0 100rem #f8f1e2 inset;
+  -webkit-text-fill-color: var(--color-stone-900);
+  caret-color: var(--color-stone-900);
+}
+html.dark input:-webkit-autofill, html.dark textarea:-webkit-autofill, html.dark select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100rem #2a231c inset;
+  box-shadow: 0 0 0 100rem #2a231c inset;
+  -webkit-text-fill-color: var(--color-stone-100);
+  caret-color: var(--color-stone-100);
+}
+
 /* olive switches to its night value by itself (html.dark redefines --color-olive), so these need no night rule. */
 .section-title,
 .personal-sections strong {
@@ -597,6 +624,8 @@ html.dark .dialogue-b { fill: #e08a5f; }
 /* ---------- Frame it Wright Photography ---------- */
 /* Its own small site: a top bar instead of the side menu, no contour map, golden-hour accent (--color-wright). */
 .fiw { --fiw-max: 76rem; }
+/* Shared pieces borrowed from the main site (the newsletter form, the booking form's checkbox) take golden hour here. */
+.fiw { --color-olive: var(--color-wright); }
 .fiw-wrap { width: 100%; max-width: var(--fiw-max); margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 768px) { .fiw-wrap { padding-inline: 2rem; } }
 .fiw a:hover { color: var(--color-wright); }
@@ -665,9 +694,11 @@ html.dark .fiw-cta { background: #efe8dc; color: #1d1813; }
   .fiw-folio-layer, .fiw-plaque, .fiw-session-card .print img { transition: none; }
 }
 
-/* Justified galleries in the photography section: every tile is a print; its date stamp shows on hover. */
-.fiw .photo-mosaic-tile { border: 4px solid var(--color-print); border-radius: 4px; box-shadow: 0 1px 3px rgb(60 40 20 / 0.2); overflow: hidden; }
-html.dark .fiw .photo-mosaic-tile { box-shadow: 0 1px 3px rgb(0 0 0 / 0.5); }
+/* In the photography section photographs are shown plain, square-cornered and unframed (galleries, the home page's
+   hello and collage, the contact page): only the sessions' cards on the home page keep the print's border. A gallery
+   tile's date stamp still shows on hover. */
+.fiw .print:not(.fiw-session-card .print) { border: 0; border-radius: 0; box-shadow: none; }
+.fiw .photo-mosaic-tile { overflow: hidden; }
 
 /* Kudos carousel and the FAQ on the contact page. */
 .fiw-note { font-style: italic; font-size: clamp(1.35rem, 2.6vw, 1.75rem); line-height: 1.3; text-wrap: balance; }
@@ -702,6 +733,8 @@ html.dark .site-section-bar, html.dark .site-footer { background: rgb(32 26 21 /
 .site-nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
 .site-nav a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--site-text-primary); }
 .site-nav a[aria-current="page"] { color: var(--color-olive); }
+/* Photography keeps its own golden hour in the site bar. */
+.site-nav a[data-world="photography"]:is(:hover, [aria-current="page"]) { color: var(--color-wright); }
 .site-section-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; font-style: italic; font-size: 1.35rem; line-height: 1.1; }
 .site-section-name a { color: var(--site-text-primary); }
 .site-section-name .site-crumb { font-style: normal; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--site-text-secondary); }

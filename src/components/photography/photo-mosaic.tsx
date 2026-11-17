@@ -11,6 +11,9 @@ type Mode = { target: number; width: number };
 // Target row height as a share of the row width, and a nominal width for weighing the gaps: about two portraits a
 // row on phones, three on tablets, four on wide screens. Rows are sized in proportions, so any width within a mode fits.
 const MODES = { narrow: { target: 0.62, width: 380 }, medium: { target: 0.4, width: 640 }, wide: { target: 0.27, width: 1000 } };
+// Large: the portfolio's session pages, edge to edge with big photographs: about one a row on phones, two on tablets,
+// two or three on wide screens.
+const LARGE_MODES = { narrow: { target: 1, width: 380 }, medium: { target: 0.62, width: 640 }, wide: { target: 0.42, width: 1000 } };
 const GAP = 12;
 
 // Choose row breaks that keep every row, the last included, close to the target height (like justified text).
@@ -37,7 +40,7 @@ function partition<T extends MosaicPhoto>(items: T[], { target, width }: Mode) {
   return rows;
 }
 
-export function PhotoMosaic({ photos, filters = false, aside }: { photos: MosaicPhoto[]; filters?: boolean; aside?: React.ReactNode }) {
+export function PhotoMosaic({ photos, filters = false, aside, large = false }: { photos: MosaicPhoto[]; filters?: boolean; aside?: React.ReactNode; large?: boolean }) {
   const areas = [...new Set(photos.map((photo) => photo.area).filter((area): area is string => !!area))];
   const [area, setArea] = useState("all");
   const [mode, setMode] = useState<keyof typeof MODES>("wide");
@@ -45,7 +48,7 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
   const grid = useRef<HTMLDivElement>(null);
 
   const visible = useMemo(() => photos.filter((photo) => area === "all" || photo.area === area), [photos, area]);
-  const rows = useMemo(() => partition(visible, MODES[mode]), [visible, mode]);
+  const rows = useMemo(() => partition(visible, (large ? LARGE_MODES : MODES)[mode]), [visible, mode, large]);
 
   useEffect(() => {
     const element = grid.current;
@@ -86,7 +89,7 @@ export function PhotoMosaic({ photos, filters = false, aside }: { photos: Mosaic
                 const share = photo.width / photo.height / rowRatio;
                 return (
                   <button key={photo.src} type="button" aria-haspopup="dialog" onClick={() => setOpen(position)} className="photo-mosaic-tile" style={{ flexGrow: photo.width / photo.height, aspectRatio: `${photo.width} / ${photo.height}` }}>
-                    <Image src={photo.src} alt={photo.alt} fill sizes={`(min-width: 768px) ${Math.ceil(share * 1200)}px, ${Math.ceil(share * 100)}vw`} className="object-cover" />
+                    <Image src={photo.src} alt={photo.alt} fill sizes={large ? `${Math.ceil(share * 100)}vw` : `(min-width: 768px) ${Math.ceil(share * 1200)}px, ${Math.ceil(share * 100)}vw`} className="object-cover" />
                     {photo.taken && <span className="date-stamp" aria-hidden="true">{stampText(photo.taken)}</span>}
                   </button>
                 );

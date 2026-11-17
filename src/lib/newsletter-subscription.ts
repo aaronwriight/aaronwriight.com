@@ -1,5 +1,6 @@
 import { jsonMessage } from "@/lib/api-response";
-import { emailPattern, ResendContactError, upsertResendContact } from "@/lib/resend-contacts";
+import { emailPattern, ResendContactError, sendResendEmail, upsertResendContact } from "@/lib/resend-contacts";
+import { renderWelcomeEmail, type WelcomeEmail } from "@/lib/welcome-email";
 
 export async function readNewsletterBody(request: Request): Promise<Record<string, unknown> | null> {
   try {
@@ -18,10 +19,13 @@ type NewsletterConfiguration = {
   source: string;
   interestProperty?: string;
   successMessage: string;
+  welcome: WelcomeEmail;
+  // Recorded when the form has no interest menu or it is left on "select".
+  defaultInterest?: string;
 };
 
 export function createNewsletterSubscription({
-  segmentVariable, interests, source, interestProperty = "interest", successMessage,
+  segmentVariable, interests, source, interestProperty = "interest", successMessage, welcome, defaultInterest = "everything",
 }: NewsletterConfiguration) {
   return async function POST(request: Request) {
     const body = await readNewsletterBody(request);
@@ -31,7 +35,7 @@ export function createNewsletterSubscription({
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const firstName = typeof body.firstName === "string" ? body.firstName.trim() : "";
     const lastName = typeof body.lastName === "string" ? body.lastName.trim() : "";
-    const interest = body.interest === undefined ? "everything" : body.interest;
+    const interest = body.interest === undefined ? defaultInterest : body.interest;
 
     if (!emailPattern.test(email) || email.length > 254) {
       return jsonMessage("Please enter a valid email address.", 400);
@@ -49,16 +53,30 @@ export function createNewsletterSubscription({
       return jsonMessage("Sign-up is being configured. Please check back soon.", 503);
     }
 
+    let created: boolean;
     try {
-      await upsertResendContact({
+      ({ created } = await upsertResendContact({
         apiKey, segmentId, email, firstName, lastName,
         properties: { [interestProperty]: interest, source },
-      });
-      return jsonMessage(successMessage);
+      }));
     } catch (error) {
       // Upstream error bodies may contain contact details. Log only status.
       console.error("Newsletter subscription failed", error instanceof ResendContactError ? error.status : "network error");
       return jsonMessage("I couldn’t add you just now. Please try again shortly.", 502);
     }
+
+    // The welcome email is a courtesy: the sign-up has already succeeded, so a failure here is logged, not reported.
+    const from = process.env.SFI_NEWSLETTER_FROM;
+    if (created && from) {
+      try {
+        await sendResendEmail({
+          apiKey, from, to: email, replyTo: process.env.SFI_NEWSLETTER_REPLY_TO?.trim() || undefined,
+          ...renderWelcomeEmail(welcome, firstName),
+        });
+      } catch (error) {
+        console.error("Welcome email failed", error instanceof ResendContactError ? error.status : "network error");
+      }
+    }
+    return jsonMessage(successMessage);
   };
 }

@@ -1,4 +1,5 @@
 import { createNewsletterSubscription } from "@/lib/newsletter-subscription";
+import { creativeWelcome } from "@/lib/welcome-email";
 
 export const POST = createNewsletterSubscription({
   segmentVariable: "RESEND_CREATIVE_SEGMENT_ID",
@@ -6,4 +7,5 @@ export const POST = createNewsletterSubscription({
   source: "creative",
   interestProperty: "creative_interest",
   successMessage: "You’re on the creative list—thank you!",
+  welcome: creativeWelcome,
 });

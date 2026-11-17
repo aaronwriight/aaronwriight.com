@@ -24,7 +24,7 @@ export function SiteNav() {
       <ul>
         {worlds.map(({ label, href, prefixes }) => (
           <li key={href}>
-            <Link href={href} aria-current={prefixes.some((prefix) => within(pathname, prefix)) ? "page" : undefined}>{label}</Link>
+            <Link href={href} data-world={label} aria-current={prefixes.some((prefix) => within(pathname, prefix)) ? "page" : undefined}>{label}</Link>
           </li>
         ))}
       </ul>

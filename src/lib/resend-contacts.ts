@@ -29,6 +29,9 @@ function cleanProperties(properties: ResendProperties = {}) {
   );
 }
 
+// Adds the address to the segment, creating the contact if it is new. `created` is true only for a contact Resend had
+// never seen, which is when the welcome email goes out (an existing contact rejoining or joining a second list is not
+// welcomed again).
 export async function upsertResendContact({
   apiKey,
   segmentId,
@@ -36,7 +39,7 @@ export async function upsertResendContact({
   firstName,
   lastName,
   properties,
-}: UpsertResendContactInput) {
+}: UpsertResendContactInput): Promise<{ created: boolean }> {
   const headers = {
     Authorization: `Bearer ${apiKey}`,
     "Content-Type": "application/json",
@@ -58,7 +61,7 @@ export async function upsertResendContact({
     }),
   });
 
-  if (response.ok) return;
+  if (response.ok) return { created: true };
 
   if (response.status !== 409) {
     throw new ResendContactError(response.status);
@@ -79,8 +82,27 @@ export async function upsertResendContact({
     `https://api.resend.com/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(segmentId)}`,
     { method: "POST", headers: { Authorization: `Bearer ${apiKey}` } },
   );
-  if (segmentResponse.ok) return;
+  if (segmentResponse.ok) return { created: false };
   throw new ResendContactError(segmentResponse.status);
+}
+
+export async function sendResendEmail({
+  apiKey, from, to, subject, html, text, replyTo,
+}: {
+  apiKey: string;
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+  text: string;
+  replyTo?: string;
+}) {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ from, to, subject, html, text, ...(replyTo ? { reply_to: replyTo } : {}) }),
+  });
+  if (!response.ok) throw new ResendContactError(response.status);
 }
 
 export async function unsubscribeResendContact({

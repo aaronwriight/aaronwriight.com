@@ -1,6 +1,11 @@
 {
-  "_note": "Photographs for the Frame it Wright home page. 'collage' is the two rows at the bottom, left to right (order them so the seams between photographs don't line up from row to row); each row keeps every photograph's own shape (no cropping). 'plaque' is the photograph on the aaronwriight.com front door's photography plaque. Paths are the published image paths in published.json.",
+  "_note": "Photographs for the Frame it Wright home page. 'collage' is the two rows at the bottom, left to right (order them so the seams between photographs don't line up from row to row); each row keeps every photograph's own shape (no cropping). 'plaque' is the photograph on the aaronwriight.com front door's photography plaque. 'cover' (optional) is the large photograph beside the hello at the top of the Frame it Wright home; left out, one is picked automatically. 'sessionCovers' (optional) stands in for a session's own first photograph on its home-page card and portfolio backdrop, for a session that has none of its own yet or to choose a different one (it takes effect once that photograph is published). Paths are the published image paths in published.json.",
   "plaque": "/images/photography/travel/72a45f72ed4cc044e7b92ecc4bb660df443631c6ae953e73e85a82d2ce2020ad.jpg",
+  "cover": "/images/photography/travel/72a45f72ed4cc044e7b92ecc4bb660df443631c6ae953e73e85a82d2ce2020ad.jpg",
+  "sessionCovers": {
+    "portraits": "/images/photography/graduation/b26feedde41043b4b747d6686ecfd60b1c88d2e9d6d87eb195595ff9eed8021f.jpg",
+    "couples-engagement": "/images/photography/couples-engagement/bb3559f910ec2f643fc44da981fa1ed693f72e0d5d2c0248a7be6552aaca6c29.jpg"
+  },
   "collage": [
     [
       "/images/photography/family-friends-lifestyle/357e6d0f81e4bcecee72ceab49b89fb862964c2c9cd822fb003af7a670cc89a4.jpg",
