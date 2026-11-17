@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { photographyNav } from "@/data/photography";
-import { smoothMenusTrial } from "@/components/site/site-bars";
+import { smoothMenusTrial } from "@/lib/voice-trial";
 
 // On frameitwright.com the path has no /frame-it-wright-photography prefix, so the current page is matched on the
 // part after it.

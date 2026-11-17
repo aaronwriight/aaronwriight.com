@@ -39,7 +39,7 @@ export default function CognitiveScienceAboutPage() {
           </div>
 
           <div className="not-prose my-9 grid gap-3">
-            <p className="m-0 font-bold text-olive">Central question</p>
+            <p className="research-label m-0 font-bold text-olive">Central question</p>
             <p className="research-question m-0">{centralQuestion}</p>
           </div>
 

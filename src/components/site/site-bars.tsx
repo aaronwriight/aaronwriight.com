@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { NavigationItem } from "@/data/navigation";
+import { smoothMenusTrial } from "@/lib/voice-trial";
 
 // The top bars (November 2026), after Frame it Wright Photography's: the site bar names the three worlds and contact,
 // and each section adds a bar of its own with its pages, sub-pages as drop-downs. They replace the side menu.
@@ -17,12 +18,11 @@ const worlds = [
   { label: "contact", href: "/contact", prefixes: ["/contact"] },
 ];
 
-// Trial: the creative world's menus (the site bar and its section bars) and Frame it Wright's (photo-nav.tsx) in the
-// smoother serif italic, science's and the rest staying in the typewriter mono. Set to false to end the trial.
-export const smoothMenusTrial = true;
+// Trial (src/lib/voice-trial.ts): the creative world's menus in the serif italic, the rest in the mono.
 const creativePrefixes = worlds.find((world) => world.label === "creative")?.prefixes ?? [];
 const isCreative = (pathname: string) => creativePrefixes.some((prefix) => within(pathname, prefix));
-const menuClass = (pathname: string) => (smoothMenusTrial && isCreative(pathname) ? "site-nav site-nav--smooth" : "site-nav");
+const menuClass = (pathname: string) =>
+  smoothMenusTrial ? (isCreative(pathname) ? "site-nav site-nav--smooth" : "site-nav site-nav--mono") : "site-nav";
 // The section bar's breadcrumbs follow its menu: serif italic in the creative world, mono everywhere else.
 const crumbVoice = (pathname: string) => (smoothMenusTrial ? (isCreative(pathname) ? "smooth" : "mono") : undefined);
 

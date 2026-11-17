@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionBar } from "@/components/site/site-bars";
 import { PageHeader, articleClass } from "@/components/site/site-content";
+import { smoothMenusTrial } from "@/lib/voice-trial";
 
 import { scienceLinks } from "@/data/navigation";
 
@@ -21,7 +22,8 @@ export function ScienceShell({
     <main className="flex-1">
       <SectionBar section="cognitive science" href="/cognitive-science" links={scienceLinks} trail={near ? [near[0], near[1]] : undefined} current={title} />
       <div className="site-wrap py-11">
-        <article className={articleClass}>
+        {/* Trial (with the menus, smoothMenusTrial): science's headings and labels in the mono. */}
+        <article className={smoothMenusTrial ? `${articleClass} headers-mono` : articleClass}>
           <PageHeader title={title} subtitle={subtitle} />
           <div className="page-body mt-8 space-y-5">{children}</div>
         </article>
@@ -64,7 +66,7 @@ export function TopicDetails({
       <summary className="group cursor-pointer list-none">
         {large ? (
           <>
-            <strong className="block font-bold text-olive">{title}</strong>
+            <strong className="research-label block font-bold text-olive">{title}</strong>
             <span className="research-subquestion mt-1 block group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{question}</span>
           </>
         ) : (
