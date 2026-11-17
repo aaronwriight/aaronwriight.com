@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ScienceShell, TopicDetails } from "@/components/science/science-content";
+import { centralQuestion, researchFocus, researchSources, researchTrails } from "@/data/science";
 
 export const metadata: Metadata = {
   title: "science about",
@@ -31,77 +32,79 @@ export default function CognitiveScienceAboutPage() {
       {/* Research overview and timeline are open sections, not fold-outs. */}
       <section id="research-overview" aria-labelledby="research-overview-title" className="scroll-mt-6">
         <h2 id="research-overview-title">Research overview</h2>
+          {/* The program, then its question, both in display type; the three trails below set their questions the same way. */}
+          <div className="not-prose my-8 grid gap-3">
+            <p className="research-program m-0">{researchFocus.title}</p>
+            <p className="research-program-line m-0">{researchFocus.line.charAt(0).toUpperCase() + researchFocus.line.slice(1)}.</p>
+          </div>
+
+          <div className="not-prose my-9 grid gap-3">
+            <p className="m-0 font-bold text-olive">Central question</p>
+            <p className="research-question m-0">{centralQuestion}</p>
+          </div>
+
           <p>
-            I study the <span className="text-olive"><em>social mind in dialogue</em></span>: how the human brain processes{" "}
-            <span className="text-olive"><em>language</em></span> and structures{" "}
-            <span className="text-olive"><em>conversation</em></span>.
+            <strong>Conversation is an embodied process: something we do with our whole selves, not only with words.</strong> Like social
+            interaction more broadly, it is inherently embodied, multi-level, and multi-person (
+            <Link href={researchSources.lettieri2026.href}>{researchSources.lettieri2026.label}</Link>), and dynamic rather than a simple exchange
+            of linguistic information: people continuously interpret one another, monitor their own internal
+            states (e.g., emotional state, including valence and arousal; physiological state, including heart rate and breathing), adapt their
+            behavior, and coordinate with their partners.
           </p>
 
           <p>
-            My interests and experiences brought me to MIT&apos;s{" "}
-            <Link href="https://bcs.mit.edu">Brain & Cognitive Sciences</Link> department and the{" "}
-            <Link href="https://mcgovern.mit.edu">McGovern Institute for Brain Research</Link>, where I worked with{" "}
-            <Link href="https://www.evlab.mit.edu/about-ev">Ev Fedorenko</Link> and an incredible team of language scientists at{" "}
-            <Link href="https://www.evlab.mit.edu">EvLab</Link>. While my research broadly aims to chart the footprints of language cognition in
-            conversation, my interests follow a few primary trails:
+            A conversation, in this view, is one coupled system rather than two speakers taking turns. Each person infers internal states from
+            the signals reaching them, regulates those states through action, and forecasts how they will change: a sensory–control loop (
+            <Link href={researchSources.petzschner2021.href}>{researchSources.petzschner2021.label}</Link>). In conversation, one person&apos;s
+            words, prosody, and timing are the other&apos;s input, so the two loops close through each other. That makes conversation the kind of
+            dynamic, behaviorally engaged setting the study of interoception now needs to move from description to mechanism (
+            <Link href={researchSources.avidan2026.href}>{researchSources.avidan2026.label}</Link>).
           </p>
 
-          <ul>
+          <ul className="research-trails">
             <li>
-              <TopicDetails
-                title="Emotion & affect in conversation"
-                question="How do we represent others' mental and emotional states during conversation, and how do these representations guide conversational behavior?"
-              >
+              <TopicDetails title={researchTrails[0].title} question={researchTrails[0].question} large>
                 <p>
-                  Conversation is one of the most natural, yet complex behaviors humans engage in. As people speak, they continuously signal
-                  attitudes, intentions, and emotional states through cues such as prosody, pauses, word choice, and facial expressions. My work asks
-                  how these emotional and mental-state representations are constructed during dialogue and how mechanisms like (mis)alignment shape the
-                  unfolding interaction between speakers.
+                  Listeners read a partner from far more than words: prosody, timing, and context all carry information about how someone is
+                  doing, and the listener&apos;s own body may color that reading. I ask whether it does, and how: by shifting a listener&apos;s
+                  internal state and testing whether it acts like a prior that pulls their inferences toward it, or changes how much they trust
+                  their partner&apos;s cues.
                 </p>
-                <TopicDetails title="Reactivity" question="Why does communication elicit strong reactions between speakers?">
-                  <p>
-                    Conversation contains several unique cues that carry information about emotional states and social goals. I am interested in how
-                    these emotional experiences arise during conversation, how they are expressed through language and behavior, and how they influence
-                    the subsequent course of conversation.
-                  </p>
-                </TopicDetails>
               </TopicDetails>
             </li>
 
             <li>
-              <TopicDetails
-                title="Miscommunication"
-                question="Why do we miscommunicate, and how do we anticipate, identify, and repair miscommunication?"
-              >
+              <TopicDetails title={researchTrails[1].title} question={researchTrails[1].question} large>
                 <p>
-                  Conversation works remarkably well given how little meaning is stated explicitly. Speakers rely heavily on context, shared assumptions,
-                  and inference, rendering misinterpretation an inevitable feature of communication. I use neuroimaging and computational methods to
-                  investigate when and why miscommunication arises and how people collaboratively restore shared meaning.
+                  Talking is bodily work (every turn reshapes breathing), and conversations make demands people can see coming: taking the
+                  floor, fielding a hard question. I ask whether bodily regulation runs ahead of those moments rather than only reacting to
+                  them, and whether some conversational moves (a change of topic, a pause, a laugh) are themselves regulation, preceded by a
+                  shift in internal state and followed by a return toward baseline.
                 </p>
-                <TopicDetails title="Repair" question="How do we anticipate and resolve miscommunication during linguistic communication?">
-                  <p>
-                    In dialogue, we routinely correct ourselves and others. Repair sequences reveal the strategies people use to track listeners&apos;
-                    understanding and update their own assumptions about what has been communicated.
-                  </p>
-                </TopicDetails>
               </TopicDetails>
             </li>
 
             <li>
-              <TopicDetails
-                title="Culture & bilingualism"
-                question="How does linguistic experience influence language cognition and communication?"
-              >
+              <TopicDetails title={researchTrails[2].title} question={researchTrails[2].question} large>
                 <p>
-                  Language experience shapes how people think, communicate, and interpret the world around them. Using neuroimaging and behavioral
-                  methods, I study how linguistic and sociocultural differences shape the brain and mind, helping us discern which aspects of human
-                  language are foundational versus flexible.
+                  Conversation partners drift in and out of alignment across many timescales, and the structure of that drift (pink noise in
+                  the path of what they talk about) predicts how much they enjoy a conversation and feel connected (
+                  <Link href={researchSources.onell2026.href}>{researchSources.onell2026.label}</Link>). I ask whether partners&apos;
+                  internal states couple the same way, and whether that structure, rather than simple synchrony, tracks enjoyment and connection: evidence
+                  that a conversation is more than two independent speakers.
                 </p>
               </TopicDetails>
             </li>
           </ul>
 
-          <p>If I&apos;m not doing science, I&apos;m probably hiking.</p>
+          <p>
+            Currently, I do this work at Brown&apos;s{" "}
+            <Link href="https://copsy.brown.edu">Department of Cognitive and Psychological Sciences</Link> and the{" "}
+            <Link href="https://carney.brown.edu">Carney Institute for Brain Science</Link>, with{" "}
+            <Link href="https://fpetzschner.com/about/">Frederike Petzschner</Link> and her team in the{" "}
+            <Link href="https://fpetzschner.com/lab/">Psychiatry, Embodiment and Computation (PEAC) Lab</Link>. My{" "}
+            <Link href="#timeline">timeline</Link> below shows where else I&apos;ve worked on these questions.
+          </p>
       </section>
 
       <section id="timeline" aria-labelledby="timeline-title" className="scroll-mt-6">

@@ -21,7 +21,7 @@ export function PhotoChrome({ children }: { children: React.ReactNode }) {
   return (
     <div className="fiw flex min-h-screen flex-col">
       <header className="fiw-bar">
-        <div className="fiw-wrap flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5">
+        <div className="fiw-wrap flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-4">
           <Link href={photoPath()} className="flex items-center gap-3 text-[1.45rem] italic leading-none hover:no-underline">
             <LogoMark />
             <FrameItWright />

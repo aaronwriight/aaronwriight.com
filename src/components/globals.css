@@ -17,9 +17,11 @@ html.dark {
 }
 
 :root {
-  /* The width of both sites' bars and pages: up to 112rem, with side margins that grow with the window from 1.25rem
-     on phones to 4rem on wide screens. */
+  /* The width of the bars and pages: Frame it Wright's run up to 112rem, the main site's (science, creative and the
+     rest) to 80rem, for wider margins around their writing. Side margins grow with the window from 1.25rem on phones
+     to 4rem on wide screens. */
   --wrap-max: 112rem;
+  --site-max: 80rem;
   --wrap-pad: clamp(1.25rem, 4vw, 4rem);
   --site-text-primary: #1c1917;
   --site-text-secondary: #78716c;
@@ -728,7 +730,7 @@ html.dark .fiw-chip input:checked + span { background: #efe8dc; color: #1d1813; 
 .fiw-chip input:focus-visible + span { outline: 2px solid var(--color-wright); outline-offset: 2px; }
 
 /* ---------- Site and section bars (main site and creative), after Frame it Wright Photography's ---------- */
-.site-wrap { width: 100%; max-width: var(--wrap-max); margin-inline: auto; padding-inline: var(--wrap-pad); }
+.site-wrap { width: 100%; max-width: var(--site-max); margin-inline: auto; padding-inline: var(--wrap-pad); }
 /* Both sites' top bars are one height (the main site's, with its mark), whatever their name. */
 header:is(.site-bar, .fiw-bar) > :is(.site-wrap, .fiw-wrap) { min-height: 5.125rem; }
 .site-bar { border-bottom: 1px solid rgb(120 100 80 / 0.2); }
@@ -745,6 +747,24 @@ header:is(.site-bar, .fiw-bar) > :is(.site-wrap, .fiw-wrap) { min-height: 5.125r
 html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-stone-700); }
 
 .site-mono { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; }
+
+/* The science about page's research overview in display type, like Frame it Wright's titles: the program's name in
+   olive with its line beneath, the central question large on its own, and each trail's question under its olive name,
+   a size down, the list without bullets. The questions run the column's full width. */
+.research-program { font-style: italic; font-weight: 500; font-size: clamp(2.2rem, 4.2vw, 3.3rem); line-height: 1.02; letter-spacing: -0.01em; color: var(--site-text-primary); }
+.research-program-line { font-size: clamp(1.1rem, 1.45vw, 1.3rem); line-height: 1.4; color: var(--site-text-secondary); }
+/* Sized to the column so each question holds one line on laptop and wider screens, shrinking with the window until it
+   reaches its smallest size and wraps. */
+.research-question { font-style: italic; font-weight: 500; font-size: clamp(1.3rem, 2.25vw, 1.8rem); line-height: 1.18; letter-spacing: -0.005em; text-wrap: pretty; color: var(--site-text-primary); }
+.research-subquestion { font-style: italic; font-weight: 500; font-size: clamp(1.05rem, 1.45vw, 1.18rem); line-height: 1.28; text-wrap: pretty; color: var(--site-text-primary); }
+
+/* Trial (smoothHeaderSections in src/components/site/site-content.tsx): the creative family's page titles and section
+   headings in Frame it Wright's italic, unspaced and a little larger, while science keeps the upright, spaced ones. */
+.headers-smooth .page-title { font-style: italic; font-weight: 500; font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.005em; }
+article.prose.headers-smooth h2:not(:where(.not-prose, .not-prose *)), .headers-smooth .section-heading { font-style: italic; font-weight: 500; font-size: 1.55rem; line-height: 1.15; letter-spacing: 0; }
+.prose ul.research-trails { list-style: none; padding-left: 0; }
+.prose ul.research-trails > li { padding-left: 0; margin-block: 1.4rem; }
+.prose ul.research-trails > li::marker { content: none; }
 .site-nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
 .site-nav a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--site-text-primary); }
 .site-nav a[aria-current="page"] { color: var(--color-olive); }

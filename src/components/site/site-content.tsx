@@ -4,8 +4,8 @@ import { SectionBar } from "@/components/site/site-bars";
 import { siteLinks, sectionLinks, type NavigationItem } from "@/data/navigation";
 
 
-// The article column, the full width between the bars' edges on every page, like Frame it Wright's. Journal and venture
-// posts keep a reading width on their own panels.
+// The article column, the full width between the bars' edges (the main site's frame, --site-max, narrower than Frame it
+// Wright's). Journal and venture posts keep a reading width on their own panels.
 export const articleClass = "prose prose-stone mx-auto min-w-0 w-full max-w-none text-left text-sm dark:prose-invert prose-headings:font-serif prose-headings:lowercase prose-a:text-olive prose-h2:text-sm prose-h2:font-medium prose-h2:tracking-normal prose-h2:normal-case";
 
 // Where each section's name in its bar leads.
@@ -110,6 +110,10 @@ export function SectionMenu({
   );
 }
 
+// Trial: the creative family's page titles and section headings in Frame it Wright's smoother italic, science keeping its
+// upright, spaced ones. Empty the set to end the trial.
+const smoothHeaderSections = new Set(["creative", "scope for imagination", "venture", "literature"]);
+
 export function SectionPageShell({
   section,
   links,
@@ -140,7 +144,7 @@ export function SectionPageShell({
       {/* A section with a home of its own (contact) keeps the bar for its breadcrumb even with no pages to list. */}
       {(links.length > 0 || sectionHomes[section]) && <SectionBar section={section} href={sectionHomes[section] ?? links[0].href} links={links} parent={parent} trail={trail} current={title} />}
       <div className="site-wrap py-11">
-        <article className={articleClass}>
+        <article className={smoothHeaderSections.has(section) ? `${articleClass} headers-smooth` : articleClass}>
           {showTitle && <PageHeader title={title} subtitle={subtitle} />}
           <div className={showTitle ? "page-body mt-8 space-y-5" : "page-body space-y-5"}>{children}</div>
         </article>

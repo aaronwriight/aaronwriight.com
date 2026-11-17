@@ -46,25 +46,36 @@ export function ProjectShell({
   );
 }
 
+// A topic that opens to say more: its name and question, then the details. Large sets the question on its own line in
+// display type, under the name.
 export function TopicDetails({
   title,
   question,
+  large = false,
   children,
 }: {
   title: string;
   question: string;
+  large?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <details>
       <summary className="group cursor-pointer list-none">
-        <strong>
-          <em>{title}</em>
-        </strong>{" "}
-        <em className="text-stone-400">|</em>{" "}
-        <span className="text-olive group-hover:underline">
-          <em>{question}</em>
-        </span>
+        {large ? (
+          <>
+            <strong className="block font-bold text-olive">{title}</strong>
+            <span className="research-subquestion mt-1 block group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{question}</span>
+          </>
+        ) : (
+          <>
+            <strong className="font-bold">{title}</strong>{" "}
+            <em className="text-stone-400">|</em>{" "}
+            <span className="text-olive group-hover:underline">
+              <em>{question}</em>
+            </span>
+          </>
+        )}
       </summary>
       <div className="mt-3 pl-5">{children}</div>
     </details>
