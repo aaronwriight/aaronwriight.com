@@ -17,10 +17,19 @@ const worlds = [
   { label: "contact", href: "/contact", prefixes: ["/contact"] },
 ];
 
+// Trial: the creative world's menus (the site bar and its section bars) and Frame it Wright's (photo-nav.tsx) in the
+// smoother serif italic, science's and the rest staying in the typewriter mono. Set to false to end the trial.
+export const smoothMenusTrial = true;
+const creativePrefixes = worlds.find((world) => world.label === "creative")?.prefixes ?? [];
+const isCreative = (pathname: string) => creativePrefixes.some((prefix) => within(pathname, prefix));
+const menuClass = (pathname: string) => (smoothMenusTrial && isCreative(pathname) ? "site-nav site-nav--smooth" : "site-nav");
+// The section bar's breadcrumbs follow its menu: serif italic in the creative world, mono everywhere else.
+const crumbVoice = (pathname: string) => (smoothMenusTrial ? (isCreative(pathname) ? "smooth" : "mono") : undefined);
+
 export function SiteNav() {
   const pathname = usePathname() ?? "";
   return (
-    <nav aria-label="Site" className="site-nav">
+    <nav aria-label="Site" className={menuClass(pathname)}>
       <ul>
         {worlds.map(({ label, href, prefixes }) => (
           <li key={href}>
@@ -66,7 +75,7 @@ export function SectionBar({
   // An "about" page is the section's own page, so it shows the section's name alone.
   const here = current && current !== "about" && pathname !== href && current !== trail?.[0] && current !== section ? current : undefined;
   return (
-    <div className="site-bar site-section-bar">
+    <div className="site-bar site-section-bar" data-voice={crumbVoice(pathname)}>
       <div className="site-wrap flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 py-4">
         <p className="site-section-name m-0">
           {parent && (
@@ -91,7 +100,7 @@ export function SectionBar({
           )}
         </p>
         {links.length > 0 && (
-          <nav aria-label={`${section} pages`} className="site-nav">
+          <nav aria-label={`${section} pages`} className={menuClass(pathname)}>
             <ul>
               {links.map((item) => (
                 <li key={item.href} className={pages(item).length ? "site-nav-item has-drop" : "site-nav-item"}>

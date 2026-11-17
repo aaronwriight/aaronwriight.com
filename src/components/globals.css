@@ -761,6 +761,14 @@ html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-
 /* Trial (smoothHeaderSections in src/components/site/site-content.tsx): the creative family's page titles and section
    headings in Frame it Wright's italic, unspaced and a little larger, while science keeps the upright, spaced ones. */
 .headers-smooth .page-title { font-style: italic; font-weight: 500; font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.005em; }
+/* Trial (smoothMenusTrial in src/components/site/site-bars.tsx): the creative world's and Frame it Wright's menu links in
+   the serif italic, a size up to match the mono's presence; their drop-downs keep their own size. */
+.site-nav--smooth > ul > li > a, .fiw-nav--smooth a { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; letter-spacing: 0.01em; }
+/* The section bar's breadcrumbs follow its menu: in the creative world the small crumbs join the italic serif; elsewhere
+   (science, contact) the whole trail is mono, the page you are on in the primary ink, the crumbs before it grey. */
+.site-section-bar[data-voice="smooth"] .site-section-name :is(.site-crumb, .site-crumb-rule) { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; letter-spacing: 0.01em; }
+.site-section-bar[data-voice="mono"] .site-section-name { font-family: var(--font-mono); font-style: normal; font-size: 0.8rem; letter-spacing: 0.1em; gap: 0.6rem; }
+.site-section-bar[data-voice="mono"] .site-section-name :is(.site-crumb, .site-crumb-rule) { font-size: 0.8rem; }
 article.prose.headers-smooth h2:not(:where(.not-prose, .not-prose *)), .headers-smooth .section-heading { font-style: italic; font-weight: 500; font-size: 1.55rem; line-height: 1.15; letter-spacing: 0; }
 .prose ul.research-trails { list-style: none; padding-left: 0; }
 .prose ul.research-trails > li { padding-left: 0; margin-block: 1.4rem; }

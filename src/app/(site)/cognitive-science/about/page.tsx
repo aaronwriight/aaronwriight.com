@@ -44,7 +44,7 @@ export default function CognitiveScienceAboutPage() {
           </div>
 
           <p>
-            <strong>Conversation is an embodied process: something we do with our whole selves, not only with words.</strong> Like social
+            Conversation is an embodied process: something we do with our whole selves, not only with words. Like social
             interaction more broadly, it is inherently embodied, multi-level, and multi-person (
             <Link href={researchSources.lettieri2026.href}>{researchSources.lettieri2026.label}</Link>), and dynamic rather than a simple exchange
             of linguistic information: people continuously interpret one another, monitor their own internal
@@ -103,7 +103,7 @@ export default function CognitiveScienceAboutPage() {
             <Link href="https://carney.brown.edu">Carney Institute for Brain Science</Link>, with{" "}
             <Link href="https://fpetzschner.com/about/">Frederike Petzschner</Link> and her team in the{" "}
             <Link href="https://fpetzschner.com/lab/">Psychiatry, Embodiment and Computation (PEAC) Lab</Link>. My{" "}
-            <Link href="#timeline">timeline</Link> below shows where else I&apos;ve worked on these questions.
+            <Link href="#timeline">timeline</Link> below shows where else I&apos;ve worked toward these questions.
           </p>
       </section>
 
