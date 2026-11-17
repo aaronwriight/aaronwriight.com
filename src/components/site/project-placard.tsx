@@ -24,7 +24,12 @@ export function ProjectPlacard({ category, title, subtitle, description, href, i
   const content = (
     <>
       {photo ? (
-        <div className="print max-w-full lg:h-64" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}>
+        // On wide screens the print is 16rem tall and as wide as its shape makes it. The width is set outright: Safari
+        // otherwise sizes the grid's auto column from the print's content, not its aspect ratio, and folds it to nothing.
+        <div
+          className="print max-w-full lg:h-64 lg:w-[var(--print-w)]"
+          style={{ aspectRatio: `${photo.width} / ${photo.height}`, "--print-w": `${((16 * photo.width) / photo.height).toFixed(3)}rem` } as React.CSSProperties}
+        >
           <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 400px, 90vw" className="h-full w-full object-cover" />
         </div>
       ) : preview ? <div className="flex min-w-0 flex-col justify-center">{preview}</div> : image ? (

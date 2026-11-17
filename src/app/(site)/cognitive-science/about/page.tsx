@@ -29,12 +29,12 @@ export default function CognitiveScienceAboutPage() {
       <p>Hi, I&apos;m Aaron! :)</p>
       <p>I&apos;m creative, but I try to be empirical too, lol.</p>
 
-      {/* Research overview and timeline are open sections, not fold-outs. */}
+      {/* Research overview and timeline are open sections, not fold-outs. The overview's heading is the program's name
+          itself, so the page runs about, the program, then timeline, without a "research overview" heading between. */}
       <section id="research-overview" aria-labelledby="research-overview-title" className="scroll-mt-6">
-        <h2 id="research-overview-title">Research overview</h2>
           {/* The program, then its question, both in display type; the three trails below set their questions the same way. */}
           <div className="not-prose my-8 grid gap-3">
-            <p className="research-program m-0">{researchFocus.title}</p>
+            <h2 id="research-overview-title" className="research-program m-0">{researchFocus.title}</h2>
             <p className="research-program-line m-0">{researchFocus.line.charAt(0).toUpperCase() + researchFocus.line.slice(1)}.</p>
           </div>
 
@@ -66,7 +66,10 @@ export default function CognitiveScienceAboutPage() {
               <TopicDetails title={researchTrails[0].title} question={researchTrails[0].question} large>
                 <p>
                   Listeners read a partner from far more than words: prosody, timing, and context all carry information about how someone is
-                  doing, and the listener&apos;s own body may color that reading. I ask whether it does, and how: by shifting a listener&apos;s
+                  doing, and the listener&apos;s own body may color that reading. Learning about other people is hard to model for just these
+                  reasons, uncertain signals and layered stakes, which makes it a strong test of computational accounts of cognition (
+                  <Link href={researchSources.feldmanhall2021.href}>{researchSources.feldmanhall2021.label}</Link>). I ask whether the body
+                  colors that reading, and how: by shifting a listener&apos;s
                   internal state and testing whether it acts like a prior that pulls their inferences toward it, or changes how much they trust
                   their partner&apos;s cues.
                 </p>

@@ -772,11 +772,10 @@ html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-
 /* Drop-downs follow their menu. */
 .site-nav--smooth .site-nav-drop a { font-style: italic; }
 .site-nav--mono .site-nav-drop a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding-block: 0.45rem; }
-/* Science's headings and labels in the mono: the page title, section headings, the research overview's program name and
-   its labels (the central question's, each trail's). The questions themselves stay in the serif italic. */
+/* Science's headings and labels in the mono: the page title, section headings and the research overview's labels (the
+   central question's, each trail's). The program's name and the questions stay in the serif italic. */
 .headers-mono .page-title { font-family: var(--font-mono); font-weight: 500; font-size: 1.15rem; letter-spacing: 0.12em; }
 article.prose.headers-mono h2:not(:where(.not-prose, .not-prose *)), .headers-mono .section-heading { font-family: var(--font-mono); font-weight: 500; font-size: 0.88rem; letter-spacing: 0.12em; }
-.headers-mono .research-program { font-family: var(--font-mono); font-style: normal; font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: 0.02em; }
 .headers-mono .research-label { font-family: var(--font-mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.1em; }
 article.prose.headers-smooth h2:not(:where(.not-prose, .not-prose *)), .headers-smooth .section-heading { font-style: italic; font-weight: 500; font-size: 1.55rem; line-height: 1.15; letter-spacing: 0; }
 .prose ul.research-trails { list-style: none; padding-left: 0; }

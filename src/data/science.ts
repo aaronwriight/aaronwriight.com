@@ -45,4 +45,5 @@ export const researchSources = {
   onell2026: { label: "O’Nell, Sanchez, & Finn, 2026", href: "https://doi.org/10.1126/sciadv.aeb2684" },
   avidan2026: { label: "Avidan et al., 2026", href: "https://doi.org/10.1523/JNEUROSCI.1178-26.2026" },
   lettieri2026: { label: "Lettieri, 2026", href: "https://doi.org/10.3389/fnins.2026.1771470" },
+  feldmanhall2021: { label: "FeldmanHall & Nassar, 2021", href: "https://doi.org/10.1016/j.tics.2021.09.002" },
 };
