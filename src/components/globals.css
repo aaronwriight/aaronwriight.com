@@ -777,7 +777,8 @@ html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-
 article.prose.headers-mono h2:not(:where(.not-prose, .not-prose *)), .headers-mono .section-heading { font-family: var(--font-mono); font-weight: 500; font-size: 0.88rem; letter-spacing: 0.12em; }
 .headers-mono .research-label { font-family: var(--font-mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.1em; }
 article.prose.headers-smooth h2:not(:where(.not-prose, .not-prose *)), .headers-smooth .section-heading { font-style: italic; font-weight: 500; font-size: 1.55rem; line-height: 1.15; letter-spacing: 0; }
-.prose ul.research-trails { list-style: none; padding-left: 0; }
+/* The trails are set in 1.25rem under the central question, the same step as the timeline's secondary entries. */
+.prose ul.research-trails { list-style: none; padding-left: 1.25rem; }
 .prose ul.research-trails > li { padding-left: 0; margin-block: 1.4rem; }
 .prose ul.research-trails > li::marker { content: none; }
 .site-nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }

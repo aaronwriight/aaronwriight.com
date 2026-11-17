@@ -16,7 +16,9 @@ function TimelineEntry({ date, secondary = false, children }: {
   return (
     <li className="grid gap-x-5 gap-y-1 pl-0 sm:grid-cols-[7.5rem_minmax(0,1fr)]">
       <span className="whitespace-nowrap text-stone-500 tabular-nums">{date}</span>
-      <div className={`min-w-0 ${secondary ? "border-l border-stone-200 pl-4 dark:border-stone-700" : ""}`}>
+      {/* A secondary entry (alongside the one above) is set in by the same step as the research trails, its rule inside
+          the text column rather than on its edge. */}
+      <div className={`min-w-0 ${secondary ? "ml-5 border-l border-stone-200 pl-4 dark:border-stone-700" : ""}`}>
         {children}
       </div>
     </li>
@@ -126,7 +128,7 @@ export default function CognitiveScienceAboutPage() {
               <Link href="https://fpetzschner.com/about/">Frederike Petzschner</Link> and her team to study embodied intelligence –– how brain-body
               interactions shape learning, emotion, and psychiatric vulnerability –– using computational modeling, neuroimaging (EEG, fMRI), and
               behavioral methods.
-              <p className="mb-0 border-l border-stone-200 pl-4 dark:border-stone-700">
+              <p className="mb-0 ml-5 border-l border-stone-200 pl-4 dark:border-stone-700">
                   I&apos;m also excited to continue working with Oriel&apos;s group, and to extend our work to consider how individuals&apos; affective experiences
                   unfold over time.
               </p>
