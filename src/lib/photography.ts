@@ -75,13 +75,14 @@ export const featuredPhotos: SitePhoto[] = (() => {
 })();
 
 // The photographs chosen by hand in content/photography/home.json: the front door's photography plaque, the photography
-// home's cover (the large photograph beside the hello; picked automatically when unset) and its two-row collage. A path
-// that is no longer published is skipped.
+// home's cover (the large photograph beside the hello; picked automatically when unset), its two-row collage, and the
+// contact page's side. A path that is no longer published is skipped.
 const bySrc = new Map(photographyGalleries.flatMap((gallery) => gallery.images.map((image) => [image.src, withStamp(image, gallery.title)] as const)));
 export const chosenPhotos = {
   plaque: bySrc.get(home.plaque),
   cover: bySrc.get(home.cover),
   collage: home.collage.map((row) => row.map((src) => bySrc.get(src)).filter((photo): photo is SitePhoto => !!photo)).filter((row) => row.length > 0),
+  contact: (home.contact ?? []).map((src) => bySrc.get(src)).filter((photo): photo is SitePhoto => !!photo),
 };
 
 // Pick photographs by shape from the featured order, skipping ones already used on the page.

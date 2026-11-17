@@ -17,6 +17,10 @@ html.dark {
 }
 
 :root {
+  /* The width of both sites' bars and pages: up to 112rem, with side margins that grow with the window from 1.25rem
+     on phones to 4rem on wide screens. */
+  --wrap-max: 112rem;
+  --wrap-pad: clamp(1.25rem, 4vw, 4rem);
   --site-text-primary: #1c1917;
   --site-text-secondary: #78716c;
   --site-text-metadata: #8f8883;
@@ -25,8 +29,9 @@ html.dark {
 
 html.dark {
   --color-olive: #b0bf59;
-  --color-paper-tint: #201a15;
-  --color-paper: #16120e;
+  --color-paper-tint: #120f0b;
+  --color-paper: #1b1612;
+  --color-band: #120f0b;
   --color-print: #2a231c;
   --color-wright: #e3a94f;
   --site-text-primary: #f5f5f4;
@@ -126,12 +131,15 @@ html.dark .venture-terrain-layer {
   --color-olive: #6f8200;
   /* signal: focus rings and state marks only (active underlines, map markers, completion dots). Same in both themes. */
   --color-signal: #859900;
-  /* paper-tint: the only filled surface (photo frames, placeholders, the mat around placard pictures). */
-  --color-paper-tint: #fcf9f1;
+  /* paper-tint: the only filled surface (photo frames, placeholders, placards, the mat around placard pictures):
+     the band's sand, so a placard reads as a shade darker than the page and its warm white border. */
+  --color-paper-tint: #f5efe2;
 
-  /* Retro (November 2026): the page is sand-coloured paper, panels and print borders are a warm white, and the
-     photography section's accent is golden hour. Each switches to its night value in html.dark below. */
-  --color-paper: #faf6ed;
+  /* Retro (November 2026): the page is a warm white paper; the bands across it (section bars, footers, the photography
+     home's sessions) and the panels on it are a darker sand, and print borders are warm white. The photography
+     section's accent is golden hour. Each switches to its night value in html.dark below. */
+  --color-paper: #fdfaf3;
+  --color-band: #f5efe2;
   --color-white: #fffdf8;
   --color-print: #fffdf8;
   --color-wright: #b7791f;
@@ -432,6 +440,10 @@ html.dark .entry-body figure figcaption { color: var(--color-stone-400); }
 .photo-mosaic { display: grid; gap: 12px; }
 .photo-mosaic-row { display: flex; gap: 12px; }
 .photo-mosaic-tile { position: relative; flex-basis: 0; min-width: 0; padding: 0; border: 0; background: var(--color-stone-100); cursor: zoom-in; }
+/* Staggered rows (the portfolio's session pages): every other photograph in a row sits a little lower, side by side. */
+.photo-mosaic--staggered { --stagger: clamp(1rem, 3vw, 2.75rem); }
+.photo-mosaic--staggered .photo-mosaic-row { align-items: flex-start; }
+.photo-mosaic-tile--lower { margin-top: var(--stagger); }
 .photo-mosaic-tile img { transition: opacity 0.2s ease; }
 .photo-mosaic-tile:hover img { opacity: 0.92; }
 .photo-mosaic-tile:focus-visible, .photo-mosaic-chip:focus-visible { outline: 2px solid var(--color-olive); outline-offset: 3px; }
@@ -623,11 +635,11 @@ html.dark .dialogue-b { fill: #e08a5f; }
 
 /* ---------- Frame it Wright Photography ---------- */
 /* Its own small site: a top bar instead of the side menu, no contour map, golden-hour accent (--color-wright). */
-.fiw { --fiw-max: 76rem; }
 /* Shared pieces borrowed from the main site (the newsletter form, the booking form's checkbox) take golden hour here. */
 .fiw { --color-olive: var(--color-wright); }
-.fiw-wrap { width: 100%; max-width: var(--fiw-max); margin-inline: auto; padding-inline: 1.25rem; }
-@media (min-width: 768px) { .fiw-wrap { padding-inline: 2rem; } }
+/* Focus rings and field highlights too. */
+.fiw { --color-signal: var(--color-wright); }
+.fiw-wrap { width: 100%; max-width: var(--wrap-max); margin-inline: auto; padding-inline: var(--wrap-pad); }
 .fiw a:hover { color: var(--color-wright); }
 .fiw-w { color: var(--color-wright); }
 .fiw-mono { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; font-weight: 400; }
@@ -638,9 +650,9 @@ html.dark .dialogue-b { fill: #e08a5f; }
 .fiw-title { font-style: italic; font-weight: 500; line-height: 0.95; letter-spacing: -0.005em; text-wrap: balance; }
 .fiw-link { border-bottom: 1px solid var(--color-wright); }
 .fiw-link:hover { text-decoration: none; }
-/* A band of warm white across the page: the home page's sessions and the contact page's kudos. */
-.fiw-band { border-block: 1px solid rgb(214 211 209 / 0.6); background: rgb(255 253 248 / 0.5); }
-html.dark .fiw-band { border-color: var(--color-stone-700); background: rgb(32 26 21 / 0.5); }
+/* A band of sand across the page: the home page's sessions and the contact page's kudos. */
+.fiw-band { border-block: 1px solid rgb(214 211 209 / 0.6); background: var(--color-band); }
+html.dark .fiw-band { border-color: var(--color-stone-700); }
 .fiw-cta {
   display: inline-block;
   padding: 0.85rem 1.6rem;
@@ -657,10 +669,11 @@ html.dark .fiw-cta { background: #efe8dc; color: #1d1813; }
 .fiw-session-card:hover { text-decoration: none; }
 .fiw-empty { display: grid; place-items: center; border: 1px dashed currentColor; opacity: 0.55; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; }
 
-/* The home page's collage: two rows of chosen photographs with matching ends, each photograph keeping its own shape and
-   every row one height (each tile grows by its aspect ratio); the seams are staggered by the order in home.json. On phones it becomes an even two-column grid of 4:5 prints. */
-.fiw-collage { display: grid; gap: 1rem; }
-.fiw-collage-row { display: flex; gap: 1rem; }
+/* The home page's collage: two rows of chosen photographs across nearly the whole window, with matching ends, each
+   photograph keeping its own shape and every row one height (each tile grows by its aspect ratio); the seams are
+   staggered by the order in home.json. On phones it becomes an even two-column grid of 4:5 prints. */
+.fiw-collage { display: grid; gap: 12px; }
+.fiw-collage-row { display: flex; gap: 12px; }
 .fiw-collage-tile { flex-basis: 0; min-width: 0; }
 
 @media (max-width: 639px) {
@@ -715,8 +728,7 @@ html.dark .fiw-chip input:checked + span { background: #efe8dc; color: #1d1813; 
 .fiw-chip input:focus-visible + span { outline: 2px solid var(--color-wright); outline-offset: 2px; }
 
 /* ---------- Site and section bars (main site and creative), after Frame it Wright Photography's ---------- */
-.site-wrap { width: 100%; max-width: 76rem; margin-inline: auto; padding-inline: 1.25rem; }
-@media (min-width: 768px) { .site-wrap { padding-inline: 2rem; } }
+.site-wrap { width: 100%; max-width: var(--wrap-max); margin-inline: auto; padding-inline: var(--wrap-pad); }
 .site-bar { border-bottom: 1px solid rgb(120 100 80 / 0.2); }
 /* Footers: the site's links, its symbol and the night switch on the left; the copyright on the right. */
 .footer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -724,17 +736,16 @@ html.dark .fiw-chip input:checked + span { background: #efe8dc; color: #1d1813; 
 .footer-icon:hover { color: var(--color-olive); }
 .fiw .footer-icon:hover { color: var(--color-wright); }
 
-/* Section bars and every footer (both sites) take the warm white of the photography home's sessions band. */
-.site-section-bar, .site-footer { background: rgb(255 253 248 / 0.5); }
+/* Section bars and every footer (both sites) take the sand of the photography home's sessions band. */
+.site-section-bar, .site-footer { background: var(--color-band); }
 .site-section-bar { border-bottom: 1px solid rgb(214 211 209 / 0.6); }
 .site-footer { border-top: 1px solid rgb(214 211 209 / 0.6); }
-html.dark .site-section-bar, html.dark .site-footer { background: rgb(32 26 21 / 0.5); border-color: var(--color-stone-700); }
+html.dark .site-section-bar, html.dark .site-footer { border-color: var(--color-stone-700); }
+
 .site-mono { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; }
 .site-nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
 .site-nav a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--site-text-primary); }
 .site-nav a[aria-current="page"] { color: var(--color-olive); }
-/* Photography keeps its own golden hour in the site bar. */
-.site-nav a[data-world="photography"]:is(:hover, [aria-current="page"]) { color: var(--color-wright); }
 .site-section-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; font-style: italic; font-size: 1.35rem; line-height: 1.1; }
 .site-section-name a { color: var(--site-text-primary); }
 .site-section-name .site-crumb { font-style: normal; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--site-text-secondary); }
@@ -814,16 +825,16 @@ html.dark :is(.section-heading, .subsection-heading, article.prose h2:not(:where
 /* A page can switch the contours off with an empty .no-contours element (none does at the moment). */
 html:has(.no-contours) .topo-background { display: none; }
 
-/* Journal posts (Scope for Imagination and Venture) sit on a solid tan panel, the footer's warm white over the sand
-   made solid, with an even hairline all the way round: the contours stay on the page and stop at the panel. */
+/* Journal posts (Scope for Imagination and Venture) sit on a panel of the footer's sand, with an even hairline all the
+   way round: the contours stay on the page and stop at the panel. */
 .reading-panel {
   position: relative;
   z-index: 0;
   padding: 2.25rem 2.5rem 2.75rem;
-  background: #fcfaf3;
+  background: var(--color-band);
   border: 1px solid rgb(214 211 209 / 0.6);
 }
-html.dark .reading-panel { background: #1b1611; border-color: var(--color-stone-700); }
+html.dark .reading-panel { border-color: var(--color-stone-700); }
 @media (max-width: 639px) { .reading-panel { padding: 1.25rem 1.1rem 1.75rem; } }
 
 /* Post tags in little boxes, like the photographs' date stamps: monospaced, in a warm white box; each keeps its colour. */

@@ -4,7 +4,7 @@ import { Kudos } from "@/components/photography/kudos";
 import { PrintPhoto } from "@/components/photography/print-photo";
 import { ContactForms } from "@/components/photography/contact-forms";
 import { instagramUrl, kudos, photographyFaq, photoPath } from "@/data/photography";
-import { isUpright, isWide, pickPhotos } from "@/lib/photography";
+import { chosenPhotos, isUpright, pickPhotos } from "@/lib/photography";
 
 export const metadata: Metadata = {
   title: "contact",
@@ -13,15 +13,15 @@ export const metadata: Metadata = {
 };
 
 // Contact doubles as booking: the invitation, then the forms (booking a session, or a general question at #general),
-// plain photographs down the side, then kudos and the FAQ. ?session=<slug> preselects a session in the booking form.
+// photographs from the sessions down the side in two staggered columns (content/photography/home.json), then kudos and
+// the FAQ. ?session=<slug> preselects a session in the booking form.
 export default function PhotographyContactPage() {
-  const used = new Set<string>();
-  const side = [...pickPhotos(1, used, isUpright), ...pickPhotos(1, used, isWide), ...pickPhotos(1, used, isUpright)];
-  const ratios = ["4 / 5", "3 / 2", "2 / 3"];
+  const side = chosenPhotos.contact.length > 0 ? chosenPhotos.contact : pickPhotos(6, new Set(), isUpright);
+  const columns = [side.filter((_, index) => index % 2 === 0), side.filter((_, index) => index % 2 === 1)];
 
   return (
     <>
-      <div className="fiw-wrap grid gap-12 pt-12 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.42fr)] lg:gap-20">
+      <div className="fiw-wrap grid gap-12 pt-12 pb-16 lg:grid-cols-[minmax(0,42rem)_minmax(0,1fr)] lg:gap-16 xl:gap-24">
         <div className="grid content-start gap-10">
           <header className="grid gap-4">
             <span className="fiw-eyebrow">contact</span>
@@ -43,7 +43,7 @@ export default function PhotographyContactPage() {
               To help bridge the gap, you can read a little <Link href={photoPath("/about")} className="fiw-link">about me</Link> here! :)
             </p>
           </div>
-          <section id="general" aria-labelledby="inquiry-heading" className="max-w-2xl scroll-mt-8 border border-stone-300 bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-paper-tint">
+          <section id="general" aria-labelledby="inquiry-heading" className="max-w-2xl scroll-mt-8 border border-stone-300 bg-band p-6 sm:p-8 dark:border-stone-700">
             <h2 id="inquiry-heading" className="fiw-title m-0 mb-3 text-[2rem]">start a conversation</h2>
             <p className="m-0 mb-7 text-sm leading-6">
               Reach out <a href="mailto:frameitwright@gmail.com" className="fiw-link">frameitwright@gmail.com</a> directly, send a message on <a href={instagramUrl} className="fiw-link">Instagram</a>, or prepare a draft below!
@@ -55,9 +55,13 @@ export default function PhotographyContactPage() {
             Sending an inquiry doesn&apos;t sign you up for it.
           </p>
         </div>
-        <div aria-hidden="true" className="hidden content-start gap-10 pt-24 lg:grid">
-          {side.map((photo, index) => (
-            <PrintPhoto key={photo.src} photo={photo} ratio={ratios[index]} sizes="30vw" />
+        <div aria-hidden="true" className="hidden grid-cols-2 content-start gap-5 pt-24 lg:grid">
+          {columns.map((column, index) => (
+            <div key={index} className={`grid content-start gap-5${index === 1 ? " pt-24" : ""}`}>
+              {column.map((photo) => (
+                <PrintPhoto key={photo.src} photo={photo} ratio="4 / 5" sizes="(min-width: 1024px) 22vw, 0px" />
+              ))}
+            </div>
           ))}
         </div>
       </div>

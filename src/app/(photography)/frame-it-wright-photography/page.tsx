@@ -4,7 +4,7 @@ import { CreateWithMe } from "@/components/photography/create-with-me";
 import { FrameItWright } from "@/components/photography/photo-chrome";
 import { PrintPhoto } from "@/components/photography/print-photo";
 import { kudos, photographySessions, photoPath } from "@/data/photography";
-import { chosenPhotos, isUpright, pickPhotos, sessionCover } from "@/lib/photography";
+import { chosenPhotos, isWide, pickPhotos, sessionCover } from "@/lib/photography";
 
 export const metadata: Metadata = {
   title: { absolute: "Frame it Wright Photography" },
@@ -12,20 +12,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// The photography home: the name, a hello, the five sessions in a warm white band, one kudos, then a collage of
-// chosen photographs in two rows, each keeping its own shape (content/photography/home.json), and the invitation.
+// The photography home: the name over its line, a hello beside a wide cover, the five sessions in a sand band, one kudos, then a collage of
+// chosen photographs in two rows nearly edge to edge, each keeping its own shape (content/photography/home.json), and the
+// invitation.
 export default function FrameItWrightPhotographyPage() {
   const used = new Set<string>();
   const covers = photographySessions.map((session) => ({ session, photo: sessionCover(session.slug) }));
   covers.forEach(({ photo }) => photo && used.add(photo.src));
   chosenPhotos.collage.flat().forEach((photo) => used.add(photo.src));
   if (chosenPhotos.cover) used.add(chosenPhotos.cover.src);
-  const hello = chosenPhotos.cover ?? pickPhotos(1, used, isUpright)[0];
+  const hello = chosenPhotos.cover ?? pickPhotos(1, used, isWide)[0];
   const note = kudos[0];
 
   return (
     <>
-      <section className="fiw-wrap flex flex-wrap items-end justify-between gap-x-12 gap-y-5 pt-14 pb-12 md:pt-20 md:pb-16">
+      <section className="fiw-wrap grid gap-5 pt-14 pb-12 md:pt-20 md:pb-16">
         <h1 className="fiw-title m-0 text-[clamp(3rem,8vw,5.75rem)]">
           <FrameItWright />
         </h1>
@@ -34,8 +35,8 @@ export default function FrameItWrightPhotographyPage() {
         </p>
       </section>
 
-      <section aria-labelledby="hello" className="fiw-wrap grid items-center gap-8 pb-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:gap-14">
-        {hello && <PrintPhoto photo={hello} ratio="4 / 5" sizes="(min-width: 768px) 40vw, 100vw" priority />}
+      <section aria-labelledby="hello" className="fiw-wrap grid items-center gap-8 pb-16 md:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] md:gap-14">
+        {hello && <PrintPhoto photo={hello} ratio={`${hello.width} / ${hello.height}`} sizes="(min-width: 1216px) 720px, (min-width: 768px) 60vw, 100vw" priority />}
         <div className="grid gap-4">
           <span className="fiw-eyebrow">hello</span>
           <h2 id="hello" className="fiw-title m-0 text-[2.4rem]">Hi! I&apos;m Aaron.</h2>
@@ -48,10 +49,10 @@ export default function FrameItWrightPhotographyPage() {
         </div>
       </section>
 
-      <section aria-labelledby="sessions" className="fiw-band">
+      <section aria-labelledby="moments" className="fiw-band">
         <div className="fiw-wrap py-14">
           <div className="mb-7 flex flex-wrap items-baseline justify-between gap-3">
-            <h2 id="sessions" className="fiw-title m-0 text-[2.4rem]">sessions</h2>
+            <h2 id="moments" className="fiw-title m-0 text-[2.4rem]">moments worth framing</h2>
             <span className="fiw-mono text-wright">01–05</span>
           </div>
           <ul className="m-0 grid list-none grid-cols-2 gap-x-4 gap-y-7 p-0 sm:grid-cols-3 lg:grid-cols-5">
@@ -78,14 +79,14 @@ export default function FrameItWrightPhotographyPage() {
       </section>
 
       {chosenPhotos.collage.length > 0 && (
-        <div className="fiw-wrap fiw-collage">
+        <div className="fiw-collage mx-auto max-w-[112rem] px-3 md:px-5">
           {chosenPhotos.collage.map((row) => {
             const rowRatio = row.reduce((sum, photo) => sum + photo.width / photo.height, 0);
             return (
               <div key={row[0].src} className="fiw-collage-row">
                 {row.map((photo) => (
                   <span key={photo.src} className="fiw-collage-tile" style={{ flexGrow: photo.width / photo.height }}>
-                    <PrintPhoto photo={photo} ratio={`${photo.width} / ${photo.height}`} sizes={`(min-width: 768px) ${Math.ceil(((photo.width / photo.height) / rowRatio) * 1200)}px, 50vw`} />
+                    <PrintPhoto photo={photo} ratio={`${photo.width} / ${photo.height}`} sizes={`(min-width: 768px) ${Math.ceil(((photo.width / photo.height) / rowRatio) * 100)}vw, 50vw`} />
                   </span>
                 ))}
               </div>

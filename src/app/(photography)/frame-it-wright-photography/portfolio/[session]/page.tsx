@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: session?.title ?? "portfolio", description: session?.line, alternates: { canonical: `/portfolio/${slug}` } };
 }
 
-// One session's gallery: every photograph large, in justified rows across the whole width of the window, with the
+// One session's gallery: every photograph whole, in staggered rows of up to four across the width of the window, with the
 // previous and next sessions above and below, then the invitation. The sessions wrap around (wedding follows portraits).
 export default async function PhotographySessionPage({ params }: Props) {
   const { session: slug } = await params;
@@ -46,7 +46,7 @@ export default async function PhotographySessionPage({ params }: Props) {
       </section>
       {photos.length > 0 ? (
         <div className="mx-auto max-w-[112rem] px-3 md:px-5">
-          <PhotoMosaic photos={photos} large />
+          <PhotoMosaic photos={photos} staggered />
         </div>
       ) : (
         <div className="fiw-wrap">

@@ -33,7 +33,7 @@ export default function PhotographyGalleriesPage() {
       </section>
       <ol className="fiw-wrap m-0 grid max-w-4xl list-none gap-4 p-0 sm:grid-cols-3">
         {steps.map((step) => (
-          <li key={step.label} className="grid content-start gap-2 rounded-[3px] border border-stone-300 bg-white p-5 dark:border-stone-700 dark:bg-paper-tint">
+          <li key={step.label} className="grid content-start gap-2 rounded-[3px] border border-stone-300 bg-band p-5 dark:border-stone-700">
             <span className="fiw-mono text-wright">{step.label}</span>
             <span className="leading-relaxed">{step.text}</span>
           </li>

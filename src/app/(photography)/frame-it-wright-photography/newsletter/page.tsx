@@ -22,7 +22,7 @@ export default function PhotographyNewsletterPage() {
           the season ahead. Nothing more, and never more than now and then.
         </p>
       </header>
-      <section aria-label="Sign up" className="border border-stone-300 bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-paper-tint">
+      <section aria-label="Sign up" className="border border-stone-300 bg-band p-6 sm:p-8 dark:border-stone-700">
         <NewsletterSignup
           endpoint="/api/photography/newsletter/subscribe"
           description="By joining, you agree to occasional Frame it Wright Photography emails. They're part of my creative newsletter, so your email and name are stored with Resend to manage these updates. Unsubscribe whenever you like."
