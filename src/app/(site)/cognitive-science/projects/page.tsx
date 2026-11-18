@@ -14,12 +14,12 @@ const projects = [
     href: "/cognitive-science/projects/extended-language-network",
     subtitle: "language-selective brain areas whose contributions to language remain to be discovered.",
     description: "Looking beyond the familiar frontal and temporal areas to explore the broader landscape of language-selective brain regions.",
-    // The brain, trimmed of the original's wide white margin, so the print takes its shape.
+    // The brain is drawn on its own white ground, so its print takes the figure's shape (a web-sized copy of the 9000 × 7000 original).
     photo: {
-      src: "/images/projects/extended-language-network/brain.png",
+      src: "/images/projects/extended-language-network/placard.png",
       alt: "A cortical surface illustration with language-responsive regions shaded in warm tones.",
-      width: 2400,
-      height: 1724,
+      width: 2700,
+      height: 2100,
     },
   },
   {
