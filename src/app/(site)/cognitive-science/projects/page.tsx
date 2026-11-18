@@ -14,17 +14,27 @@ const projects = [
     href: "/cognitive-science/projects/extended-language-network",
     subtitle: "language-selective brain areas whose contributions to language remain to be discovered.",
     description: "Looking beyond the familiar frontal and temporal areas to explore the broader landscape of language-selective brain regions.",
-    image: "/images/projects/extended-language-network.png",
-    alt: "A cortical surface illustration with language-responsive regions shaded in warm tones.",
+    // The brain, trimmed of the original's wide white margin, so the print takes its shape.
+    photo: {
+      src: "/images/projects/extended-language-network/brain.png",
+      alt: "A cortical surface illustration with language-responsive regions shaded in warm tones.",
+      width: 2400,
+      height: 1724,
+    },
   },
   {
     category: "software",
     title: "cortex",
     href: "/cognitive-science/projects/cortex",
-    subtitle: "the tidyverse for computational neuroscience.",
-    description: "A modular ecosystem for making neuroscience workflows more consistent, reproducible, and approachable.",
-    image: "/images/projects/cortex-social-card.png",
-    alt: "Cortex artwork: a brain with language regions shaded in orange, ringed by its workflow (preprocess, segment, model, map, analyze, visualize), on contour lines.",
+    subtitle: "a modular ecosystem for multimodal neuroimaging analysis.",
+    description: "Making neuroscience workflows more consistent, reproducible, and approachable.",
+    // The card's contour ground runs to its edges, so the print takes the card's shape.
+    photo: {
+      src: "/images/projects/cortex-social-card.png",
+      alt: "Cortex artwork: a brain with language regions shaded in orange, ringed by its workflow (preprocess, segment, model, map, analyze, visualize), on contour lines.",
+      width: 2560,
+      height: 1440,
+    },
   },
   {
     category: "creative",
