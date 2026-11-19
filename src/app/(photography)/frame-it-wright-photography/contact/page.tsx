@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Kudos } from "@/components/photography/kudos";
 import { PrintPhoto } from "@/components/photography/print-photo";
 import { ContactForms } from "@/components/photography/contact-forms";
-import { instagramUrl, kudos, photographyFaq, photoPath } from "@/data/photography";
+import { instagramUrl, kudos, photographyFaq, photoPath, picTimeKudosUrl } from "@/data/photography";
 import { chosenPhotos, isUpright, pickPhotos } from "@/lib/photography";
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ export default function PhotographyContactPage() {
 
       <div className="fiw-band py-16">
         <div className="fiw-wrap max-w-4xl">
-          <Kudos notes={kudos} />
+          <Kudos notes={kudos} moreHref={picTimeKudosUrl} />
         </div>
       </div>
 

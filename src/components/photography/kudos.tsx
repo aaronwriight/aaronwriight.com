@@ -4,8 +4,8 @@ import { useState } from "react";
 
 type Note = { quote: string; by: string; session: string };
 
-// Kudos from clients, one at a time, with previous and next buttons.
-export function Kudos({ notes }: { notes: Note[] }) {
+// Kudos from clients, one at a time, with previous and next buttons, and a link to the rest of them (on Pic-Time).
+export function Kudos({ notes, moreHref }: { notes: Note[]; moreHref?: string }) {
   const [index, setIndex] = useState(0);
   if (!notes.length) return null;
   const note = notes[index];
@@ -23,6 +23,11 @@ export function Kudos({ notes }: { notes: Note[] }) {
         <button type="button" onClick={() => step(1)} aria-label="Next kudos" className={button}>›</button>
       </div>
       <p className="fiw-mono m-0 text-center text-stone-400" aria-hidden="true">{index + 1} / {notes.length}</p>
+      {moreHref && (
+        <p className="m-0 text-center">
+          <a href={moreHref} className="fiw-link italic">read more kudos</a>
+        </p>
+      )}
     </section>
   );
 }

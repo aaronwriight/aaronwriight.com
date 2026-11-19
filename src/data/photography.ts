@@ -1,5 +1,7 @@
 // Public account entry only. Client invitations never belong in site data.
 export const picTimeClientUrl = "https://frameitwrightphotography.pic-time.com/client";
+// Every testimonial clients have left on Pic-Time; the kudos here are a few of them, copied in by hand.
+export const picTimeKudosUrl = "https://frameitwrightphotography.pic-time.com/testimonials";
 export const instagramUrl = "https://www.instagram.com/frameitwrightphotography/";
 
 // While the photography site's last pages are written it is closed: the front door's photography plaque shows an
