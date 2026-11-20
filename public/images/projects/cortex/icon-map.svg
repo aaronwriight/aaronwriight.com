@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><g stroke-linecap="round" stroke-linejoin="round">
-<circle cx="60.0" cy="60.0" r="52.0" fill="#ffffff" stroke="#f39c34" stroke-width="1.6" stroke-dasharray="4.5 4"/>
-<path d="M43.2 45.8L69.0 39.4M43.2 45.8L57.4 58.7M69.0 39.4L57.4 58.7M57.4 58.7L78.1 63.9M57.4 58.7L41.9 74.2M78.1 63.9L63.9 80.6M41.9 74.2L63.9 80.6" fill="none" stroke="#f39c34" stroke-width="1.91"/>
-<g fill="#ffffff" stroke="#f39c34" stroke-width="2.03"><circle cx="43.2" cy="45.8" r="4.5"/><circle cx="69.0" cy="39.4" r="4.5"/><circle cx="57.4" cy="58.7" r="4.5"/><circle cx="78.1" cy="63.9" r="4.5"/><circle cx="41.9" cy="74.2" r="4.5"/><circle cx="63.9" cy="80.6" r="4.5"/></g>
+<circle cx="60.0" cy="60.0" r="52.0" fill="none" stroke="#f39c34" stroke-width="1.6" stroke-dasharray="4.5 4"/>
+<path d="M48.6 44.5L63.6 40.7M47.3 49.5L53.3 55.0M66.2 44.1L60.3 54.0M62.8 60.1L72.7 62.5M53.5 62.6L45.9 70.3M74.5 68.1L67.5 76.4M47.3 75.8L58.5 79.1" fill="none" stroke="#f39c34" stroke-width="1.91"/>
+<g fill="none" stroke="#f39c34" stroke-width="2.03"><circle cx="43.2" cy="45.8" r="4.5"/><circle cx="69.0" cy="39.4" r="4.5"/><circle cx="57.4" cy="58.7" r="4.5"/><circle cx="78.1" cy="63.9" r="4.5"/><circle cx="41.9" cy="74.2" r="4.5"/><circle cx="63.9" cy="80.6" r="4.5"/></g>
 </g></svg>
