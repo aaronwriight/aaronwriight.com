@@ -5,7 +5,7 @@ import { Note, NoteGrid } from "@/components/science/project-notes";
 
 export const metadata: Metadata = {
   title: "cortex",
-  description: "The tidyverse for computational neuroscience.",
+  description: "A modular ecosystem for multimodal neuroimaging analysis.",
   // The Cortex card (November 2026) is also the link preview for this page.
   openGraph: { images: [{ url: "/images/projects/cortex-social-card.png", width: 2560, height: 1440, alt: "Cortex: a modular ecosystem for multimodal neuroimaging analysis." }] },
   twitter: { card: "summary_large_image", images: ["/images/projects/cortex-social-card.png"] },
@@ -15,7 +15,7 @@ const icon = (name: string) => ({ src: `/images/projects/cortex/icon-${name}.svg
 
 export default function CortexProjectPage() {
   return (
-    <ProjectShell title="cortex" subtitle="the tidyverse for computational neuroscience.">
+    <ProjectShell title="cortex" subtitle="a modular ecosystem for multimodal neuroimaging analysis.">
       <p>
         Cortex is a modular ecosystem for computational neuroscience, built around a shared approach to data, analysis, and visualization.
         The aim is to make scientific workflows easier to follow, compose, and reproduce.
@@ -67,7 +67,7 @@ export default function CortexProjectPage() {
           ERP contrasts, combining runs, held-out fROI responses, localizer reliability, pattern similarity, group tests.
         </Note>
         <Note icon={icon("visualize")} kicker="06" title="visualize">
-          Scalp maps, spectra, surfaces, glass brains, and cerebellar flat maps, each saved with a record of the data it shows.
+          Maps drawn on the brain's own cortex, cerebellar flat maps, scalp maps, and spectra, each saved with a record of the data it shows.
         </Note>
       </NoteGrid>
       <p>
