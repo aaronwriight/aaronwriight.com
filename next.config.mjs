@@ -6,6 +6,10 @@ const PHOTO = '/frame-it-wright-photography'
 const PHOTOGRAPHY_UNDER_CONSTRUCTION = true
 const CLOSED = `${PHOTO}/under-construction`
 const FIW = [{ type: 'host', value: 'frameitwright.com' }]
+// The sharing images Next.js serves from the section's own folder (opengraph-image-<hash>.jpg, twitter-image-<hash>.jpg).
+// Previews ask for them at /frame-it-wright-photography/..., so neither the prefix redirect nor the under-construction
+// lock may touch them: a redirect or a page there leaves Safari, iMessage and social sites with no picture.
+const SHARING_IMAGES = '(?:opengraph|twitter)-image'
 const AW = [{ type: 'host', value: 'aaronwriight.com' }]
 // Top-level paths frameitwright.com serves as they are (not photography pages).
 const sharedRoots = ['frame-it-wright-photography', '_next/', 'api/', 'images/', 'brand/', 'files/', 'maps/', 'textures/', 'favicon\\.ico', 'site\\.webmanifest', 'sand_dollar']
@@ -86,7 +90,7 @@ export default function nextConfig(phase) {
         // On frameitwright.com the section lives at the root: links written with the prefix lose it, and the rest of
         // the main site goes back to aaronwriight.com.
         { source: PHOTO, has: FIW, destination: '/', permanent: false },
-        { source: `${PHOTO}/:path*`, has: FIW, destination: '/:path*', permanent: false },
+        { source: `${PHOTO}/:first((?!${SHARING_IMAGES})[^/]+)/:rest*`, has: FIW, destination: '/:first/:rest*', permanent: false },
         ...mainSections.map((section) => ({ source: `/${section}/:path*`, has: FIW, destination: `https://aaronwriight.com/${section}/:path*`, permanent: false })),
 
         // On aaronwriight.com the section has moved to frameitwright.com. Temporary until the new address has settled.
@@ -105,7 +109,7 @@ export default function nextConfig(phase) {
             { source: '/', has: FIW, destination: CLOSED },
             { source: `/:path((?!${sharedRoots.join('|')}).+)`, has: FIW, destination: CLOSED },
             { source: PHOTO, destination: CLOSED },
-            { source: `${PHOTO}/:path((?!under-construction$).+)`, destination: CLOSED },
+            { source: `${PHOTO}/:path((?!under-construction$|${SHARING_IMAGES}).+)`, destination: CLOSED },
           ],
         }
       }
